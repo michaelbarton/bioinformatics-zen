@@ -1,0 +1,3 @@
+[submodule "content/stylesheets"]
+	path = content/stylesheets
+	url = git@github.com:michaelbarton/common-compass-stylesheet.git

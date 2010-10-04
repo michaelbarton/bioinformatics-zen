@@ -1,0 +1,17 @@
+---
+---
+!!!
+%html{ :lang => 'en' }
+  = render "_header"
+  %body
+    = render "_title"
+    %article
+      %section
+        %header
+          %a{:href => "SITE_URL#{@item.path}"}
+            %h1
+              = "#{@item[:title]}"
+        = yield
+-# Uncomment these lines after filling in the urls
+-#     = render "_disqus"
+-#   = render "_analytics"

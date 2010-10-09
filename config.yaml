@@ -14,5 +14,6 @@ deploy:
 site:
   title: "SITE_TITLE"
   url: "http://www.example.com"
+  analytics_token: "token"
 author:
   url: "http://www.example.com"

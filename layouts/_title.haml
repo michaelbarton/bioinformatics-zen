@@ -1,8 +1,7 @@
 ---
 ---
 %header
-  %a{:href => "HOME_PAGE_URL"}
+  %a{:href => @site.config[:site][:url] }
     %h1
-      %i
-        = "Site heading"
+      = @site.config[:site][:title]
   %hr

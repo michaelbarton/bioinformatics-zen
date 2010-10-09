@@ -3,8 +3,8 @@
 %head
   %meta{:charset => 'utf-8'}
   %title
-    = "#{@item[:title]} | SITE_TITLE | Michael Barton"
+    = "#{@item[:title]} | #{@site.config[:site][:title]} | Michael Barton"
   %link{ :href => relative_path_to("/stylesheets/styles.css"), :rel => "stylesheet", :media => "all" }
-  %link{ :href => "http://www.michaelbarton.me.uk", :rel => "author" }
+  %link{ :href => @site.config[:author][:url], :rel => "author" }
   / [if IE]
     %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}

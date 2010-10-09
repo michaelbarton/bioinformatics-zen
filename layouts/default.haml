@@ -8,7 +8,7 @@
     %article
       %section
         %header
-          %a{:href => "SITE_URL#{@item.path}"}
+          %a{:href => @site.config[:site][:url] + @item.path }
             %h2
               = "#{@item[:title]}"
         = yield

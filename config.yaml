@@ -11,3 +11,8 @@ deploy:
   default:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
+site:
+  title: "SITE_TITLE"
+  url: "http://www.example.com"
+author:
+  url: "http://www.example.com"

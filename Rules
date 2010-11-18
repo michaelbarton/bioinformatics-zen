@@ -6,6 +6,7 @@ Compass.add_project_configuration 'compass.config'
 
 compile '/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options
+  filter :rainpress
 end
 
 route '/stylesheets/*/' do

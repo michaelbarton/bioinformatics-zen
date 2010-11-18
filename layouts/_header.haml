@@ -4,6 +4,8 @@
   %meta{:charset => 'utf-8'}
   %title
     = "#{@item[:title]} | #{@site.config[:site][:title]} | Michael Barton"
+  %link{ :href => 'http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
+  %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
   %link{ :href => relative_path_to("/stylesheets/styles.css"), :rel => "stylesheet", :media => "all" }
   %link{ :href => @site.config[:author][:url], :rel => "author" }
   / [if IE]

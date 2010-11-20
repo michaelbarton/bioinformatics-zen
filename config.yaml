@@ -12,8 +12,8 @@ deploy:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
 site:
-  title: "SITE_TITLE"
-  url: "http://www.example.com"
-  analytics_token: "token"
+  title: "Bioinformatics Zen"
+  url: "http://www.bioinformaticszen.com"
+  analytics_token: "UA-1362555-1"
 author:
-  url: "http://www.example.com"
+  url: "http://www.michaelbarton.me.uk

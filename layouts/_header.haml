@@ -4,9 +4,19 @@
   %meta{:charset => 'utf-8'}
   %title
     = "#{@item[:title]} | #{@site.config[:site][:title]} | Michael Barton"
+
+  -# Specify author of the site
+  %link{ :href => @site.config[:author][:url], :rel => "author" }
+
+  -# Import fancy fonts via google apis
   %link{ :href => 'http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
   %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
-  %link{ :href => relative_path_to("/stylesheets/styles.css"), :rel => "stylesheet", :media => "all" }
-  %link{ :href => @site.config[:author][:url], :rel => "author" }
+
+  -# Style sheets
+  %link{ :href => relative_path_to("/stylesheets/screen.css"), :rel => "stylesheet", :media => "screen, projection", :type => "text/css"}
+  %link{ :href => relative_path_to("/stylesheets/print.css"), :rel => "stylesheet", :media => "print", :type => "text/css"}
+  %link{ :href => relative_path_to("/stylesheets/ie.css"), :rel => "stylesheet", :media => "screen,projection", :type => "text/css"}
+
+  -# HTML5 modernizer
   / [if IE]
     %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}

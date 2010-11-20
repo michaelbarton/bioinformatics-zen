@@ -5,7 +5,7 @@ Compass.add_project_configuration 'compass.config'
 
 
 compile '/stylesheets/*/' do
-  filter :sass, Compass.sass_engine_options
+  filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
   filter :rainpress
 end
 

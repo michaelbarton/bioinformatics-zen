@@ -4,14 +4,16 @@
 %html{ :lang => 'en' }
   = render "_header"
   %body
-    = render "_title"
-    %article
-      %section
-        %header
-          %a{:href => @site.config[:site][:url] + @item.path }
-            %h2
-              = "#{@item[:title]}"
-        = yield
+    .container
+      = render "_title"
+      %div{:role => "main"}
+        %article
+          %section
+            %header
+              %a{:href => @site.config[:site][:url] + @item.path }
+                %h2
+                  = "#{@item[:title]}"
+            = yield
     = google_analytics @site.config[:site][:analytics_token]
 -# Uncomment these lines after filling in the urls
 -#     = render "_disqus"

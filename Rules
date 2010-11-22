@@ -4,6 +4,13 @@ require 'grid-coordinates'
 Compass.add_project_configuration 'compass.config'
 
 
+route '/static/*' do
+  # /static/foo.ext → /foo.ext
+  item.identifier[7..-2] + '.' + item[:extension]
+end
+
+compile '/static/*' do; end
+
 compile '/stylesheets/*/' do
   filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
   filter :rainpress

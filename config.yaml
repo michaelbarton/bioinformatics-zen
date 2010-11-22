@@ -18,3 +18,4 @@ site:
   analytics_token: "token"
 author:
   url: "http://www.example.com"
+  name: "author name"

@@ -17,4 +17,5 @@ site:
   url: "http://www.example.com"
   analytics_token: "token"
 author:
-  url: "http://www.michaelbarton.me.uk
+  url: "http://www.example.com"
+  name: "author name"

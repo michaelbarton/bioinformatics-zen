@@ -12,7 +12,8 @@ deploy:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
 site:
-  title: "SITE_TITLE"
+  title: "Site title"
+  subtitle: "Site subtitle"
   url: "http://www.example.com"
   analytics_token: "token"
 author:

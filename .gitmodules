@@ -1,3 +1,6 @@
 [submodule "content/stylesheets"]
 	path = content/stylesheets
 	url = git@github.com:michaelbarton/common-compass-stylesheet.git
+[submodule "content/markup"]
+	path = content/markup
+	url = git@github.com:michaelbarton/bioinformatics-zen.git

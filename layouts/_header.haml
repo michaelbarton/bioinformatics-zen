@@ -3,14 +3,14 @@
 %head
   %meta{:charset => 'utf-8'}
   %title
-    = "#{@item[:title]} | #{@site.config[:site][:title]} | Michael Barton"
+    = "#{@item[:title]} | #{@site.config[:site][:title]} | #{@site.config[:author][:name]}"
 
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
   -# Import fancy fonts via google apis
   %link{ :href => 'http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
+  %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold,italic,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
 
   -# Style sheets
   %link{ :href => relative_path_to("/stylesheets/screen.css"), :rel => "stylesheet", :media => "screen, projection", :type => "text/css"}

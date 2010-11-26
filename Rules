@@ -25,9 +25,13 @@ route '/markup/*' do
 end
 
 compile '/markup/*' do
+  filter :r_code_fix
   filter :erb
   filter :rdiscount
-  filter :colorize_syntax, :colorizers => { :css => :pygmentize }
+  filter :colorize_syntax, :colorizers => {
+    :css => :pygmentize,
+    :r => :pygmentize,
+  }
   layout 'default'
 end
 

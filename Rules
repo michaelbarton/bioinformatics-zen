@@ -27,6 +27,7 @@ end
 compile '/markup/*' do
   filter :erb
   filter :rdiscount
+  filter :colorize_syntax, :colorizers => { :css => :pygmentize }
   layout 'default'
 end
 

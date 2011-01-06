@@ -3,7 +3,7 @@
 !!!
 %html{ :lang => 'en' }
   = render "_header"
-  %body
+  %body{:onload => "prettyPrint()" }
     .container
       = render "_title"
       %div{:role => "main"}

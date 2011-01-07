@@ -8,3 +8,12 @@ end
 def endhighlight
   "</pre>"
 end
+
+def google_font(name,character_sets = [])
+  unless character_sets.empty?
+    name += ':'
+    name += character_sets * ','
+  end
+  link = "http://fonts.googleapis.com/css?family=#{name}&amp;subset=latin"
+  "<link href='#{link}' media='all' rel='stylesheet' type='text/css'>"
+end

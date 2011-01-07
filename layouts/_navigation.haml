@@ -1,0 +1,7 @@
+- if @site.config[:site][:navigation]
+  %div{:role => "navigation"}
+    %ul
+      - @site.config[:site][:navigation].each do |name,href|
+        %li
+          %a{:href => href}
+            = name

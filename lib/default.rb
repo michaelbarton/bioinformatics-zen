@@ -17,3 +17,7 @@ def google_font(name,character_sets = [])
   link = "http://fonts.googleapis.com/css?family=#{name}&amp;subset=latin"
   "<link href='#{link}' media='all' rel='stylesheet' type='text/css'>"
 end
+
+def stylesheet(location, media = 'screen,projection')
+  "<link href='#{location}' media='#{media}' rel='stylesheet' type='text/css'>"
+end

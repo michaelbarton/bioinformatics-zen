@@ -9,9 +9,9 @@
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
   -# Import fancy fonts via google apis
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold,italic,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Molengo', :rel => "stylesheet", :media => "all", :type => 'text/css' }
+  = google_font 'Molengo'
+  = google_font 'Volkorn', %W|regular bold italic bolditalic|
+  = google_font 'Nobile',  %W|regular bold italic bolditalic|
 
   -# Style sheets
   %link{ :href => relative_path_to("/stylesheets/screen.css"), :rel => "stylesheet", :media => "screen, projection", :type => "text/css"}

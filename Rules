@@ -39,4 +39,4 @@ compile '/markup/*' do
   layout 'default'
 end
 
-layout '*', :haml, :format => :html5
+layout '*', :haml, :format => :html5, :ugly => true

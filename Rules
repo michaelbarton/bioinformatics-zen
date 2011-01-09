@@ -18,12 +18,12 @@ route '/javascript/*/' do
   item.identifier.chop + '.js'
 end
 
-compile '/stylesheets/*/' do
+compile '/stylesheets/[^_]*/' do
   filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
   filter :minify
 end
 
-route '/stylesheets/*/' do
+route '/stylesheets/[^_]*/' do
   item.identifier.chop + '.css'
 end
 
@@ -38,5 +38,9 @@ compile '/markup/*' do
   filter :rdiscount
   layout 'default'
 end
+
+# Ignore everything not already matched
+compile '*' do; nil; end
+route   '*' do; nil; end
 
 layout '*', :haml, :format => :html5, :ugly => true

@@ -3,7 +3,7 @@
 %head
   %meta{:charset => 'utf-8'}
   %title
-    = "#{@item[:title]} | #{@site.config[:site][:title]} | #{@site.config[:author][:name]}"
+    = site_title
 
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }

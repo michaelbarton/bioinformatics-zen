@@ -21,3 +21,7 @@ end
 def stylesheet(location, media = 'screen,projection')
   "<link href='#{location}' media='#{media}' rel='stylesheet' type='text/css'>"
 end
+
+def site_title
+ [@item[:title],@site.config[:site][:title],@site.config[:author][:name]].compact.uniq * " | "
+end

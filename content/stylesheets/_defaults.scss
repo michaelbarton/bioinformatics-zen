@@ -57,7 +57,6 @@ div[role="navigation"] {
 
   text-align: right;
   @extend .allcaps;
-  @include text-area;
   @include adjust-font-size-to(10px);
 
   ul {
@@ -69,6 +68,8 @@ div[role="navigation"] {
     @include no-bullets;
     a {
       text-decoration: none;
+      font-weight: bold;
+      color: $emph;
     }
   }
 }
@@ -88,6 +89,7 @@ div[role="main"] {
   }
   h2 {
     @include leader(1);
+    font-weight: bolder;
   }
 }
 

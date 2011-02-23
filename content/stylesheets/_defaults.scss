@@ -21,11 +21,14 @@ $text: #8C8979;
 $highlight: #404040;
 $emph: white;
 
-// Customisation --------------------------------------------------------
+
+// Mixins
 
 @mixin text-area {
   background: $highlight;
 }
+
+// Customisation --------------------------------------------------------
 
 header {
   a {
@@ -42,7 +45,6 @@ header.site_title {
   h1 {
     @include leader(4, 32px);
     @include adjust-font-size-to(32px);
-    font-weight: bold;
   }
   h3 {
     font-style: italic;
@@ -175,6 +177,10 @@ a {
     outline: thin dotted; } }
 
 /* Headings -------------------------------------------------------------- */
+
+h1 {
+  @extend .sans;
+}
 
 h1, h2, h3, h4, h5, h6 {
   @extend .serif; }

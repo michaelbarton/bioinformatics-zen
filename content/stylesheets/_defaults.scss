@@ -86,7 +86,7 @@ div[role="main"] {
     @include columns(12,18);
     @include prefix(1);
     @include suffix(1);
-    background: $highlight;
+    @include text-area;
     @include border-radius($text-corner-radius,$text-corner-radius);
   }
   aside {

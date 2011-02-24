@@ -87,6 +87,7 @@ div[role="main"] {
     @include prefix(1);
     @include suffix(1);
     background: $highlight;
+    @include border-radius($text-corner-radius,$text-corner-radius);
   }
   aside {
     @include columns(4,18);
@@ -102,7 +103,7 @@ pre {
   @include adjust-font-size-to($pre-font-size);
   @include leader(1,$pre-font-size);
   @include trailer(1,$pre-font-size);
-  @include border-radius($base-line-height, $base-line-height);
+  @include border-radius($pre-corner-radius, $pre-corner-radius);
   @include box-shadow(#333, 5px, 5px, 5px, 0);
 
   padding-bottom: $base-line-height / 2;

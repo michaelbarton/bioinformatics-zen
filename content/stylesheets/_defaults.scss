@@ -40,16 +40,16 @@ header {
 header.site_title {
   @include full;
   @include prefix(7);
-  h1, h2, h3 {
+
+  a h1 {
     color: $emph;
-  }
-  h1 {
-    @include leader(4, $header-font-size);
+    @include leader(2);
     @include adjust-font-size-to($header-font-size);
   }
-  h3 {
+  p {
     font-style: italic;
     font-weight: normal;
+    @extend .serif;
   }
 }
 
@@ -80,6 +80,8 @@ div[role="navigation"] {
 div[role="main"] {
   @include columns(18);
   @include omega;
+  @include leader(1);
+
   article {
     @include columns(12,18);
     @include prefix(1);

@@ -44,8 +44,8 @@ header.site_title {
     color: $emph;
   }
   h1 {
-    @include leader(4, 32px);
-    @include adjust-font-size-to(32px);
+    @include leader(4, $header-font-size);
+    @include adjust-font-size-to($header-font-size);
   }
   h3 {
     font-style: italic;
@@ -97,7 +97,7 @@ div[role="main"] {
 }
 
 pre {
-  @include adjust-font-size-to(20px);
+  @include adjust-font-size-to($pre-font-size);
   @include leader(1);
   @include trailer(1);
   @include border-radius($base-line-height, $base-line-height);

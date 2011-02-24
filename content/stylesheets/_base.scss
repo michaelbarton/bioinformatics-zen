@@ -1,6 +1,13 @@
+// Constans --------------------------------------------------------------
+
+$ratio: 1.61803399;
+
 // Font Sizes --------------------------------------------------------------
 $base-font-size: 14px;
 $base-line-height: 22px;
+
+$header-font-size: $base-font-size * $ratio;
+$pre-font-size: $base-font-size;
 
 // Grid --------------------------------------------------------------
 $total-cols: 24;

@@ -10,6 +10,10 @@ $header-font-size: $base-font-size * $ratio;
 $pre-font-size: $base-font-size;
 $navigation-font-size: 10px;
 
+// Rounded corners ---------------------------------------------------
+$text-corner-radius: 6px;
+$pre-corner-radius: 12px;
+
 // Grid --------------------------------------------------------------
 $total-cols: 24;
 $col-width: 2em;

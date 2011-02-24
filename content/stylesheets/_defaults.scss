@@ -20,6 +20,7 @@ $alt: #F60A20;
 $text: #8C8979;
 $highlight: #404040;
 $emph: white;
+$pre: $base;
 
 
 // Mixins
@@ -95,8 +96,6 @@ div[role="main"] {
   }
 }
 
-
-
 pre {
   @include adjust-font-size-to(20px);
   @include leader(1);
@@ -106,7 +105,7 @@ pre {
 
   padding-bottom: $base-line-height;
   padding-left: $base-line-height;
-  background-color: $base;
+  background-color: $pre;
 }
 
 

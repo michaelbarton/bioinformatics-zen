@@ -18,6 +18,12 @@ def google_font(name,character_sets = [])
   "<link href='#{link}' media='all' rel='stylesheet' type='text/css'>"
 end
 
+def favicon
+  if @site.config[:site][:favicon]
+    return "<link href='#{@site.config[:site][:favicon]}' rel='shortcut icon' >"
+  end
+end
+
 def stylesheet(location, media = 'screen,projection')
   "<link href='#{location}' media='#{media}' rel='stylesheet' type='text/css'>"
 end

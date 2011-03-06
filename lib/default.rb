@@ -26,3 +26,7 @@ end
 def site_title
  [@item[:title],@site.config[:title],@site.config[:name]].compact.uniq * " | "
 end
+
+def time_for(time)
+  Time.parse(time).xmlschema
+end

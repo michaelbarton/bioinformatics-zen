@@ -1,0 +1,23 @@
+!!! XML
+%feed{:xmlns => "http://www.w3.org/2005/Atom"}
+  %title= @site.config[:title]
+  %link{ :href => @site.config[:base_url] }
+  %id= @site.config[:base_url]
+  %author
+    %name= @site.config[:author_name]
+    %email= @site.config[:author_email]
+    %url= @site.config[:author_uri]
+  %rights= @site.config[:rights]
+  %updated= time_for(sorted_articles.first[:created_at])
+  - sorted_articles[0..4].each do |article|
+    %entry
+      %title= article[:title]
+      %id= url_for(article)
+      %link{ :href => url_for(article) }
+      %author
+        %name= @site.config[:author_name]
+        %email= @site.config[:author_email]
+        %url= @site.config[:author_uri]
+      %published= time_for(article[:created_at])
+      %updated= time_for(article[:created_at])
+      %content{:type => "html"}= html_escape(article.compiled_content)

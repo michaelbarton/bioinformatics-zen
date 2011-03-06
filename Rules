@@ -45,7 +45,7 @@ compile '/markup/*' do
 end
 
 compile '/atom/' do
-  filter :erb
+  filter :haml
 end
 route '/atom/' do
   '/atom.xml'

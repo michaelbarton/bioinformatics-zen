@@ -1,0 +1,92 @@
+---
+  title: Parachutes in silco, or why bioinformaticans are the mutt's nuts.
+---
+
+
+There was a [recent blog post on leaving academia][quitting]. It's an emotive
+piece. Especially if you work in academia and know how the pressure can feel to
+publish. I'm going to write about the ins and outs of whether staying in
+academia. I think this is a very personal decision because academia is a way of
+thinking and of life. I think life a professional sportsman you have to
+constantly training yourself and be in tune with your career.
+
+Leaving academia is probably a one-way street. There's a large number of people
+entering the field who can be paid a lot less and are just as determined after
+you first got your PhD. Having said that I think if you do decide to take
+a career outside of research having done bioinformatics for several years can
+stand you in good stead. Another way to look at it is that if things
+unfortunately go wrong bioinformatics offers many contempory skills which are
+in demand.
+
+### Programming
+
+This is probably the key skill that divided a computational biologist from
+a laboratory biologist - the ability to write programming code. A recent [blog
+post suggests that developers are in demand for web start-ups][shortage]. This
+is specific to the ruby language, [in 2008 Perl may have been the most popular
+language among bioinformaticians][popular], but I think if you know one
+language it's much easier to learn a second one. However the ruby community is
+very strong on good software development practices. Therefore it should be
+worthwhile aiming to continually improve your ability to code and become
+a better developer. This probably includes techniques such a test driven
+development and continuous integration Not only will this make you a better
+developer and improve the software you churn out, should things go wrong then
+this is the kind of skills you can put on your CV. Speaking of a programming CV
+spending your [free time programming][better] may make you a better developer
+but interesting companies [may hire people who write interesting tools][hiring]
+.
+
+### Linux
+
+Linux, the free operating system, I think is not to be underestimated in the
+advantage it adds to your CV. What operating system runs the majority of
+websites. If you had to do some large scale data analysis across a large
+cluster of nodes, which operating system would you choose to use? Why? Because
+Linux is the operating system which "serious" people use. Linux is easily the
+most customisable and reproducible operating system using package managers like
+apt on Debian. If you want to run a website it's just a case of apt-get install
+apache and set up your sites-available.
+
+The great thing about Linux is the command line. It's where I do most of my
+work. I think full mastery over the command line is makes you so much more
+productive. So much that you can eventually give up using the mouse. I think
+that getting so productive that you work entirely on the command line makes you
+very productive. Things like a combintation of vim + tmux. The great thing
+about the command is that it's relatively easy to configure once you get
+started with your dotfiles chops  I also think a set of [dotfile configuration
+scripts][dotfiles] in your open source portfolio is good way to demonstrate
+your command line skills.
+
+### Statistics
+
+I think this is what can really set a bioinformatician apart. The ability to
+program and use the command line are very advantageous but the ability to
+derive meaning from meaning from data is exceptional. Classical statistics are
+useful to tell apart two data sets if they are different. Or useful in
+a regression for determining which are the important variables for predicting
+a specfic data type. Then there is bayesian statistics a formal frame work for
+updating our beliefts given the data we've observed and our prior expectations.
+
+I think this is just scratching the surface for how bioinformatics skills can
+really set you heads above the rest. For example deriving a phylogenetics tree
+from a set of input sequences is a case of searching the possible tree space to
+find the best input tree parameters to match the given data. However mamximum
+likelihood estimator or bayesian monte carlo markov chains are not common
+algorithms people are taught. These conceptually simple algorithms are
+extremely useful however for any applications. As are the [clever algorithms
+for searching the parameter space][clever-alorithms].
+
+### Summary
+
+Work on what you're passionate about because the dots can connect themseleves.
+
+-- Steve Jobs talk
+
+[quitting]: http://blog.devicerandom.org/2011/02/18/getting-a-life/
+[shortage]: http://robots.thoughtbot.com/post/3310910483/a-shortage
+[popular]: http://openwetware.org/wiki/Image:Most_Popular_Bioinformatics_Programming_Languages.png
+[better]: http://stackoverflow.com/questions/82639/how-to-become-a-better-programmer
+[hiring]: https://gist.github.com/6443
+[dotfiles]: https://github.com/search?type=Repositories&language=&q=dotfiles&repo=&langOverride=&x=16&y=13&start_value=1
+[data]:http://www.dataspora.com/blog/sexy-data-geeks/
+[clever-alogrithms]: http://www.cleveralgorithms.com/

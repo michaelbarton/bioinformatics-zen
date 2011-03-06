@@ -3,19 +3,22 @@
 %head
   %meta{:charset => 'utf-8'}
   %title
-    = "#{@item[:title]} | #{@site.config[:site][:title]} | #{@site.config[:author][:name]}"
+    = site_title
 
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
   -# Import fancy fonts via google apis
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
-  %link{ :href => 'http://fonts.googleapis.com/css?family=Vollkorn:bold,italic,bolditalic&subset=latin', :rel => "stylesheet", :media => "all", :type => 'text/css' }
+  = google_font 'Molengo'
+  = google_font 'Volkorn', %W|regular bold italic bolditalic|
+  = google_font 'Nobile',  %W|regular bold italic bolditalic|
 
   -# Style sheets
-  %link{ :href => relative_path_to("/stylesheets/screen.css"), :rel => "stylesheet", :media => "screen, projection", :type => "text/css"}
-  %link{ :href => relative_path_to("/stylesheets/print.css"), :rel => "stylesheet", :media => "print", :type => "text/css"}
-  %link{ :href => relative_path_to("/stylesheets/ie.css"), :rel => "stylesheet", :media => "screen,projection", :type => "text/css"}
+  = stylesheet relative_path_to("/stylesheets/screen.css")
+  = stylesheet relative_path_to("/stylesheets/ie.css")
+  = stylesheet relative_path_to("/stylesheets/print.css"), 'print'
+
+  %script{:src => relative_path_to("/javascript/prettify.js"), :type => "text/javascript"}
 
   -# HTML5 modernizer
   / [if IE]

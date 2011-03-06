@@ -1,0 +1,24 @@
+text_extensions: [ 'css', 'erb', 'haml', 'htm', 'html', 'js', 'less', 'markdown', 'md', 'php', 'rb', 'sass', 'scss', 'txt', 'xhtml', 'xml' ]
+output_dir: output
+index_filenames: [ 'index.html' ]
+enable_output_diff: false
+data_sources:
+  -
+    type: filesystem_unified
+    items_root: /
+    layouts_root: /
+deploy:
+  default:
+    dst: "server:file_system_location"
+    options: [ '-gpPrvz' ]
+site:
+  title: "Site title"
+  subtitle: "Site subtitle"
+  url: "http://www.example.com"
+  analytics_token: "token"
+  navigation:
+    nav1: 'www.example.com'
+    nav2: 'www.example.com'
+author:
+  url: "http://www.michaelbarton.me.uk"
+  name: "Michael Barton"

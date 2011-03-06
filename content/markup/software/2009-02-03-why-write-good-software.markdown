@@ -1,7 +1,6 @@
 ---
-  category: software
-  layout: default
-  permalink: /software/why_write_good_software
+  kind: article
+  created_at: 2009-02-03
 ---
 Bioinformatics is far from commercial software development. A bioinformatician's goal is developing novel scientific research or tools. A software developer is judged on delivering software that people will pay to use. A biologist, whether they use Perl, a pipette or both, is evaluated on their publication record.
 

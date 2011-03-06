@@ -1,6 +1,6 @@
 ---
-  category: tools
-  layout: default
+  kind: article
+  created_at: 2008-12-23
 ---
 ### About
 

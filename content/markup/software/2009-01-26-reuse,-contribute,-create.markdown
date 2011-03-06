@@ -1,7 +1,6 @@
 ---
-  category: software
-  layout: default
-  permalink: /software/reuse,_contribute,_create
+  kind: article
+  created_at: 2009-01-26
 ---
 ### Use existing code
 

@@ -1,6 +1,6 @@
 ---
   kind: article
-  created_at: 2009-10-2
+  created_at: 2009-10-2 00:00 GMT
   title: Data analysis using r functions as objects
 ---
 

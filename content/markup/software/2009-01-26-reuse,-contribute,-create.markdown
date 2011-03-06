@@ -1,6 +1,6 @@
 ---
   kind: article
-  created_at: 2009-01-26
+  created_at: 2009-01-26 00:00 GMT
   title: Reuse, contribute, create
 ---
 ### Use existing code

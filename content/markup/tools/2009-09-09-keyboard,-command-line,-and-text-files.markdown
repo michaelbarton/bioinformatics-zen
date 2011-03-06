@@ -1,6 +1,6 @@
 ---
   kind: article
-  created_at: 2009-09-09
+  created_at: 2009-09-09 00:00 GMT
   title: Keyboard, command line, and text files
 ---
 

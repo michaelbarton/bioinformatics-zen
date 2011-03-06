@@ -11,10 +11,10 @@
         %article
           %section
             %header
-              %a{:href => @site.config[:site][:url] + @item.path }
+              %a{:href => @site.config[:base_url] + @item.path }
                 %h2
                   = "#{@item[:title]}"
             = yield
-    = google_analytics @site.config[:site][:analytics_token]
+    = google_analytics @site.config[:analytics_token]
 -# Uncomment these lines after filling in the urls
 -#     = render "_disqus"

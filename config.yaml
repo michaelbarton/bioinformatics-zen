@@ -11,12 +11,10 @@ deploy:
   default:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
-site:
-  title: "Bioinformatics Zen"
-  subtitle: "Michael Barton's Bioinformatics and Research Notes"
-  url: "http://www.bioinformaticszen.com"
-  navigation:
-  analytics_token: "UA-1362555-1"
-author:
-  url: "http://www.bioinformaticszen.com"
-  name: "Michael Barton"
+base_url: "http://www.bioinformaticszen.com"
+title: "Bioinformatics Zen"
+subtitle: "Michael Barton's Bioinformatics and Research Notes"
+author_uri: "http://www.bioinformaticszen.com"
+author_name: "Michael Barton"
+analytics_token: "UA-1362555-1"
+navigation:

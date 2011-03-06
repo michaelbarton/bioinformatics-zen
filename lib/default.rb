@@ -1,5 +1,6 @@
 include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::LinkTo
+include Nanoc3::Helpers::Blogging
 
 def highlight(lang)
   "<pre class=\"class=prettyprint\">"
@@ -23,5 +24,5 @@ def stylesheet(location, media = 'screen,projection')
 end
 
 def site_title
- [@item[:title],@site.config[:site][:title],@site.config[:author][:name]].compact.uniq * " | "
+ [@item[:title],@site.config[:title],@site.config[:name]].compact.uniq * " | "
 end

@@ -1,7 +1,6 @@
 ---
-  category: software
-  layout: default
-  permalink: /software/writing_good_code
+  kind: article
+  created_at: 2009-01-25
 ---
 Writing good code makes life easier. If there's a common theme in bioinformatics, it is this: you will write a script, move on to something else, then return to the script in a few months or years time and try to remember how it works. The clearer the code is originally written, the better to remember how it works. Here is a quote ["All programming is maintenance programming, because you are rarely writing original code"][maintain]. This means that most of your time will be spent fixing and improving code, rather than writing fresh. Writing code is personal, and discussing what makes good code is controversial. But I'm going do it anyway and describes what I think are a few basic principles that can help to make code easier to maintain.
 

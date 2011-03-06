@@ -1,6 +1,6 @@
 ---
-  category: tools
-  layout: default
+  kind: article
+  created_at: 2009-09-09
 ---
 
 Here I'm outlining an approach to bioinformatics focusing on using three tools: the keyboard to enter commands, the wide range of functions available at the command line, and storing data in easily searched and manipulated text files. The combination of these three can make bioinformatics analysis faster than using graphical user interfaces (GUIs) because typing into the command line is faster than clicking buttons and selecting menus with a mouse. A series text commands is also easier to reproduce and automate than remembering a sequence of GUI commands.

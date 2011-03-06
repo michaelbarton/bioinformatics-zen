@@ -44,7 +44,11 @@ compile '/markup/*' do
   layout 'default'
 end
 
-compile '*' do; nil; end
-route   '*' do; nil; end
+compile '/atom/' do
+  filter :erb
+end
+route '/atom/' do
+  '/atom.xml'
+end
 
 layout '*', :haml, :format => :html5, :ugly => true

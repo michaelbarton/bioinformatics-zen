@@ -1,6 +1,7 @@
 ---
   kind: article
   created_at: 2009-10-2
+  title: Data analysis using r functions as objects
 ---
 
 The R language is useful because of the available statistical and plotting functions in the base and addon packages. Before using any function though it's usually necessary to get your input data into the format that the function expects. Performing complicated data manipulations with R's standard methods for accessing and subsetting data can however quickly lead to complex and confusing R scripts.

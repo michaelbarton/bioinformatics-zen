@@ -1,6 +1,7 @@
 ---
   kind: article
   created_at: 2009-10-22
+  title: Dealing with big data in bioinformatics
 ---
 Bioinformatics usually involves shuffling data into the right format for plotting or statistical tests. I prefer to [use a database to store and format data][database] as I think this make projects easier to maintain compared with using just scripts. I find a dynamic language like Ruby and libraries for database manipulation like [ActiveRecord][ar] makes using a database relatively simple.
 

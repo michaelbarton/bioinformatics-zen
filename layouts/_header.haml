@@ -6,7 +6,7 @@
     = site_title
 
   -# Specify author of the site
-  %link{ :href => @site.config[:author][:url], :rel => "author" }
+  %link{ :href => @site.config[:author_uri], :rel => "author" }
 
   -# Import fancy fonts via google apis
   = google_font 'Molengo'

@@ -13,8 +13,10 @@ deploy:
     options: [ '-gpPrvz' ]
 site:
   title: "Bioinformatics Zen"
+  subtitle: "Michael Barton's Bioinformatics and Research Notes"
   url: "http://www.bioinformaticszen.com"
+  navigation:
   analytics_token: "UA-1362555-1"
 author:
-  url: "http://www.michaelbarton.me.uk"
+  url: "http://www.bioinformaticszen.com"
   name: "Michael Barton"

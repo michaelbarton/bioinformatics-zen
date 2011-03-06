@@ -10,12 +10,20 @@ end
 
 compile '/static/*' do; end
 
-compile '/stylesheets/*/' do
-  filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
-  filter :rainpress
+compile '/javascript/*/' do
+  filter :minify
 end
 
-route '/stylesheets/*/' do
+route '/javascript/*/' do
+  item.identifier.chop + '.js'
+end
+
+compile '/stylesheets/[^_]*/' do
+  filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
+  filter :minify
+end
+
+route '/stylesheets/[^_]*/' do
   item.identifier.chop + '.css'
 end
 
@@ -35,4 +43,7 @@ compile '/markup/*' do
   layout 'default'
 end
 
-layout '*', :haml, :format => :html5
+compile '*' do; nil; end
+route   '*' do; nil; end
+
+layout '*', :haml, :format => :html5, :ugly => true

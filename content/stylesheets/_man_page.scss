@@ -1,0 +1,115 @@
+// Ronn css styling for man pages
+// See http://rtomayko.github.com/ronn/
+.mp {
+  max-width: 100ex;
+  padding: 0 9ex 1ex 4ex;
+  p, pre, ul, ol, dl {
+    margin: 0 0 20px 0; }
+  h2 {
+    margin: 10px 0 0 0; }
+  > {
+    p, pre, ul, ol, dl {
+      margin-left: 8ex; } }
+  h3 {
+    margin: 0 0 0 4ex; }
+  dt {
+    margin: 0;
+    clear: left;
+    &.flush {
+      float: left;
+      width: 8ex; } }
+  dd {
+    margin: 0 0 0 9ex; }
+  h1, h2, h3, h4 {
+    clear: left; }
+  pre {
+    margin-bottom: 20px; }
+  pre+h2, pre+h3 {
+    margin-top: 22px; }
+  h2+pre, h3+pre {
+    margin-top: 5px; }
+  img {
+    display: block;
+    margin: auto; }
+  h1.man-title {
+    display: none; }
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.42857142857143;
+  code, pre, tt, kbd, samp, h3, h4 {
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.42857142857143; }
+  h2 {
+    font-size: 16px;
+    line-height: 1.25; }
+  h1 {
+    font-size: 20px;
+    line-height: 2; }
+  text-align: justify;
+  background: #fff;
+  color: #131211;
+  code {
+    color: #131211; }
+  pre {
+    color: #131211;
+    code {
+      color: #131211; } }
+  tt, kbd, samp {
+    color: #131211; }
+  h1, h2, h3, h4 {
+    color: #030201; }
+  u {
+    text-decoration: underline; }
+  code, strong, b {
+    font-weight: bold;
+    color: #131211; }
+  em, var {
+    font-style: italic;
+    color: #232221;
+    text-decoration: none; }
+  a {
+    color: #0000ff;
+    &:link, &:hover, code, pre, tt, kbd, samp {
+      color: #0000ff; } }
+  b.man-ref {
+    font-weight: normal;
+    color: #434241; }
+  pre {
+    padding: 0 4ex;
+    code {
+      font-weight: normal;
+      color: #434241; } }
+  h2+pre {
+    padding-left: 0; } }
+
+h3+pre {
+  padding-left: 0; }
+
+ol.man-decor {
+  margin: 3px 0 10px 0;
+  padding: 0;
+  float: left;
+  width: 33%;
+  list-style-type: none;
+  text-transform: uppercase;
+  color: #999;
+  letter-spacing: 1px;
+  li {
+    margin: 3px 0 10px 0;
+    padding: 0;
+    float: left;
+    width: 33%;
+    list-style-type: none;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 1px;
+    &.tl {
+      text-align: left; }
+    &.tc {
+      text-align: center;
+      letter-spacing: 4px; }
+    &.tr {
+      text-align: right;
+      float: right; } }
+  width: 100%; }

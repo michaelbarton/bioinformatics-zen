@@ -37,11 +37,8 @@ compile '/markup/*' do
   filter :r_code_fix
   filter :erb
   filter :rdiscount
-  filter :colorize_syntax, :colorizers => {
-    :css => :pygmentize,
-    :r => :pygmentize,
-  }
-  layout 'default'
+
+  layout @item[:layout] || 'default'
 end
 
 compile '/atom/' do

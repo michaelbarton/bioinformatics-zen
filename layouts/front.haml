@@ -1,0 +1,18 @@
+---
+---
+!!!
+%html{ :lang => 'en' }
+  = render "_header"
+  %body{:onload => "prettyPrint()" }
+    .container
+      = render "_title"
+      = render "_navigation"
+      %div{:role => "main"}
+        - sorted_articles[0..10].each do |article|
+          %article
+            %section
+              %header
+                %a{:href => url_for(article) }
+                  %h2
+                    = "#{article[:title]}"
+    = google_analytics @site.config[:analytics_token]

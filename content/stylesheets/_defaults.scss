@@ -72,6 +72,9 @@ div[role="main"] {
   @include leader(1);
 
   article {
+
+    @include leader(1);
+    @include trailer(1);
     @include columns(12,18);
     @include prefix(1);
     @include suffix(1);

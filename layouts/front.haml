@@ -12,7 +12,7 @@
           %article
             %section
               %header
-                %a{:href => url_for(article) }
+                %a{:href => relative_path_to(article) }
                   %h2
                     = "#{article[:title]}"
     = google_analytics @site.config[:analytics_token]

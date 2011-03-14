@@ -2,7 +2,7 @@ include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::LinkTo
 include Nanoc3::Helpers::Blogging
 
-def highlight(lang)
+def highlight
   "<pre class=\"class=prettyprint\">"
 end
 
@@ -29,4 +29,8 @@ end
 
 def time_for(time)
   Time.parse(time).xmlschema
+end
+
+def image(url,width=400)
+  "<img src='#{relative_path_to(url)}' width=#{width}>"
 end

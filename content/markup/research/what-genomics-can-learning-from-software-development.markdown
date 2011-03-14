@@ -54,6 +54,7 @@ the contig edits and joins required to produce the draft genome sequence. The
 an example scaffold file looks something like this.
 
 <%= highlight %>
+
 ---
   -
     sequence:
@@ -70,6 +71,7 @@ an example scaffold file looks something like this.
         source: "pcr_sequence_6-1"
         open: 599152
         close: 599817
+
 <%= endhighlight %>
 
 What does this achieve?  First I think this makes determining how the scaffold

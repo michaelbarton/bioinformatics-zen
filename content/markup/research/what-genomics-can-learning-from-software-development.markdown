@@ -121,13 +121,13 @@ the peer-review process. Anyone can make a suggestion or critique then upvote,
 downvote or comment on other suggestions. These comments will then hopefully
 help inform the manuscript reviewers.
 
-[pre]:
-[orc]:
+[pre]: http://precedings.nature.com/documents/5779/version/1
+[orc]: http://www.openresearchcomputation.com/
 [blogs]: http://www.google.com/search?q=%22open+research+computation%22&tbm=blg
 [biostar]:
-[dsl]:
-[nextgs]:
-[started]:
-[api]:
-[man]:
-[cameron]:
+[dsl]: http://en.wikipedia.org/wiki/Domain-specific_language
+[nextgs]: http://next.gs/
+[started]: http://next.gs/getting-started/
+[api]: http://rubydoc.info/gems/scaffolder/frames
+[man]: http://next.gs/man/
+[cameron]: http://cameronneylon.net/

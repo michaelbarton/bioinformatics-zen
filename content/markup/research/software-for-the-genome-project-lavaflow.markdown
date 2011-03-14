@@ -1,6 +1,6 @@
 ---
   kind: article
-  title: Software for the Genome Project Lavaflow
+  title: The Lava Flow Structure of Genomics Projects
   created_at: 2011-3-14 17:00 GMT
 ---
 

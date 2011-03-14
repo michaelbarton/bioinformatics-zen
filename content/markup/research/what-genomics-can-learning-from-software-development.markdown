@@ -1,117 +1,133 @@
 ---
   kind: article
-  title: Software for the Genome Project Lavaflow
+  title: Decoupling the steps in a genomics project
   created_at: 2011-3-14 17:00 GMT
 ---
 
 ### Problem
 
-I've spent the last year doing the hands-on training of a next-generation
-genome sequencing project. One of the things I've discovered is that each of
-the steps in the project (assembly, scaffolding, annotation, analysis of gene
-content) are tightly coupled to the outcome of the previous step. As an example
-of this consider an assembled, scaffolded and subsequently annotated microbial
-genome. Someone from the laboratory gives you a FASTA file containing a 150bp
-sequence that closes a gap in the genome. Supposing you use this sequence to
-close the corresponding gap you are improving the genome sequence because
-there's one less hole in the data. The question is then what to do about the
-possible content encoded in this new sequence region. Do you re-run the
-sequence through the annotation software to identify any new encoded genomic
-elements? Thereby producing producing version 1.1 of your genome.
+I've spent the last year learning hands-on about next-generation genome
+sequencing. I've found that each of the steps in a genome project (assembly,
+scaffolding, annotation, analysis of gene content) are tightly coupled to the
+the previous step. For example consider an assembled, scaffolded and
+subsequently annotated microbial genome. Then you're provided with a 150bp
+sequence that closes a gap in the genome. If you use this sequence to close
+this gap there's one less hole in the genome sequence. The question then is
+what to do about the possible content encoded in this new sequence region. Do
+you re-annotate entire genome sequence to identify any new encoded genomic
+elements, producing version 1.1 of your genome?
 
-Now consider that a new assembly algorithm is published which performs 100%
-better based on some metric of genome assembly. Do you completely reassemble
-your genome, version 2.0, in the hope of resolving the regions you've been
-struggling with? If this is the case then you must also subsequently repeat the
-scaffolding and annotation steps as they are all dependent on the originating
-nucleotide sequence. The pragmatic answer to this question is no, because
-repeating all these steps would be accurately described as a monumental
-pain-in-the-ass and a step backwards in the project.
+Now consider a new assembly algorithm is published which performs 100% better.
+Do you completely reassemble your genome, producing version 2.0, in the hope of
+that the new algorithm can resolving troublesome repeat regions? Then do also
+repeat the scaffolding and annotation steps based on the new contig sequences?
 
-This why genomics projects can be described a lava flow of data. Each assembly,
-scaffolding, annotation, and analysis step in the project "freezes" the last
-step in place. A new layer of molten data is poured on top of the previous
-layer. To move from version 1.0 to 1.1 or 2.0 almost requires starting from
+The pragmatic answer to these question is probably no? Repeating all these
+steps would accurately be described as a monumental pain-in-the-ass and a step
+backwards in the project. This why genomics projects can be described a lava
+flow of data. Each assembly, scaffolding, annotation, and analysis step in the
+project "freezes" the last step in place. A new layer of molten data is poured
+on top of the previous layer. To update the genome from version 1.0 to 1.1 or
+2.0 with new "patch" of sequence in the genome almost requires starting from
 scratch an repeating each step.
 
-Now assuming you have an infinite amount of time to go back, re-assemble your
-genomes sequence. How do you compare this new version 2.0 with the original
-version 1.0 to determine how the new assembly algorithm has fared? Should you
-look at the new the gene complement derived from the new sequence? Should you
-compare the differences in the nucleotide sequences? Most likely you would
-compare the two nucleotide sequences. But then how do you do this? Pairwise
-sequence alignment? This is less than ideal because you now using an
+Now assuming you have an infinite amount of time to go back, re-assemble,
+re-scaffold, and re-annotate your genome. How do you compare the newer version
+2.0 with the original version 1.0? Should you look at the differences in gene
+complement, contrast the nucleotide sequences, both? Most likely you would
+examine the differences in the two genome sequences. But then how do you do
+this? Pairwise sequence alignment? This is less than ideal because this uses a
 probabilistic algorithm to compare two structures that you have essentially
 built. We should know the differences between version 1.0 and 2.0 because we've
 made both of them!
 
-Finally consider you accidentally delete the scaffolded sequence for genome v2.0.
-This shouldn't be a problem you still have the assembled contigs therefore all
-you have to do is join them back together again. Probably not though because
-some contigs were cut-and-pasted together manually in a text editor. These
-steps can't easily be repeated we they were performed by hand so we can't get
-back to exactly where we were before.
+One final point to consider: imagine you accidentally delete the draft sequence
+for genome v2.0. You still have the contigs produced by the assembly software
+so therefore all you have to do is join them back together again. This is not
+trivial though because some contigs were cut-and-pasted together by hand.
+Therefore because some scaffolding steps were performed manually may not be
+possible to get back to the exact sequence for v2.0 from the original contigs.
 
-### One possible solution
+### Scaffolder
 
-I haven't written this post as rant on the state of genomics. That would be
-rather critical and counter-productive. No the reality is much worse, I've
-outlined some of the current problems in genomics field so I can start blowing
-my own trumpet about on how I have all the solutions.
+I've recently a software tool to simplify the scaffolding step in a genomics
+project. Instead of joining contigs together using cut-and-paste the scaffold
+is instead specified in a separate file using a [domain specific
+language][dsl]. This tool, which I've imaginatively called "Scaffolder," parses
+this "scaffold file", and performs the contig edits and joins required to
+produce the genome sequence. The scaffold file format looks something like
+this.
 
-Well, perhaps not all of the answers, but one at least.
-
-I written a piece of software to simplify the scaffolding step in a genomics
-project. Instead of scaffolding contigs together by cutting-and-pasting in
-a text editor you write a separate file using a domain specific language
-describing how the is made. This software, which I've imaginatively called
-"Scaffolder," parses this instruction file, then edits and joins the together
-as required to produce the final output sequence. The format of this "scaffold
-file" looks something like this.
-
-INSERT EXAMPLE SCAFFOLD FILE SYNTAX
+<%= highlight %>
+---
+  -
+    sequence:
+      source: "contig00001"
+      reverse: true
+  -
+    unresolved:
+      length: 10
+  -
+    sequence:
+      source: "scaffold00006"
+      inserts:
+      -
+        source: "pcr_sequence_6-1"
+        open: 599152
+        close: 599817
+<%= endhighlight %>
 
 What does this achieve?  First I think this makes determining how the scaffold
 is derived is much simpler. You can look at this file and see that sequence
 X is used here and sequence Y is used there, et cetera. This much easier to
-examine, and of course edit, compared with looking at 7 gigabases of
-nucleotides. Getting technical this effectively decouples the data (contigs)
-from the manipulation of the data (joining the contigs into a larger scaffold
-sequence).
+examine, and of course edit, compared with 7 gigabases of nucleotide sequence.
+Technically this decouples the data (contigs) from the manipulation of the data
+(joining the contigs into a larger scaffold sequence).
 
-I also think this scaffold syntax makes two genome builds easier to compare.
-You can just diff the two scaffold files the differences between the
-constructions. You can see when sequences are removed or added, or if their
-coordinates have been updated. Compare doing the same thing with a huge block
-of nucleotides with a line break every 40 characters.
+I also think this scaffold syntax makes two different versions of a genome
+easier to contrast - you can just use a Unix diff on the two scaffold files.
+This highlights when contigs are removed, added, or if their coordinates have
+been updated. Compare doing the same thing with a huge block of nucleotide
+sequence with a line break every 40 characters.
 
-INSERT EXAMPLE SCAFFOLD DIFF
+<%= image('/images/before.png',600) %>
 
-The second point which I think makes Scaffolder useful is reproducibility. As
-long as you have the scaffold file and the set of sequences you can always
-reproduce the same genome sequence.
+<%= image('/images/after.png',600) %>
+
+The reason I wrote Scaffolder is to make genome scaffolds reproducible and
+remove the manual element from joining contigs together. You can write your
+scaffold using the Scaffolder syntax and as long as you have the scaffold file
+and the set of sequences you can always reproduce it.
+
+If you want to [learn more about Scaffolder check out the website][nextgs].
+This has pages for [getting started][started], the [Scaffolder API][api] and
+the [Unix manual pages for command line interface][man].
 
 ### Almost there
 
-I've written a manuscript more formally describing what scaffolder is and what
-it does. You can find a [pre-print of the Scaffolder manuscript at Nature
-Preceedings][pre] and I've recently submitted this manuscript to [Open Research
-Computation][orc]. If you haven't already read the [recent blog posts about
-ORC][blogs] this journal aims to publish articles about open-source scientific
+I've written a manuscript more formally describing Scaffolder, which can find a
+[pre-print of on Nature Precedings][pre]. I've submitted this manuscript to
+[Open Research Computation][orc]. If you haven't already read the [recent blog
+posts about ORC][blogs] this journal aims to publish open-source scientific
 software with an emphasis on re-use and test-code coverage.
 
-Cameron Neylon, the editor-in-chief, has generously agreed to allow me to try
-and experiment in the peer review process with the Scaffolder manuscript. I've
-started a question on BioStar asking for community input on how Scaffolder
-could be improved Scaffolder. This is essentially an experiment in open
-peer-review where anyone can make a suggestion and upvote, downvote or comment
-on other suggestions. The reviewers of the manuscript will be able to see this
-and this will feed directly into peer-review process.
+[Cameron Neylon][cameron], the editor-in-chief, has generously agreed to allow
+me to try and experiment with the peer review process for the Scaffolder
+manuscript. I would like Scaffolder for bioinformatics working building genome
+projects and the best way to do this is solicit feedback from the genomics
+community. Therefore I've started [a question on BioStar asking how Scaffolder
+could be improved][biostar]. This is an experiment in using the web as part of
+the peer-review process. Anyone can make a suggestion or critique then upvote,
+downvote or comment on other suggestions. These comments will then hopefully
+help inform the manuscript reviewers.
 
 [pre]:
-
 [orc]:
-
 [blogs]: http://www.google.com/search?q=%22open+research+computation%22&tbm=blg
-
 [biostar]:
+[dsl]:
+[nextgs]:
+[started]:
+[api]:
+[man]:
+[cameron]:

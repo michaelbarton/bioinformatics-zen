@@ -30,3 +30,7 @@ end
 def time_for(time)
   Time.parse(time).xmlschema
 end
+
+def pretty_date(item)
+  Time.parse(item[:created_at]).strftime('%b %d %y')
+end

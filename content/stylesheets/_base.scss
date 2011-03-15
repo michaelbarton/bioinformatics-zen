@@ -15,12 +15,12 @@ $text-corner-radius: 6px;
 $pre-corner-radius: 12px;
 
 // Colors --------------------------------------------------------------
-$base: #262526;
-$alt: #F60A20;
-$text: #8C8979;
-$highlight: #404040;
-$emph: white;
-$pre: $base;
+$background: #fff;    // white
+$alt: #ff7010;        // orange
+$text: #484848;       // dark grey
+$highlight: white;
+$emph: $alt;
+$pre: #484848;        // dark grey
 
 // Grid --------------------------------------------------------------
 $total-cols: 24;

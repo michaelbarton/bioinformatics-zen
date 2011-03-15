@@ -123,7 +123,7 @@ help inform the manuscript reviewers.
 [pre]: http://precedings.nature.com/documents/5779/version/1
 [orc]: http://www.openresearchcomputation.com/
 [blogs]: http://www.google.com/search?q=%22open+research+computation%22&tbm=blg
-[biostar]:
+[biostar]: http://biostar.stackexchange.com/questions/6487/what-improvements-would-you-recommend-for-this-genome-scaffolding-software 
 [dsl]: http://en.wikipedia.org/wiki/Domain-specific_language
 [nextgs]: http://next.gs/
 [started]: http://next.gs/getting-started/

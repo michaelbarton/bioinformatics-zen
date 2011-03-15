@@ -72,7 +72,6 @@ div[role="main"] {
   @include leader(1);
 
   article {
-
     @include leader(1);
     @include trailer(1);
     @include columns(12,18);
@@ -88,6 +87,14 @@ div[role="main"] {
   h2 {
     @include leader(1);
     font-weight: bolder;
+  }
+}
+
+ul.posts {
+  margin-left: 0px;
+  @include no-bullets;
+  span {
+    @extend .mono;
   }
 }
 

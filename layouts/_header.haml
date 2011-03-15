@@ -8,6 +8,9 @@
   -# Specify author of the site
   %link{ :href => @site.config[:author_uri], :rel => "author" }
 
+  -# Site feed
+  %link{ :href => @site.config[:feed], :rel => "alternate", :type => "application/rss+xml" }
+
   -# Import fancy fonts via google apis
   = google_font 'Droid+Sans+Mono'
   = google_font 'Volkorn', %W|regular bold italic bolditalic|

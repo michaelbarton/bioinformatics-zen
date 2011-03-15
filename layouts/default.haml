@@ -11,7 +11,7 @@
         %article
           %section
             %header
-              %a{:href => @site.config[:base_url] + @item.path }
+              %a{:href => relative_path_to(@item) }
                 %h2
                   = "#{@item[:title]}"
             = yield

@@ -1,5 +1,6 @@
 ---
   kind: article
+  feed: true
   title: Experiments in Genome Scaffolding and Peer-Review
   created_at: 2011-3-15 19:00 GMT
 ---

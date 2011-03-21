@@ -103,14 +103,15 @@ API][api] and the [Unix manual pages for command line interface][man].
 
 ### Almost there
 
-I've written a manuscript which more formally describes Scaffolder, and you can
-find a [pre-print of it on Nature Precedings][pre]. I've submitted this
-manuscript to [Open Research Computation (ORC)][orc] this journal, which if you
-haven't already read the [recent blog posts describing it][blogs], aims to
-publish open-source scientific software with an emphasis on re-use and
-test-code coverage. [Cameron Neylon][cameron], the editor-in-chief at ORC, has
-generously agreed to allow me to try and experiment with the peer-review
-process for the Scaffolder manuscript.
+We, in [Hazel Barton's laboratory][hazel], have written a manuscript which
+more formally describes Scaffolder, and you can find a [pre-print of it on
+Nature Precedings][pre]. We've submitted this manuscript to [Open Research
+Computation (ORC)][orc] this journal, which if you haven't already read the
+[recent blog posts describing it][blogs], aims to publish open-source
+scientific software with an emphasis on re-use and test-code coverage.
+[Cameron Neylon][cameron], the editor-in-chief at ORC, has generously agreed
+to allow me to try and experiment with the peer-review process for the
+Scaffolder manuscript.
 
 I would like Scaffolder to be useful for building genome sequence and I think
 a way towards this is to solicit feedback from the genomics community.
@@ -131,3 +132,4 @@ help inform the manuscript reviewers.
 [api]: http://rubydoc.info/gems/scaffolder/frames
 [man]: http://next.gs/man/
 [cameron]: http://cameronneylon.net/
+[hazel]: http://www.cavescience.com/

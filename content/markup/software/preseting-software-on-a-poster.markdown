@@ -4,34 +4,45 @@
   created_at: 2011-06-27 00:00 GMT
 ---
 
-I recently presented a [genome scaffolding tool][scaf] at this year's American
-Society for Microbiology conference (ASM 2011). I find poster sessions
-difficult at times. It's hard to know if you're making the most of your time at
-large conference with so many posters to look at.
+I've spent my time recently working on [a tool to simplify genome
+scaffolding][post]. I presented this tool at this year's American Society for
+Microbiology conference (ASM 2011). I find poster sessions at large conferences
+overwhelming. There are many posters and so you have to be selective and know
+which ones are likely to interest you before hand. I've gone to see I poster
+I thought I would be interested in beforehand only to find it wasn't what
+I expected.
 
-I also think designing a poster to present software is difficult too. Software
-is an abstract concept so I think it's hard to present this in a meaningful
-way. Contrast this to presenting research where there is often the benefit of
-a research storyline and figures to present. Here is the poster is used at ASM
-2011 to present my scaffolding software.
+Posters sessions can also be daunting for the presenter too. In my case I found
+it difficult to produce a poster to present a piece of bioinformatics software.
+Software is an abstract concept so it's hard to present this as concrete
+narrative that the poster viewers can connect to. Contrast this with presenting
+research which has the benefit of a research storyline and, possibly,
+eye-catching figures.
+
+The poster I created for ASM was minimised the amount text on the page. I've
+already [written extensive documentation][scaf] on Scaffolder if the form of
+Ruby Doc, Unix man pages and a getting started guide. I believe that large
+amounts on text would be forgotten. I aimed this poster to serve as an a brief
+introduction to software and anyone interested in learning more can take the
+simple seven character URL ([http://next.gs][]) to the tool documentation.
 
 <%= image('/images/scaffolder-poster.png',600) %>
 
-The poster is light on details. The URL for the documentation is however
-prominently displayed as the second largest font size after the title. I think
-a text-heavy poster for software could be a little overwhelming to read. This
-was particulary in mind where the conference was predomiantly wet-laboratory
-reserach focused.
+The left-hand side of the poster describes the problem that manually joining
+a genome scaffold by hand is error prone and difficult to reproduce. The larger
+right-hand side illustrates the scaffolder file format and how it solves these
+problems. When Attendees expressed an interest I ran through a two minute talk
+using the poster as a prop to illustrate the main points. I could then answer
+any additional questions. I think this worked well as I was able to have
+several conversations about problems people were having with their genome
+project.
 
-The basic outline of the poster is, I hope, easy to follow. The left-hand side
-describes the problem result from manually joining and building a genome
-scaffold. The larger right-hand side illustrates the scaffolder file format and
-how it solves these problems. When people expressed an interest I was able to
-run through the main points of the poster and answer any questions they had.
-
-I have no graphical design experience. The poster design consists of the common
-shapes and text in Inkscape arranged in what I thought was most aesthetically
-pleasing. The only part that differs from this is the grunge background on the
-left-side which was just an image set as the background.
+I poster was simple to produce and took about one week. I have no graphical
+design experience so instead I planned before-hand in as much detail as
+possible. I created the poster in Inkscape using the shape and text tools. When
+I couldn't reproduce what I envisaged in my design a Google search found plenty
+of Inkscape tutorials. An example was creating the grunge back ground for the
+left-hand side.
 
 [scaffolder]: http://next.gs
+[post]: /research/experiments-in-genome-scaffolding-and-peer-review/

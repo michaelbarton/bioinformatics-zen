@@ -26,7 +26,8 @@ amounts on text would be forgotten. I aimed this poster to serve as an a brief
 introduction to software and anyone interested in learning more can take the
 simple seven character URL ([http://next.gs][]) to the tool documentation.
 
-<%= image('/images/scaffolder-poster.png',600) %>
+<%= image('/images/scaffolder-poster-thumb.png',600, :link =>
+'/images/scaffolder-poster.png') %>
 
 The left-hand side of the poster describes the problem that manually joining
 a genome scaffold by hand is error prone and difficult to reproduce. The larger

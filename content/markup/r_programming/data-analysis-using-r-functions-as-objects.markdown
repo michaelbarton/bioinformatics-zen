@@ -4,6 +4,7 @@
   created_at: 2009-10-2 00:00 GMT
 ---
 
+
 The R language is useful because of the available statistical and plotting functions in the base and addon packages. Before using any function though it's usually necessary to get your input data into the format that the function expects. Performing complicated data manipulations with R's standard methods for accessing and subsetting data can however quickly lead to complex and confusing R scripts.
 
 Processing a complex dataset in someway, for example to find the mean for a range of subsets, generally means creating variables to keep track of a series of levels to subset the data by, then creating a new variable for each subset. Creating many new variables can lead to complex R scripts that are difficult to understand. I'm going to try an outline here an interesting feature of R that allows functions to be treated as objects and can make for much cleaner and shorter R code. For example when I'm discussing "functions as objects" here I mean that the function for calculating standard deviation can be treated in the same was the array of data it works on.
@@ -140,14 +141,14 @@ d_ply(crabs, .(sp, sex), something_else)
 
 Again this is an example of how one function can accept another function as an argument. Compare how concise this code is with the code a few paragraphs up which uses for loops to do the same thing. The plyr package has more functionality than this though and is worth spending some time looking at. Also worth checking out are the [foreach][foreach] and [iterators][iter] packages which provide similar functionality.
 
-### Too long, didn't read? Here's a short video
-
-<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
-<p/>
-
 [dry]: http://en.wikipedia.org/wiki/Don't_repeat_yourself
 [cap]: http://en.wikipedia.org/wiki/Copy_and_paste_programming
 [hadly]: http://had.co.nz/
 [plyr]: http://had.co.nz/plyr/
 [foreach]: cran.r-project.org/web/packages/foreach/index.html
 [iter]: http://cran.r-project.org/web/packages/iterators/index.html
+
+### Too long, didn't read? Here's a short video
+
+<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
+<p/>

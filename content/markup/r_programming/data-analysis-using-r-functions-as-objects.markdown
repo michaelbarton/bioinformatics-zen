@@ -148,7 +148,6 @@ Again this is an example of how one function can accept another function as an a
 [foreach]: cran.r-project.org/web/packages/foreach/index.html
 [iter]: http://cran.r-project.org/web/packages/iterators/index.html
 
-### Too long, didn't read? Here's a short video
+### A four-minute video introduction
 
-<object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/0FwXSgBzo_Q&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
-<p/>
+<%= youtube '0FwXSgBzo_Q', 'Looping and subsetting in R' %>

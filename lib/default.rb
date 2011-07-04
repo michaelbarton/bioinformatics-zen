@@ -38,3 +38,7 @@ end
 def image(url,width=400)
   "<img src='#{relative_path_to(url)}' width=#{width}>"
 end
+
+def youtube(video,title="YouTube")
+  "<a href=\"http://www.youtube.com/watch?v=#{video}\" rel=\"prettyPhoto\" title=\"#{video}\"><img src=\"http://img.youtube.com/vi/#{video}/0.jpg\" alt=\"#{title}\"/></a>"
+end

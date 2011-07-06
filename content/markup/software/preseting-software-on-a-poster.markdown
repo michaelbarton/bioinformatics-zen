@@ -23,7 +23,7 @@ Unix man pages and a getting started guide so repeating this on the poster felt
 redundant. I also believed that large amounts of text describing software would
 be forgotten. I designed the poster as an a brief introduction to the software.
 Anyone interested in learning more could follow the short URL
-([http://next.gs][]) website containing more details.
+([http://next.gs][scaf]) website containing more details.
 
 <%= image('/images/scaffolder-poster-thumb.png',600, :link => '/images/scaffolder-poster.png') %>
 
@@ -42,5 +42,5 @@ of Inkscape tutorials. Overall I felt that an information light, but visually
 appealing, design was the good way to attract interest in the software and
 start a conversation.
 
-[scaffolder]: http://next.gs
+[scaf]: http://next.gs
 [post]: /research/experiments-in-genome-scaffolding-and-peer-review/

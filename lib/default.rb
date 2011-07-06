@@ -35,6 +35,10 @@ def pretty_date(item)
   Time.parse(item[:created_at]).strftime('%b %d %y')
 end
 
-def image(url,width=400)
-  "<img src='#{relative_path_to(url)}' width=#{width}>"
+def image(url,width=400,options={})
+  link = "<img src='#{relative_path_to(url)}' width=#{width}>"
+  if options[:link]
+    link = "<a href='#{relative_path_to(options[:link])}'>#{link}</a>"
+  end
+  link
 end

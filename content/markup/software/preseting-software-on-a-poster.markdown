@@ -1,7 +1,7 @@
 ---
   kind: article
   title: Presenting software on a poster
-  created_at: 2011-06-27 00:00 GMT
+  created_at: 2011-07-07 05:00 GMT
 ---
 
 I've spent time recently working on [a tool to simplify genome

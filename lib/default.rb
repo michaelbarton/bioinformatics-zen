@@ -16,7 +16,7 @@ def google_font(name,character_sets = [])
     name += character_sets * ','
   end
   link = "http://fonts.googleapis.com/css?family=#{name}&amp;subset=latin"
-  "<link href='#{link}' media='all' rel='stylesheet' type='text/css'>"
+  "<link href='#{link}' media='all' type='application/x-font-woff'>"
 end
 
 def stylesheet(location, media = 'screen,projection')
@@ -35,6 +35,18 @@ def pretty_date(item)
   Time.parse(item[:created_at]).strftime('%b %d %y')
 end
 
-def image(url,width=400)
-  "<img src='#{relative_path_to(url)}' width=#{width}>"
+def js(source)
+  "<script src='#{source}' type='text/javascript'></script>"
+end
+
+def image(url,width=400,options={})
+  link = "<img src='#{relative_path_to(url)}' width=#{width}>"
+  if options[:link]
+    link = "<a href='#{relative_path_to(options[:link])}'>#{link}</a>"
+  end
+  link
+end
+
+def youtube(video,title="YouTube")
+  "<a href='http://www.youtube.com/watch?v=#{video}&hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
 end

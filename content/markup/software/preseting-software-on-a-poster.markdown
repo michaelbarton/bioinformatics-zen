@@ -1,6 +1,6 @@
 ---
   kind: article
-  title: Presenting bioinformatics software as a poster
+  title: Presenting software on a poster
   created_at: 2011-06-27 00:00 GMT
 ---
 

@@ -35,6 +35,10 @@ def pretty_date(item)
   Time.parse(item[:created_at]).strftime('%b %d %y')
 end
 
+def js(source)
+  "<script src='#{source}' type='text/javascript'></script>"
+end
+
 def image(url,width=400,options={})
   link = "<img src='#{relative_path_to(url)}' width=#{width}>"
   if options[:link]

@@ -1,5 +1,6 @@
 ---
   kind: article
+  feed: true
   title: Presenting software on a poster
   created_at: 2011-07-07 05:00 GMT
 ---

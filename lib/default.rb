@@ -42,3 +42,7 @@ def image(url,width=400,options={})
   end
   link
 end
+
+def youtube(video,title="YouTube")
+  "<a href=\"http://www.youtube.com/watch?v=#{video}\" rel=\"prettyPhoto\" title=\"#{video}\"><img src=\"http://img.youtube.com/vi/#{video}/0.jpg\" alt=\"#{title}\"/></a>"
+end

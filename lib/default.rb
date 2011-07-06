@@ -50,3 +50,7 @@ end
 def youtube(video,title="YouTube")
   "<a href='http://www.youtube.com/watch?v=#{video}&hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
 end
+
+def lightbox(image,thumbnail)
+  "<a id='lightbox_image' href='#{relative_path_to('/images/' + image)}'><img src='#{relative_path_to('/images/' + thumbnail)}'/></a>"
+end

@@ -25,7 +25,7 @@ the software would be forgotten. I designed the poster as a brief introduction
 to the software. Anyone interested in learning more could follow the short URL
 ([http://next.gs][scaf]) to the website containing more details.
 
-<a id="lightbox_image" href="/images/scaffolder-poster.png"><img src="/images/scaffolder-poster-thumb.png" alt=""/></a>
+<%= lightbox('scaffolder-poster.png','scaffolder-poster-thumb.png')%>
 
 The left-hand side of the poster describes the problem of creating a genome by
 joining the contigs manually. The larger right-hand side illustrates the

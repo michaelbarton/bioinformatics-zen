@@ -8,15 +8,9 @@
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
-  -# Import google fonts specified in config.yml
   = google_fonts
-
-  -# Style sheets
-  = stylesheet relative_path_to("/stylesheets/screen.css")
-  = stylesheet relative_path_to("/stylesheets/print.css"), 'print'
-
+  = stylesheets
   = favicon
-
   = scripts
 
   -# HTML5 modernizer

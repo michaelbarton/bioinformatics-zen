@@ -39,3 +39,12 @@ google_fonts:
     - "bold"
     - "italic"
     - "bolditalic"
+scripts:
+  - "https://www.google.com/jsapi?key=ABQIAAAAY-Po-vITSRs13yAER6R-vxSra3Sy8luTxRRrne7YP3mAkjpCARS9K_z0sLbKHzv2zlMNiYLq0UExIg"
+  - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  - "/vendor/fancybox/javascript.js"
+  - "/javascript/prettify.js"
+stylesheets:
+  "/stylesheets/screen.css": "screen,projection"
+  "/stylesheets/print.css": "print"
+  "/vendor/fancybox/styles.css": "screen,projection"

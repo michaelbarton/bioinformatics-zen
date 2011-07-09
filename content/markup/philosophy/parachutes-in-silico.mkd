@@ -4,74 +4,53 @@
   created_at: 2011-03-07
 ---
 
-There was a [recent blog post on leaving academia by Massimo Sandal][quitting].
-I found reading this article emotive and made me feel a little uncomfortable.
-The constant feeling of needing to publish leads to continuous feeling of being
-under pressure. This is something I have acutely felt since starting my post-PhD
-career. 
+You may have read the [popular post blog by Massimo Sandal as he describes his
+feelings about academia and his decision to leave][quitting]. Working in
+academia feels like a way of life rather than simply a job. Being a researcher
+in academia becomes intimately tied to your identity. The decision to leave
+academia a very personal one that doesn't just change your 9-5, but also your
+evenings and weekends. I definitely carry my research around in my head with
+me.
 
-Working in academia can sometimes feel like a way of life rather than a job.
-This can make leaving academia a very personal decision because it's not just
-changing your 9-5, it's also the 7-9 after dinner, it's thinking about problems
-in bed, it's also getting ideas in the shower. I think you basically carry
-academia around in your head most times of the day.
+I think bioinformatics is an choice for working in academia. Precisely because
+it makes academia much easier. A bioinformatician has transferable skills that
+are in demand. The same may, unfortunately, [not be the case for a wet-lab
+biologist who has spent several years in a specialised project][wetlab].
 
-Having said that I think the decision to leave academia and then to describe
-the feelings about this online are both brave decisions. I think if you leave
-academia having worked as a bioinformatician leaves you in a better position
-than most when looking for another job. Or as another perspective - picking
-learning a the right contemporary skills as a bioinformatician academia can pay
-off if things don't quite turn out the way you planned.
-
-### Programming
-
-I think knowing how to write software sets a computational biologist apart from
-a wet-lab biologist. A recent [blog post suggests that developers are in demand
-for web start-ups][shortage]. This post is however specific to the Ruby
-language, [and in 2008 Perl was the most popular language among a sample
+Knowing how to program already sets a computational biologist apart most
+people. I think programming is a skill which you realise the worth once you
+have it. A [blog post suggests that developers are very much in demand for web
+start-ups][shortage]. This post is specific to the Ruby language, [while in
+2008 Perl was the most popular language among a sample
 bioinformaticians][popular]. Nevertheless, if you know one language it's much
 easier to learn a second.
 
-I moved from the Java language to the Ruby halfway during my PhD. One of the
-things I feel I've improved from learning Ruby is a strong foundation for
-test-driven software development. This translates as writing tests for how your
-software should behave before writing the software itself. Working as an
-academic bioinformatician there is often scope for solving scientific problems
-using the languages and frameworks that suit you. Therefore its possible and
-I think very worthwhile continually improve yourself as a developer and to push
-yourself to solve problems in ways you wouldn't normally consider.
+Working as an academic bioinformatician there is often the choice of working
+in the languages and frameworks that suit you. I think it's very worthwhile
+use this freedom to improve yourself as a developer and try solving problems
+using a different language or library.
 
 Learning new skills such as [integration testing][integration], a [version
 control system like git][git], or [a customisable editor like vim][vim] can
 make you more productive as a developer but are also useful additions to your
-CV or resume. The best way to [become a better programmer is to program
-something][better] and having an open-source portfolio may get you a job at
-interesting companies [who hire people that write interesting tools][hiring] .
-
-### Data Analysis
+CV. Furthermore a great way to [improve as a better programmer is to program
+something][better]. Creating an open-source project gives you something to
+tinker with and may get you a job at interesting companies [who hire people
+who write interesting tools][hiring] .
 
 I think being able to store, manipulate and analyse data, big or small, can
 really set a bioinformatician apart and make them attractive to employers. The
-ability to program and use the command line are useful but deriving meaning
-from meaning from data is exceptional. Classical statistics can estimate if two
-groups of data are significantly different within a given confidence interval.
-Regression can discriminate which are the important factors in the trend you're
-seeing in your data. Then there is Bayes's rule and the corresponding methods
-for inference derived from it. Bayesian statistics provides a formal frame work
-for inferring the probability of variables and updating beliefs given the data
-observed and prior expectations.
+ability to program and use the command line are excellent skill. Deriving
+meaning from meaning from data is however an exceptional skill.
 
-This is just a small example of bioinformatics data skills that will always be
-useful. Common tools that we take for granted such as building a multiple
-sequence alignment, creating a phylogenetic tree, or assembling a genome
-sequence are all based on finding the probabilistic solution to the problem.
-This means there is not necessarily a right answer when the number of possible
-solutions is very large. Instead you search for the most correct solution and
-evaluate if for a calculated score for that answer. Maximum likelihood
+Common tools that we take for granted such as building a multiple sequence
+alignment, creating a phylogenetic tree, or assembling a genome sequence are
+all based on finding a probabilistic solution. This is searching for the most
+likely solution in a countably infinite number of solutes. Maximum likelihood
 estimators or Bayesian MCMC may not be common approaches outside of
 bioinformatics, but these conceptually simple algorithms are extremely useful
-however where you want to search the parameter space of a large data set for
-the most likely answer.
+however where you want to any solution space or large data set for the most
+likely answer.
 
 ### Summary
 
@@ -80,6 +59,7 @@ Work on what you're passionate about because the dots can connect themselves.
 -- Steve Jobs talk
 
 [quitting]: http://blog.devicerandom.org/2011/02/18/getting-a-life/
+[wetlab]: http://scienceblogs.com/bioephemera/2011/03/are_biology_graduate_students.php
 [reaction]: http://blog.devicerandom.org/2011/02/22/goodbye-aftermath/
 [shortage]: http://robots.thoughtbot.com/post/3310910483/a-shortage
 [popular]: http://openwetware.org/wiki/Image:Most_Popular_Bioinformatics_Programming_Languages.png

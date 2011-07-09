@@ -7,43 +7,45 @@ route '/static/*' do
   # /static/foo.ext → /foo.ext
   item.identifier[7..-2] + '.' + item[:extension]
 end
-
 compile '/static/*' do; end
+
 
 compile '/javascript/*/' do
   filter :minify
 end
-
 route '/javascript/*/' do
   item.identifier.chop + '.js'
 end
+
 
 compile '/stylesheets/[^_]*/' do
   filter :sass, Compass.sass_engine_options.merge(:syntax => :scss)
   filter :minify
 end
-
 route '/stylesheets/[^_]*/' do
   item.identifier.chop + '.css'
 end
+compile '/stylesheets/_*/' do; nil; end
+route '/stylesheets/_*/' do; nil; end
+
 
 route '/markup/*' do
   # /markup/foo.markdown → /foo/index.html
   item.identifier[7..-1] + 'index.html'
 end
-
 compile '/markup/*' do
   filter :r_code_fix
   filter :erb
   filter :rdiscount
-  filter :colorize_syntax, :colorizers => {
-    :css => :pygmentize,
-    :r => :pygmentize,
-  }
-  layout 'default'
+
+  layout @item[:layout] || 'default'
 end
 
-compile '*' do; nil; end
-route   '*' do; nil; end
+compile '/atom/' do
+  filter :haml
+end
+route '/atom/' do
+  '/atom.xml'
+end
 
 layout '*', :haml, :format => :html5, :ugly => true

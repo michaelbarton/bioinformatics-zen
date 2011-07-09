@@ -1,6 +1,7 @@
 ---
   kind: article
-  created_at: 2008-12-23
+  title: Vim
+  created_at: 2008-12-23 00:00 GMT
 ---
 ### About
 

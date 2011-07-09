@@ -1,6 +1,7 @@
 ---
   kind: article
-  created_at: 2009-01-25
+  title: Writing good code
+  created_at: 2009-01-25 00:00 GMT
 ---
 Writing good code makes life easier. If there's a common theme in bioinformatics, it is this: you will write a script, move on to something else, then return to the script in a few months or years time and try to remember how it works. The clearer the code is originally written, the better to remember how it works. Here is a quote ["All programming is maintenance programming, because you are rarely writing original code"][maintain]. This means that most of your time will be spent fixing and improving code, rather than writing fresh. Writing code is personal, and discussing what makes good code is controversial. But I'm going do it anyway and describes what I think are a few basic principles that can help to make code easier to maintain.
 
@@ -8,18 +9,18 @@ Writing good code makes life easier. If there's a common theme in bioinformatics
 
 I think code should err on the side of being too descriptive, rather than being too concise. I mean that code should be loud and expressive about its purpose. An example is choosing variable names.
 
-{% highlight ruby %}
+<%= highlight %>
     # Concise
     seq = File.read('gene.fasta')
     
     # Descriptive
     fasta_gene_sequence = File.read('gene.fasta')
-{% endhighlight %}
+<%= endhighlight %>
 
 The second example is longer, but leaves no doubt as to what the variable contains. The same can be applied to method names. The more specific a method name the better to remember the function and what is returned.
 
 
-{% highlight ruby %}
+<%= highlight %>
     # Concise
     def get_seq(file)
       # ...
@@ -29,22 +30,22 @@ The second example is longer, but leaves no doubt as to what the variable contai
     def read_fasta_from(file)
       # ...
     end
-{% endhighlight %}
+<%= endhighlight %>
 
 Next are magic numbers, numbers that appear in code, but have no explanation to their meaning. These can particularly annoying if you can't remember why you used the number and there is no other reference to it.
 
-{% highlight ruby %}
+<%= highlight %>
     # Three, its the magic number
     dna_sequence.scan(3)
 
     # Descriptive
     nucleotides_per_codon = 3
     dna_sequence.scan(nucleotides_per_codon)
-{% endhighlight %}
+<%= endhighlight %>
 
 Comments never hurt either, as long as they are correct. Incorrect comments are generally not considered useful. Comments are especially useful when the meaning of the code is not obvious, but going too much commenting can sometimes make code less easy to read
 
-{% highlight ruby %}
+<%= highlight %>
     # Why the chop?
     protein = dna_sequence.translate.chop
 
@@ -62,7 +63,7 @@ Comments never hurt either, as long as they are correct. Incorrect comments are 
 
     # Remove the stop codon after translating
     protein = dna_sequence.translate.chop
-{% endhighlight %}
+<%= endhighlight %>
 
 Try to follow the indentation guidelines for the language you're writing in. Indentation makes code easier to read for you and anyone you share the code with.
 

@@ -1,6 +1,7 @@
 ---
   kind: article
-  created_at: 2009-01-11
+  title: Git
+  created_at: 2009-01-11 00:00 GMT
 ---
 ### About
 

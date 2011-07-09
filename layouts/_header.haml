@@ -8,10 +8,8 @@
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
-  -# Import fancy fonts via google apis
-  = google_font 'Molengo'
-  = google_font 'Volkorn', %W|regular bold italic bolditalic|
-  = google_font 'Nobile',  %W|regular bold italic bolditalic|
+  -# Import google fonts specified in config.yml
+  = google_fonts
 
   -# Style sheets
   = stylesheet relative_path_to("/stylesheets/screen.css")

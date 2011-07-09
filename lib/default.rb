@@ -20,6 +20,16 @@ def google_fonts
   output
 end
 
+def scripts
+  return unless @site.config[:scripts]
+  output = String.new
+  @site.config[:scripts].each do |script|
+    script = relative_path_to(script) unless script =~ /^http/
+    output << "<script src='#{script}' type='text/javascript'></script>\n"
+  end
+  output
+end
+
 def favicon
   if @site.config[:site][:favicon]
     return "<link href='#{@site.config[:site][:favicon]}' rel='shortcut icon' >"

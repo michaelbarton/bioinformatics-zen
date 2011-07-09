@@ -11,6 +11,7 @@
 @import "susy/reset";
 @import "prettify";
 @import "man_page";
+@import "prettyphoto";
 
 // Mixins
 
@@ -72,6 +73,8 @@ div[role="main"] {
   @include leader(1);
 
   article {
+    @include leader(1);
+    @include trailer(1);
     @include columns(12,18);
     @include prefix(1);
     @include suffix(1);
@@ -85,6 +88,14 @@ div[role="main"] {
   h2 {
     @include leader(1);
     font-weight: bolder;
+  }
+}
+
+ul.posts {
+  margin-left: 0px;
+  @include no-bullets;
+  span {
+    @extend .mono;
   }
 }
 
@@ -133,7 +144,7 @@ html {
 
 body {
   @extend .sans;
-  background: $base;
+  background: $background;
   color: $text; }
 
 /* Selected Text -------------------------------------------------------------- */
@@ -141,7 +152,7 @@ body {
 
 @mixin accessible-color($background: white) {
   @if lightness($background) >= 65% {
-    color: $base; }
+    color: $background; }
   @else {
     color: white; } }
 
@@ -337,7 +348,7 @@ label {
   @include box-sizing(border-box);
   width: 100%;
   margin-top: 0;
-  border-color: $base;
+  border-color: $background;
   height: $base-line-height / 14px * 1.5em; }
 
 textarea {

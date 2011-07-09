@@ -11,14 +11,12 @@ deploy:
   default:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
-site:
-  title: "Site title"
-  subtitle: "Site subtitle"
-  url: "http://www.example.com"
-  analytics_token: "token"
-  navigation:
-    nav1: 'www.example.com'
-    nav2: 'www.example.com'
-author:
-  url: "http://www.michaelbarton.me.uk"
-  name: "Michael Barton"
+title: "Site title"
+subtitle: "Site subtitle"
+base_url: "http://www.example.com"
+analytics_token: "token"
+author_name: "Michael Barton"
+author_uri: "http://www.michaelbarton.me.uk"
+navigation:
+  nav1: 'www.example.com'
+  nav2: 'www.example.com'

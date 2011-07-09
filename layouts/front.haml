@@ -1,0 +1,21 @@
+---
+---
+!!!
+%html{ :lang => 'en' }
+  = render "_header"
+  %body{:onload => "prettyPrint()" }
+    .container
+      = render "_title"
+      = render "_navigation"
+      %div{:role => "main"}
+        %article
+          %section
+            %ul.posts
+              - sorted_articles.each do |article|
+                %li
+                  %span
+                    = pretty_date(article)
+                  &raquo; &nbsp;
+                  %a{:href => relative_path_to(article) }
+                    = "#{article[:title]}"
+    = google_analytics @site.config[:analytics_token]

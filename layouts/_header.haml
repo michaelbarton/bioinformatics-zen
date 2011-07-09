@@ -6,10 +6,13 @@
     = site_title
 
   -# Specify author of the site
-  %link{ :href => @site.config[:author][:url], :rel => "author" }
+  %link{ :href => @site.config[:author_uri], :rel => "author" }
+
+  -# Site feed
+  %link{ :href => @site.config[:feed], :rel => "alternate", :type => "application/rss+xml" }
 
   -# Import fancy fonts via google apis
-  = google_font 'Molengo'
+  = google_font 'Droid+Sans+Mono'
   = google_font 'Volkorn', %W|regular bold italic bolditalic|
   = google_font 'Nobile',  %W|regular bold italic bolditalic|
 
@@ -17,9 +20,39 @@
   = stylesheet relative_path_to("/stylesheets/screen.css")
   = stylesheet relative_path_to("/stylesheets/ie.css")
   = stylesheet relative_path_to("/stylesheets/print.css"), 'print'
+  = stylesheet relative_path_to("/fancybox/jquery.fancybox-1.3.4.css")
 
-  %script{:src => relative_path_to("/javascript/prettify.js"), :type => "text/javascript"}
+  = js relative_path_to("/javascript/prettify.js")
+  = js "https://www.google.com/jsapi?key=ABQIAAAAY-Po-vITSRs13yAER6R-vxSra3Sy8luTxRRrne7YP3mAkjpCARS9K_z0sLbKHzv2zlMNiYLq0UExIg"
+  = js "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  = js relative_path_to("/javascript/fancybox.js")
 
   -# HTML5 modernizer
   / [if IE]
     %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
+
+:javascript
+  $(document).ready(function(){
+    $("a#lightbox_image").fancybox();
+
+    $("a#lightbox_youtube").click(function() {
+      $.fancybox({
+          'padding'       : 0,
+          'autoScale'     : false,
+          'transitionIn'  : 'none',
+          'transitionOut' : 'none',
+          'title'         : this.title,
+          'width'         : 680,
+          'height'        : 495,
+          'href'          : this.href.replace(new RegExp("watch\\?v=", "i"), 'v/'),
+          'type'          : 'swf',
+          'swf'           : {
+            'wmode'           : 'transparent',
+            'allowfullscreen' : 'true'
+          }
+        });
+
+      return false;
+    });
+
+  });

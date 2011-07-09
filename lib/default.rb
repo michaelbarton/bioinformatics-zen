@@ -9,13 +9,15 @@ def endhighlight
   "</pre>"
 end
 
-def google_font(name,character_sets = [])
-  unless character_sets.empty?
-    name += ':'
-    name += character_sets * ','
+def google_fonts
+  return unless @site.config[:google_fonts]
+  output = String.new
+  @site.config[:google_fonts].each do |font_name,fonts|
+    family = font_name.to_s + ':' + fonts * ','
+    link = "http://fonts.googleapis.com/css?family=#{family}&amp;subset=latin"
+    output << "<link href='#{link}' media='all' type='application/x-font-woff'>\n"
   end
-  link = "http://fonts.googleapis.com/css?family=#{name}&amp;subset=latin"
-  "<link href='#{link}' media='all' rel='stylesheet' type='text/css'>"
+  output
 end
 
 def favicon

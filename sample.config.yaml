@@ -23,3 +23,19 @@ site:
 author:
   url: "http://www.example.com"
   name: "author name"
+google_fonts:
+  Molengo:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"
+  Volkorn:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"
+  Nobile:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"

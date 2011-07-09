@@ -7,7 +7,7 @@ $base-font-size: 16px;
 $base-line-height: 24px;
 
 $header-font-size: $base-font-size * $ratio;
-$pre-font-size: $base-font-size;
+$pre-font-size: $base-font-size * 0.8;
 $navigation-font-size: 10px;
 
 // Rounded corners ---------------------------------------------------

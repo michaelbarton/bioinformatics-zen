@@ -1,29 +1,25 @@
 ---
-  title: Parachutes in silico
+  title: Biofinformatics: a useful career if you decide to leave
   kind: article
   created_at: 2011-03-07
 ---
 
-You may have read the [popular post blog by Massimo Sandal as he describes his
-feelings about academia and his decision to leave][quitting]. Working in
-academia feels like a way of life rather than simply a job. Being a researcher
-in academia becomes intimately tied to your identity. The decision to leave
-academia a very personal one that doesn't just change your 9-5, but also your
-evenings and weekends. I definitely carry my research around in my head with
-me.
+Working in academia can like a way of life rather than simply a job. Being a
+researcher is often intimately tied to your own identity. I definitely carry
+my research around in my head with me outside of the 9-5 or 10-8 of working
+hours. Therefore if you are unhappy, [as thoughtfully described by Massimo
+Sandal][quitting], the decision to leave can be very difficult. Aside from the emotion associated with leaving a career that required the best of your twenties for post-graduate study, I think bioinformatics may be an excellent career to have if you decide it's not for you.
 
-I think bioinformatics is an choice for working in academia. Precisely because
-it makes academia much easier. A bioinformatician has transferable skills that
-are in demand. The same may, unfortunately, [not be the case for a wet-lab
-biologist who has spent several years in a specialised project][wetlab].
-
-Knowing how to program already sets a computational biologist apart most
-people. I think programming is a skill which you realise the worth once you
-have it. A [blog post suggests that developers are very much in demand for web
+A bioinformatician has transferable skills that are in demand. Knowing how to
+program already sets a computational biologist apart most people. I think
+programming is a skill which you realise the worth once you have it. A [blog
+post suggests that developers are very much in demand for web
 start-ups][shortage]. This post is specific to the Ruby language, [while in
 2008 Perl was the most popular language among a sample
 bioinformaticians][popular]. Nevertheless, if you know one language it's much
-easier to learn a second.
+easier to learn a second. The same may, unfortunately, [not be the case for
+a wet-lab biologist who has spent several years in a specialised
+project][wetlab].
 
 Working as an academic bioinformatician there is often the choice of working
 in the languages and frameworks that suit you. I think it's very worthwhile

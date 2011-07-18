@@ -1,54 +1,53 @@
 ---
-  title: Biofinformatics: a useful career if you decide to leave
+  title: Bioinformatics: a useful career if you decide to leave
   kind: article
   created_at: 2011-03-07
 ---
 
-Working in academia can like a way of life rather than simply a job. Being a
-researcher is often intimately tied to your own identity. I definitely carry
-my research around in my head with me outside of the 9-5 or 10-8 of working
-hours. Therefore if you are unhappy, [as thoughtfully described by Massimo
-Sandal][quitting], the decision to leave can be very difficult. Aside from the emotion associated with leaving a career that required the best of your twenties for post-graduate study, I think bioinformatics may be an excellent career to have if you decide it's not for you.
+Working in academia feels like a way of life rather than just a job. Being
+a researcher is intimately tied to your own identity. I carry my research
+around in my head with me outside of the 9-5 or 10-8 of working hours.
+Therefore if you are unhappy with your job, [as thoughtfully described by
+Massimo Sandal][quitting], the decision to leave can be very difficult. Aside
+from the emotion associated with leaving a career that required the best of
+your twenties for post-graduate study, I think bioinformatics skills are
+transferable an provide may other career options.
 
-A bioinformatician has transferable skills that are in demand. Knowing how to
-program already sets a computational biologist apart most people. I think
-programming is a skill which you realise the worth once you have it. A [blog
-post suggests that developers are very much in demand for web
-start-ups][shortage]. This post is specific to the Ruby language, [while in
-2008 Perl was the most popular language among a sample
-bioinformaticians][popular]. Nevertheless, if you know one language it's much
-easier to learn a second. The same may, unfortunately, [not be the case for
-a wet-lab biologist who has spent several years in a specialised
-project][wetlab].
+Knowing how to program already sets a computational biologist apart in the job
+market. I think programming is a skill where you begin to realise the worth
+once you have it. A [blog post suggests that developers are very much in demand
+for web start-ups][shortage]. This post is specific to the Ruby language,
+[while in 2008 Perl was the most popular language among a sample
+bioinformaticians][popular]. Nevertheless, if you already know one language
+it's easier to learn a second.
 
-Working as an academic bioinformatician there is often the choice of working
-in the languages and frameworks that suit you. I think it's very worthwhile
-use this freedom to improve yourself as a developer and try solving problems
-using a different language or library.
-
-Learning new skills such as [integration testing][integration], a [version
-control system like git][git], or [a customisable editor like vim][vim] can
-make you more productive as a developer but are also useful additions to your
-CV. Furthermore a great way to [improve as a better programmer is to program
-something][better]. Creating an open-source project gives you something to
-tinker with and may get you a job at interesting companies [who hire people
-who write interesting tools][hiring] .
+Learning auxiliary skills such as [integration testing][integration],
+a [version control system like git][git], or [a customisable editor like
+vim][vim] can make you more productive as a developer. Furthermore I think
+these skills but are also useful additions to a CV. A good way to [improve as
+a better programmer is to program something][better], so having an open-source
+project gives you something to tinker with and may get you a job at interesting
+companies [who hire people who write interesting tools][hiring].
 
 I think being able to store, manipulate and analyse data, big or small, can
 really set a bioinformatician apart and make them attractive to employers. The
 ability to program and use the command line are excellent skill. Deriving
-meaning from meaning from data is however an exceptional skill.
-
-Common tools that we take for granted such as building a multiple sequence
-alignment, creating a phylogenetic tree, or assembling a genome sequence are
-all based on finding a probabilistic solution. This is searching for the most
-likely solution in a countably infinite number of solutes. Maximum likelihood
-estimators or Bayesian MCMC may not be common approaches outside of
-bioinformatics, but these conceptually simple algorithms are extremely useful
-however where you want to any solution space or large data set for the most
-likely answer.
+meaning from meaning from data is however an exceptional skill. Common tools
+that we take for granted such as building a multiple sequence alignment,
+creating a phylogenetic tree, or assembling a genome sequence are all based on
+finding a probabilistic solution. Searching for the most best solution in
+a countably infinite number. Maximum likelihood estimators or Bayesian MCMC may
+not be common approaches outside of bioinformatics, but these conceptually
+simple algorithms are useful however where you want to search solution space or
+large data set for the most likely answer.
 
 ### Summary
+
+I think when you take a job you care about hope that it will last at least the
+next few years. Hopefully even a career that lasts the next forty years.
+Unfortunately it may be the case that [wet-lab biologists spend years
+developing specialised skill not eminently transferable outside the
+lab][wetlab].
 
 Work on what you're passionate about because the dots can connect themselves.
 

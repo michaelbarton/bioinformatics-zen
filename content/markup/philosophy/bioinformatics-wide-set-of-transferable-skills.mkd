@@ -4,13 +4,13 @@
   created_at: 2011-07-19
 ---
 
-Working in academia feels like a way of life rather than just a job. Being
-a researcher is intimately tied to your own identity. I carry my research
-around in my head with me outside of the 9-5 or 10-8 of working hours.
-Therefore if you are unhappy with your job, [as thoughtfully described by
-Massimo Sandal][quitting], the decision to leave can be very difficult. The
-emotion associated with leaving a career that required the best of your
-twenties for post-graduate study will be strong. However I think
+Working in academia feels like lifestyle rather than just a job. I feel that
+being a researcher, in particular a bioinformatician, is tied to my own
+identity. I carry my research around in my head with me outside of the 9-5 or
+10-8 of working hours. Therefore if you are unhappy with your job, [as
+thoughtfully described by Massimo Sandal][quitting], the decision to leave can
+be very difficult. The wrench of leaving a career that required the best of
+your twenties for post-graduate study will be painful. However I think
 bioinformatics skills are eminently transferable useful.
 
 Knowing how to program already sets a computational biologist apart.

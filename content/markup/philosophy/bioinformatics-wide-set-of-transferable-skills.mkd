@@ -6,38 +6,40 @@
 
 Working in academia feels like a lifestyle rather than simply a job. I feel
 that being a researcher, in particular a bioinformatician, is part of my
-identity. I carry my research around in my head with me outside of the 9-5 or
-10-8 of working hours. Therefore if you are unhappy in academia, [as
-thoughtfully described by Massimo Sandal][quitting], the decision to leave can
-be very difficult. The wrench of leaving a career that required the best of
-your twenties for post-graduate study will be painful. I think, however,
-should make this decision bioinformatics skills are eminently transferable and
-useful.
+identity. I carry my research around in my head with me outside of working
+hours but at the same time I enjoy [the autonomy and mastery][motivate].
+Therefore if you become unhappy in academia, [as thoughtfully described by
+Massimo Sandal][quitting], the decision to leave can be very difficult. The
+wrench of leaving a career that required the best of your twenties for
+post-graduate study will be painful. I think, however, one this decision is
+made bioinformatics skills are eminently transferable for starting a new
+career.
 
 Knowing how to program sets a computational biologist apart. [Scripting is the
-new literacy.][scripting] Programming is a skill of which you realise the
-worth once you have it. The is a great feeling of satisfaction in creating
-software from nothing a text editor and a free open-source programming
-language. As a skill, a [blog post suggests that developers are very much in
-demand for web start-ups][shortage]. This is specific to Ruby language, [while
-in 2008 Perl was the most popular language among a sample
-bioinformaticians][popular]. Nevertheless, if you already know one language
-it's easier to learn a second.
+new literacy.][scripting] Programming is a skill which you realise the worth
+once you have it. There is a great feeling of satisfaction when creating
+a piece of software with nothing a text editor and an open-source programming
+language. As a skill, [developers are very much in demand][shortage]. [Perl
+was the most popular language among bioinformaticians in 2008][popular], bu if
+you already know one language it's easy to learn a second.
+
+A good way to [improve as a programmer is to create and develop and open
+source project][better]. Something to tinker with and try new software
+libraries [or different programming paradigms][clojure]. Furthermore an open
+source project shows that you can program and hopefully program well.
+Interesting companies [may tend to hire people based on such
+projects][hiring].
 
 Auxiliary skills such as [test driven development][test], a [version control
-system like git][git], or [a customisable editor like vim][vim] can make you
-more productive as a developer. Working to improve skills that augment
-yourself as a programmer also improves skills that many companies are looking
-for. A good way to [improve as a programmer is to spend time
-programming][better], and an open-source project is to tinker with and
-possible experiment with the way you code. Furthermore an open source project
-is an example of what you can do. Interesting companies [may also tend to hire
-people who write interesting software][hiring].
+system like git][git], or [mastery of a customisable editor like vim][vim]
+can make you more productive as a developer. Working to add new skills that
+augment yourself as a bioinformatics also add skills that many companies are
+looking for in programmers.
 
 Computational biologists are more than simply a programmer who works in
 a a biology department. Developing *in silico* hypotheses requires storing,
-manipulating and analysing biological data. Furthermore The last few years has
-seen the amount of this data available [increasing by large amounts][deluge].
+manipulating and analysing biological data. furthermore The last few years has
+seen the amount of data available [increasing and increasing][deluge].
 Therefore the data analysis skills developed by a bioinformatician will be
 attractive to companies dealing with increasing large amounts of data.
 
@@ -63,15 +65,17 @@ difficult problem. Something a new employer would be very interested in.
 
 ### Summary
 
-I think when you take a job you care about hope that it will last at least the
-next few years. Hopefully even a career that lasts perhaps the next forty.
+When embarking on career after university you  hope that it will last at least
+the next few years. Hopefully even a lifetime if you're happy. Unfortunately
+your tastes can change and toy may find yourself needing to apply your skills
+to a different job.
+
 Unfortunately it may be the case that [wet-lab biologists spend years
 developing specialised skill not eminently transferable outside the
-lab][wetlab]. Bioinformatics I think on the otherhand is an excellent career.
-It is something that gets me out of bed in the morning most days. On the
-otherhand though I know that if that ever stops happening taking the time to
-develop a useful skill set will mean that I should find it easy to land on my
-feet afterwards.
+lab][wetlab]. Bioinformatics on the other hand I think develops an excellent
+set of transferable skills. I think a bioinformatics is an excellent career
+primarily because it's an exciting and up-and-coming field but also because
+the skills learnt in this profession are useful and transferable.
 
 [quitting]: http://blog.devicerandom.org/2011/02/18/getting-a-life/
 [wetlab]: http://scienceblogs.com/bioephemera/2011/03/are_biology_graduate_students.php
@@ -86,3 +90,6 @@ feet afterwards.
 [clever-algorithms]: http://www.cleveralgorithms.com/
 [scripting]: http://memeburn.com/2011/07/the-future-of-wordpress-qa-with-founder-matt-mullenweg/
 [deluge]: http://www.google.com/search?q=data+deluge
+[motivate]: http://www.youtube.com/watch?v=u6XAPnuFjJc
+[clojure]: http://clojure.org/
+

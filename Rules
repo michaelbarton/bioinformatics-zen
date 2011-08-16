@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require 'compass'
-require 'grid-coordinates'
 Compass.add_project_configuration 'compass.config'
 
 route '/static/*' do

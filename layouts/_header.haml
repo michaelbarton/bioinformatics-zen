@@ -8,17 +8,10 @@
   -# Specify author of the site
   %link{ :href => @site.config[:author][:url], :rel => "author" }
 
-  -# Import fancy fonts via google apis
-  = google_font 'Molengo'
-  = google_font 'Volkorn', %W|regular bold italic bolditalic|
-  = google_font 'Nobile',  %W|regular bold italic bolditalic|
-
-  -# Style sheets
-  = stylesheet relative_path_to("/stylesheets/screen.css")
-  = stylesheet relative_path_to("/stylesheets/ie.css")
-  = stylesheet relative_path_to("/stylesheets/print.css"), 'print'
-
-  %script{:src => relative_path_to("/javascript/prettify.js"), :type => "text/javascript"}
+  = google_fonts
+  = stylesheets
+  = favicon
+  = scripts
 
   -# HTML5 modernizer
   / [if IE]

@@ -46,3 +46,4 @@ scripts:
   - "/javascript/prettify.js"
 stylesheets:
   "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
+  "/stylesheets/stylesheet.css": "screen,projection"

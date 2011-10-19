@@ -45,6 +45,5 @@ scripts:
   - "/vendor/fancybox/javascript.js"
   - "/javascript/prettify.js"
 stylesheets:
-  "/stylesheets/screen.css": "screen,projection"
-  "/stylesheets/print.css": "print"
-  "/vendor/fancybox/styles.css": "screen,projection"
+  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
+  "/stylesheets/stylesheet.css": "screen,projection"

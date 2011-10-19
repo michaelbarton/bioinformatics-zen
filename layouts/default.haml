@@ -5,15 +5,16 @@
   = render "_header"
   %body{:onload => "prettyPrint()" }
     .container
-      = render "_title"
       = render "_navigation"
-      %div{:role => "main"}
-        %article
-          %section
-            %header
-              %a{:href => @site.config[:site][:url] + @item.path }
-                %h2
-                  = "#{@item[:title]}"
+      .content
+        = render "_title"
+        %div{:role => "main"}
+          %article
+            %section
+              %header
+                %a{:href => @site.config[:site][:url] + @item.path }
+                  %h2
+                    = "#{@item[:title]}"
             = yield
     = google_analytics @site.config[:site][:analytics_token]
 -# Uncomment these lines after filling in the urls

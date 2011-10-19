@@ -9,7 +9,6 @@ group :default do
   gem 'sass'
 
   gem 'compass',             '~> 0.11'
-  gem 'compass-susy-plugin', '=  0.8.1'
 
   gem 'jsmin',               '~> 1.0'
   gem 'rainpress',           '~> 1.0'

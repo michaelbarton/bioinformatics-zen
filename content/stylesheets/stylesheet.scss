@@ -1,3 +1,6 @@
+@import "prettify";
+@import "man_page";
+
 body {
   // Make container go all the way to the top
   padding-top: 40px;
@@ -12,4 +15,8 @@ body {
 .container {
   // 10 columns
   width: 580px;
+}
+
+pre {
+  background-color: #262526;
 }

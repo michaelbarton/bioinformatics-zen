@@ -3,8 +3,13 @@ body {
   padding-top: 40px;
 }
 
-/* Page header tweaks */
 .page-header {
+  // Tweak header
   padding: 80px 20px 10px;
   margin: -20px -20px 20px;
+}
+
+.container {
+  // 10 columns
+  width: 580px;
 }

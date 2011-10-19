@@ -6,7 +6,7 @@ def stylesheet(location, media = 'screen,projection')
 end
 
 def highlight(lang)
-  "<pre class=\"class=prettyprint\">"
+  "<pre class=\"prettyprint\">"
 end
 
 def endhighlight

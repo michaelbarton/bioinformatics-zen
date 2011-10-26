@@ -11,12 +11,14 @@ deploy:
   default:
     dst: "webserver:/home/admin/sites/bioinformaticszen.com"
     options: [ '-gpPrvz' ]
+base_url: "http://bioinformaticszen.com"
 site:
   title: "Bioinformatics Zen"
   subtitle: "Michael Barton's Bioinformatics and Research Notes"
   url: "http://bioinformaticszen.com"
   favicon: false
   analytics_token: "UA-1362555-1"
+  feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 rights: "Creative Commons Attribution 3.0 Unported"
 navigation:
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'

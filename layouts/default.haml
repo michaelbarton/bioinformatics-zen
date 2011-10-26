@@ -5,15 +5,16 @@
   = render "_header"
   %body{:onload => "prettyPrint()" }
     .container
-      = render "_title"
       = render "_navigation"
-      %div{:role => "main"}
-        %article
-          %section
-            %header
-              %a{:href => relative_path_to(@item) }
-                %h2
-                  = "#{@item[:title]}"
+      .content
+        = render "_title"
+        %div{:role => "main"}
+          %article
+            %section
+              %header
+                %a{:href => relative_path_to(@item) }
+                  %h2
+                    = "#{@item[:title]}"
             = yield
           %section
             = comments(@item)

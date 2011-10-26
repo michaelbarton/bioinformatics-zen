@@ -1,7 +1,9 @@
-- if @site.config[:navigation]
-  %div{:role => "navigation"}
-    %ul
-      - @site.config[:navigation].each do |name,href|
-        %li
-          %a{:href => href}
-            = name
+- if @site.config[:site][:navigation]
+  .topbar
+    .fill
+      .container
+        %ul.nav
+          - @site.config[:site][:navigation].each do |name,href|
+            %li
+              %a{:href => href}
+                = name

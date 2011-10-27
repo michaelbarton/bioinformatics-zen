@@ -20,3 +20,12 @@ body {
 pre {
   background-color: #262526;
 }
+
+ul.posts {
+  list-style: none;
+  margin-left: 0px;
+  span {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+    font-size: 12px;
+  }
+}

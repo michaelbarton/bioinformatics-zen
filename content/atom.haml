@@ -8,7 +8,7 @@
     %name= @site.config[:author][:name]
     %email= @site.config[:author][:email]
     %uri= @site.config[:author][:uri]
-  %rights= @site.config[:rights]
+  %rights= @site.config[:site][:rights]
   - sorted_articles.select{|i| i[:feed] == true}[0..4].each do |article|
     %entry
       %id= url_for(article)

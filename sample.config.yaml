@@ -11,12 +11,40 @@ deploy:
   default:
     dst: "server:file_system_location"
     options: [ '-gpPrvz' ]
-title: "Site title"
-subtitle: "Site subtitle"
-base_url: "http://www.example.com"
-analytics_token: "token"
-author_name: "Michael Barton"
-author_uri: "http://www.michaelbarton.me.uk"
-navigation:
-  nav1: 'www.example.com'
-  nav2: 'www.example.com'
+site:
+  title: "Site title"
+  subtitle: "Site subtitle"
+  favicon: false
+  url: "http://www.example.com"
+  analytics_token: "token"
+  navigation:
+    nav1: 'www.example.com'
+    nav2: 'www.example.com'
+  feed: 'www.example.com'
+author:
+  url: "http://www.example.com"
+  name: "author name"
+google_fonts:
+  Molengo:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"
+  Volkorn:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"
+  Nobile:
+    - "regular"
+    - "bold"
+    - "italic"
+    - "bolditalic"
+scripts:
+  - "https://www.google.com/jsapi?key=ABQIAAAAY-Po-vITSRs13yAER6R-vxSra3Sy8luTxRRrne7YP3mAkjpCARS9K_z0sLbKHzv2zlMNiYLq0UExIg"
+  - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  - "/vendor/fancybox/javascript.js"
+  - "/javascript/prettify.js"
+stylesheets:
+  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
+  "/stylesheets/stylesheet.css": "screen,projection"

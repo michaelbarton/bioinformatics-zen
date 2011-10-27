@@ -8,11 +8,11 @@
       = render "_title"
       = render "_navigation"
       %div{:role => "main"}
-        %article
-          %section
-            %ul.posts
-              - sorted_articles.each do |article|
-                %li
+        %section
+          %ul.posts
+            - sorted_articles.each do |article|
+              %li
+                %article
                   %span
                     = pretty_date(article)
                   &raquo; &nbsp;

@@ -12,16 +12,29 @@ deploy:
     dst: "webserver:/home/admin/sites/bioinformaticszen.com"
     options: [ '-gpPrvz' ]
 base_url: "http://bioinformaticszen.com"
-title: "Bioinformatics Zen"
-subtitle: "Michael Barton's Bioinformatics and Research Notes"
-author_uri: "http://bioinformaticszen.com"
-author_name: "Michael Barton"
-author_email: "mail@bioinformaticszen.com"
-analytics_token: "UA-1362555-1"
-rights: "Creative Commons Attribution 3.0 Unported"
-navigation:
+site:
+  title: "Bioinformatics Zen"
+  subtitle: "Michael Barton's Bioinformatics and Research Notes"
+  url: "http://bioinformaticszen.com"
+  favicon: false
+  analytics_token: "UA-1362555-1"
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'
-  email: 'mailto:mail@bioinformaticszen.com'
-  twitter: 'http://twitter.com/bioinformatics'
-  videos: 'http://www.youtube.com/user/bioinformaticszen'
+  rights: "Creative Commons Attribution 3.0 Unported"
+  navigation:
+    Feed: 'http://feeds.feedburner.com/BioinformaticsZen'
+    Email: 'mailto:mail@bioinformaticszen.com'
+    Twitter: 'http://twitter.com/bioinformatics'
+    Videos: 'http://www.youtube.com/user/bioinformaticszen'
 feed: 'http://feeds.feedburner.com/BioinformaticsZen'
+author:
+  uri: "http://bioinformaticszen.com"
+  name: "Michael Barton"
+  email: "mail@bioinformaticszen.com"
+google_fonts:
+scripts:
+  - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  - "/vendor/fancybox/javascript.js"
+  - "/javascript/prettify.js"
+stylesheets:
+  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
+  "/stylesheets/stylesheet.css": "screen,projection"

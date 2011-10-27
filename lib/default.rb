@@ -6,7 +6,7 @@ def stylesheet(location, media = 'screen,projection')
   "<link href='#{location}' media='#{media}' rel='stylesheet' type='text/css'>"
 end
 
-def highlight(lang)
+def highlight
   "<pre class=\"prettyprint\">"
 end
 

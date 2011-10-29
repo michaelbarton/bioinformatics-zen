@@ -1,8 +1,8 @@
 ---
 ---
 .page-header
-  %a{:href => relative_path_to("/") }
+  %a{:href => relative_path_to(@item) }
     %h1
-      = @site.config[:site][:title]
+      = "#{@item[:title]}"
   %small
-    = @site.config[:site][:subtitle]
+    = "Posted: " + Time.parse(item[:created_at]).strftime('%b %d, %Y')

@@ -2,6 +2,8 @@
   .topbar
     .fill
       .container
+        %a.brand{:href => relative_path_to('/') }
+          = "Bioinformatics Zen"
         %ul.nav
           - @site.config[:site][:navigation].each do |name,href|
             %li

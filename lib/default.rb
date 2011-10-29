@@ -2,6 +2,14 @@ include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::LinkTo
 include Nanoc3::Helpers::Blogging
 
+def urlify(url)
+  url =~ /http:/ ? url : relative_path_to(url)
+end
+
+def dropbox(file)
+  File.join "http://dl.dropbox.com/u/24366/bioinformatics-zen/" + file
+end
+
 def stylesheet(location, media = 'screen,projection')
   "<link href='#{location}' media='#{media}' rel='stylesheet' type='text/css'>"
 end
@@ -69,9 +77,9 @@ def js(source)
 end
 
 def image(url,width=400,options={})
-  link = "<img src='#{relative_path_to(url)}' width=#{width}>"
+  link = "<img src='#{urlify(url)}' width=#{width}>"
   if options[:link]
-    link = "<a href='#{relative_path_to(options[:link])}'>#{link}</a>"
+    link = "<a href='#{urlify(options[:link])}'>#{link}</a>"
   end
   link
 end

@@ -33,11 +33,15 @@ route '/markup/*' do
   item.identifier[7..-1] + 'index.html'
 end
 compile '/markup/*' do
-  filter :r_code_fix
-  filter :erb
-  filter :rdiscount
+  begin
+    filter :r_code_fix
+    filter :erb
+    filter :rdiscount
 
-  layout @item[:layout] || 'default'
+    layout @item[:layout] || 'default'
+  rescue
+    raise "Error processing : " + @item.identifier
+  end
 end
 
 compile '/atom/' do

@@ -5,7 +5,12 @@
   = render "_header"
   %body{:onload => "prettyPrint()" }
     .container
-      = render "_title"
+      .page-header
+        %a{:href => relative_path_to('/') }
+          %h1
+            = "Bioinformatics Zen"
+        %small
+          = "Michael Barton's bioinformatics notes"
       = render "_navigation"
       %div{:role => "main"}
         %section

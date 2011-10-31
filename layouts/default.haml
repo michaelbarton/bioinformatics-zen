@@ -7,17 +7,11 @@
     .container
       = render "_navigation"
       .content
-        = render "_title"
-        %div{:role => "main"}
-          %article
-            %section
-              %header
-                %a{:href => relative_path_to(@item) }
-                  %h2
-                    = "#{@item[:title]}"
+        %article
+          %header
+            = render "_title"
+          %section
             = yield
           %section
             = comments(@item)
     = google_analytics @site.config[:analytics_token]
--# Uncomment these lines after filling in the urls
--#     = render "_disqus"

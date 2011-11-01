@@ -6,8 +6,8 @@ def urlify(url)
   url =~ /http:/ ? url : relative_path_to(url)
 end
 
-def dropbox(file)
-  File.join "http://dl.dropbox.com/u/24366/bioinformatics-zen/" + file
+def dbx(file)
+  File.join "http://dl.dropbox.com/u/24366/bioinformatics-zen/", file
 end
 
 def stylesheet(location, media = 'screen,projection')
@@ -89,5 +89,11 @@ def youtube(video,title="YouTube")
 end
 
 def lightbox(image,thumbnail)
-  "<a id='lightbox_image' href='#{relative_path_to('/images/' + image)}'><img src='#{relative_path_to('/images/' + thumbnail)}'/></a>"
+  "<ul class='media-grid'>
+    <li>
+      <a id='lightbox_image' href='#{urlify(image)}'>
+        <img src='#{urlify(thumbnail)}' width=320 />
+      </a>
+    </li>
+  </ul>"
 end

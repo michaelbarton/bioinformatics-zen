@@ -2,3 +2,5 @@ tmp
 output
 .sass-cache
 config.yaml
+.rake_tasks
+Gemfile.lock

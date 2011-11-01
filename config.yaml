@@ -33,8 +33,9 @@ author:
 google_fonts:
 scripts:
   - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-  - "/vendor/fancybox/javascript.js"
+  - "/fancybox/javascript.js"
   - "/javascript/prettify.js"
 stylesheets:
   "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
   "/stylesheets/stylesheet.css": "screen,projection"
+  "/fancybox/styles.css": "screen,projection"

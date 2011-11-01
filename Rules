@@ -9,6 +9,13 @@ end
 compile '/static/*' do; end
 
 
+route '/vendor/*' do
+  # /static/foo.ext → /foo.ext
+  item.identifier[7..-2] + '.' + item[:extension]
+end
+compile '/vendor/*' do; end
+
+
 compile '/javascript/*/' do
   filter :minify
 end

@@ -10,12 +10,8 @@
     %link{ :href => @site.config[:site][:feed], :rel => "alternate", :type => "application/rss+xml" }
 
   -# Specify author of the site
-  %link{ :href => @site.config[:author_uri], :rel => "author" }
+  %link{:href => @site.config[:author][:uri], :rel => "author" }
 
-  -# Site feed
-  %link{ :href => @site.config[:feed], :rel => "alternate", :type => "application/rss+xml" }
-
-  = google_fonts
   = stylesheets
   = favicon
   = scripts

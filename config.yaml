@@ -27,10 +27,9 @@ site:
     Videos: 'http://www.youtube.com/user/bioinformaticszen'
 feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 author:
-  uri: "http://bioinformaticszen.com"
+  uri: "http://www.michaelbarton.me.uk"
   name: "Michael Barton"
-  email: "mail@bioinformaticszen.com"
-google_fonts:
+  email: "mail@michaelbarton.me.uk"
 scripts:
   - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   - "/fancybox/javascript.js"

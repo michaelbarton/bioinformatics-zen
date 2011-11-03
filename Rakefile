@@ -33,3 +33,19 @@ end
 task :view do
   `nanoc view`
 end
+
+namespace :heroku do
+
+  task :clean do
+    `rm -rf output`
+  end
+
+  task :build do
+    `nanoc compile && git add -uf output && git commit -m "Rebuild updated site"`
+  end
+
+  task :deploy do
+    `git push heroku heroku:refs/heads/master`
+  end
+
+end

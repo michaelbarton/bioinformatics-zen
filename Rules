@@ -46,8 +46,8 @@ compile '/markup/*' do
     filter :rdiscount
 
     layout @item[:layout] || 'default'
-  rescue
-    raise "Error processing : " + @item.identifier
+  rescue Exception => e
+    raise "Error processing : #{@item.identifier}\n#{e.message}"
   end
 end
 

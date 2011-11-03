@@ -26,14 +26,14 @@ Google reading this?), here are the three main thoughts, inspired by
 
 #### The meaning of hard work
 
-<%= image dropbox("success.png"), 330 %>
+<%= image dbx("ph-in-phd/success.png"), 330 %>
 
 #### Two things that are important
 
-<%= image dropbox("familyplot.png"), 330  %>
+<%= image dbx("ph-in-phd/familyplot.png"), 330  %>
 
 #### I've been two of these
 
-<%= image dropbox("reward.png"), 330  %>
+<%= image dbx("ph-in-phd/reward.png"), 330  %>
 
 [indexed]: http://thisisindexed.com/

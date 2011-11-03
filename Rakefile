@@ -31,7 +31,7 @@ task :watch do
 end
 
 task :view do
-  `nanoc view`
+  `bundle exec rackup`
 end
 
 namespace :heroku do

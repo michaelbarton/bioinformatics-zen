@@ -1,6 +1,9 @@
 source "http://rubygems.org"
 
 group :default do
+  gem 'rack'
+  gem 'rack-contrib'
+
   gem 'rake'
   gem 'nanoc',               '~> 3.2'
 

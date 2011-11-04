@@ -44,7 +44,8 @@ task :publish do
 
   branch = "heroku-#{Time.now.to_i}"
 
-  `git checkout -b #{branch} master &&
+  `git push
+  git checkout -b #{branch} master &&
   rm -rf output &&
   nanoc compile &&
   git add -f output &&

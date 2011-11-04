@@ -34,18 +34,24 @@ task :view do
   `bundle exec rackup`
 end
 
-namespace :heroku do
-
-  task :clean do
-    `rm -rf output`
+task :publish do
+  print "Publish changes to heroku (yes|no) ? "
+  unless STDIN.gets.chomp.downcase == "yes"
+    puts('Aborting.')
+    exit
   end
+  puts "Pushing changes ..."
 
-  task :build do
-    `nanoc compile && git add -uf output && git commit -m "Rebuild updated site"`
-  end
+  branch = "heroku-#{Time.now.to_i}"
 
-  task :deploy do
-    `git push heroku heroku:refs/heads/master`
-  end
+  `git checkout -b #{branch} master &&
+  rm -rf output &&
+  nanoc compile &&
+  git add -f output &&
+  git commit -m "Rebuild updated site" &&
+  git push -f heroku #{branch}:refs/heads/master &&
+  git checkout master &&
+  git branch -D #{branch}`
 
+  puts "Done"
 end

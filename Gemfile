@@ -3,7 +3,9 @@ source "http://rubygems.org"
 group :default do
   gem 'rack'
   gem 'rack-contrib'
+end
 
+group :development do
   gem 'rake'
   gem 'nanoc',               '~> 3.2'
 
@@ -15,9 +17,7 @@ group :default do
 
   gem 'jsmin',               '~> 1.0'
   gem 'rainpress',           '~> 1.0'
-end
 
-group :development do
   gem 'fssm'
   gem 'adsf'
   gem 'rb-fsevent'

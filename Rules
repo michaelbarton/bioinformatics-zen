@@ -58,4 +58,4 @@ route '/atom/' do
   '/atom.xml'
 end
 
-layout '*', :haml, :format => :html5, :ugly => true
+layout '*', :haml, :format => :html5

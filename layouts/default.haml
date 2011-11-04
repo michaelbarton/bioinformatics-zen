@@ -11,7 +11,7 @@
           %header
             = render "_title"
           %section
-            = yield
+            ~ yield
           %section
             = comments(@item)
     = google_analytics @site.config[:analytics_token]

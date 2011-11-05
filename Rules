@@ -38,9 +38,9 @@ route '/stylesheets/_*/' do; nil; end
 route '/markup/' do
   "/index.html"
 end
-route '/markup/*/' do
+route '/markup/*/*/' do
   basename = item.identifier.split("/").last
-  "/#{basename}/index.html"
+  "/post/#{basename}/index.html"
 end
 compile '/markup/*' do
   begin
@@ -53,6 +53,7 @@ compile '/markup/*' do
     raise "Error processing : #{@item.identifier}\n#{e.message}"
   end
 end
+
 
 compile '/atom/' do
   filter :haml

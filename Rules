@@ -35,9 +35,12 @@ compile '/stylesheets/_*/' do; nil; end
 route '/stylesheets/_*/' do; nil; end
 
 
-route '/markup/*' do
-  # /markup/foo.markdown → /foo/index.html
-  item.identifier[7..-1] + 'index.html'
+route '/markup/' do
+  "/index.html"
+end
+route '/markup/*/' do
+  basename = item.identifier.split("/").last
+  "/#{basename}/index.html"
 end
 compile '/markup/*' do
   begin

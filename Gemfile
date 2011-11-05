@@ -3,6 +3,7 @@ source "http://rubygems.org"
 group :default do
   gem 'rack'
   gem 'rack-contrib'
+  gem 'rack-rewrite'
 end
 
 group :development do

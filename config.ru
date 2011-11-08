@@ -8,7 +8,7 @@ use Rack::TryStatic,
 # Empty app, should never be reached:
 class Homepage
   def call(env)
-    [404, {"Content-Type" => "text/html"}, ["Ouch, broken!"] ]
+    [404, {"Content-Type" => "text/html"}, ["404. PC LOAD LETTER"] ]
   end
 end
 run Homepage.new

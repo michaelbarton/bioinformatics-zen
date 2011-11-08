@@ -3,7 +3,7 @@
   category: philosophy
   kind: article
   title: Introduction to a career in bioinformatics
-  created_at: 2007-09-05 18:38:29
+  created_at: "2007-09-05 18:38:29"
 ---
 
 ### Past

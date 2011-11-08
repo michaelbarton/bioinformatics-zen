@@ -3,7 +3,7 @@
   kind: article
   title: "World of Bioinformatics Quest: Character generation"
   category: humour
-  created_at: 2008-01-28 20:44:48
+  created_at: "2008-01-28 20:44:48"
 ---
 
 In World of Bioinformatics Quest<sup>TM</sup> (WoBQ) having the right

@@ -1,8 +1,9 @@
 ---
   kind: article
   title: Using a database
-  created_at: 2009-02-20 00:00 GMT
+  created_at: "2009-02-20 00:00 GMT"
 ---
+
 My best recommendation for any computational biologist is to learn to use a relational database with a corresponding object relational mapping system (ORM). This sounds complicated, but doesn't have to be. In bioinformatics, data are distributed as files. Supplementary data are available from journal websites, and a file is easy to attached to an email. The use of data files in programming, however, should be limited wherever possible. A bioinformatics project should instead be built using a database.
 
 Using a database allows all data to be accessed in the same way, whether in a script, at the command line, or through third-party database software. Databases are fast and optimised for searching and joining datasets. Joins between two sets of data that would be difficult when merging two files are made much easier using database relationships.

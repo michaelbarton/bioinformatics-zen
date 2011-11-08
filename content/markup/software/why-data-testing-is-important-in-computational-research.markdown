@@ -3,7 +3,7 @@ kind: article
 feed: false
 title: Why data testing is important in computational research
 category: research
-created_at: 2007-12-31 19:33:08
+created_at: "2007-12-31 19:33:08"
 ---
 
 As a bioinformatician I don't only develop software I also draw conclusions

@@ -2,7 +2,7 @@
   title: Bioinformatics - a wide set of transferable skills
   kind: article
   feed: true
-  created_at: 2011-07-27 00:00 GMT
+  created_at: "2011-07-27 00:00 GMT"
 ---
 
 Working in academia feels like a lifestyle rather than simply a job. I feel

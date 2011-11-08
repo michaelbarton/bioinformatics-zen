@@ -1,8 +1,9 @@
 ---
   kind: article
   title: Scripting
-  created_at: 2009-02-20 00:00 GMT
+  created_at: "2009-02-20 00:00 GMT"
 ---
+
 Scripts differentiate computational research from software production. A script is a file of code with a specific purpose such as running a BLAST search on the *E. coli* genome. Contrast this with much larger programs designed to manage a variety of inputs and commands. A bioinformatician uses scripts as research tools in the same way a laboratory biologist uses a pipette. In software development, scripting supplements the designing of a software product. The focus is the finished product and scripts there to make source code management or unit testing easier. Since scripts receive comparably less attention as a part of software design, is there best practice for using scripts?
 
 ### Managing dependency

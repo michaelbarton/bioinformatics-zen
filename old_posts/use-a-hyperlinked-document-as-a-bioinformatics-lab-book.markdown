@@ -2,7 +2,7 @@
 kind: article
 title: Use a hyperlinked document as a bioinformatics lab book
 category: misc
-created_at: 2007-04-13 15:34:11
+created_at: "2007-04-13 15:34:11"
 ---
 I wrote <a href="http://www.bioinformaticszen.com/2007/02/organising-yourself-as-a-dry-lab-scientist/">previously</a> about using the file system to organise your scripts and data. I use this method and it does help my organisation, but it doesn't replace a lab book. I want a system that explains the relationships between the different set of results, and shows the outline of my work.
 

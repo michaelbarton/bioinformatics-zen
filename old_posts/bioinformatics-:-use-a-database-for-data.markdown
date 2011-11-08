@@ -2,7 +2,7 @@
 kind: article
 title: "Bioinformatics : use a database for data"
 category: misc
-created_at: 2007-02-26 15:21:11
+created_at: "2007-02-26 15:21:11"
 ---
 Previously, I wrote about <a href="http://www.bioinformaticszen.com/2007/02/organising-yourself-as-a-dry-lab-scientist/">organising your file system</a> to make the relationships between files that produce data, and files containing data more descriptive. One of the best tips I've been given, is to store all my data in a database. Regardless of what the data is, or how <a href="http://www.webinknow.com/2006/10/the_gobbledygoo.html">"mission critical"</a>. Here are some reasons to use a database, rather than files, to store your data.
 

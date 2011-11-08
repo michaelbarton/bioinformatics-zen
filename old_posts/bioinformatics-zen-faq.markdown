@@ -2,7 +2,7 @@
 kind: article
 title: Bioinformatics Zen FAQ
 category: misc
-created_at: 2008-02-12 22:05:52
+created_at: "2008-02-12 22:05:52"
 ---
 I guess one of the golden rules of blogging is write about what people are interested in. Here's the most common questions I get emailed, and my answers to them.
 

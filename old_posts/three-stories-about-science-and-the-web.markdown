@@ -2,7 +2,7 @@
 kind: article
 title: Three stories about science and the web
 category: misc
-created_at: 2007-10-19 13:30:13
+created_at: "2007-10-19 13:30:13"
 ---
 <a href="http://www.bioinformaticszen.com/wp-content/uploads/2007/10/logos.jpg" title="Picture of many different web logos"><img src="http://www.bioinformaticszen.com/wp-content/uploads/2007/10/logos.jpg" alt="Picture of many different web logos" /></a>
 <h3>Collaborating on the same document</h3>

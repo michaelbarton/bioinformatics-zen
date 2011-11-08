@@ -2,7 +2,7 @@
 kind: article
 title: Deriving biological meaning from principal components analysis
 category: misc
-created_at: 2007-08-01 15:35:11
+created_at: "2007-08-01 15:35:11"
 ---
 Back from Madrid. I spent three weeks there on an <a href="http://biocomp.cnb.csic.es/~coss/Docencia/ADAM/ADAM.htm">excellent data analysis course</a>, which I would recommend. Not only did I learn valuable techniques, I also got the chance to spend my evenings by the pool or in Sol eating tapas - which explains the lack of posts this July. I offer this brief tutorial in recompense, continuing the theme of data analysis.
 

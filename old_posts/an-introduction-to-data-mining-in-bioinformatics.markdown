@@ -2,7 +2,7 @@
 kind: article
 title: An introduction to data mining in bioinformatics
 category: misc
-created_at: 2007-01-15 23:14:21
+created_at: "2007-01-15 23:14:21"
 ---
 In other words, you're a bioinformatician, and data has been dumped in your lap. Find the patterns, trend, answers, or what ever meaningful knowledge the data is hiding.
 

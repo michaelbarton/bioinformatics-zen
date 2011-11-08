@@ -2,7 +2,7 @@
 kind: article
 title: Decouple the file parsing from the analysis
 category: misc
-created_at: 2008-01-07 19:27:10
+created_at: "2008-01-07 19:27:10"
 ---
 A common task in bioinformatics is to read data from a set of files, arrange into the required format, then run an analysis to verify or falsify your expectation. An example would be reading in the yeast interaction network, and protein evolution rates, then correlating the two sets of data to see if there is a trend. Using Perl, you would specify how each file gets read in, arrange the sets of data by gene name, then correlate the two.
 

@@ -2,7 +2,7 @@
 kind: article
 title: RSS feeds in science
 category: misc
-created_at: 2007-05-10 21:37:19
+created_at: "2007-05-10 21:37:19"
 ---
 <object height="350" width="425">
 <param name="movie" value="http://www.youtube.com/v/K80sbK5e4lc"></param>  <embed src="http://www.youtube.com/v/K80sbK5e4lc" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>

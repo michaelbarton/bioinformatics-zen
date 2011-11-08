@@ -2,7 +2,7 @@
 kind: article
 title: Keep focused, keep an up to date list of ten specific questions
 category: misc
-created_at: 2007-05-20 18:21:03
+created_at: "2007-05-20 18:21:03"
 ---
 <object height="350" width="425">
 <param name="movie" value="http://www.youtube.com/v/w0YPdyFf_fg"></param>  <embed src="http://www.youtube.com/v/w0YPdyFf_fg" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>

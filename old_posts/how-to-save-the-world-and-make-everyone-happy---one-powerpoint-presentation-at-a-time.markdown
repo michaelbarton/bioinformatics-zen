@@ -2,7 +2,7 @@
 kind: article
 title: How to save the world and make everyone happy - one powerpoint presentation at a time
 category: misc
-created_at: 2007-07-09 21:39:05
+created_at: "2007-07-09 21:39:05"
 ---
 Computers and the Internet have made things great for scientists, particularly for us, since our jobs are sitting in front of them analysing data all day. Imagine being a bioinformatician without a computer, multivariate statistics is more of a pain than usual, genome sequence alignments need large pieces of paper. There would however be an upside to this analog dystopia - no more powerpoint presentations. Computers have arguably had a detrimental effect on the presentation of research, they allow the easy creation of big, text heavy slide sets. The emphasis of a talk leans towards the slides, and not the speaker.
 

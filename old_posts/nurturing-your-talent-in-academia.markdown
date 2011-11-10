@@ -2,7 +2,7 @@
 kind: article
 title: Nurturing your talent in academia
 category: misc
-created_at: 2007-10-30 19:36:39
+created_at: "2007-10-30 19:36:39"
 ---
 <a href="http://flickr.com/photos/celinesphotographer/1443256175/" title="A small sunflower sapling"><img src="http://www.bioinformaticszen.com/wp-content/uploads/2007/10/sunflower.jpg" alt="A small sunflower sapling" /></a>
 

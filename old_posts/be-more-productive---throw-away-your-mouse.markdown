@@ -2,7 +2,7 @@
 kind: article
 title: Be more productive - throw away your mouse
 category: misc
-created_at: 2007-08-22 17:24:07
+created_at: "2007-08-22 17:24:07"
 ---
 <a href="http://www.flickr.com/photos/slieschke/253702780/"><img src="http://www.bioinformaticszen.com/wp-content/uploads/2007/08/keyboard1.jpg" alt="Keyboard" /></a>
 

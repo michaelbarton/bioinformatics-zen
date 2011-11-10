@@ -2,7 +2,7 @@
 kind: article
 title: Some ideas for scientific presentations
 category: misc
-created_at: 2008-08-12 03:15:44
+created_at: "2008-08-12 03:15:44"
 ---
 I like reading Garr Reynolds <a href="http://www.presentationzen.com/">Prezentation Zen blog</a>, so when he wrote <a href="http://www.amazon.com/gp/product/0321525655/">a book about giving presentations</a> I bought a copy. "So what?" you say "PhD students are paid so much money, I'm sure they spend their cash on all sorts of frivolous things." That's true, but I found Garr's book a great read and would highly recommend taking an evening to browse it's contents, perhaps accompanied with a bottle of Bollinger '64 and some freshly imported sushi del chianti.
 

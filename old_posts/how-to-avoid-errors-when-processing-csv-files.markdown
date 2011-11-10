@@ -2,7 +2,7 @@
 kind: article
 title: How to avoid errors when processing CSV files
 category: misc
-created_at: 2007-11-01 18:44:49
+created_at: "2007-11-01 18:44:49"
 ---
 A lot of bioinformatics involves <a href="http://nsaunders.wordpress.com/2007/09/19/where-n-is-an-arbitrarily-large-fraction-approaching-one/">reading data from files</a> to manipulate them for our analysis. For example, I spend a lot of time importing data from CSV files into my database. Doing this involves creating a script to iterate over each line of the file, then referencing each token in the row by its column number.
 

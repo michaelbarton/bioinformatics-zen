@@ -2,7 +2,7 @@
 kind: article
 title: Never lose a great idea again
 category: misc
-created_at: 2007-03-07 00:45:19
+created_at: "2007-03-07 00:45:19"
 ---
 Scientists have to be left brained, rational and analytical. But at the same time very right brained, inventive and holistic. We produce ideas, and often make a creative leaps to connect previous work and new concepts. Your ideas are part of you as a scientist.
 

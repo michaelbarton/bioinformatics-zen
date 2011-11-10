@@ -2,7 +2,7 @@
 kind: article
 title: Graphical guide to graphics
 category: misc
-created_at: 2007-03-05 10:12:48
+created_at: "2007-03-05 10:12:48"
 ---
 A great <a href="http://headrush.typepad.com/creating_passionate_users/2007/03/the_best_user_t.html">post</a> at <a href="http://headrush.typepad.com/">creating passionate users</a>. The point - user manuals are REALLY important.
 <blockquote> Bottom line: never underestimate the value of providing fabulous training materials in getting--and keeping--users motivated to get better. And the better they are, the more likely they are to appreciate (and buy) your higher-end versions, evangelize, buy and create accessories, etc.</blockquote>

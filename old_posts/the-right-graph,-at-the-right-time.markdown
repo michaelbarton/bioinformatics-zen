@@ -2,7 +2,7 @@
 kind: article
 title: The right graph, at the right time
 category: misc
-created_at: 2007-02-28 01:13:55
+created_at: "2007-02-28 01:13:55"
 ---
 I think everyone would agree that the most important thing in science is results. The best scientists produce the most relevant and important results. Of course, the best results won't matter if no one knows about them. Which is why we publish and give presentations.
 

@@ -2,7 +2,7 @@
 kind: article
 title: The case for open science
 category: misc
-created_at: 2007-06-17 19:43:39
+created_at: "2007-06-17 19:43:39"
 ---
 Traditional science is carried out by experimentation, interpreting the results in respect to the hypothesis, and repeating this until publication. Publication is everything, and as such it's important to keep your research secret, lest anyone publish something similar which undermines the opportunity to publish in a high impact journal.
 

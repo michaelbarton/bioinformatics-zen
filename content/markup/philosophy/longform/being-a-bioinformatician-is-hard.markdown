@@ -3,7 +3,7 @@
   title: Being a bioinformatician is hard
   category: philosophy
   feed: false
-  created_at: 2007-08-06 15:34:53
+  created_at: "2007-08-06 15:34:53"
 ---
 
 Given a set of data, you have to understand many things. First, you have to

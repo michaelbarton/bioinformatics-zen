@@ -2,7 +2,7 @@
 kind: article
 title: "Bioinformatics : which programming language to use?"
 category: misc
-created_at: 2007-03-14 20:42:02
+created_at: "2007-03-14 20:42:02"
 ---
 Two recent posts on using programming languages in bioinformatics. One at <a href="http://biowhat.com/2007/03/13/begginers-guide-to-bioinformatics/">biowhat</a> and the other at <a href="http://omicsomics.blogspot.com/2007/03/you-say-tomato-i-say-tomato.html">Omics! Omics!</a>. Both discuss what type of language to use. Heavy weight languages such as C++ and Java versus lighter scripting languages such as Perl, Ruby and Python.
 

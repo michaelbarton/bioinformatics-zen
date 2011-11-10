@@ -3,7 +3,7 @@
   title: The dark side of bioinformatics data mining
   category: philosophy
   feed: false
-  created_at: 2007-02-13 21:26:00
+  created_at: "2007-02-13 21:26:00"
 ---
 
 I spend much of my day analysing yeast high throughput data, recently produced in the laboratory. On one hand I'm very lucky to have access to fresh data at many cellular levels.  On the other hand, with all this information, I'm easily swept away by the amount of variables I have access to -  the dark side of data mining.

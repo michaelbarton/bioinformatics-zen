@@ -2,7 +2,7 @@
 kind: article
 title: "BioRuby and Ruby on Rails: Active BioRecords"
 category: misc
-created_at: 2008-03-06 19:38:55
+created_at: "2008-03-06 19:38:55"
 ---
 A common practice in any computationally based field is writing code where the intended functionality has already been produced by someone else. This is usually called reinventing the wheel. This isn't very useful since you're spending time on an intermediate step, when instead you can use existing code and jump ahead to the next step in your research. Of course, it's easy for me to shout bad practice on my blog, but I'm the worst person for doing this. I work in bioinformatics because I like writing code to solve problems, and my first response is to start coding, rather than look to see if someone has created a solution already. On the other hand, the benefit of using existing libraries is that you can build new things on what has already been done.
 

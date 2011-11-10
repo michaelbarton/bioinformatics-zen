@@ -2,7 +2,7 @@
 kind: article
 title: Using helper scripts to make bioinformatics analysis easier to maintain
 category: misc
-created_at: 2008-02-29 20:00:41
+created_at: "2008-02-29 20:00:41"
 ---
 One of the differences between researching a scientific problem using a computer, and developing software, is the approach to writing code. If youâ€™re producing a bioinformatics application there is more emphasis on generating high quality, flexible code, as this makes future maintenance easier. On the other hand if youâ€™re trying to find the answer to a biological question using a series of scripts, then the focus is on the results, rather than the standard of code. During my work, the number of scripts I have tends to grow quickly, and this leads to problems with maintaining dependencies across scripts. Examples of this can be database connection parameters, or the file system location of a library Iâ€™m calling. This is because the fastest way to get this information into a script, is to cut and paste from an already existing one. However this becomes difficult to manage, when something changes, because I have to go back through all my scripts and update each in turn.
 

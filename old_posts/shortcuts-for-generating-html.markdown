@@ -2,7 +2,7 @@
 kind: article
 title: Shortcuts for generating HTML
 category: misc
-created_at: 2008-06-21 18:16:28
+created_at: "2008-06-21 18:16:28"
 ---
 Usually at some point youâ€™ll need to produce some web pages. This could be for a group website, or a page to embed a tool in. Writing HTML is an dull way to spend time, so itâ€™s worth knowing some tools that can make HTML generation easier.
 <h3>Markdown</h3>

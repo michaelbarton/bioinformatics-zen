@@ -2,7 +2,7 @@
 kind: article
 title: Five resources for beginning bioinformaticians
 category: misc
-created_at: 2007-10-04 12:49:26
+created_at: "2007-10-04 12:49:26"
 ---
 <a href="http://flickr.com/photos/brimley/240827613/" title="Lists"><img src="http://www.bioinformaticszen.com/wp-content/uploads/2007/10/lists.jpg" alt="Lists" /></a>
 

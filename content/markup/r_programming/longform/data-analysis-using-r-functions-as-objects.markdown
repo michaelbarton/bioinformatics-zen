@@ -1,7 +1,7 @@
 ---
   kind: article
   title: Data analysis using R functions as objects
-  created_at: 2009-10-2 00:00 GMT
+  created_at: "2009-10-2 00:00 GMT"
 ---
 
 

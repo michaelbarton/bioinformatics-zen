@@ -1,8 +1,9 @@
 ---
   kind: article
   title: Vim
-  created_at: 2008-12-23 00:00 GMT
+  created_at: "2008-12-23 00:00 GMT"
 ---
+
 ### About
 
 Doing bioinformatics I only use two tools: the keyboard and the mouse. Since I use these tools all-day, everyday I want to use them efficiently. My opinion is that using the keyboard as much as possible while the mouse as little as possible, is the best way to work at a computer. In a simple example, knowing the keyboard shortcut to run a given command means that I can execute the command quickly without breaking the flow of typing.  The text editor Vim takes this to another level and is entirely keyboard driven. There are no drop down menus and everything is performed using the keyboard; there's no reason for my hands to leave the keyboard. The large number of commands for Vim means there is a fair amount of practice required before you can use it fluently. I think this practice is a great investment though, as being able to use Vim intuitively makes you work faster and more efficiently. The reason for this is because Vim has a huge functionality to be taken advantage of, using just a few quick remembered keystrokes.

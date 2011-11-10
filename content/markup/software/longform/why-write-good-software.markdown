@@ -1,8 +1,9 @@
 ---
   kind: article
   title: Why write good software
-  created_at: 2009-02-03 00:00 GMT
+  created_at: "2009-02-03 00:00 GMT"
 ---
+
 Bioinformatics is far from commercial software development. A bioinformatician's goal is developing novel scientific research or tools. A software developer is judged on delivering software that people will pay to use. A biologist, whether they use Perl, a pipette or both, is evaluated on their publication record.
 
 In bioinformatics, or any science using a computer, software development is a lesser priority than generating new data. Statistical tests for significance outweigh software testing for reliability. A series of Python scripts for interpreting Chip-chip data are a bioinformatician's tools; what is important is the publishable prediction of binding sites.

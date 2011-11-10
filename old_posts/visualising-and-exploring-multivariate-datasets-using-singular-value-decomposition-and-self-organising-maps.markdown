@@ -2,7 +2,7 @@
 kind: article
 title: Visualising and exploring multivariate datasets using singular value decomposition and self organising maps
 category: misc
-created_at: 2007-07-17 22:57:00
+created_at: "2007-07-17 22:57:00"
 ---
 Hola from Madrid, I've come here for a data analysis summer school. Last week, there was an interesting class on dimensionality reduction, and since multivariate datasets are prevalent in this -omic era, I thought to post a discussion of what I learnt. The aim of this example is illustrate one technique for visualising multivariate data, singular value decomposition, and a second technique for exploring it, self organising maps.
 

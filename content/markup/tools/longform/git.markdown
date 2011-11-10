@@ -1,8 +1,9 @@
 ---
   kind: article
   title: Git
-  created_at: 2009-01-11 00:00 GMT
+  created_at: "2009-01-11 00:00 GMT"
 ---
+
 ### About
 
 Git is a version control system or VCS for short. A VCS helps you manage your code by saving changes as versions in a repository. Each version of any file can be retrieved by rolling back the changes to the required version. At the most basic a VCS allows you the freedom to experiment and actively break the code you're working because the last working version can be reverted to with a single command. Version control is used in software development, and in bioinformatics is useful for keeping track of the scripts and libraries you use in development. Version control using an external server is also a good way to back-up code.

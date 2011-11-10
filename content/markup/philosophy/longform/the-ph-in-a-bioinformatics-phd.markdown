@@ -3,7 +3,7 @@
   category: philosophy
   kind: article
   title: The Ph in a Bioinformatics PhD
-  created_at: 2007-08-28 18:22:59
+  created_at: "2007-08-28 18:22:59"
 ---
 
 In a month, I start the third and final year of my PhD. Usually it's around

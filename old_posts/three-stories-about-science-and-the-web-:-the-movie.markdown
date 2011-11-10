@@ -2,7 +2,7 @@
 kind: article
 title: "Three stories about science and the web : The movie"
 category: misc
-created_at: 2008-01-21 14:03:45
+created_at: "2008-01-21 14:03:45"
 ---
 In a previous post I wrote about how <a href="http://www.bioinformaticszen.com/2007/10/three-stories-about-science-and-the-web/">great new web tools</a> are making it easier for scientists to collaborate, find information, and share information. This light-hearted introduction was rather popular, so heres's a tongue-in-cheek video version.
 

@@ -2,7 +2,7 @@
 kind: article
 title: Email is your friend. Email is your enemy.
 category: misc
-created_at: 2007-05-29 21:49:59
+created_at: "2007-05-29 21:49:59"
 ---
 <object height="350" width="425">
 <param value="http://www.youtube.com/v/gIYR6VHRkyE" name="movie"></param>  <embed src="http://www.youtube.com/v/gIYR6VHRkyE" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>

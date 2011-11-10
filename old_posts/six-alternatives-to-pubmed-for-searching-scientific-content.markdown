@@ -2,7 +2,7 @@
 kind: article
 title: Six alternatives to PubMed for searching scientific content
 category: misc
-created_at: 2007-06-24 18:53:17
+created_at: "2007-06-24 18:53:17"
 ---
 In my opinion, great coding skills, a thorough knowledge of statistics, and Shakespearian writing ability do not make a great bioinformatician. They help, but the most important things are a relevant scientific question and a good understanding of the literature. If you're like me, the path to scientific enlightenment begins with typing keywords into PubMed until you get the results you were after - the same way you use Google. However the are other options besides PubMed, here are six other options you might not have heard of, worth a look perhaps?
 

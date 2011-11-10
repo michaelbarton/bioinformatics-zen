@@ -2,7 +2,7 @@
 kind: article
 title: Three libraries and a tool to enhance your bioinformatics coding
 category: misc
-created_at: 2007-03-30 12:32:21
+created_at: "2007-03-30 12:32:21"
 ---
 Coding is fact of life for bioinformatics. If you work in bioinformatics you probably enjoy coding to some extent. It's our equivalent to PCR, western blots and sequencing. So whether your weapon of choice is Java, Perl, Python or C++, here's three packages and a tool worth a look.
 

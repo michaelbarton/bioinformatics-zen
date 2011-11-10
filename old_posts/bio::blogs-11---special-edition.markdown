@@ -2,7 +2,7 @@
 kind: article
 title: Bio::blogs 11 - special edition
 category: misc
-created_at: 2007-06-01 18:29:39
+created_at: "2007-06-01 18:29:39"
 ---
 Short and to the point - the tips &amp; tricks supplement to this month's bio::blogs edition has been compiled. The link to the pdf is at the end of this post. But first I want to thank those who contributed.
 

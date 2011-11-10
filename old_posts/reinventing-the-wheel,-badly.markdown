@@ -2,7 +2,7 @@
 kind: article
 title: Reinventing the wheel, badly
 category: misc
-created_at: 2007-02-19 22:10:07
+created_at: "2007-02-19 22:10:07"
 ---
 I spent several hours today implementing a sequence analysis method taken from a paper I had read earlier. I created a database, downloaded yeast coding sequences, then coded the whole method up in java. Shortly after doing this, a google search showed that not only had a tool been published to perform this analysis, but that the original method I implemented was flawed.
 

@@ -2,7 +2,7 @@
 kind: article
 title: How to draw simple graphs in R
 category: misc
-created_at: 2007-05-04 13:49:11
+created_at: "2007-05-04 13:49:11"
 ---
 <script type="text/javascript"><!--
 google_ad_client = "pub-3537851447004532";

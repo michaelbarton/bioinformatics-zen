@@ -2,7 +2,7 @@
 kind: article
 title: Getting your (scientific) point across
 category: misc
-created_at: 2007-02-17 18:30:33
+created_at: "2007-02-17 18:30:33"
 ---
 A great <a href="http://headrush.typepad.com/creating_passionate_users/2005/01/your_users_brai.html">post</a> at creating passionate users, I think really applicable to science too.
 <blockquote>I know this is horribly overgeneralized, but as a high-level rule, we believe:

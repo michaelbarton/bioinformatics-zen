@@ -2,7 +2,7 @@
 kind: article
 title: git, github, and bioinformatics software development
 category: misc
-created_at: 2008-04-15 10:48:46
+created_at: "2008-04-15 10:48:46"
 ---
 <a href="http://github.com/">Github</a>, a source code management (SCM) repository based on git has exited beta and is ready for people to sign up. Git and github offer interesting opportunities for bioinformatics software development, and I think it's worth taking a few minutes to explore them. <a href="http://github.com/plans">There's a free option too</a>, so it doesn't cost anything to sign up and play around.
 

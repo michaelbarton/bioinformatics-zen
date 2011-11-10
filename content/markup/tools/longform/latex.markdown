@@ -1,7 +1,7 @@
 ---
   kind: article
   title: Latex
-  created_at: 2008-12-24 00:00 GMT
+  created_at: "2008-12-24 00:00 GMT"
 ---
 
 LaTeX (pronounced lay-tek) is a document creation system aimed at scientific and technical documents. LaTeX documents are written in plain text using markup to describe which parts should be sections tables or pictures. The LaTeX system parses the markup and formats the text to produce either dvi, postscript or pdf output. As LaTeX is entirely text based, the content can be tracked using a version control system. Plain text files mean that you can work on a document with your favourite editor, and can also be manipulated at the command line using Unix tools. The syntax of LaTeX markup will take an hour or two of practice to learn, but the advantage of creating documents from a marked up source is that the results are consistent and reproducible, which isn't always the case for graphical document editors.

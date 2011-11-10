@@ -2,7 +2,7 @@
 kind: article
 title: Organising yourself as a dry lab scientist
 category: misc
-created_at: 2007-02-16 18:17:38
+created_at: "2007-02-16 18:17:38"
 ---
 Browsing <a href="http://wikiomics.org/">wikiomics</a>, I found this <a href="http://wikiomics.org/wiki/Bioinfo_tutorial#Before_you_start">small section</a> on keeping organised as a practising bioinformatician. In particular these lines contain gems of information.
 <ul>

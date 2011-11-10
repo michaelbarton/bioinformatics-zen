@@ -2,7 +2,7 @@
 kind: article
 title: Three ways to keep your work focused
 category: misc
-created_at: 2007-03-12 00:06:28
+created_at: "2007-03-12 00:06:28"
 ---
 Computational biology moves fast in comparison with traditional biology. All it takes is a few lines of code to produce results. Contrast this with the wet lab, where every step usually requires a full working day, or more. Difficulties with direction, often arise from having too much data, rather than not enough.
 

@@ -2,7 +2,7 @@
 kind: article
 title: "Bioinformatics : Sometimes you have to write, and not computer code either"
 category: misc
-created_at: 2007-03-02 15:49:47
+created_at: "2007-03-02 15:49:47"
 ---
 You love making programs that reveal yourself as a programming god. You produce results that demonstrate you are, quite obviously, the greatest scientist of our generation. You show these to everyone in your office/corridor/family, they all appreciate your magnificence. After a few talks at conferences comes the bit you've been avoiding - writing everything up.
 

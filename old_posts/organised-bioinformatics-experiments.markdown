@@ -2,7 +2,7 @@
 kind: article
 title: Organised bioinformatics experiments
 category: misc
-created_at: 2008-05-24 18:43:04
+created_at: "2008-05-24 18:43:04"
 ---
 One of the things Iâ€™ve found in two years of doing bioinformatics, is that directories quickly fill up with files, usually data, scripts, and results. Working out the contents of each file is difficult as the only identifier is the name, which with lots of similarly named files, is confusing. Using lots of scripts gets more complicated when there are dependencies. For example scripts need the data from one file, or are dependent on an intermediate set of results from the output of another script. These dependencies mean that when a set of results needs updating, usually many times when producing a manuscript, scripts need to be re-run in the correct order. The requirement of manually re-running scripts in a specific order is cumbersome, and easily generates errors.
 

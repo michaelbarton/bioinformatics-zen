@@ -22,17 +22,6 @@ def endhighlight
   "</pre>"
 end
 
-def google_fonts
-  return unless @site.config[:google_fonts]
-  output = String.new
-  @site.config[:google_fonts].each do |font_name,fonts|
-    family = font_name.to_s + ':' + fonts * ','
-    link = "http://fonts.googleapis.com/css?family=#{family}&amp;subset=latin"
-    output << "<link href='#{link}' media='all' type='application/x-font-woff'>\n"
-  end
-  output
-end
-
 def scripts
   return unless @site.config[:scripts]
   output = String.new

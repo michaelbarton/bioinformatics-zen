@@ -32,7 +32,7 @@ route '/markup/' do
   "/index.html"
 end
 route '/markup/*/*/' do
-  _, category, type, basename = item.identifier.split("/")
+  _, _, category, type, basename = item.identifier.split("/")
   item[:category] = category
   item[:type]     = type
   "/post/#{basename}/index.html"

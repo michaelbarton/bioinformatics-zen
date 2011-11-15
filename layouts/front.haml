@@ -13,14 +13,17 @@
           = "Michael Barton's bioinformatics notes"
       = render "_navigation"
       %div{:role => "main"}
-        %section
-          %ul.posts
-            - sorted_articles.each do |article|
-              %li
-                %article
-                  %span
-                    = pretty_date(article)
-                  &raquo; &nbsp;
-                  %a{:href => relative_path_to(article) }
-                    = "#{article[:title]}"
+        - sorted_categories.each do |category|
+          %section
+            %h4
+              = category.capitalize
+            %ul.posts
+              - articles_in_category(category).each do |article|
+                %li
+                  %article
+                    %span
+                      = pretty_date(article)
+                    &raquo; &nbsp;
+                    %a{:href => relative_path_to(article) }
+                      = "#{article[:title]}"
     = google_analytics @site.config[:analytics_token]

@@ -2,13 +2,6 @@
 require 'compass'
 Compass.add_project_configuration 'compass.config'
 
-route '/static/*' do
-  # /static/foo.ext → /foo.ext
-  item.identifier[7..-2] + '.' + item[:extension]
-end
-compile '/static/*' do; end
-
-
 route '/vendor/*' do
   # /static/foo.ext → /foo.ext
   item.identifier[7..-2] + '.' + item[:extension]
@@ -39,7 +32,9 @@ route '/markup/' do
   "/index.html"
 end
 route '/markup/*/*/' do
-  basename = item.identifier.split("/").last
+  _, _, category, type, basename = item.identifier.split("/")
+  item[:category] = category
+  item[:type]     = type
   "/post/#{basename}/index.html"
 end
 compile '/markup/*' do

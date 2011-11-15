@@ -13,3 +13,7 @@ end
 def articles_in_category(category)
   sorted_articles.select{|i| i[:category] == category }
 end
+
+def longform_articles
+  sorted_articles.select{|i| i[:type] == 'longform' }
+end

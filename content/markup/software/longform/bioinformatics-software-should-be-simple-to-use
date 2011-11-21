@@ -1,0 +1,28 @@
+---
+  kind: article
+  title: Bioinformatics software should be simple to use
+---
+
+- Clever algorithms are not enough
+- Lots of software available.
+- Difficult for users to make a choice
+- Science assumes perfect econ where everyone will use the best algorithm
+
+- Simple to understand. I they can't understand it why would they use it?
+- Users should be able to get the gist of what the software does in a nut shell.
+- Otherwise unless they are told to, or have strong word of mouth. Why would they?
+
+- Easy to install.
+- Only one thing more frustrating than a lot of requirements.
+- Lot of requirements and then you still can't get it too work.
+- One command installer. Everything else should be bundled as much as possible.
+
+- Easy to use.
+- Simple gateway for use.
+- Run with your file as first command
+- Paste fasta into box, etc.
+- Extra options are available and well documented
+- Harder to understand.
+- Example. RAxML manual.
+  - Getting started page with common options.
+  - Additonal options are detailed extensively.

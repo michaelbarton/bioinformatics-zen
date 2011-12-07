@@ -89,7 +89,7 @@ highlights when contigs are removed, added, or if their coordinates have been
 updated. Compare this with running diff on a huge block of nucleotide sequence
 or running a pairwise alignment algorithm.
 
-<%= image('/images/after.png',600) %>
+<%= image(amzn('/scaffolder/after.png'),500)%>
 
 A further reason I wrote Scaffolder is to also make genome scaffolds
 reproducible and remove the manual element from joining contigs together. You

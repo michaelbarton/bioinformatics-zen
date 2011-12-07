@@ -21,5 +21,4 @@ group :development do
 
   gem 'fssm'
   gem 'adsf'
-  gem 'rb-fsevent'
 end

@@ -6,10 +6,6 @@ def urlify(url)
   url =~ /http:/ ? url : relative_path_to(url)
 end
 
-def dbx(file)
-  File.join "http://dl.dropbox.com/u/24366/bioinformatics-zen/", file
-end
-
 def amzn(file)
   File.join "http://s3.amazonaws.com/bioinformatics-zen/", file
 end

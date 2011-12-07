@@ -6,3 +6,6 @@
       = "#{@item[:title]}"
   %small
     = "Posted: " + Time.parse(item[:created_at]).strftime('%b %d, %Y')
+  - if item[:revised]
+    %small
+      = "; Revised: " + Time.parse(item[:revised]).strftime('%b %d, %Y')

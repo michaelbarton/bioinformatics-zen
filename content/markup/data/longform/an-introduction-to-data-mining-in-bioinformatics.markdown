@@ -46,7 +46,7 @@ questions and then use the data to answer them. If you can't think of any
 questions ask someone related to field to help you. If they can't think of any,
 seriously consider what you can hope to achieve.
 
-## Find someone who knows what they are doing
+### Find someone who knows what they are doing
 
 And be very nice to them. People will often spend some time talking to you if
 you are enthusiastic and a patient listener. Importantly don't expect anyone to

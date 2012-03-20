@@ -26,4 +26,4 @@
                     &raquo; &nbsp;
                     %a{:href => relative_path_to(article) }
                       = "#{article[:title]}"
-    = google_analytics @site.config[:analytics_token]
+    = google_analytics @site.config[:site][:analytics_token]

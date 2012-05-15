@@ -15,111 +15,157 @@ the problem I trying to solve in my day-to-day workflow.
 
 [1]: /post/organised-bioinformatics-experiments/
 
-#### Maintanence and reproducibility
+#### Reproducibility and Organisation
 
-Wet lab scientists have to track all of their experiments in a lab notebook. 
-The reasons for this are so that there is a record what they've done in their 
-research which should allow someone else to reproduce their experiments. This 
-someone may include is usually themselves when they need to repeat or update an 
-experiment days, months, years later.
+Wet lab scientists track all of their experiments in a lab notebook. This
+produces a record of the steps taken in their research and should allow someone
+else to reproduce their experiments. This someone may include themselves when
+they need to repeat or update an experiment days, months, years later.
 
-The problems I have found in my own research are an *in silico* equivalent of a 
-laboratory notebook. How do I effectively reproduce my research from a set of 
-scripts I may not have looked at for a month? How do I organise all my
-script, data, and output figures in the project? What are I think this boils 
-down to in computational research is two problems:
+The problems I have found in my own research are is there is no simple *in
+silico* analogy to laboratory notebook. How do I effectively reproduce my
+research from a set of scripts I may not have looked at for a month? How do I
+organise all my script, data, and output figures in the project? I think these
+questions distill into two problems:
 
-  * **Reproduciblity**
-    The steps in research project often involve mapping input data into 
-    different formats, run analyses on these data, then generate output 
-    figures. The problem of reporducibility comes because the input of 
-    downstream scripts is dependent on the output of previous scripts. Each 
-    step must be run correctly in order to regenerate the results. This is 
-    fragile and can lead to errors if steps are not correctly called.
+  * **Reproduciblity**: The steps in research project often map input data into
+    a tractable format, run analyses on these data, then generate a set of
+    output figures. The difficulty creating a reproducible is that all the
+    scripts used to run the analysis must be correctly run in order.
+    Furthermore if an earlier step is changed all downstream steps must be
+    rerun. This process is fragile and can lead to errors if steps are not
+    correctly called.
 
-  * **Maintainability**:
-    Research projects which start with an inkling of idea can rapidly grow into 
-    large numbers of scripts. How can large numbers of related files be 
-    organised in a project? How should input and output data be labelled and 
-    organised? How should scripts be named? Given the fragile nature of these 
-    workflow outlined about how can the scripts be easilty changed and updated  
-    to modify the steps without extensive rework?
+  * **Organisation**: Research projects which start with an inkling of idea can
+    rapidly grow into large numbers of scripts. How can these large numbers of
+    related files be organised in a project? How should data, figures and
+    images be label? The problem of organisation comes from trying to solve
+    these issues so that a project can be returned to in several months and
+    it's purpose understood with a quick review.
 
 #### Complected bioinformatics experiments 
 
-In my ['Organised Bioinformatics Experiments' post] I tried to address these 
-problems ...
+In my previous ['Organised Bioinformatics Experiments' post][1] I tried to
+address these problems using a systematic approach. Concretely I specified that
+all data should be entered into a database at the start of project. This data
+should is made available to analysis in the project using predefined methods in
+Ruby ORM classes. Finally each step in the analysis is defined within rake
+tasks (a make-like tool for Ruby) in project subdirectories, a master rakefile
+then requires each of the subdirectory rake files. You can find [an example
+project][2] organised this way on github.
 
-  BACKGROUND:
-    - Make is dry lab equivalent of lab book.
-    - make is lab book, but also something that can be used to reproduce the 
-      entire
-      output.
-    - rich hicky talk
+[2]: ADD EXAMPLE PROJECT URL
 
+I believe this approach satisfies both of the requirements I outlined above.
+Firstly the analysis steps are strictly organised into Rake files. This makes
+the project reproducible as Rake takes care of calling any downstream steps
+when there is an upstream change in the workflow. Second project is well
+organised as the data is kept in the database, access to the data is allowed
+through Ruby ORM classes, and all analysis steps are in the Rake files. So what
+is the problem?
 
-PROBLEM:
-  - The problem is complexity.
-  - Computational experiments are hard to reproduce and hard to maintain.
-  - The complexity makes it hard to maintain and update the project as it
-    grows.
-  - Writing this code is too heavy-weight too.
+I think that there is a third requirement for creating a computational
+pipelines and that is *simplicity*. Organising computational analysis this way
+adds a lot of complexity to the project. Three examples:
 
-CONSTRAINTS:
-  - Solution needs to be simple to write
-  - Simple to maintain
-  - Language agnostic for everyone to use it
-  - Be able to deal with very large datasets
+  * **Tied to a programming language**. Everything must be writen in Ruby, this
+    makes it harder to include different languages. The solution to this is to
+    shell out to second script containing the data. Maintaing different shell
+    scripts this way immediately adds complexity because all the analysis steps
+    are no only maintained in the Rake files.
 
-SOLUTION:
-  - make + coreutils
+  * **Database**. Using SQL in conjuction with a databases can make certain
+    types of operations much easier and faster than parsing a flatfile with a
+    script. However using a database for all types of data adds complexity
+    because of the extra layer of code required to manipulate the data.
+    Furthermore the data is effectively hidden. To see and get a feel for the
+    data you're using you have to use a database viewer, which again is more
+    complexity. 
 
-ADVANTAGES:
-  - thoroughly tested and used software
-  - update only uncompleted steps
-  - simple parallelisation
-  - fast
-  - based on the shell
+  * **Mutable project state**. Updating files or the database over different
+    project steps adds a layer of mutability to a project. What state is the
+    project in at any given time? For instance if you take more than one pass
+    over a database table you have to keep track of that table somehow, which
+    is adding more complexity.
 
-TRADEOFFS:
-  - Timestamp based
-  - somewhat ugly syntax difficult
-  - possible to get into depdency problems
-  - unix-based
+The example I outlined above here I think are the result of example of choosing
+easier over simpler. Using Rakefiles makes it easy to call `rake` in the
+project root to run all analyses from the beginning. This satisfies the
+*reproducibility* requirement, this however adds complexity. This complexity
+manifest as the project becoming increasing hard to maintain and manage as it
+grows. Have you ever had a feeling a resistance when you're required to change
+or update an aspect of an *in-silico* analysis? This is the complexity of a
+project making it harder and harder to do this. This is why computational
+workflows have an additional requirement:
 
-WRITEUP:
+  * **Simplicity**: Computational analysis pipelines should be simple to
+    maintain. This simplicity should make it trivial to add, update, or remove
+    steps in the workflow.
 
-  PROBLEMS WITH PREVIOUS POST:
-    - too complicated, language specific
-    - too many things braided together
-    - makes things easier, but not simpler
-    - too hard to maintain, too co-dependent
-    - don't using scripts, use bin files as essentially transforming functions that
-      can be mapped using make
-    - scripts are still bad and add complexity
-    - the only thing `doing things` is the Makefile
+A greal deal of the inspiration for this post comes from [a talk given by Rich
+Hickey][3], the inventor of the Clojure programming language. One of the points
+of his talk is that we should prefer simple over easy, as repeatedly choosing
+easy can lead to increasing amount of complexity in a project. Rich uses the
+term "complecting" to describe braiding more and more software into the project
+to increase the complexity. The term I use here "Decomplected Bioinformatics
+Experiments" is therefore a nod to this.
 
-  MAKE:
+[3]: LINK TO RICH'S TALK
+
+#### Decomplected Bioinformatics Experiments
+
+The workflow I use now is centred around Makefiles, coreutil functions,
+language agnositic functions, immutable data, and project modularistation.
+
+DATABASES
+
+Only one analysis step is allowed to create the database. The data is
+effectively immutable after this.
+
+MAKE
+
+  ADVANTAGES:
     - move from organisation to simplicity
     - decomplect => don't make projects easier, make them simpler
     - use very simple flat file formats as the API
     - must be simple otherwise it becomes hard to remember their purpose
-    - simple flat files can also be manipulated using coreutils which are fast and
-      easily parallelisable
     - parrallelisation
-    - line based input output files
     - API is the data - functional programming approach
+    - thoroughly tested and used software
+    - update only uncompleted steps
+    - simple parallelisation
+    - fast
+    - easy access to the powerful UNIX shell
+
+  TRADEOFFS:
+    - Timestamp based
+    - somewhat ugly syntax difficult
+    - possible to get into depdency problems
+
+FUNCTIONAL APPROACH
+    - line based input output files
     - allows you to use any tools, ruby, clojure, coreutils
     - much, much easier to swap out components => biopieces
-    - ipython is something similar.
+    - data is the api
+    - don't using scripts, use bin files as essentially transforming functions
+      that can be mapped using make
+    - scripts are still bad and add complexity
+    - the only thing `doing things` is the Makefile
+    - simple flat files can also be manipulated using coreutils which are fast
+      and easily parallelisable
     - create single input bin files easy to get simple parrallelisation with
       xargs and make -j then
 
-  LOCALLY CACHE TO DEVELOP:
+  MODULARISATION:
     - Don't keep anything local.
     - Forces results to be easily reproducible.
     - Forces you to break up and modularise the code.
     - Also doesn't matter if your computer gets stolen etc.
+
+
+WRITEUP:
+
+  MAKE:
 
   EXAMPLES
     - generating a plot from an R script

@@ -1,7 +1,6 @@
 ---
 kind: article
 title: Decomplected bioinformatics experiments
-created_at: "2012-05-13 00:00:00"
 ---
 
 I wrote a blog almost four years ago on how to [organise bioinformatics
@@ -178,7 +177,7 @@ everything in Ruby. All Makefile steps are shell calls. So instead of writing
 Ruby code inside the Rakefile I package the code, in any language, as a binary
 I can call from the Makefile. This is especially useful as you'll see in the
 next section. Since the Makefile uses the shell it makes it much easier to use
-the very powerful coreutils available on every *NIX distribution.
+the very powerful coreutils available on every \*NIX distribution.
 
 ###### Dependencies include the generative code
 
@@ -205,7 +204,7 @@ scripts that are used to generate the data.
 
 Make allows the following syntax
 
-    all: PROT00001.txt PROT00002.txt PROT00003.txt PROT00004.txt
+    all: prot00001.txt prot00002.txt prot00003.txt prot00004.txt
 
     *.txt: ./bin/intensive_operation *.fasta
        $^ > $@
@@ -215,13 +214,127 @@ Make allows the following syntax
 
 UPDATE THIS SECTION WITH THE CORRECT * MACRO
 
+The first line specifies that four files are required for the final make task.
+There are however no dependencies that list these files, instead there are
+dependencies listing files based on the file type extension. The chain of
+depencies downloads a `.fasta` file corresponding the name of the file. The
+next step is then performs an operation on this fasta file and produces a
+`.txt` file also with the corresponding name.
+
+Using this format allows the operations to be abstracted to be abstracted out
+over the file extensions. This makes it much simpler to change the data from
+the process. If I need to add another file I just add this in the `all` task.
+If I need to change the process for producing the output I just edit the
+relevent task. Idiomatically, however, I should use a variable named `objects`
+to specify the output I am interested in.
+
+    objects = prot00001.txt prot00002.txt prot00003.txt prot00004.txt
+
+    all: $(objects)
+
+    *.txt: ./bin/intensive_operation *.fasta
+       $^ > $@
+
+    *.fasta:
+        curl http://database.example.com/$@ > $@
+
+I would go further than this however and move all the objects to a separate
+file and read their names in as a dependency. This would mean you would only
+change the Makefile when making changes to your workflow, thereby isolating
+different changes to different files in the revision control history.
+
 ###### Very simple parallelisation
 
+Bigger datasets required more time to process and taking advantage of mutlicore
+processors is a cheap way to reduce this running time. Given the Makefile I
+outlined about in the previous section I can run this command.
 
-DATABASES
+  `make -j 4`
 
-Only one analysis step is allowed to create the database. The data is
-effectively immutable after this.
+This create a separate process to generate each of the four required files. If
+the number of files required to be generated exceeds the number of processes
+specified, using the `-j` flag, then these will begin after another has
+finished.  This approach is a pretty simple method for parallelising tasks, as
+long as you can abstract out the workflow processes to fit this approach.
+
+##### A functional approach to building workflows
+
+I have described how using Makefiles can result in simpler but still
+reproducible workflows. A second way I think workflows can be further
+simplified is to take a functional approach to organising the workflow. Two
+considerations in functional programming, is firstly to think as functions as
+the primary compondents of the the program, and secondly that all data is
+cannot be changed after creation.
+
+###### Data is the API of the workflow
+
+Speaking from experience it is very tempting to force an object orientated
+approach into a bioinformatics workflow. An example of this is using an ORM and
+then injecting objects into your workflow. This means you have to consider the
+methods the classes provide to access the data, and secondly how is the data
+going to be based between the steps of the workflow. I have instead to just use
+the data as the API of the workflow, all that really matters is how the data is
+going to be passed between each step of the workflow and in which format. This
+cuts out a large part of the complexity of the workflow. In the case of using
+Makefiles I just need to generate simple easily parsable output file for the
+next step. Previously I might have considered serialising objects to file and
+the marshalling them to do things in the next step. This is, however, just
+plain horrible.
+
+###### Immutable data
+
+Consider all data immutable once you have generated it. Don't update a file
+that has been created, instead generate a copy of the file with required
+changes. This removes "state" from the workflow. You don't need to look inside
+a file to see if the changes have been applied: all you need to know is if it
+exists or not. Furthermore it's very simple to `diff` two files to what the
+changes are, rather than compare before/after versions of the file.
+
+The above statement might preclude the possiblity of using databases in
+workflow steps. This is however not the case. A common pattern in my workflows
+is to fetch a set of data I wish to analyse, build it into a database, then
+generate different file types I wish to analyse based on this database. The
+only condition of doing this is that the database must be a file type. I prefer
+to using simple key-value pairs in a text file then use grep to fetch out the
+required values. More complex databases and faster database can however be
+generated Tokyo Cabinet which uses a file. Using a text file as the database
+important fits into a Makefile workflow, which means that I my input data is
+changed then make takes care of automatically regenerating the database and all
+downstream steps.
+
+###### Functions composed of simple functions
+
+Makefile tasks are functions taking one file as an input and returning another
+as an output. The advantage of small compartmentalised functions is that it is
+simple to see the output of each step and verify it is what you expect. In
+contrast loading several different types of data into a database and then
+pulling out a single file at the end provides more opportunity for error.
+
+Each Makefile step can be decomposed further by breaking up the internal
+process. Let me use the following example to illustrate
+
+
+allows you to use any tools, ruby, clojure, coreutils, biopieces
+
+    - don't using scripts, use bin files as essentially transforming functions
+      that can be mapped using make
+    - scripts are still bad and add complexity
+
+    - the only thing `doing things` is the Makefile
+
+###### Prefer line based input output files
+
+FUNCTIONAL APPROACH
+    - simple flat files can also be manipulated using coreutils which are fast
+      and easily parallelisable
+    - create single input bin files easy to get simple parrallelisation with
+      xargs and make -j then
+
+  MODULARISATION:
+    - Don't keep anything local.
+    - Forces results to be easily reproducible.
+    - Forces you to break up and modularise the code.
+    - Also doesn't matter if your computer gets stolen etc.
 
 MAKE
 
@@ -242,26 +355,6 @@ MAKE
     - Timestamp based
     - somewhat ugly syntax difficult
     - possible to get into depdency problems
-
-FUNCTIONAL APPROACH
-    - line based input output files
-    - allows you to use any tools, ruby, clojure, coreutils
-    - much, much easier to swap out components => biopieces
-    - data is the api
-    - don't using scripts, use bin files as essentially transforming functions
-      that can be mapped using make
-    - scripts are still bad and add complexity
-    - the only thing `doing things` is the Makefile
-    - simple flat files can also be manipulated using coreutils which are fast
-      and easily parallelisable
-    - create single input bin files easy to get simple parrallelisation with
-      xargs and make -j then
-
-  MODULARISATION:
-    - Don't keep anything local.
-    - Forces results to be easily reproducible.
-    - Forces you to break up and modularise the code.
-    - Also doesn't matter if your computer gets stolen etc.
 
 
 WRITEUP:

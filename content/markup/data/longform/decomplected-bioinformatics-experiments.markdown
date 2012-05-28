@@ -304,31 +304,70 @@ downstream steps.
 
 ###### Functions composed of simple functions
 
-Makefile tasks are functions taking one file as an input and returning another
-as an output. The advantage of small compartmentalised functions is that it is
-simple to see the output of each step and verify it is what you expect. In
-contrast loading several different types of data into a database and then
-pulling out a single file at the end provides more opportunity for error.
+Makefile tasks can be considered as functions taking one file as an input and
+returning another as an output. The advantage of small compartmentalised
+functions is that it is simple to see the output of each step and verify it is
+what you expect. In contrast loading several different types of data into a
+database and then pulling out a single file at the end provides more
+opportunity for mistakes.
 
-Each Makefile step can be decomposed further by breaking up the internal
-process. Let me use the following example to illustrate
+Makefile steps can be decomposed further by breaking up the steps. The GNU
+coreutils provides a wide variety of programs that you might be tempted to
+write your own program to produce. For instance there are many useful commands
+for manipulating data:
 
+  * [cut][]: Select specific columns from delimited data formats.
+  * [tr][]: Translate characters of one type into another.
+  * [paste][]: Join lines from different files together as columns.
+  * [join][]: Row join two files together based on common identifiers.
+  * [comm][]: Select or reject common lines between two files.
+  * [uniq][]: Select or count unique lines in a file.
+  * [sort][]: Sort lines in file.
 
-allows you to use any tools, ruby, clojure, coreutils, biopieces
+[cut]: http://man.cx/cut
+[tr]: http://man.cx/tr
+[paste]: http://man.cx/paste
+[join]: http://man.cx/join
+[comm]: http://man.cx/comm
+[uniq]: http://man.cx/uniq
+[sort]: http://man.cx/sort
 
-    - don't using scripts, use bin files as essentially transforming functions
-      that can be mapped using make
-    - scripts are still bad and add complexity
+SEE ALSO BIOPIECES, SSED and GREP
 
-    - the only thing `doing things` is the Makefile
+UNIX pipes can also be used to [redirect the input of one command into
+another][pipes]. Therefore as much as possible your Makefile steps should be
+composed of small functions piping their input between each other. The
+advantage is that a UNIX command will be faster and bug-free compared to
+anything you would write your self. Furthermore steps composed of curetil
+pipelines are easier to edit and debug. This part of the UNIX philosophy:
+simple parts connected by clean interfaces. You will however still need to
+write your own programs when core utils are not sufficient and this leads into
+my next point.
 
-###### Prefer line based input output files
+[pipes]: http://linfo.org/pipe.html
 
-FUNCTIONAL APPROACH
-    - simple flat files can also be manipulated using coreutils which are fast
-      and easily parallelisable
-    - create single input bin files easy to get simple parrallelisation with
-      xargs and make -j then
+###### Write functions instead of scripts
+
+I think one of the points that separates a computational scientist, such as a
+bioinformatician, from a software developer is writing many individual scripts
+instead of a single large program. Scripts are written to quickly test a theory
+by performing some operation on a set of input data. The problem however is
+that scripts can quickly grow become complected by braiding many different
+analysis threads into a large hairball of code.
+
+Instead of script consider writing a function: a small portion of code that
+takes an input file or stream and perfroms a single transformative mapping or
+filter operation. This way it is simple to slot this function into a command
+line pipeline. Writing functions instead of scripts also means all the analysis
+logic is in the Makefile you will generally only need to look here to see
+understand what's happening in the pipeline and therefore only need to change
+the Makefile most of the time to change the analysis. Finally by isolating and
+modularising into small code functions you are becoming language agnostic you
+can write one function in clojure, and another in ruby, and a third in R.
+Writing large monolithic ties you to a single language. Finally small scripts
+are easier to debug, change and understand
+
+#### Small modularised projects connected by data
 
   MODULARISATION:
     - Don't keep anything local.

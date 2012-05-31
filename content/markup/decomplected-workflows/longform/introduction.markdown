@@ -85,69 +85,69 @@ follows:
     that Rakefiles can be used to manage dependencies between project steps
     filing them into sub directories provides a consistent organisation.
 
-You can find [an example project][2] organised this way on github. If this
-appears complicated take a look at the previous blog post and the repository of
-the example project for this approach. I believe this approach satisfies both
-of the requirements I outlined above. Firstly the analysis steps are strictly
-organised into Rake files. This makes the project reproducible as Rake takes
-care of calling any downstream steps when there is an upstream change in the
-workflow. Second project is well organised as the data is kept in the database,
-access to the data is allowed through Ruby ORM classes, and all analysis steps
-are in the Rake files. So what is the problem?
+You can find [an example project][2] organised this way on github. I think this
+approach satisfies both of the requirements I outlined above. The analysis is
+strictly organised into Rakefiles and takes care of calling the project steps
+in the correct order. Second project is well organised as the data is kept in
+the database, access to the data is allowed through Ruby ORM classes.
 
 [2]: ADD EXAMPLE PROJECT URL
 
-I think that there is a third requirement for creating a computational
-pipelines and that is *simplicity*. Organising computational analysis this way
-adds a lot of complexity to the project. Three examples:
+I found that over time as used this approach there were downsides. This
+approach as complexity to a project. For instance:
 
-  * **Tied to a programming language**. Everything must be written in Ruby, this
-    makes it harder to include different languages. The solution to this is to
-    shell out to second script containing the data. Maintaining different shell
-    scripts this way immediately adds complexity because all the analysis steps
-    are no only maintained in the Rake files.
+  * **Tied to a specific programming language**
 
-  * **Database**. Using SQL in conjunction with a databases can make certain
-    types of operations much easier and faster than parsing a flatfile with a
-    script. However using a database for all types of data adds complexity
-    because of the extra layer of code required to manipulate the data.
-    Furthermore the data is effectively hidden. To see and get a feel for the
-    data you're using you have to use a database viewer, which again is more
-    complexity. 
+    Everything must be written in Ruby making it harder to include different
+    programming languages. This can be worked around by calling secondary
+    scripts using the shell from inside the Rakefile. Maintaining different
+    shell scripts this way immediately adds complexity because all the analysis
+    steps are no longer maintained in Rakefiles which returns to the original
+    problem of keeping scripts organised.
 
-  * **Mutable project state**. Updating files or the database over different
-    project steps adds a layer of mutability to a project. What state is the
-    project in at any given time? For instance if you take more than one pass
-    over a database table you have to keep track of that table somehow, which
-    is adding more complexity.
+  * **Database**
 
-The example I outlined above here I think are the result of example of choosing
-easier over simpler. Using Rakefiles makes it easy to call `rake` in the
-project root to run all analyses from the beginning. This satisfies the
-*reproducibility* requirement, this however adds complexity. This complexity
-manifest as the project becoming increasing hard to maintain and manage as it
-grows. Have you ever had a feeling a resistance when you're required to change
-or update an aspect of an *in-silico* analysis? This is the complexity of a
-project making it harder and harder to do this. This is why computational
-workflows have an additional requirement:
+    Using SQL in conjunction with a databases can make certain types of
+    operations much easier and faster than parsing a flat file with a script.
+    Using a database unconditionally for all types of data however adds
+    complexity because of the extra layer of code required to manipulate the
+    data. Furthermore the data is effectively hidden. To see and get a feel for
+    the data you're using you have to write queries into a database viewer,
+    which is more overhead. 
 
-  * **Simplicity**: Computational analysis pipelines should be simple to
-    maintain. This simplicity should make it trivial to add, update, or remove
-    steps in the workflow.
+  * **Mutable project state**
 
-A great deal of the inspiration for this post comes from [a talk given by Rich
-Hickey][3], the inventor of the Clojure programming language. One of the points
-of his talk is that we should prefer simple over easy, as repeatedly choosing
-easy can lead to increasing amount of complexity in a project. Rich uses the
-term "complecting" to describe braiding more and more software into the project
-to increase the complexity. The term I use here "Decomplected Bioinformatics
-Experiments" is therefore a nod to this.
+    Changing files or the database tables over different project steps adds
+    mutability to a project. What state is the project in at any given time?
+    For instance if you create a database tables then in the next step add an
+    additional column the current state of the table must be tracked, which
+    adds more complexity.
+
+The 'organised bioinformatics approach' makes reproducing and organising a
+project but not necessarily simpler. Using Rakefiles makes it easy to run
+`rake` repeat all project analyses but adds what I think is a great deal of
+complexity. This complexity is manifest as the project becoming increasing hard
+to maintain and manage as it grows. Feeling an internal sense of resistance
+when trying to change or update an aspect of an *in-silico* analysis is sign of
+too much complexity. Therefore this has lead me to think that in addition to
+reproducibility and organisation computational workflows have an additional
+requirement:
+
+  * **Simplicity**
+
+    Computational analysis pipelines should be simple to maintain. This
+    simplicity should make it trivial to add, update, or remove steps in the
+    workflow.
+
+Much of the inspiration for ideas I have outlined here come from [a talk given
+by Rich Hickey][3], the inventor of Clojure. One of the points of his talk is
+that we should prefer simple over easy, as choosing easy can lead to increasing
+complexity in a project. Rich uses the term "complecting" to describe braiding
+more and more software into the project resulting in greater and greater
+complexity. Therefore with respect to this I going to describe in a following
+series of posts what I think of as "Decomplected Computational Workflows."
+These posts will described how I use Makefiles, language agnostic functions,
+immutable data, and modularised projects to reduce the complexity in my
+computational projects.
 
 [3]: LINK TO RICH'S TALK
-
-#### Decomplected Bioinformatics Experiments
-
-The workflow I use now is composed of Makefiles, language agnostic functions,
-immutable data, and modularised projects. I outline how I use each of these
-steps below:
-

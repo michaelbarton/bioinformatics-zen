@@ -48,13 +48,12 @@ q {
 hr {
   display: none; }
 
-/* Uncomment this if you want to disable default bullet and numeric styling.
 ol,ul,li
 {
 	list-style:none;
 	margin:0;
 	padding:0;
-} */
+}
 /* End Reset */
 
 /* 2.Table */
@@ -219,6 +218,7 @@ abbr {
 small {
   color: #999; }
 
+/* Remove these, prefer plain lists
 ul, li {
   margin: 0;
   padding: 0; }
@@ -234,6 +234,7 @@ ol {
 ul li, ol li {
   margin-bottom: 10px;
   color: #444; }
+*/
 
 .metadata {
   color: #999; }
@@ -244,12 +245,13 @@ ul li, ol li {
   float: right;
   width: 250px; }
 
-.widget ul, ol {
-  margin: 0;
-  padding: 0; }
-
 .widget {
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  ul, ol {
+    margin: 0;
+    padding: 0;
+  }
+}
 
 /* Footer */
 

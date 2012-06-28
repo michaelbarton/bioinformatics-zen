@@ -1,11 +1,9 @@
 - if @site.config[:site][:navigation]
-  .topbar
-    .fill
-      .container
-        %a.brand{:href => relative_path_to('/') }
-          = "Bioinformatics Zen"
-        %ul.nav
-          - @site.config[:site][:navigation].each do |name,href|
-            %li
-              %a{:href => href}
-                = name
+  #sidebar
+    .widget
+      %h2 nav
+      %ul
+        - @site.config[:site][:navigation].each do |name,href|
+          %li
+            %a{:href => href}
+              = name

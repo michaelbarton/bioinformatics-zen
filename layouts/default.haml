@@ -4,14 +4,18 @@
 %html{ :lang => 'en' }
   = render "_header"
   %body{:onload => "prettyPrint()" }
-    .container
+    #wrapper
+      #header
+        %h1
+          %a.brand{:href => relative_path_to('/') }
+            = "Bioinformatics Zen"
+        %small
+          = "Michael Barton's bioinformatics notes"
+      #content
+        .hentry
+          = render "_title"
+          ~ yield
+        .hentry
+          = comments(@item)
       = render "_navigation"
-      .content
-        %article
-          %header
-            = render "_title"
-          %section
-            ~ yield
-          %section
-            = comments(@item)
     = google_analytics @site.config[:site][:analytics_token]

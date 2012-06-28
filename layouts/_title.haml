@@ -1,11 +1,10 @@
 ---
 ---
-.page-header
+%h3#entry-title
   %a{:href => relative_path_to(@item) }
-    %h1
-      = "#{@item[:title]}"
-  %small
-    = "Posted: " + Time.parse(item[:created_at]).strftime('%b %d, %Y')
-  - if item[:revised]
-    %small
-      = "; Revised: " + Time.parse(item[:revised]).strftime('%b %d, %Y')
+    = @item[:title]
+  %abbr
+    - if item[:revised]
+      = "&#183; Revised: " + Time.parse(item[:revised]).strftime('%b %d, %Y')
+    - else
+      = "&#183; Posted: " + Time.parse(item[:created_at]).strftime('%b %d, %Y')

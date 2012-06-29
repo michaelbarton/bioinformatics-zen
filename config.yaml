@@ -21,10 +21,10 @@ site:
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'
   rights: "Creative Commons Attribution 3.0 Unported"
   navigation:
-    Feed: 'http://feeds.feedburner.com/BioinformaticsZen'
-    Email: 'mailto:mail@bioinformaticszen.com'
-    Twitter: 'http://twitter.com/bioinformatics'
-    Videos: 'http://www.youtube.com/user/bioinformaticszen'
+    feed: 'http://feeds.feedburner.com/BioinformaticsZen'
+    email: 'mailto:mail@bioinformaticszen.com'
+    twitter: 'http://twitter.com/bioinformatics'
+    videos: 'http://www.youtube.com/user/bioinformaticszen'
 feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 author:
   uri: "http://www.michaelbarton.me.uk"

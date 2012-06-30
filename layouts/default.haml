@@ -12,7 +12,7 @@
         %p
           = "Michael Barton's bioinformatics notes"
       #content
-        - if @item[:title]
+        - if item[:category]
           .hentry
             = render "_title"
             ~ yield

@@ -12,13 +12,13 @@
         %p
           = "Michael Barton's bioinformatics notes"
       #content
-        - if item[:category]
-          .hentry
-            = render "_title"
+        .hentry
+          = render "_title"
+          - if item[:category]
             ~ yield
-          .hentry
-            = comments(@item)
-        - else
-          = render "_front"
+            .hentry
+              = comments(@item)
+          - else
+            = render "_front"
       = render "_navigation"
     = google_analytics @site.config[:site][:analytics_token]

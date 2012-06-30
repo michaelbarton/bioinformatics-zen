@@ -1,2 +1,3 @@
 ---
+  title: Index
 ---

@@ -11,3 +11,16 @@
     margin-bottom: 12px;
   }
 }
+
+ul.posts {
+  list-style: none;
+  margin-left: 0px;
+  span {
+    color: #999;
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+    font-size: 12px;
+  }
+  a {
+    color: #000;
+  }
+}

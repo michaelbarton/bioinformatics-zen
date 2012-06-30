@@ -21,7 +21,6 @@ site:
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'
   rights: "Creative Commons Attribution 3.0 Unported"
   navigation:
-    twitter: 'http://twitter.com/michaelbarton'
     about: 'http://www.michaelbarton.me.uk'
     email: 'mailto:mail@bioinformaticszen.com'
     youtube: 'http://www.youtube.com/user/bioinformaticszen'
@@ -30,6 +29,7 @@ author:
   uri: "http://www.michaelbarton.me.uk"
   name: "Michael Barton"
   email: "mail@michaelbarton.me.uk"
+  twitter: "http://twitter.com/michaelbarton"
 scripts:
   - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   - "/fancybox/javascript.js"

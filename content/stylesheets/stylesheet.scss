@@ -1,6 +1,10 @@
 @import "prettify";
 @import "arielist";
 
+body {
+  color: #555;
+}
+
 #sidebar {
   width: 200px; }
 
@@ -21,6 +25,6 @@ ul.posts {
     font-size: 12px;
   }
   a {
-    color: #000;
+    color: #555;
   }
 }

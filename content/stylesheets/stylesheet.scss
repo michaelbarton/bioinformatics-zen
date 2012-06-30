@@ -20,11 +20,13 @@ pre {
   font-size: 12px;
   background-color: #262526;
   padding: 10px 0px 15px 15px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 code {
   background: #EEE;
-  }
+}
 
 ul.posts {
   list-style: none;

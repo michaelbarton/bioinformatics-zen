@@ -21,20 +21,19 @@ site:
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'
   rights: "Creative Commons Attribution 3.0 Unported"
   navigation:
-    Feed: 'http://feeds.feedburner.com/BioinformaticsZen'
-    Email: 'mailto:mail@bioinformaticszen.com'
-    Twitter: 'http://twitter.com/bioinformatics'
-    Videos: 'http://www.youtube.com/user/bioinformaticszen'
+    about: 'http://www.michaelbarton.me.uk'
+    email: 'mailto:mail@bioinformaticszen.com'
+    youtube: 'http://www.youtube.com/user/bioinformaticszen'
 feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 author:
   uri: "http://www.michaelbarton.me.uk"
   name: "Michael Barton"
   email: "mail@michaelbarton.me.uk"
+  twitter: "http://twitter.com/michaelbarton"
 scripts:
   - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   - "/fancybox/javascript.js"
   - "/javascript/prettify.js"
 stylesheets:
-  "http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css": "screen,projection"
   "/stylesheets/stylesheet.css": "screen,projection"
   "/fancybox/styles.css": "screen,projection"

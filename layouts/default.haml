@@ -17,6 +17,8 @@
           - if item[:category]
             ~ yield
             .hentry
+              = render "_footer"
+            .hentry
               = comments(@item)
           - else
             = render "_front"

@@ -21,10 +21,9 @@ site:
   feed: 'http://feeds.feedburner.com/BioinformaticsZen'
   rights: "Creative Commons Attribution 3.0 Unported"
   navigation:
-    index: '/'
-    feed: 'http://feeds.feedburner.com/BioinformaticsZen'
-    contact: 'mailto:mail@bioinformaticszen.com'
-    twitter: 'http://twitter.com/bioinformatics'
+    twitter: 'http://twitter.com/michaelbarton'
+    about: 'http://www.michaelbarton.me.uk'
+    email: 'mailto:mail@bioinformaticszen.com'
     youtube: 'http://www.youtube.com/user/bioinformaticszen'
 feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 author:

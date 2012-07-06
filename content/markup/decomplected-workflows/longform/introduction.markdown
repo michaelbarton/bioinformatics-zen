@@ -1,6 +1,7 @@
 ---
 kind: article
-title: introduction
+title: Introduction
+created_at: "2012-07-09 00:00:00"
 ---
 
 I wrote a blog post four years ago called ['organised bioinformatics

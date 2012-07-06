@@ -1,6 +1,7 @@
 ---
 kind: article
-title: Small modularised parts connected by data
+title: Modularised parts connected by data
+created_at: "2012-07-12 00:00:00"
 ---
 
 I suggested breaking workflow steps into combinations of composable functions

@@ -1,6 +1,7 @@
 ---
 kind: article
-title: reflection
+title: Reflection
+created_at: "2012-07-13 00:00:00"
 ---
 
 The points I have outlined in the previous posts are obvious to many. Plain

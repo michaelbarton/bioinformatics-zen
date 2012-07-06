@@ -36,7 +36,7 @@ route '/markup/*/*/' do
 
   raise "Error processing url for: #{@item.identifier}" if basename.nil?
 
-  item[:category] = category
+  item[:category] = category.gsub('-',' ')
   item[:type]     = type
   "/post/#{basename}/index.html"
 end

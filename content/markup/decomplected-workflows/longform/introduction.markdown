@@ -5,26 +5,27 @@ created_at: "2012-07-09 00:00:00"
 ---
 
 I wrote a blog post four years ago called ['organised bioinformatics
-experiments'][1] which my method for maintaining computational projects. This
-approach described using databases to manage data and the Ruby equivalent of
-GNU Make to organising the *in-silico* analysis steps. I have been using this
-approach since writing about it, and several people have generously this post
-has influenced the way they work.
+experiments'][1] describing my methods for maintaining computational projects.
+This approach used databases to manage data and the Ruby equivalent of GNU Make
+to organising *in-silico* analysis steps. I used this approach for a long time
+since writing about it, and several people have generously said that this also
+influenced the way they worked.
 
-In the last few months I have however changed the way I work and in this post
-I'm going to deconstruct the previous 'organised bioinformatics experiments'
-approach. I will outline what I think are the reasons for using this method and
-what are the disadvantages. In subsequent posts I will outline a different
-approach which I now use instead.
+In the last few months the way I have been influenced by [an excellent talk on
+computational complexity by Rich Hickey][talk]. This talk lead me to spend some
+time time thinking how I construct computational workflows in my research. I
+have now abandoned my 'organised bioinformatics experients' and changed the way
+I work.
 
-I write this series with the aim of stressing the importance of organising
-projects for new bioinformaticians, such as those doing a master's degree or
-early in their PhD. I also hope to be able to highlight tools and approaches
-that may also be useful to more experienced bioinformaticians.
+In this posts I'm going to deconstruct what I think are the problems with my
+previous approach. In four subsequent posts I will then outline what I think is
+a simpler and therefore better approach for organising research workflows.
+Given the inspirations I recieved from Rich Hickey's talk I've named this
+series of posts as "decomplected computational workflows."
 
 [1]: /post/organised-bioinformatics-experiments/
 
-#### Reproducibility and Organisation
+## Reproducibility and Organisation
 
 First I'm going to outline a problem in computational research which is
 organising the files and steps in a research workflow. These essence of this
@@ -60,30 +61,25 @@ parts:
     well organised project should be able to be examined after several months
     and the purpose of the components understood with minimal effort.
 
-#### Complected bioinformatics experiments 
+## Complected bioinformatics experiments 
 
 In my previous [organised bioinformatics experiments post][1] I tried to
 address these problems using the following systematic approach:
 
-  * **Databases**
+  * **Databases**: All data should be entered into a database at the start of
+    project. This keeps the data in a consistently accessible format.
+    Denormalisation of data makes integrating data from different sources
+    simpler.
 
-    All data should be entered into a database at the start of project. This
-    keeps the data in a consistently accessible format. Denormalisation of data
-    makes integrating data from different sources simpler.
+  * **Object Relational Management (ORM)**: The data in the project should only
+    be available in analysis steps via Ruby ORM classes. This makes accessing
+    the data simpler and all data-related code is in the same location.
 
-  * **Object Relational Management (ORM)**
-
-    The data in the project should only be available in analysis steps via Ruby
-    ORM classes. This makes accessing the data simpler and all data-related
-    code is in the same location.
-
-  * **Rake**
-    
-    Rake is a build tool similar to GNU Make written in the Ruby language. In a
-    research project each step should be defined as a Rake task. Parts of the
-    project are divided into incrementally numbered sub directories based on
-    their order in the project. This means all analytical code is found in
-    Rakefiles and provides a consistent organisation.
+  * **Rake**: Rake is a build tool similar to GNU Make written in the Ruby
+    language. In a research project each step should be defined as a Rake task.
+    Parts of the project are divided into incrementally numbered sub
+    directories based on their order in the project. This means all analytical
+    code is found in Rakefiles and provides a consistent organisation.
 
 You can find [an example project][2] organised this way on github. I think this
 approach satisfies both of the requirements I outlined above. The analyses are
@@ -95,28 +91,23 @@ complexity.
 
 [2]: ADD EXAMPLE PROJECT URL
 
-  * **Tied to a specific programming language**
+  * **Tied to a specific programming language**: Everything must be written in
+    Ruby making it harder to include different programming languages. This can
+    be worked around by calling secondary scripts using the shell from inside
+    the Rakefile. Maintaining different shell scripts however add complexity
+    because because the analysis has now moved out of the Rakefile.
 
-    Everything must be written in Ruby making it harder to include different
-    programming languages. This can be worked around by calling secondary
-    scripts using the shell from inside the Rakefile. Maintaining different
-    shell scripts however add complexity because because the analysis has now
-    moved out of the Rakefile.
+  * **All data in a database**: SQL can make generating complex data joins much
+    simpler. Using a database unconditionally for all types of data however
+    adds complexity in the extra layer of code required to manipulate the data.
+    Furthermore the data is effectively hidden. To see and get a feel for it
+    you'll need to use a database viewer.
 
-  * **All data in a database**
-
-    SQL can make generating complex data joins much simpler. Using a database
-    unconditionally for all types of data however adds complexity in the extra
-    layer of code required to manipulate the data. Furthermore the data is
-    effectively hidden. To see and get a feel for it you'll need to use a
-    database viewer.
-
-  * **Mutable project state**
-
-    Changing files or database tables in different project steps adds
-    mutability to a project. What state is the project in at any given time? If
-    you create a database table in one next step add an additional column in a
-    later current state of the table must be tracked, adding complexity.
+  * **Mutable project state**: Changing files or database tables in different
+    project steps adds mutability to a project. What state is the project in at
+    any given time? If you create a database table in one next step add an
+    additional column in a later current state of the table must be tracked,
+    adding complexity.
 
 The 'organised bioinformatics approach' makes reproducing and organising a
 project easer. I however think it does not make it simpler. Using Rakefiles
@@ -128,15 +119,13 @@ much complexity. Therefore this has lead me to think that in addition to
 reproducibility and organisation, computational workflows have an additional
 requirement:
 
-  * **Simplicity**
-
-    Computational analysis pipelines should be simple to maintain. This
-    simplicity should make it trivial to add, update, or remove steps in the
-    workflow.
+  * **Simplicity**: Computational analysis pipelines should be simple to
+    maintain. This simplicity should make it trivial to add, update, or remove
+    steps in the workflow.
 
 Much of the inspiration for what I have outlined here come from [a talk given
-by Rich Hickey][3], the inventor of Clojure. One of the points he makes is that
-we should prefer simple over easy, as choosing easy can lead to increasing
+by Rich Hickey][talk], the inventor of Clojure. One of the points he makes is
+that we should prefer simple over easy, as choosing easy can lead to increasing
 complexity in a project. Rich uses the term "complecting" to describe braiding
 more and more software into the project resulting in greater and greater
 complexity. Therefore with respect to this I going to describe in a following
@@ -145,4 +134,4 @@ These posts will described how I use Makefiles, language agnostic functions,
 immutable data, and modularised projects to reduce the complexity in my
 computational projects.
 
-[3]: LINK TO RICH'S TALK
+[talk]: LINK TO RICH'S TALK

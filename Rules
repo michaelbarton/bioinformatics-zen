@@ -35,6 +35,8 @@ route '/markup/*/*/' do
   _, _, category, type, basename = item.identifier.split("/")
 
   raise "Error processing url for: #{@item.identifier}" if basename.nil?
+  raise "No created_at field for #{@item.identifier}" if item[:created_at].nil?
+
 
   item[:category] = category
   item[:type]     = type

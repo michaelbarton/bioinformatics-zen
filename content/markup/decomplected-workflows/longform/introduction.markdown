@@ -1,6 +1,7 @@
 ---
 kind: article
 title: Introduction
+prefix: true
 created_at: "2012-07-09 00:00:00"
 ---
 

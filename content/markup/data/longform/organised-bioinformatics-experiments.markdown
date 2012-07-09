@@ -54,16 +54,19 @@ Ruby class. The name of the class (Gene) corresponds to the table (genes). The
 properties (name \& sequence) correspond to columns in the table, and get/set
 methods for the object.
 
+<%= highlight %>
     class Gene < DataMapper::Base
       property :name,      :string
       property :sequence,  :text
     end
+<%= endhighlight %>
 
 Using this class, data can be manipulated using object oriented programming,
 making the code more readable. Even if you're not familiar with Ruby I think
 the below code is simple and easy to understand, which would not necessarily be
 the case for hard-coded SQL statements.
 
+<%= highlight %>
     # Create object using accessors
     gene = Gene.new
     gene.name = 'ALS2'
@@ -76,6 +79,7 @@ the case for hard-coded SQL statements.
 
     # Delete the first record in this array
     genes.first.destroy!
+<%= endhighlight %>
 
 #### Use make-type files instead of scripts
 
@@ -87,6 +91,8 @@ example. Here's an illustration using the Ruby version of make - Rake. I've
 created an example set of analyses where instead of each being a script they
 are instead a task in the Rake file.
 
+
+<%= highlight %>
     desc 'Delete all exiting rows'
     task :delete\_sequences do
       # Clear the sequence table
@@ -108,6 +114,7 @@ are instead a task in the Rake file.
      :load\_sequences,
      :sequence\_stats]
     end
+<%= endhighlight %>
 
 As the example shows, the characteristic of a Rake file is a set of named tasks
 that each perform an action. Within these tasks any valid Ruby code can be
@@ -125,10 +132,12 @@ This is a handy way of keeping track of what all the tasks in your project are
 doing. This would also be useful for anyone else who was looking at your
 project.
 
+<%= highlight %>
     rake :rebuild
     rake :delete\_sequences
     rake :load\_sequences
     rake :sequence\_stats
+<%= endhighlight %>
 
 #### Keep data code in models, and analysis code in tasks
 
@@ -145,20 +154,24 @@ data is in the rake task.
 
 ##### gene.rb
 
+<%= highlight %>
     def self.mean\_length
        genes = Gene.find(:all)
        lengths = genes.map{|gene| gene.sequence.length}
        lengths.to\_statarray.mean
     end
+<%= endhighlight %>
 
 ##### analysis.rake
 
+<%= highlight %>
     desc 'Calculates statistics for gene sequences'
     task :sequence\_stats do
       File.open('results.txt','w') do |file|
         file.puts "Mean length : #{ Gene.mean\_length }"
       end
     end
+<%= endhighlight %>
 
 #### Use testing and validations
 
@@ -176,6 +189,7 @@ criteria will print an error at the command line, when the data is loaded.
 
 [3]: http://www.michaelbarton.me.uk/2007/12/dirty-laundry-in-public/
 
+<%= highlight %>
     # Checks that the sequence has a start codon,
     # a stop codon, and contains only ATGCs
     # and line breaks
@@ -196,6 +210,7 @@ criteria will print an error at the command line, when the data is loaded.
         # Or even better write to an error log
       end
     end
+<%= endhighlight %>
 
 #### Summary
 

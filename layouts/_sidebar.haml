@@ -1,0 +1,18 @@
+- if @site.config[:site][:navigation]
+  #sidebar
+    .widget
+      %h3 about
+      %p
+        = "I'm Michael Barton, a post-doctoral researcher in bioinformatics. I enjoy writing about data analysis and simple approaches to computational biology."
+      %p
+        = "Follow me on twitter as"
+        %b
+          %a{:href => @site.config[:author][:twitter] }
+            = "@michaelbarton."
+    .widget
+      %h3 links
+      %ul
+        - @site.config[:site][:navigation].each do |name,href|
+          %li
+            %a{:href => href}
+              = name

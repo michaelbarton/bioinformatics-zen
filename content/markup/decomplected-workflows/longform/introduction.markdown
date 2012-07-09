@@ -1,0 +1,143 @@
+---
+kind: article
+title: Introduction
+prefix: true
+created_at: "2012-07-09 00:00:00"
+---
+
+I wrote a blog post four years ago called ['organised bioinformatics
+experiments'][1] describing my methods for maintaining computational projects.
+This approach used databases to manage data and the Ruby equivalent of GNU Make
+for organising *in-silico* analysis steps. I used this approach for several
+years after describing it, and several people have generously said that this
+post influenced the way they worked.
+
+In the last few months I have been influenced by [an excellent talk on
+computational complexity by Rich Hickey][talk]. This talk lead me to spend some
+time further thinking about how I construct my computational workflows. This
+has since lead me to move away from my 'organised bioinformatics experiments'
+approach and change the way I work.
+
+In this and subsequent posts I'm going to deconstruct my previous approach and
+then outline what I think is a simpler approach for organising research
+workflows. Given the inspiration I received from Rich Hickey's talk I've named
+this series of posts "decomplected computational workflows."
+
+[1]: /post/organised-bioinformatics-experiments/
+
+## Reproducibility and Organisation
+
+If you have done computational research for any length of time you know there
+is an underlying problem of organising the files and steps in a workflow. An
+example of this problem is writing a Perl script at the start of your PhD and
+then remembering what this script does several years later as you finish your
+thesis. How do you effectively organise hundreds of files and scripts over the
+months or years of a research project?
+
+Wet lab scientists track all of their experiments in a lab notebook. This
+produces a record of the steps taken in their research that allows someone else
+to reproduce their experiments. There is a similar requirement in computational
+research but there is no simple *in-silico* analogy to a laboratory notebook.
+How do I effectively reproduce my research from a set of scripts I may not have
+looked at for a month? How do I organise all my scripts, data, and output
+figures in the project? I think this question contains two parts:
+
+  * **Reproducibility**:
+
+    A research project maps input data into a tractable format, runs analyses
+    on these data, then generates a set of output figures and statistics. The
+    difficulty in making a project reproducible is that all scripts must be run
+    in the correct order. Furthermore if the code in an earlier step changes
+    then all subsequent downstream steps must be rerun. This process is fragile
+    and can lead to errors and omissions.
+
+  * **Organisation**:
+
+    Research projects starting with an inkling of idea can rapidly grow into
+    large numbers of scripts. How can these large numbers of related files be
+    assembled in a project? How should data, figures and images be labelled? A
+    well organised project should be able to be returned to after several
+    months and the components understood with little effort.
+
+## Complected bioinformatics experiments 
+
+In my previous description of [organised bioinformatics experiments][1] I aimed
+to address these problems using a systematic approach:
+
+  * **Databases**: All data should be entered into a database at the start of a
+    project. This keeps the data in a consistently accessible format.
+    Denormalisation of data makes integrating data from different sources
+    easier.
+
+  * **Object Relational Management**: Object relational mapping (ORM)
+    encapsulates database tables as object classes and table records are
+    instances of these classes. The data in the project should only be
+    available to analysis steps via these Ruby ORM classes. This makes accessing
+    the data easier than SQL statements and all data-related code is in the
+    same location.
+
+  * **Rake**: Rake is a build tool similar to GNU Make written in Ruby. In a
+    research project each step should be defined as a Rake task. Parts of the
+    project are divided into incrementally numbered sub directories based on
+    their order in the project. This means all analytic code is found in
+    Rakefiles and provides a consistent organisation.
+
+You can find [an example project][2] organised this way on github. I think this
+approach satisfies both of the requirements I outlined above. The analyses are
+strictly organised into Rakefiles enforcing the requirement for the project
+steps being called in the correct order. Secondly the project is well organised
+as the data is kept in the database, access is only through Ruby ORM classes,
+and all the analysis logic is in the Rakefiles. Nevertheless I found over time
+there are some downsides to this approach, and that they originate from
+complexity.
+
+[2]: https://github.com/michaelbarton/organised_experiments
+
+  * **Tied to a specific programming language**: Everything must be written in
+    Ruby. This makes it harder to include different programming languages. This
+    can be worked around by calling secondary scripts using the shell from
+    inside the Rakefile. Maintaining different shell scripts however adds
+    complexity because the analysis has now moved out of the Rakefile into
+    separate locations.
+
+  * **All data in a database**: Database joins can be used to create composite
+    data sets from different sources more easily. Using a database
+    unconditionally for all data however adds complexity in the extra layer of
+    code required to manage and manipulate the data. Furthermore the data is
+    effectively hidden. To see and get a feel for it you'll need to use a
+    database viewer and SQL.
+
+  * **Mutable project state**: Changing files or database tables in different
+    project steps adds mutability to a project. What state is the project in at
+    any given time? If you create a database table in one step add an
+    additional column in a later step, then current state of the table must be
+    tracked, adding complexity.
+
+The 'organised bioinformatics approach' makes reproducing and organising a
+project easier. I however think it does not make it simpler. Using Rakefiles
+makes it easy to run `rake` to repeat all project analyses but adds what I
+think is a great deal of complexity. This complexity is manifest as the project
+becoming increasing hard to maintain as it grows. Feeling a sense of resistance
+when trying to change or update a workflow step is a sign of complexity.
+Therefore this has lead me to think that in addition to reproducibility and
+organisation, computational workflows have an additional requirement:
+
+  * **Simplicity**:
+
+  Computational analysis pipelines should be simple to maintain. This
+  simplicity should make be manifest as making it trivial to add, update, or
+  remove steps in the workflow.
+
+In the [Rich Hickey's talk][talk], he argues is that we should prefer simple
+over easy, as adding large catch-all tools to a project can make analysis
+easier but can lead to increasing complexity and maintenance. Choosing simpler
+or less tools, in contrast, may require more effort to create a project but
+makes maintenance simpler in the longer term. Rich uses the term "complecting"
+to describe how braiding more and more software into the project results in
+greater and greater complexity. Therefore with respect to this I going to
+describe the following series of posts as "Decomplected Computational
+Workflows." These posts will described how I use Makefiles, language agnostic
+functions, immutable data, and modularised projects to reduce the complexity in
+my computational research.
+
+[talk]: http://www.infoq.com/presentations/Simple-Made-Easy

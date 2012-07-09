@@ -2,7 +2,7 @@
 ---
 %h3#entry-title
   %a{:href => relative_path_to(@item) }
-    = @item[:title]
+    = item[:long_title] || item[:title]
   - if item[:revised]
     %abbr
       = "&#183; Revised: " + Time.parse(item[:revised]).strftime('%b %d, %Y')

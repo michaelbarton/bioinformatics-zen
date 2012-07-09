@@ -50,7 +50,7 @@ def favicon
 end
 
 def site_title
- [@item[:title],@site.config[:title],@site.config[:name]].compact.uniq * " | "
+ (@item[:long_title] || @item[:title]) + ' | ' + @site.config[:site][:title]
 end
 
 def time_for(time)

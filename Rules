@@ -35,9 +35,16 @@ route '/markup/*/*/' do
   _, _, category, type, basename = item.identifier.split("/")
 
   raise "Error processing url for: #{@item.identifier}" if basename.nil?
+  raise "No created_at field for #{@item.identifier}" if item[:created_at].nil?
 
   item[:category] = category.gsub('-',' ')
   item[:type]     = type
+
+  if item[:prefix]
+    basename          = [category, basename].join('-')
+    item[:long_title] = [category.gsub('-',' ').capitalize, item[:title]].join(': ')
+  end
+
   "/post/#{basename}/index.html"
 end
 compile '/markup/*' do

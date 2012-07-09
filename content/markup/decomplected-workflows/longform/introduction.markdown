@@ -93,7 +93,7 @@ and all the analysis logic is in the Rakefiles. Nevertheless I found over time
 there are some downsides to this approach, and that they originate from
 complexity.
 
-[2]: ADD EXAMPLE PROJECT URL
+[2]: https://github.com/michaelbarton/organised_experiments
 
   * **Tied to a specific programming language**: Everything must be written in
     Ruby. This makes it harder to include different programming languages. This
@@ -142,4 +142,4 @@ will described how I use Makefiles, language agnostic functions, immutable
 data, and modularised projects to reduce the complexity in my computational
 projects.
 
-[talk]: LINK TO RICH'S TALK
+[talk]: http://www.infoq.com/presentations/Simple-Made-Easy

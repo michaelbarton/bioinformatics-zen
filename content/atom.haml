@@ -9,7 +9,7 @@
     %email= @site.config[:author][:email]
     %uri= @site.config[:author][:uri]
   %rights= @site.config[:site][:rights]
-  - longform_articles.select{|i| i[:feed] == true}[0..4].each do |article|
+  - longform_articles[0..4].each do |article|
     %entry
       %id= url_for(article)
       %title= article[:title]

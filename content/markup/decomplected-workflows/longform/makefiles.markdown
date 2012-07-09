@@ -1,14 +1,16 @@
 ---
 kind: article
 title: Makefiles
+prefix: true
 created_at: "2012-07-10 00:00:00"
 ---
 
 A bioinformatics research project should be easily reproducible. Anyone should
-be able to repeat all the steps from scratch and the simpler, the better.
-Reproducibility should also show the processes used to generate the results.
-Build files are a method that can be used to manage the dependencies between
-project steps and go a long way towards reproducible research.
+be able to repeat all the steps from scratch and the simpler it is to do this,
+the better. Reproducibility should also include showing each intermediate step
+and processes used to generate the results. Build files can be used to manage
+the dependencies between steps in a computational workflow and therefore go a
+long way towards facilitating reproducible research.
 
 [GNU Make][make] provides a syntax to describe project dependency steps as
 targets in a computational work flow. Each target is a file to be created using

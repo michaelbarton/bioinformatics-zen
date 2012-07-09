@@ -1,5 +1,6 @@
 ---
 kind: article
+unpublished: true
 title: A Functional Approach
 created_at: "2012-07-11 00:00:00"
 ---

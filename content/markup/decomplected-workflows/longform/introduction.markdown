@@ -136,8 +136,9 @@ makes maintenance simpler in the longer term. Rich uses the term "complecting"
 to describe how braiding more and more software into the project results in
 greater and greater complexity. Therefore with respect to this I going to
 describe the following series of posts as "Decomplected Computational
-Workflows." These posts will described how I use Makefiles, language agnostic
-functions, immutable data, and modularised projects to reduce the complexity in
-my computational research.
+Workflows." These posts will described how I use [Makefiles][], language
+agnostic functions, immutable data, and modularised projects to reduce the
+complexity in my computational research.
 
 [talk]: http://www.infoq.com/presentations/Simple-Made-Easy
+[Makefiles]: /post/decomplected-workflows-makefiles/

@@ -25,10 +25,10 @@ Git is useful for collaborating on shared source code repositories. The collabor
 - [Extensive git guide][guide]
 
 
-[history]: http://en.wikipedia.org/wiki/Git_(software)#Early_history
-[gh]: http://www.github.com
+[history]: http://en.wikipedia.org/wiki/Git_(software)#History
+[gh]: https://www.github.com
 [git]: http://git-scm.com/
-[video]: http://www.gitcasts.com/posts/railsconf-git-talk
+[video]: http://schacon.github.com/2008/06/02/railsconf-git-talk.html
 [research]: http://mendicantbug.com/2008/11/30/10-reasons-to-use-git-for-research/
-[new]: http://github.com/blog/120-new-to-git
+[new]: https://github.com/blog/120-new-to-git
 [guide]: http://www-cs-students.stanford.edu/~blynn/gitmagic/

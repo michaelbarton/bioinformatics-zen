@@ -14,7 +14,14 @@ As Vim is entirely text-based, without the pretty interface of modern editors, m
 
 ### Customise
 
-One reason not to use Vim, is that it doesn't have the code orientated features of integrated development environments (IDE) such as [Eclipse][eclipse] and [Netbeans][netbeans]. But it does. Vim is easy to customise which has lead to a community of developers creating a large number of plugins. [Code snippets][snippets], [project drawers][nerd], and [fuzzy file finding][fuzzy] are just some examples of plugins aimed at using Vim as an IDE. Whatever [language][latex], [file type][html], or [framework][rails] you use, someone will have written a Vim plugin. This gives Vim all the functionality to rival any IDE.
+One reason not to use Vim, is that it doesn't have the code orientated features
+of integrated development environments (IDE) such as [Eclipse][eclipse] and
+[Netbeans][netbeans]. But it does. Vim is easy to customise which has lead to a
+community of developers creating a large number of plugins. [Code
+snippets][snippets], [project drawers][nerd], and [fuzzy file finding][fuzzy]
+are just some examples of plugins aimed at using Vim as an IDE. Whatever
+[language][latex] or [framework][rails] you use, someone will have written a
+Vim plugin. This gives Vim all the functionality to rival any IDE.
 
 [eclipse]: http://www.eclipse.org/
 [netbeans]: http://www.netbeans.org/
@@ -22,5 +29,4 @@ One reason not to use Vim, is that it doesn't have the code orientated features 
 [nerd]: http://www.vim.org/scripts/script.php?script_id=1658
 [fuzzy]: http://www.vim.org/scripts/script.php?script_id=1984
 [latex]: http://vim-latex.sourceforge.net/
-[html]: http://www.infynity.spodzone.com/vim/HTML/
 [rails]: http://www.vim.org/scripts/script.php?script_id=1567

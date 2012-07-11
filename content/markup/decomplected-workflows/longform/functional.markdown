@@ -1,80 +1,81 @@
 ---
 kind: article
-unpublished: true
 title: A Functional Approach
 created_at: "2012-07-11 00:00:00"
 ---
 
-### A functional approach to building workflows
+This is the third post in a series discussing creating simple, reproducible and
+organised research workflows. In the previous post I described how [using
+Makefiles can result in simple and reproducible workflows][make]. Here I'm
+going to outline simplifying workflows further by taking a functional approach
+to building them.
 
-In the previous post I described how using Makefiles can result in simple and
-reproducible workflows. Here I'm going to outline simplifying workflows further
-by taking a functional approach. Functional programming is an alternative
-paradigm to imperative programming such as C or object orientated programming
-such as Java. There are two concepts in functional programming which I think
-are particularly applicable to creating computational workflows: treating
-functions as the primary components, and that all data is immutable after
-creation.
+[make]: /post/decomplected-workflows-makefile/
 
-### Data is the API
+Functional programming is an alternative paradigm to imperative programming
+such as C or object orientated programming with Java. There are two concepts in
+functional programming which I think are particularly applicable to creating
+computational workflows: treating functions as the primary actors, and that all
+data should be immutable after creation.
 
-Speaking from experience there is a temptation to force an object orientated
+## Data is the API
+
+Speaking from experience there is a temptation to force an object-orientated
 approach into a computational workflow. An example of this is using an ORM and
-then injecting objects into your workflow. This means you have to consider both
-the methods the classes provide to access the data and also how this data is
-passed between the steps of the workflow. This adds two considerations instead
-of just the one of passing the data around.
+then injecting objects into your workflow code. This then means there are two
+considerations to take into account when building a workflow, the first is the
+how to access the data from the objects and the second how to pass the data
+between workflow steps.
 
-Making the data the primary API of the workflow makes everything simpler. All I
-need to know is the input data format and which format the next requires the
-data to be in. Therefore if I'm using make I just need to generate a simple
-easily parsable output file for the next step. Using Ruby objects as the API of
-the workflow instead requires me to start serialising objects to file or
-database and the marshalling them to do things in the next step. If your
-objects change then everything needs to change. This is a horrible way to work.
-
-### Immutable data
-
-Consider all data immutable once you have generated it. Don't update a file
-that has been created, instead generate a copy of the file with required
-changes. This removes "state" from the workflow. You don't need to look inside
-a file to see if the changes have been applied: all you need to know is if it
-exists or not. Furthermore it's very simple to `diff` two files to see what the
-changes are, rather than trying to compare the before and after versions of the
+Using Ruby objects as the API of the workflow requires me to start serialising
+objects to file or database and the marshalling them in the next step. If your
+objects change then everything needs to change. Writing from experience this
+quickly gets hard to track in my head and is horrible to maintain. Making the
+data the primary API of the workflow makes everything simpler. All I need to
+know is the format of the input data and the expected data format for the next
+workflow step. This often means generating a simple and easily parsable output
 file.
 
-The above statement might preclude the possibility of using databases in
-workflow steps. This is however not the case. A common pattern in my workflows
-is to fetch a set of data I wish to analyse, build it into a database, then
-generate different file types I wish to analyse based on this database. The
-only condition of doing this is that the database must be a file. Concretely,
-the database should be file which can be used as a make dependency.
+## Immutable data
 
-I prefer to using simple key-value pairs in a text file where ever possible as
-this allows coreutils such such as grep to fetch and manipulate required
-values. More complex queries and faster random database can however be
-generated from in-file databases such as [Tokyo Cabinet][tokyo]. Using an
-in-file database importantly fits into a Makefile workflow means that if any
-input data changed then the database and all downstream steps will be
-automatically be regenerated.
+Consider all data immutable once you have generated it in a workflow step.
+Don't update a file that has been created, instead generate a copy of the file
+with required changes. This removes "state" from the workflow. You don't need
+to look inside a file to see if the changes have been applied: all you need to
+know is if it exists or not. Furthermore it's very simple to `diff` two files
+to see what the changes are, rather than trying to compare the before and after
+versions of the file. This makes examining intermediate steps for errors much
+simpler.
 
-[tokyo]: ADD TOKYO LINK
+This may appear to preclude the possibility of using databases in a workflow.
+This is however not the case. A common pattern in my workflows is to fetch a
+set of data I wish to analyse, build it into a database, then generate
+different file types I wish to analyse based on this database. The only
+condition of doing this is that the database must be a file. Concretely, the
+database should be file which can be used as a dependency for GNU Make.
 
-### Functions composed of simple functions
+I prefer to use simple key-value pairs in a text file wherever possible. This
+allows coreutils such as `grep` to fetch and manipulate required entries. More
+complex queries and faster random-access databases can however be generated
+from in-file databases such as [Kyoto Cabinet][kyoto]. Using an in-file
+database importantly fits into a Makefile workflow, meaning that if any of the
+input data changes then the database and all downstream steps will be
+automatically be regenerated enforcing consistency across all steps.
 
-Makefile targets can be considered as functions taking one file as an input and
+[kyoto]: http://fallabs.com/kyotocabinet/
+
+## Functions composed of simple functions
+
+Makefile targets can be considered a function taking one file as an input and
 returning another as an output. The advantage of small compartmentalised
 functions is that it is simple to see the output of each step and verify it is
-what you expect. The alternative approach I previously advocated was loading
-several different types of data into a database and then generating a single
-output file. I believe however combining many steps into a database however
-provides more opportunity for mistakes: small decomposed workflow steps are
-easier to examine, debug and replace.
+what you expect. Furthermore small decomposed workflow steps are easier to
+examine, debug and replace.
 
 Makefile targets can often be composed from smaller focused functions combined
-together to produce the required output. The GNU coreutils provides a wide
-variety of programs that, if you didn't know about them, you might be tempted
-to write your own equivalent script. There are many useful commands in the
+together to produce the required output. GNU coreutils provides a wide variety
+of programs that, if you didn't know about them, you might be tempted to write
+your own equivalent script. There are however many useful commands in the
 coreutils for manipulating data:
 
   * [cut][]: Select specific columns from delimited data formats.
@@ -84,7 +85,7 @@ coreutils for manipulating data:
   * [comm][]: Select or reject common lines between two files.
   * [uniq][]: Select or count unique lines in a file.
   * [sort][]: Sort records by different file columns.
-  * [sed][]: Complex file transformations and editing (Also ssed too).
+  * [sed][]: Complex file transformations and editing (Consider [ssed][] too).
   * [grep][]: Select records by more complex criteria.
 
 [cut]: http://man.cx/cut
@@ -96,6 +97,7 @@ coreutils for manipulating data:
 [sort]: http://man.cx/sort
 [sed]: http://man.cx/sed
 [grep]: http://man.cx/grep
+[ssed]: https://launchpad.net/ssed/
 
 UNIX pipes can also be used to [redirect the input of one command into
 another][pipes]. Therefore as much as possible my Makefile steps are composed
@@ -104,31 +106,32 @@ a UNIX command will be faster and bug-free compared to anything you would write
 yourself. Furthermore Makefile targets composed of coreutil pipelines are easier
 to edit and debug. This part of the UNIX philosophy: simple parts connected by
 clean interfaces. You will however still need to write your own programs when
-core utils are not sufficient and this leads into my next point.
+coreutils are not sufficient and this leads into my next point.
 
 [pipes]: http://linfo.org/pipe.html
 
-### Write functions instead of scripts
+## Write simple functions instead of large scripts
 
 I think one of the points that separates a computational scientist, such as a
 bioinformatician, from a software developer is writing many individual scripts
 instead of a single large program. Scripts are written to quickly test a theory
-by performing some operation on a set of input data. The problem however is
-that scripts can quickly grow become complected by braiding many different
-analysis threads into a large hairball of code.
+by performing an operation on a set of input data. The problem however is that
+scripts can quickly become complected by braiding many different analysis
+threads into a growing hairball of code.
 
-Therefore instead of writing a script consider writing a function: a small
-function that takes an input file or stream and performs a single
-transformative mapping or filter operation. This way it is simple to combine
-your own custom functions with the powerful coreutil functions. Finally small
-scripts are easier to debug, change and understand
+Therefore instead of writing a script that performs several operations consider
+writing a script that performs a single function: a small executable file that
+takes an input file or stream and performs a single transformative mapping or
+filter operation. This way it is simple to combine your own custom functions
+with existing powerful coreutil functions. Furthermore small scripts have the
+advantage of being easier to debug, change and remember.
 
-Writing small functions instead of scripts means that the logic is in the
-Makefile and you only need to look here to see understand what's happening. In
-contrast writing scripts distributes the workflow logic across each of the
-script files. 
+Writing small functions instead of larger scripts means that the logic is in
+the Makefile and you only need to look here to see understand what's happening
+in your workflow. In contrast writing large multi-function scripts pushes a
+portion of the workflow logic into the script files. 
 
 Finally by isolating and modularising into small code functions you are
 becoming language agnostic, where you can write one function in Clojure, a
 second in Ruby, and a third in R. Creating large monolithic projects however
-ties you to a single language.
+often will tie you to a specific language.

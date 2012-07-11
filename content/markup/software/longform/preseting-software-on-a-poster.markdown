@@ -43,4 +43,4 @@ visually appealing, design was the good way to attract interest in the software
 and then start a conversation.
 
 [scaf]: http://next.gs
-[post]: /research/experiments-in-genome-scaffolding-and-peer-review/
+[post]: /post/experiments-in-genome-scaffolding-and-peer-review/

@@ -144,8 +144,8 @@ Again this is an example of how one function can accept another function as an a
 [dry]: http://en.wikipedia.org/wiki/Don't_repeat_yourself
 [cap]: http://en.wikipedia.org/wiki/Copy_and_paste_programming
 [hadly]: http://had.co.nz/
-[plyr]: http://had.co.nz/plyr/
-[foreach]: cran.r-project.org/web/packages/foreach/index.html
+[plyr]: http://plyr.had.co.nz/
+[foreach]: http://cran.r-project.org/web/packages/foreach/index.html
 [iter]: http://cran.r-project.org/web/packages/iterators/index.html
 
 ### A four-minute video introduction

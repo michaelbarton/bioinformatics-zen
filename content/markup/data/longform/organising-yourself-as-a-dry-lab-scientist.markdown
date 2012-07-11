@@ -91,4 +91,4 @@ My example is just one way to do this however and I think any system is better
 than nothing for keeping track of what you've been doing.
 
 [1]: http://wikiomics.org/
-[2]: http://wikiomics.org/wiki/Bioinfo_tutorial#Before_you_start
+[2]: http://openwetware.org/wiki/Wikiomics:Bioinfo_tutorial

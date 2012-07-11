@@ -73,12 +73,12 @@ but also because the skills learnt are useful in other professions if you
 decide your career lies elsewhere.
 
 [quitting]: http://blog.devicerandom.org/2011/02/18/getting-a-life/
-[wetlab]: http://scienceblogs.com/bioephemera/2011/03/are_biology_graduate_students.php
+[wetlab]: http://scienceblogs.com/bioephemera/2011/03/31/are-biology-graduate-students/
 [shortage]: http://robots.thoughtbot.com/post/3310910483/a-shortage
 [popular]: http://openwetware.org/wiki/Image:Most_Popular_Bioinformatics_Programming_Languages.png
 [test]: http://jamesshore.com/Blog/Red-Green-Refactor.html
-[git]: http://www.bioinformaticszen.com/tools/git/
-[vim]: http://www.bioinformaticszen.com/tools/vim/
+[git]: http://www.bioinformaticszen.com/post/git/
+[vim]: http://www.bioinformaticszen.com/post/vim/
 [better]: http://stackoverflow.com/questions/82639/how-to-become-a-better-programmer
 [hiring]: https://gist.github.com/6443
 [clever-algorithms]: http://www.cleveralgorithms.com/

@@ -65,15 +65,15 @@ Object relational management (ORM) libraries like ActiveRecord allow the databas
 Quite a long post I know. I know code performance is a weighty topic and probably what I'm outlining here isn't the best way to go about dealing with large data. I'm there are better ways better technologies to manage large amounts of data too, e.g. map/reduce or schemaless databases. I'm not a trained computer scientist or a software engineer, but a biologist and what I've outlined is what allowed to me to produce the results I need. I'd be happy to read any further suggestions in the comments though.
 
 [ar]: http://ar.rubyonrails.org/
-[database]: http://www.bioinformaticszen.com/software/using_a_database/
+[database]: /post/using-a-database/
 [ar_index]: http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#M001911
 [ree]: http://www.rubyenterpriseedition.com/
 [jruby]: http://jruby.org/
 [ruby19]: http://www.ruby-lang.org/en/news/2009/07/20/ruby-1-9-1-p243-released/
 [csv]: http://blog.grayproductions.net/articles/getting_code_ready_for_ruby_19
 [norm]: http://en.wikipedia.org/wiki/Database_normalization
-[merge]: http://wiki.r-project.org/rwiki/doku.php?id=tips:data-frames:merge
+[merge]: http://rwiki.sciviews.org/doku.php?id=tips:data-frames:merge
 [premature]: http://fetter.org/optimization.html
-[batches]: http://ryandaigle.com/articles/2009/2/23/what-s-new-in-edge-rails-batched-find
+[batches]: http://archives.ryandaigle.com/articles/2009/2/23/what-s-new-in-edge-rails-batched-find
 [assoc]: http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations
 [ilya]: http://www.igvita.com/2007/10/29/boosting-activerecord-performance/

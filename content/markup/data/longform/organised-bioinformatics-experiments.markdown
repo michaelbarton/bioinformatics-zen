@@ -125,7 +125,7 @@ also run. In my example, before my gene sequences are loaded, any pre-existing
 rows in the database are first cleared. I've also created a task called rebuild
 that clears all the data project and repeats the analysis from scratch.
 
-[2]: http://www.bleedingedgebiotech.com/blog/ruby/a-pipeline-is-a-rakefile/
+[2]: http://www.bleedingedgebiotech.com/blog/2008/05/02/a-pipeline-is-a-rakefile/
 
 Calling `rake -T` at the command line list all the tasks outlined in the file.
 This is a handy way of keeping track of what all the tasks in your project are
@@ -187,7 +187,7 @@ start codon, finishes with a stop codon, and contains only valid DNA sequence.
 I use this in the following method so that any sequences that don't match this
 criteria will print an error at the command line, when the data is loaded.
 
-[3]: http://www.michaelbarton.me.uk/2007/12/dirty-laundry-in-public/
+[3]: http://www.michaelbarton.me.uk/research/2007/12/dirty-laundry-in-public/
 
 <%= highlight %>
     # Checks that the sequence has a start codon,
@@ -222,5 +222,5 @@ languages have libraries to implement all these techniques, so the [language
 you choose][5] is less important than using good programming practices for the
 task you're working on.
 
-[4]: http://github.com/michaelbarton/organised_experiments/tree/master
+[4]: https://github.com/michaelbarton/organised_experiments/tree/master
 [5]: http://network.nature.com/forums/bioinformatics/1611

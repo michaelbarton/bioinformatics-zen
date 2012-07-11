@@ -79,7 +79,7 @@ decide your career lies elsewhere.
 [test]: http://jamesshore.com/Blog/Red-Green-Refactor.html
 [git]: http://www.bioinformaticszen.com/post/git/
 [vim]: http://www.bioinformaticszen.com/post/vim/
-[better]: http://stackoverflow.com/questions/82639/how-to-become-a-better-programmer
+[better]: http://programmers.stackexchange.com/questions/44177/what-is-the-single-most-effective-thing-you-did-to-improve-your-programming-skil
 [hiring]: https://gist.github.com/6443
 [clever-algorithms]: http://www.cleveralgorithms.com/
 [scripting]: http://memeburn.com/2011/07/the-future-of-wordpress-qa-with-founder-matt-mullenweg/

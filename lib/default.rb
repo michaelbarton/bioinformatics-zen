@@ -77,11 +77,11 @@ def youtube(video,title="YouTube")
   "<a href='http://www.youtube.com/watch?v=#{video}&hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
 end
 
-def lightbox(image,thumbnail)
+def lightbox(image,thumbnail,width=320)
   "<ul class='media-grid'>
     <li>
       <a id='lightbox_image' href='#{urlify(image)}'>
-        <img src='#{urlify(thumbnail)}' width=320 />
+        <img src='#{urlify(thumbnail)}' width='#{width}' />
       </a>
     </li>
   </ul>"

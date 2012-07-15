@@ -1,7 +1,7 @@
 ---
   kind: article
   feed: true
-  title: Presenting software on a poster
+  title: "Poster: Scaffolder software for genome finishing"
   created_at: "2011-07-07 05:00 GMT"
 ---
 
@@ -25,7 +25,7 @@ the software would be forgotten. I designed the poster as a brief introduction
 to the software. Anyone interested in learning more could follow the short URL
 ([http://next.gs][scaf]) to the website containing more details.
 
-<%= lightbox(amzn('scaffolder/poster.png'),amzn('scaffolder/thumb.png')) %>
+<%= poster '2011-asm' %>
 
 The left-hand side of the poster describes the problem of creating a genome by
 joining the contigs manually. The larger right-hand side illustrates the

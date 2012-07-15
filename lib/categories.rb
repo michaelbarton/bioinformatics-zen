@@ -17,3 +17,11 @@ end
 def longform_articles
   sorted_articles.select{|i| i[:type] == 'longform' && (! i[:unpublished])}
 end
+
+def series?(item)
+  item[:category] && articles_in_category(item[:category]).size > 2
+end
+
+def series_articles(item)
+  articles_in_category(item[:category]) - [item]
+end

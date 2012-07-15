@@ -1,7 +1,7 @@
 - sorted_categories.each do |category|
   %h4
     = category.capitalize
-  %ul.posts
+  %ul.links
     - articles_in_category(category).each do |article|
       %li
         %span

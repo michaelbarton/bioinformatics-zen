@@ -1,5 +1,5 @@
 def image(url,width=400,options={})
-  link = "<img src='#{urlify(url)}' width=#{width}>"
+  link = "<img src='#{urlify(url)}' width=#{width} class='centred-media'>"
   if options[:link]
     link = "<a href='#{urlify(options[:link])}'>#{link}</a>"
   end
@@ -11,7 +11,7 @@ def youtube(video,title="YouTube")
 end
 
 def lightbox(image,thumbnail,width=320)
-  "<ul class='media-grid'>
+  "<ul class='centred-media'>
     <li>
       <a id='lightbox_image' href='#{urlify(image)}'>
         <img src='#{urlify(thumbnail)}' width='#{width}' />

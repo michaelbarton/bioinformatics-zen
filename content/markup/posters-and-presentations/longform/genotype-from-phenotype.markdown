@@ -13,11 +13,11 @@ for phenotypic differences. Click on the image below to see a larger version.
 <%= poster '2012-asm' %>
 
 As with [my previous ASM poster][previous], I think less text and a more visual
-overview of the research is more likely to attract interest and start a
-discussion. ASM meetings usually have posters numbering in the thousands so I
-think a text-heavy poster can be a lottery for getting people to talk to you. A
-lighter poster, I hope, gives the impression that you're not going to trap
-someone who expresses and interest with ten minutes of intense conversation.
+overview is more likely to attract interest and start a discussion. ASM
+meetings usually have posters numbering in the thousands so I think a
+text-heavy poster can be a lottery for getting people to talk to you. A lighter
+poster, I hope, gives the impression that you're not going to trap someone who
+expresses and interest with ten minutes of intense conversation.
 
 [previous]: http://localhost:9292/post/preseting-software-on-a-poster/
 
@@ -25,10 +25,9 @@ someone who expresses and interest with ten minutes of intense conversation.
 
 I usually get started by on a new poster by searching the posters section on
 [Deviant Art](http://www.deviantart.com/) around a theme I am interested in. In
-this case I felt like going for ["Grunge Minimalism."][search] I'm not sure in
-hindsight why I was interested in that at the time though. There's plenty of
-inspiration to be found on deviant art in searching for different themes and I
-was particularly inspired by the [Alice in Wonderland poster by
+this case I felt like going for ["Grunge Minimalism."][search] There's plenty
+of inspiration to be found on deviant art when searching for different themes
+and I was particularly inspired by the [Alice in Wonderland poster by
 daveforyou][alice]. You can see similarities in the lines and colours between
 this poster and how I ended up designing mine.
 
@@ -68,8 +67,8 @@ After I'm happy with the images I scan them in using a standard office scanner
 to get a pdf. If you're interested you can [download the pdf of these scanned
 images.][originals] After scanning I import the pdf into Inkscape and [convert
 each image to a path.][convert] Once in this state it is easy to simplify the
-object path and remove roughness and any scanner artefacts. Below is the poster
-with the converted images.
+object path and remove roughness or scanner artefacts. Below is the poster with
+the converted images.
 
 [originals]: http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/originals.pdf
 
@@ -82,7 +81,7 @@ with the converted images.
 
 ## Colours
 
-The Colours I used (blue and orange) are on opposing sides of the colour wheel
+The colours I used (blue and orange) are on opposing sides of the colour wheel
 and therefore complementary. Using [a little colour theory][colour] can usually
 make a poster more visually appealing. I also experimented with how to apply
 these colours to the poster. I created seven different examples and asked my lab
@@ -115,7 +114,7 @@ as it has many good points.
 The are the main points on how I created my poster. The rest was just adding
 text, boxes and lines in Inkscape which is quite straight forward. Even if you
 do struggle with Inkscape usually a quick google search for the effect you're
-after with find a tutorial. Overall, if I could a single suggestion though it
+after with find a tutorial. Overall, if I could offer a single suggestion it
 would be to spend little time beforehand looking for inspiration and planning
 how you want your poster to look before you begin to create it.
 

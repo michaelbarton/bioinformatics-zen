@@ -1,18 +1,28 @@
-- if @site.config[:site][:navigation]
-  #sidebar
-    .widget
-      %h3 about
-      %p
-        = "I'm Michael Barton, a post-doctoral researcher in bioinformatics. I enjoy writing about data analysis and simple approaches to computational biology."
-      %p
-        = "Follow me on twitter as"
-        %b
-          %a{:href => @site.config[:author][:twitter] }
-            = "@michaelbarton."
+#sidebar
+  .widget
+    %h3 about
+    %p
+      = "I'm Michael Barton, a post-doctoral researcher in bioinformatics. I enjoy writing about data analysis and simple approaches to computational biology."
+    %p
+      = "Follow me on twitter as"
+      %b
+        %a{:href => @site.config[:author][:twitter] }
+          = "@michaelbarton."
+  - if @site.config[:site][:navigation]
     .widget
       %h3 links
-      %ul
+      %ul.links
         - @site.config[:site][:navigation].each do |name,href|
           %li
             %a{:href => href}
               = name
+  - if series? item
+    .widget
+      %h3 related
+      %ul.links
+        - series_articles(item).each do |article|
+          %li
+            %a{:href => relative_path_to(article) }
+              = article[:title]
+
+        

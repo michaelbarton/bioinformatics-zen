@@ -1,6 +1,6 @@
 ---
   kind: article
-  title: Simple command-line clojure script
+  title: Simple command-line clojure scripts
   created_at: "2012-03-13 05:00 GMT"
 ---
 

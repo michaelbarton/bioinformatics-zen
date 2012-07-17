@@ -6,7 +6,7 @@ body {
 }
 
 #sidebar {
-  width: 210px; }
+  width: 250px; }
 
 .widget {
   h3 {
@@ -28,7 +28,13 @@ code {
   background: #EEE;
 }
 
-ul.posts {
+.centred-media {
+  margin-left: auto;
+  margin-right: auto;
+  width: 320px;
+}
+
+ul.links {
   list-style: none;
   margin-left: 0px;
   span {

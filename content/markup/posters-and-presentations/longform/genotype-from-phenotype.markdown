@@ -17,7 +17,7 @@ overview is more likely to attract interest and start a discussion. ASM
 meetings usually have posters numbering in the thousands so I think a
 text-heavy poster can be a lottery for getting people to talk to you. A lighter
 poster, I hope, gives the impression that you're not going to trap someone who
-expresses and interest with ten minutes of intense conversation.
+expresses an interest with ten minutes of intense conversation.
 
 [previous]: /post/preseting-software-on-a-poster/
 

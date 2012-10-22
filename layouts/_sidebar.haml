@@ -4,10 +4,8 @@
     %p
       = "I'm Michael Barton, a post-doctoral researcher in bioinformatics. I enjoy writing about data analysis and simple approaches to computational biology."
     %p
-      = "Follow me on twitter as"
-      %b
-        %a{:href => @site.config[:author][:twitter] }
-          = "@michaelbarton."
+      = "Follow me on twitter as "
+      %b= twitter
   - if @site.config[:site][:navigation]
     .widget
       %h3 links

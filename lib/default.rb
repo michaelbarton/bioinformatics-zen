@@ -2,6 +2,11 @@ include Nanoc3::Helpers::Rendering
 include Nanoc3::Helpers::LinkTo
 include Nanoc3::Helpers::Blogging
 
+def twitter(text=nil)
+  text ||= '@' + @site.config[:author][:twitter]
+  "<a href='http://twitter.com/#{@site.config[:author][:twitter]}'>#{text}</a>"
+end
+
 def urlify(url)
   url =~ /http:/ ? url : relative_path_to(url)
 end

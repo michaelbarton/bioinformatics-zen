@@ -1,9 +1,9 @@
 def image(url,width=400,options={})
-  link = "<img src='#{urlify(url)}' width=#{width} class='centred-media'>"
+  link = "<img src='#{urlify(url)}' width=#{width}>"
   if options[:link]
     link = "<a href='#{urlify(options[:link])}'>#{link}</a>"
   end
-  link
+  "<div class='centred'>#{link}</div>"
 end
 
 def youtube(video,title="YouTube")
@@ -11,13 +11,11 @@ def youtube(video,title="YouTube")
 end
 
 def lightbox(image,thumbnail,width=320)
-  "<ul class='centred-media'>
-    <li>
+  "<div class='centred'>
       <a id='lightbox_image' href='#{urlify(image)}'>
         <img src='#{urlify(thumbnail)}' width='#{width}' />
       </a>
-    </li>
-  </ul>"
+  </div>"
 end
 
 def poster(name)

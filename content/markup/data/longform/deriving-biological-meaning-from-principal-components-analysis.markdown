@@ -5,13 +5,12 @@ created_at: "2007-08-01 15:35:11"
 ---
 
 Here I'm going to illustrate how you can relate principal components analysis
-back to the to the originating data to derive meaning. If you want to reproduce
-what I'm doing, the R code is [here][code]
+back to the original. If you want to reproduce what I'm doing, I've put [the R
+code on github][code]. I'm be using example dataset to illustrate using PCA.
+This data contains 200 crabs where five morphological characteristics have been
+measured for each. These are:
 
 [code]: https://gist.github.com/3969797#file_pca.r
-
-I'm using the same dataset as before, 200 crabs where five morphological
-characteristics have been measured for each. These are:
 
   * <code>**FL**</code> - Frontal lobe size
   * <code>**RW**</code> - Rear width
@@ -19,43 +18,65 @@ characteristics have been measured for each. These are:
   * <code>**CW**</code> - Carapace width
   * <code>**BD**</code> - Body depth
 
-So jumping right in, carrying out PCA on the data, we get five components. The
-number of components you get will always be less than or equal to the number of
-columns in your data frame. Here's the first three of these components from the
-crab data
+The first rows of these data look as follows:
 
-<table>
-<tr>
-<td>FL</td>
-<td>0.28898</td>
-<td>0.32325</td>
-<td>-0.50717</td>
-</tr>
-<tr>
-<td>RW</td>
-<td>0.19728</td>
-<td>0.86472</td>
-<td>0.41414</td>
-</tr>
-<tr>
-<td>CL</td>
-<td>0.5994</td>
-<td>-0.19823</td>
-<td>-0.17533</td>
-</tr>
-<tr>
-<td>CW</td>
-<td>0.66165</td>
-<td>-0.28798</td>
-<td>0.49138</td>
-</tr>
-<tr>
-<td>BD</td>
-<td>0.28373</td>
-<td>0.15984</td>
-<td>-0.54688</td>
-</tr>
-</table>
+<%= highlight %>
+R> library(MASS)
+R> data(crabs)
+R> head(crabs)
+
+  sp sex index   FL  RW   CL   CW  BD
+1  B   M     1  8.1 6.7 16.1 19.0 7.0
+2  B   M     2  8.8 7.7 18.1 20.8 7.4
+3  B   M     3  9.2 7.8 19.0 22.4 7.7
+4  B   M     4  9.6 7.9 20.1 23.1 8.2
+5  B   M     5  9.8 8.0 20.3 23.0 8.2
+6  B   M     6 10.8 9.0 23.0 26.5 9.8
+<%= endhighlight %>
+
+Each row contains the species of the crab (Blue/Orange), the crab sex
+(Male/Female), the row index and the five measured morphological
+characteristics.
+
+I'm going to outline how you might apply PCA to analysing mutlivariate data
+such as this. If you are interested in learning how PCA is calcuated there is a
+[video by Andrew Ng][video]. In addition [the machine learning course at
+coursera][coursera] also covers the application of PCA.
+
+[video]: http://youtu.be/ey2PE5xi9-A?t=37m20s
+[coursera]: https://www.coursera.org/
+
+PCA can be thought of as describing the underlying structure of data. Each
+princpal component relates to underlying variation in the data. The first
+component describes the greatest degree of variation in the data, the second
+component the next largest component and so forth. Furthermore each component
+describes variation orthogonal to the previous components.
+
+This may sound non-intuitive. PCA can still however be used for exploratory
+data analysis without understanding the algorithm. If you begin using PCA
+regularly Taking the time to understand the algorithm does however pay off.
+
+I'll begin by using R to perform PCA on the crab data. I'll then attach the
+first three components to the original crab data so that they can be compared. 
+
+<%= highlight %>
+# Perform PCA on the data
+# retx returns the scores for each crab
+# Append the components for each crab to the original data
+R> crab.pca <- prcomp(crabs[,4:8],retx=TRUE)
+R> crabs$PC1 <- crab.pca$x[,1]
+R> crabs$PC2 <- crab.pca$x[,2]
+R> crabs$PC3 <- crab.pca$x[,3]
+R> head(crabs)
+
+    sp  sex index   FL  RW   CL   CW  BD    PC1     PC2      PC3
+1 Blue Male     1  8.1 6.7 16.1 19.0 7.0 -26.46 -0.5765 -0.61157
+2 Blue Male     2  8.8 7.7 18.1 20.8 7.4 -23.56 -0.3364 -0.23739
+3 Blue Male     3  9.2 7.8 19.0 22.4 7.7 -21.74 -0.7119  0.06550
+4 Blue Male     4  9.6 7.9 20.1 23.1 8.2 -20.34 -0.8358 -0.21830
+5 Blue Male     5  9.8 8.0 20.3 23.0 8.2 -20.21 -0.6955 -0.36252
+6 Blue Male     6 10.8 9.0 23.0 26.5 9.8 -15.34 -0.7950 -0.08414
+<%= endhighlight %>
 
 The first column is the first component, and so forth. Each row shows how much
 each characteristic of the original data adds to the given component, e.g. the

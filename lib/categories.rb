@@ -14,8 +14,8 @@ def articles_in_category(category)
   sorted_articles.select{|i| i[:category] == category && (! i[:unpublished]) }
 end
 
-def longform_articles
-  sorted_articles.select{|i| i[:type] == 'longform' && (! i[:unpublished])}
+def published_articles
+  sorted_articles.select{|i| ! i[:unpublished]}
 end
 
 def series?(item)

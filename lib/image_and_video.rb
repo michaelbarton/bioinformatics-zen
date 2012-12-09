@@ -19,7 +19,7 @@ def lightbox(image,thumbnail,width=320)
 end
 
 def poster(name)
-  base = 'http://uk-me-michaelbarton-posters.s3.amazonaws.com/' + name
+  base = 'http://uk-me-michaelbarton.s3.amazonaws.com/posters/' + name
   lightbox(base + '/michael_barton_poster.png',
            base + '/thumb.png',
            width=320)

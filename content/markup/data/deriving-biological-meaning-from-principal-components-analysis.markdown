@@ -4,11 +4,11 @@ title: Deriving meaning from principal components analysis
 created_at: "2007-08-01 15:35:11"
 ---
 
-Here I'm going to illustrate how you can relate principal components analysis
-back to the original. If you want to reproduce what I'm doing, I've put [the R
-code on github][code]. I'm be using example dataset to illustrate using PCA.
-This data contains 200 crabs where five morphological characteristics have been
-measured for each. These are:
+Here I'm going to illustrate how you can use principal components analysis to
+find underlying treds in your data. If you want to reproduce what I'm doing,
+I've put [the R code on github][code]. I'm using an example dataset to
+illustrate how PCA can be used. This data contains five different morphological
+measurements from 200 crabs. These measurements are:
 
 [code]: https://gist.github.com/3969797#file_pca.r
 
@@ -18,7 +18,7 @@ measured for each. These are:
   * <code>**CW**</code> - Carapace width
   * <code>**BD**</code> - Body depth
 
-The first rows of these data look as follows:
+The first rows of these data can be seen as follows:
 
 <%= highlight %>
 R> library(MASS)
@@ -36,7 +36,7 @@ R> head(crabs)
 
 Each row contains the species of the crab (Blue/Orange), the crab sex
 (Male/Female), the row index and the five measured morphological
-characteristics.
+characteristics in millimetres.
 
 I'm going to outline how you might apply PCA to analysing mutlivariate data
 such as this. If you are interested in learning how PCA is calcuated there is a
@@ -46,18 +46,20 @@ coursera][coursera] also covers the application of PCA.
 [video]: http://youtu.be/ey2PE5xi9-A?t=37m20s
 [coursera]: https://www.coursera.org/
 
-PCA can be thought of as describing the underlying structure of data. Each
-princpal component relates to underlying variation in the data. The first
-component describes the greatest degree of variation in the data, the second
-component the next largest component and so forth. Furthermore each component
-describes variation orthogonal to the previous components.
+PCA can be thought give you three matrices describing the underlying structure
+of your data. Each principle component relates to variation in your data. The
+first component describes the greatest degree of variation in the data, the
+second component the next largest component and so forth. Furthermore each
+component describes variation orthogonal to previous components.
 
-This may sound non-intuitive. PCA can still however be used for exploratory
-data analysis without understanding the algorithm. If you begin using PCA
-regularly Taking the time to understand the algorithm does however pay off.
+This may sound non-intuitive and esoteric. PCA is however very useful for
+exploratory data analysis without understanding the algorithm itself. If you
+begin using PCA regularly, taking the time to understand the algorithm will pay
+off.
 
-I'll begin by using R to perform PCA on the crab data. I'll then attach the
-first three components to the original crab data so that they can be compared. 
+I'll begin by using R to calculate the PCA on the crab data. I'll then attach
+the first three components to the original crab data so that they can be
+compared. 
 
 <%= highlight %>
 # Perform PCA on the data
@@ -78,27 +80,40 @@ R> head(crabs)
 6 Blue Male     6 10.8 9.0 23.0 26.5 9.8 -15.34 -0.7950 -0.08414
 <%= endhighlight %>
 
-The first column is the first component, and so forth. Each row shows how much
-each characteristic of the original data adds to the given component, e.g. the
-weight for "frontal lobe" in the first component is 0.28898.
+The column `PC1`is the first component, and so forth. Each row shows the value
+each crab is given in each component e.g. the weight for the first crab in the
+first component is -26.46. The weight for the second crab in the second
+component is -0.3364. In addtion to each of the crabs (observations) having PCA
+weights, the variables also have weights. These can be observed in the
+`rotations` part of the returned PCA object.
 
-When you use PCA, what you want is for components to be able to discriminate
-points in the data. When I say discriminating, the components can be used to
-spread and separate, so you can get more of an idea of what's happening. In
-terms of PCA, a discriminating component has both positive and negative values
-in the column. So we can see that the first component has no discriminating
-effect as all the values in the column are positive.
+<%= highlight %>
+R> head(crab.pca$rotation)
+     PC1     PC2     PC3     PC4     PC5
+FL   0.2890  0.3233 -0.5072  0.7343  0.1249
+RW   0.1973  0.8647  0.4141 -0.1483 -0.1409
+CL   0.5994 -0.1982 -0.1753 -0.1436 -0.7417
+CW   0.6617 -0.2880  0.4914  0.1256  0.4712
+BD   0.2837  0.1598 -0.5469 -0.6344  0.4387
+<%= endhighlight %>
 
-Looking to the second component, we can see two negative values, and three
-positive values, therefore the second component can be used to discriminate the
-data. To visualise this effect we'll use the two most opposing characteristics
+A common application for PCA, is to discriminate your data into groups with.
+When I write discriminating, use components to spread and separate data to
+indicate how your data is distributed. In PCA, a discriminating component has
+both positive and negative values. If you look at all the value for the first
+component `PC1` you will see that they are all negative and suggest there is
+little discrimatory power for this component. 
+
+Looking to the second component, this have both positive and negative values
+and therefore this second component can be used to discriminate the data. To
+visualise this effect we'll use the two most opposing characteristics
 - the most negative and the most positive values. In this case it's rear width
 (RW) 0.87, and carapace width (CW) -0.29. Plotting these two characteristics we
 get the following graph.
 
 <%= image(amzn('/principal_components_analysis/second_component_dotplot.png')) %>
 
-Here you can see that data forms a nosey V shape. Imagine that you drew a line
+Here you can see that data forms a noisey V shape. Imagine that you drew a line
 through each arm of the V, you would get two sets of data. Therefore, we might
 assume that there are two different distributions of carapace to rear width
 ratio. We can test this by plotting the density of the crabs according to this

@@ -170,6 +170,20 @@ The second/third component plot discriminates the data similarly to the
 morphology ratios plot, however the axis that would split gender and species
 are rotated.
 
+As a small test I created two generalised linear binomial models to predict
+crab species and gender. Each model was generated two ways, the first using
+simple additive terms and the second using the additive terms plus the ratio of
+the terms indicated by the principle components analysis. I then bootstrapped
+the crab data tested how accurately each model predicted either species or
+gender respectively. The R code for this is [available on gitub also][ml].
+
+[ml]: https://gist.github.com/3969797#file-regression-r
+
+<%= image(amzn('/principal_components_analysis/accuracy.png')) %>
+
+You can see that for gender the combined model performs better than the simple
+model.
+
 So here you have it, I hope this has illustrated how the data produced from PCA
 relates to your original data, and how you can begin to interpret it. Here's
 the messages I've tried to convey.

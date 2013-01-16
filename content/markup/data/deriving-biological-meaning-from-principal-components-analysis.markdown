@@ -44,16 +44,16 @@ such as this. If you are interested in learning how PCA is calculated there is a
 coursera][coursera] also covers the application of PCA.
 
 [video]: http://youtu.be/ey2PE5xi9-A?t=37m20s
-[coursera]: https://www.coursera.org/
+[coursera]: https://www.coursera.org/course/ml
 
 PCA describes the underlying structure of your data where component relates to
 variation. The first component describes the greatest degree of variation in
 the data, the second component the next largest component and so forth.
 Furthermore each component describes variation orthogonal to previous
-components. This may sound non-intuitive and esoteric. PCA is however very useful for
-exploratory data analysis without understanding the algorithm itself. If you
-begin using PCA regularly, taking the time to understand the algorithm will
-however pay off.
+components. This may sound esoteric, PCA is however very useful for exploratory
+data analysis without understanding the algorithm itself. If you begin using
+PCA regularly, taking the time to understand the algorithm will however help
+you understand the results of using it.
 
 I'll begin by using R to calculate the PCA on the crab data. I'll then attach
 the first three components to the original crab data so that they can be
@@ -61,7 +61,7 @@ compared.
 
 <%= highlight %>
 # Perform PCA on the data
-# retx returns the principle component weights for each crab
+# retx returns the principal component weights for each crab
 R> crab.pca <- prcomp(crabs[,4:8],retx=TRUE)
 
 # Append the components for each crab to the original data
@@ -98,10 +98,10 @@ BD   0.2837  0.1598 -0.5469 -0.6344  0.4387
 
 A common application for PCA is to discriminate your data into partitions based
 on the underlying structure in the data. I can use the components to spread and
-separate the data. Using PCA a discriminating component should have both
-positive and negative values. If you look at all the value for the first
-component `PC1` you will see that they are all negative and suggest there is
-little discriminatory power for this component. 
+separate the data. PCA discriminating components should have both positive and
+negative values. If you look at all the value for the first component `PC1` you
+will see that they are all negative and suggest there is little discriminatory
+power for this component. 
 
 Looking to the second component, this have both positive and negative values
 and therefore this second component can be used to discriminate the data. To
@@ -114,15 +114,15 @@ following graph.
 
 Here you can see that data forms a noisy V shape. Imagine that you drew a line
 through each arm of the V, you would get two sets of data. Therefore, we might
-assume that there are two different distributions of carapace to rear width
-ratio. We can test this by plotting the density of the crabs according to this
-ratio
+assume that there are two different distributions of the ratio of carapace to
+rear width. We can test this by plotting the density of the crabs according to
+this ratio
 
 <%= image(amzn('/principal_components_analysis/second_component_density.png')) %>
 
 There are two peaks, with some overlap. So the biological meaning of the second
-component is largely picking up the difference in ratios of rear and carapace
-widths. What this means, I'll examine later .
+component is shows up the difference in ratios of rear and carapace widths.
+What this means, I'll examine later .
 
 Looking at the third component, again this is discriminating, the most extreme
 values are carapace width and body depth. Plotting these, we get this figure.
@@ -160,33 +160,37 @@ components.
 
 <%= image(amzn('/principal_components_analysis/first_components.png')) %>
 
-And the second and third components plot
+And the second and third components.
 
 <%= image(amzn('/principal_components_analysis/second_components.png')) %>
 
 You can see that the first and second component plot doesn't discriminate the
-crabs very well. This why it is important to look at component weights first.
-The second/third component plot discriminates the data similarly to the
-morphology ratios plot, however the axis that would split gender and species
-are rotated.
+crabs very well. This why it is important to also look at the component
+weights. The second/third component plot discriminates the data similarly to
+the morphology ratios plot, however the axis that would split gender and
+species are rotated.
 
-As a small test I created two generalised linear binomial models to predict
-crab species and gender. Each model was generated two ways, the first using
-simple additive terms and the second using the additive terms plus the ratio of
-the terms indicated by the principle components analysis. I then bootstrapped
-the crab data tested how accurately each model predicted either species or
-gender respectively. The R code for this is [available on gitub also][ml].
+As a small test of how these ratios discriminate the data I created two
+generalised linear binomial models to predict either crab species or gender.
+Each model was generated one of two ways, the first using simple additive terms
+and the second using the additive terms plus the ratio of the terms indicated
+by the principal components analysis. I then bootstrapped the crab data 100
+times to test how accurately each model predicted either species or gender. The
+R code for this is [available on github also][ml].
 
 [ml]: https://gist.github.com/3969797#file-regression-r
 
 <%= image(amzn('/principal_components_analysis/accuracy.png')) %>
 
-You can see that for gender the combined model performs better than the simple
-model.
+This plot shows how effectively the models predicted each response variable.
+You can see that for species including the ratio had little effect. The model
+predicting species however performs slightly better when the ratio term is
+included. This is not a terribly scientific example but goes to show how the
+results of PCA might be applied.
 
 So here you have it, I hope this has illustrated how the data produced from PCA
 relates to your original data, and how you can begin to interpret it. Here's
-the messages I've tried to convey.
+the message I've tried to convey:
 
 * The first two components are not always the most useful.
 * Look at the components (columns) with the positive and negative weights.

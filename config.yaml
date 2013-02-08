@@ -25,7 +25,7 @@ site:
     about: 'http://www.michaelbarton.me.uk'
     email: 'mailto:mail@bioinformaticszen.com'
     youtube: 'http://www.youtube.com/user/bioinformaticszen'
-feed: 'http://feeds.feedburner.com/BioinformaticsZen'
+    feed: 'http://feeds.feedburner.com/BioinformaticsZen'
 author:
   uri: "http://www.michaelbarton.me.uk"
   name: "Michael Barton"

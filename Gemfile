@@ -10,7 +10,7 @@ group :development do
   gem 'rake',      '~> 10.0.0'
   gem 'nanoc',     '~> 3.5.0'
 
-  gem 'rdiscount', '~> 1.6.0'
+  gem 'rdiscount', '~> 2.0.0'
   gem 'haml',      '~> 3.1.0'
   gem 'sass',      '~> 3.2.0'
 

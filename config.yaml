@@ -35,6 +35,7 @@ scripts:
   - "https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   - "/fancybox/javascript.js"
   - "/javascript/prettify.js"
+  - "/javascript/bioinformaticszen.js"
 stylesheets:
   "/stylesheets/stylesheet.css": "screen,projection"
   "/fancybox/styles.css": "screen,projection"

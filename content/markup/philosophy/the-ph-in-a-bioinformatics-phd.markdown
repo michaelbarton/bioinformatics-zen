@@ -18,7 +18,12 @@ on my masters in a positive light, hard work, but I made some good friends,
 learnt a great deal, and left with high expectations, certain of the career
 I've chosen.
 
-I started my PhD, straight after my masters. My hard skills may have improved slightly, I've become more proficient in R, but what I have learnt more, are the soft skills that a bioinformatician needs. Less tangible than command line piping, but equally as important, these include: dealing with failure, being an independent researcher, dealing with failure, self-discipline, dealing with failure, what qualifies as publishable data, and dealing with failure.
+I started my PhD, straight after my masters. My hard skills may have improved
+slightly, I've become more proficient in R, but what I have learnt more, are
+the soft skills that a bioinformatician needs. Less tangible than command line
+piping, but equally as important, these include: dealing with failure, being an
+independent researcher, dealing with failure, self-discipline, dealing with
+failure, what qualifies as publishable data, and dealing with failure.
 
 So as I plan whether to stay in science, or look outside the field (Anyone at
 Google reading this?), here are the three main thoughts, inspired by
@@ -26,14 +31,14 @@ Google reading this?), here are the three main thoughts, inspired by
 
 #### The meaning of hard work
 
-<%= image amzn("ph-in-phd/success.png"), 330 %>
+<%= image amzn("ph-in-phd/success.png"), 'Graph showing hard work versus results ', 330 %>
 
 #### Two things that are important
 
-<%= image amzn("ph-in-phd/familyplot.png"), 330  %>
+<%= image amzn("ph-in-phd/familyplot.png"), 'Spending time with friends and family or working on publications', 330 %>
 
 #### I've been two of these
 
-<%= image amzn("ph-in-phd/reward.png"), 330  %>
+<%= image amzn("ph-in-phd/reward.png"), 'Passion versus reward.', 330  %>
 
 [indexed]: http://thisisindexed.com/

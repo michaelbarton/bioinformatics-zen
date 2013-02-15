@@ -10,7 +10,7 @@ Meeting. This research demonstrates how we have been comparing and testing
 _Pseudomonas_ strains for twitching motility to identify the genes responsible
 for phenotypic differences. Click on the image below to see a larger version.
 
-<%= poster '2012-asm' %>
+<%= poster '2012-asm', 'My ASM 2012 Poster.' %>
 
 As with [my previous ASM poster][previous], I think less text and a more visual
 overview is more likely to attract interest and start a discussion. ASM
@@ -31,7 +31,7 @@ and I was particularly inspired by the [Alice in Wonderland poster by
 daveforyou][alice]. You can see similarities in the lines and colours between
 this poster and how I ended up designing mine.
 
-<%= image 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/alice_poster_by_daveforyou-d3j2iy5.jpeg', 320, :link => 'http://daveforyou.deviantart.com/gallery/#/d3j2iy5' %>
+<%= image 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/alice_poster_by_daveforyou-d3j2iy5.jpeg', 'Minimalist grundge style poster for alice in Wonderland', 320, :link => 'http://daveforyou.deviantart.com/gallery/#/d3j2iy5' %>
 
 [search]: http://browse.deviantart.com/?qh=&section=&q=minimalism+grunge
 [alice]: http://daveforyou.deviantart.com/gallery/#/d3j2iy5
@@ -44,9 +44,9 @@ plan and create at the same time. My planning is rather straight forward: write
 down the key points I want to include and how I will lay them out on the
 poster. The images below show the papers I generated while planning the poster.
 
-<%= lightbox 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_1.jpg', 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_1_thumb.jpg' %>
+<%= lightbox 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_1.jpg', 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_1_thumb.jpg', 'Paper drawings from planning my poster.' %>
 
-<%= lightbox 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_2.jpg', 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_2_thumb.jpg' %>
+<%= lightbox 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_2.jpg', 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_2_thumb.jpg', 'Paper drawings from planning my poster.' %>
 
 ## Images
 
@@ -58,10 +58,7 @@ the nucleotide length. I usually go through several iterations of each drawing
 until I get something I'm really happy with. Below are the final drawings I
 used for the poster.
 
-<%= lightbox(
-'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/drawings.jpg',
-'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/drawings_thumb.jpg')
-%>
+<%= lightbox( 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/drawings.jpg', 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/drawings_thumb.jpg', 'Papers of drawings from poster') %>
 
 After I'm happy with the images I scan them in using a standard office scanner
 to get a pdf. If you're interested you can [download the pdf of these scanned
@@ -74,8 +71,8 @@ the converted images.
 
 <%= lightbox(
 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/layout.png',
-'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/layout_thumb.png')
-%>
+'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/layout_thumb.png',
+'Basic poster layout.') %>
 
 [convert]: http://inkscape.org/doc/tracing/tutorial-tracing.html
 
@@ -92,8 +89,8 @@ so this is the one I went for.
 
 <%= lightbox(
 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/colors.png',
-'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/colors_thumb.png')
-%>
+'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/colors_thumb.png',
+'Comparison of different color schemes.') %>
 
 ## Font
 
@@ -104,7 +101,9 @@ message. I used the [Yanone Kaffeesatz][font] after seeing it on [Zack Holman's
 slide design for developers][zack] blog post. I recommend reading his post too
 as it has many good points.
 
-<%= image 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/font.png' %>
+<%= image(
+'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/font.png',
+'Highlighting the font used in the poster') %>
 
 [font]: http://www.yanone.de/typedesign/kaffeesatz/
 [zack]: http://zachholman.com/posts/slide-design-for-developers/
@@ -118,4 +117,4 @@ after with find a tutorial. Overall, if I could offer a single suggestion it
 would be to spend a little time beforehand looking for inspiration and planning
 how you want your poster to look before you begin creating it.
 
-<%= poster '2012-asm' %>
+<%= poster '2012-asm', 'My ASM 2012 Poster.' %>

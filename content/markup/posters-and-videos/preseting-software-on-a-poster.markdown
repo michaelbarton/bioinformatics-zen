@@ -25,7 +25,7 @@ the software would be forgotten. I designed the poster as a brief introduction
 to the software. Anyone interested in learning more could follow the short URL
 ([http://next.gs][scaf]) to the website containing more details.
 
-<%= poster '2011-asm' %>
+<%= poster '2011-asm', 'A poster illustrating my scaffolder software' %>
 
 The left-hand side of the poster describes the problem of creating a genome by
 joining the contigs manually. The larger right-hand side illustrates the

@@ -110,7 +110,7 @@ negative and the most positive values. In this case it's rear width (RW) 0.87,
 and carapace width (CW) -0.29. Plotting these two characteristics we get the
 following graph.
 
-<%= image(amzn('/principal_components_analysis/second_component_dotplot.png')) %>
+<%= image(amzn('/principal_components_analysis/second_component_dotplot.png'),'') %>
 
 Here you can see that data forms a noisy V shape. Imagine that you drew a line
 through each arm of the V, you would get two sets of data. Therefore, we might
@@ -118,7 +118,7 @@ assume that there are two different distributions of the ratio of carapace to
 rear width. We can test this by plotting the density of the crabs according to
 this ratio
 
-<%= image(amzn('/principal_components_analysis/second_component_density.png')) %>
+<%= image(amzn('/principal_components_analysis/second_component_density.png'),'') %>
 
 There are two peaks, with some overlap. So the biological meaning of the second
 component is shows up the difference in ratios of rear and carapace widths.
@@ -127,13 +127,13 @@ What this means, I'll examine later .
 Looking at the third component, again this is discriminating, the most extreme
 values are carapace width and body depth. Plotting these, we get this figure.
 
-<%= image(amzn('/principal_components_analysis/third_component_dotplot.png')) %>
+<%= image(amzn('/principal_components_analysis/third_component_dotplot.png'),'') %>
 
 This time we have two vaguely parallel lines, so again there appears to be
 different ratio of the two characteristics. A density plot illustrates the
 distribution of this ratio.
 
-<%= image(amzn('/principal_components_analysis/third_component_density.png')) %>
+<%= image(amzn('/principal_components_analysis/third_component_density.png'),'') %>
 
 Two more overlapping but obvious distributions, so it appears that the third
 component highlights a discriminating effect based on the ratio of body depth
@@ -141,7 +141,7 @@ to carapace width. As I wrote, PCA can be used to discriminate based on the
 underlying trends in the data. I can therefore plot the distribution of crabs
 based on these two derived ratios, which produces this figure.
 
-<%= image(amzn('/principal_components_analysis/morphology.png')) %>
+<%= image(amzn('/principal_components_analysis/morphology.png'),'') %>
 
 I coloured the crabs based on their species and used different point types to
 further highlight gender. Looking at this plot, I think you can see a
@@ -158,11 +158,11 @@ So far, I haven't so far plotted the component plots - which is often the first
 thing people do after performing PCA. So here they are, the first/second
 components.
 
-<%= image(amzn('/principal_components_analysis/first_components.png')) %>
+<%= image(amzn('/principal_components_analysis/first_components.png'),'') %>
 
 And the second and third components.
 
-<%= image(amzn('/principal_components_analysis/second_components.png')) %>
+<%= image(amzn('/principal_components_analysis/second_components.png'),'') %>
 
 You can see that the first and second component plot doesn't discriminate the
 crabs very well. This why it is important to also look at the component
@@ -180,7 +180,7 @@ R code for this is [available on github also][ml].
 
 [ml]: https://gist.github.com/3969797#file-regression-r
 
-<%= image(amzn('/principal_components_analysis/accuracy.png')) %>
+<%= image(amzn('/principal_components_analysis/accuracy.png'),'') %>
 
 This plot shows how effectively the models predicted each response variable.
 You can see that for species including the ratio had little effect. The model

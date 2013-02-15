@@ -6,7 +6,11 @@
   created_at: "2007-02-13 21:26:00"
 ---
 
-I spend much of my day analysing yeast high throughput data, recently produced in the laboratory. On one hand I'm very lucky to have access to fresh data at many cellular levels.  On the other hand, with all this information, I'm easily swept away by the amount of variables I have access to -  the dark side of data mining.
+I spend much of my day analysing yeast high throughput data, recently produced
+in the laboratory. On one hand I'm very lucky to have access to fresh data at
+many cellular levels.  On the other hand, with all this information, I'm easily
+swept away by the amount of variables I have access to -  the dark side of data
+mining.
 
 ### Dark side
 
@@ -43,4 +47,8 @@ someone and the obvious flaw is highlighted, do you wish you had first
 considered the problem a bit more. Taking a few moments to sketch out what
 you're thinking before you perform an analysis can really help with this.
 
-The lesson here is that you can use the most advanced bayesian multivariate analysis technique available, but if you don't know what you're looking for, it's going to very hard to find an answer. However if you have a clearly stated question, you'll find that it can often be answered with something as simple as a t-test or correlation test.
+The lesson here is that you can use the most advanced bayesian multivariate
+analysis technique available, but if you don't know what you're looking for,
+it's going to very hard to find an answer. However if you have a clearly stated
+question, you'll find that it can often be answered with something as simple as
+a t-test or correlation test.

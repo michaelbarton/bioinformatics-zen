@@ -42,5 +42,11 @@ plenty of Inkscape tutorials. Overall I felt that an information light, but
 visually appealing, design was the good way to attract interest in the software
 and then start a conversation.
 
+Zen Faulkes has generously provided a critique of this posters. He raised
+excellent points about the using larger fonts and tidying up the title by
+removing the circle designs. I encourage reading this [critique on his Better
+Posters blog.][bp]
+
+[bp]: http://betterposters.blogspot.com/2011/07/critique-scaffolder.html
 [scaf]: http://next.gs
 [post]: /post/experiments-in-genome-scaffolding-and-peer-review/

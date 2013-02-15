@@ -25,14 +25,15 @@ demand][shortage], and if [you already know one language][popular] it's easy
 to learn a second.
 
 A good way to [improve as a programmer is to create and develop an open source
-project][better]. Something to tinker with, try new software libraries [or
-a different programming language][clojure]. Furthermore an open source project
+project][better]. Something to tinker with, try new software libraries [or a
+different programming language][clojure]. Furthermore an open source project
 shows that you can program and hopefully program well. Interesting companies
-[may also tend to hire people based on such projects][hiring]. Auxiliary skills such as [test driven development][test], a [version control
-system like git][git], or [mastery of a customisable editor like vim][vim]
-can make you more productive as a developer. Working to add new skills that
-augment yourself as a bioinformatician are also the same skills that many
-companies looking for in programmers.
+[may also tend to hire people based on such projects][hiring]. Auxiliary skills
+such as [test driven development][test], a [version control system like
+git][git], or [mastery of a customisable editor like vim][vim] can make you
+more productive as a developer. Working to add new skills that augment yourself
+as a bioinformatician are also the same skills that many companies looking for
+in programmers.
 
 Computational biologists are more than simply a programmer who works in
 a a biology department though. Developing *in silico* hypotheses requires

@@ -7,7 +7,7 @@ def image(url,width=400,options={})
 end
 
 def youtube(video,title="YouTube")
-  "<a href='http://www.youtube.com/watch?v=#{video}&hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
+  "<a href='http://www.youtube.com/watch?v=#{video}&amp;hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
 end
 
 def lightbox(image,thumbnail,width=320)

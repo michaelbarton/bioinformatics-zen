@@ -54,7 +54,10 @@ my projects on repository hosting as an example of how I organise everything. I
 find this much simpler that working with large numbers of local project
 directories.
 
-<%= lightbox(amzn('decomplected/repositories.png'),amzn('decomplected/repositories_thumb.png'),200) %>
+<%= lightbox(
+amzn('decomplected/repositories.png'),
+amzn('decomplected/repositories_thumb.png'),
+'A list of my project repositories', 200) %>
 
 [repo]: http://repositoryhosting.com/
 [github]: https://github.com/

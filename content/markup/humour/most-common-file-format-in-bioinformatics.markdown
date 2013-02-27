@@ -5,4 +5,5 @@
   created_at: "2009-10-02 00:00 GMT"
 ---
 
-<%= image(amzn('/humor/most_common_file_format_in_bioinformatics.jpg'),500)%>
+<%= image(amzn('/humor/most_common_file_format_in_bioinformatics.jpg'),
+'The most common file format in bioinformatics may be Microsoft Word', 500)%>

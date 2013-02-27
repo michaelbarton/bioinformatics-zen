@@ -14,5 +14,4 @@ also been kind enough to [critique this poster on his better posters blog.][bp]
 
 [bp]: http://betterposters.blogspot.com/2013/02/critique-protein-biosynthesis.html
 
-
-<%= poster '2007-manchester-symposia' %>
+<%= poster '2007-manchester-symposia', 'A poster illustrating my research into cost related gene expression.' %>

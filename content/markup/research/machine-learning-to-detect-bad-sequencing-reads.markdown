@@ -1,36 +1,36 @@
 ---
   kind: article
   feed: true
-  title: Machine learning to detect inaccurate NGS reads.
-  created_at: "2013-4-12 14:00 GMT"
+  title: Filtering inaccurate NGS reads using machine learning
+  created_at: "2013-4-17 17:00 GMT"
 ---
 
 One of the earliest things I learned about next generation sequencing is to
 expect errors in the generated data. These errors include incorrect base
-substitution or incorrect estimation of the length of regions of identical
-bases (homopolymers). When doing *de novo* genome assembly or genome
-resequencing this may not pose a problem as a majority consensus at each
-position can overrule these errors.
+substitution or incorrect estimation of regions of identical bases
+(homopolymers). When doing *de novo* genome assembly or genome resequencing
+these may not pose a problem as a majority consensus at each position can
+overrule these errors.
 
 There are cases where inaccurate reads error do however cause a problem such as
 tag or marker sequencing. This is the study of a single gene from many
 different organisms with the goal of estimating polymorphisms or phylogeny. An
-example may be sequencing the same gene (e.g. 16S rRNA) from many different
-microbes in the same environment. Another example is sequencing influenza virus
-genes to identify the reservoir of strains. In both of these cases the single
-gene sequenced multiple times is the 'marker' of interest.
+example may be sequencing the same gene (e.g. 16S rRNA) from numerous microbes
+in the same environment. Another example is sequencing variations in viral
+genes to identify the the source of an epidemic. In both of these cases the
+single gene sequenced multiple times is the 'marker' of interest.
 
 The advantage of this marker approach is that it generates a very large number
-of reads to allow surveying a population deeply. The problem however is that
-sequencing errors can give false positives for diversity. An extra base or a
+of reads to allow surveying a population deeply. The problem is that sequencing
+errors can give false positives for diversity and variation. An extra base or a
 substitution generates a novel sequence and therefore a new genotypic
-signature. Furthermore when amplifying such numbers of DNA sequence even PCR
-errors can become relevant too. This can be 'chimeras', where sequences
-mis-prime to each other generating a read composed of two origins. An
-additional rarer problem is PCR infidelity where base changes are introduced
-during the amplification process.
+signature. Furthermore when amplifying large quantities DNA even PCR errors
+can become relevant. This can be 'chimeras', where sequences mis-prime to each
+other generating a read composed of two origins. An additional rarer problem is
+PCR infidelity where base changes are introduced during the amplification
+process.
 
-As the use of marker-based approaches increases many articles are highlighting
+As the use of marker-based approaches increases, many articles are highlighting
 the need to identify and remove these poor quality reads. Not doing so can
 produce results biased by a large number of false positives leading to
 artefactually inflated diversity. If you are interested in the literature on
@@ -38,10 +38,10 @@ this topic [my citeulike page has some articles bookmarked][bookmark].
 
 [bookmark]: http://www.citeulike.org/user/michaelbarton/tag/16s
 
-I'm going to highlight one particular article here: [Reducing the Effects of
-PCR Amplification and Sequencing Artefacts on 16S rRNA-Based Studies][article]
-by Patrick D. Schloss, Dirk Gevers and Sarah L. Westcott. Part of this article
-focuses on identifying incorrect reads based on features of the reads. These
+I'm going to highlight one particular article: [Reducing the Effects of PCR
+Amplification and Sequencing Artefacts on 16S rRNA-Based Studies][article] by
+Patrick D. Schloss, Dirk Gevers and Sarah L. Westcott. Part of this article
+focuses on identifying inaccurate reads based on features of the reads. These
 features include the quality of the read, length of the longest homopolymer and
 so forth. I highly recommend this paper and it was one of the favourite
 articles I read last year. This paper caught my attention because the authors
@@ -69,28 +69,28 @@ I preprocessed this data by throwing away reads any shorter than 225bp. This
 value is 25bp for the primer and barcode and approximately 200bp of sequence
 that can be used for phylogenetic analysis after the barcode and primer are
 removed. The 200bp figure is approximate because there may be indels that are
-the result of natural mutation rather than sequencing error. The choice of
-200bp is arbitrary and different cut-offs may yield different results. I
-followed this step by removing any reads containing ambiguous bases ('Ns') in
-the first 225bp. This preprocessing left 54370 reads to examine.
+the natural differences between the sequences rather than sequencing error. The
+choice of 200bp is arbitrary and different cut-offs may yield different
+results. I followed this step by removing any reads containing ambiguous bases
+('Ns') in the first 225bp. This preprocessing left 54370 reads to examine.
 
 I generated two groups of data from the processed reads. The first was whether
-each read is inaccurate or not. This can be resolved by grouping the reads into
+each read is inaccurate or not. This was resolved by grouping the reads into
 clusters based on identity. The top N clusters, where N is the number of
 sequences in the original mock community, are those reads which are correct,
 every other read was considered inaccurate.
 
-The second data were the descriptive features to try and predict read accuracy
-from. These data were divided into two groups the first was the longest
-homopolymer of each nucleotide type, the other was various quality metrics for
-each sequence. I also included original read length too. The distribution of
-these features for accurate and inaccurate reads looks as follows.
+The second data were the descriptive features from which to predict read
+accuracy. These data were divided into two groups the first was the longest
+homopolymer of each nucleotide type and the second was various quality metrics
+for each sequence. I also included original read length too. The distribution
+of these features for accurate and inaccurate reads looks as follows.
 
 <%= lightbox(amzn('machine-learning-ngs/SRR013437.dependencies.png'),
 amzn('machine-learning-ngs/thumb.SRR013437.dependencies.png'), "Distribution of
 features according to read accuracy.") %>
 
-This data does not include all the features in Schloss *et. al* for instance
+This data does not include all the features in Schloss *et. al*, for instance
 barcode and primer errors are not present. I selected only a subset of features
 as a starting point for a machine learning algorithm. Further features can be
 added in future. Given this feature set and accompanying accuracy labels, the
@@ -137,9 +137,9 @@ The result of the `print.score` function are the following metrics:
 
 The second and third columns of this table show the probability of when a read
 is identified as inaccurate (positive) or accurate (negative) given whether the
-read is actually in inaccurate or accurate. These are the positive predictive
-and negative predictive values. The table shows that approximately 2/3 of reads
-are correctly identified in both cases. The Matthews Correlation Coefficient
+read is actually inaccurate or accurate. These are the positive predictive and
+negative predictive values. The table shows that approximately 2/3 of reads are
+correctly identified in both cases. The Matthews Correlation Coefficient
 ([Wikipedia][mcc]) shows the overall performance of the classifier with a value
 of 1.0 being the correct classification in every case, 0.0 is equivalent to
 random classification, and -1.0 is the wrong classification in every case. The
@@ -152,7 +152,7 @@ with the given classifier.
 
 The first classifier I trained was a generalised logistic regression
 classifier. This uses a link function to map a linear regression to a value
-between 0 and 1. This regression can therefore be trained to predict whether
+between 0 and 1. This regression can therefore be trained to classify whether
 reads are inaccurate or not. As a further step I used the glmnet package to fit
 an elastic net generalised logistic regression. This combines both L1 and L2
 normalisation to penalise model coefficients with the aim of preventing model
@@ -217,15 +217,15 @@ low value of lambda. The figure does show that the minimum from a 50bp sliding
 window is the best predictor based on quality score. This is consistent with
 the results seen in Schloss *et. al*, the 10th percentile for minimum quality
 score over the length of the read also appears play a role in classification.
-Regarding homopolymer length the most important overall features appear to be
-homopolymers of G and C bases.
+Regarding homopolymer length the most important overall features associated
+with error appear to be homopolymers of G and C bases.
 
 ## Random Forest Classifier
 
 Random forest classifiers are one best performing algorithms in the field of
 machine learning. A random forest contains many individual decision trees each
-trained with a subset of features. The predicted output is the mode average of
-all the forest classifiers.
+trained with a subset of the data and features. The predicted output is the
+modal average of all the forest classifiers.
 
 <%= highlight %>
 require('randomForest')
@@ -270,23 +270,23 @@ print.score("random_forest",predict,data$bad.read)
 </table>
 
 The random forest performs well in correctly identifying inaccurate reads with
-a probability of 0.833 of a read identified as inaccurate actually contain
+a probability of 0.833 of a read identified as inaccurate actually containing
 errors. The probability of correctly identifying accurate reads remains
-relatively unchanged however. The improvement in the Matthews correlation
-coefficient is therefore mainly due to the improvement in accuracy of which bad
-reads are identified - less accurate reads are thrown away.
+relatively unchanged. The improvement in the Matthews correlation coefficient
+is therefore mainly due to the improvement in accuracy of which bad reads are
+identified - fewer correct reads are thrown away.
 
 ## Ensemble Classifier
 
 Combinations of machine learning algorithms often perform better than the sum
-of the parts. Ensemble approaches may show improved performance when each of
-the classifiers models the domain with a different structure. For instance a
-regression classifiers models the problem parametrically and linearly while a
-random forest is non-parametric and can find complex interactions. Combining
-two different algorithms of this type can, in some cases, combine the best of
-both worlds. I therefore created an ensemble classifier based on the random
-forest and logistic regression classifiers above. The results of this are as
-follows:
+of the parts. The 'ensemble' approaches may show improved performance when each
+of the classifiers models the problem domain with a different structure. For
+instance a regression classifier models the problem parametrically and linearly
+while a random forest is non-parametric and can find complex interactions.
+Combining two different algorithms of this type can, in some cases, combine the
+best of both worlds. I therefore created an ensemble classifier based on the
+random forest and logistic regression classifiers above. The results of this
+are as follows:
 
 <%= highlight %>
 require('randomForest')
@@ -364,7 +364,10 @@ The results of this are approximately the same as that of the random forest
 classifier. I can plot the performance of different weights between the random
 forest and the logistic regression for comparison. This figure shows clearly
 that the logistic classifier adds very little and that weighting mostly towards
-the random forest provides the optimum performance.
+the random forest provides the optimum performance. I think this is likely the
+result of the random forest overfitting the data and cross validation across
+data sets may give more weight to the broader view provided by the logistic
+regression.
 
 <%= lightbox(amzn('machine-learning-ngs/SRR013437.ensemble.png'),
 amzn('machine-learning-ngs/thumb.SRR013437.ensemble.png'), "Performance on
@@ -376,27 +379,29 @@ These current classifiers have not been tested for predictive power only the
 degree to which can explain the difference in between good and bad reads in a
 single data set. The predictive power should be tested by cross validation
 against multiple data from different experiments and sequencing centres. I
-would expect the Matthews correlation coefficients for the classifiers would be
-less than the values shown above because these classifiers have most likely
-overfit this single data set.
+would expect the Matthews correlation coefficients for the ML classifiers would
+be less than the values shown above because these classifiers have most likely
+overfit to this single data set.
 
 As I wrote earlier, only a subset of features have been examined. For instance
 errors in the barcode and primer sequence have not been included. The Schloss
 *et. al* paper showed that these are also useful for identifying inaccurate
 reads. Therefore I think additional work should include features such as these.
-In fact a one machine learning approach is to throw as many features as
-possible at the problem and then use normalisation to identify the most
-predictive features.
+One machine learning approach throws as many features as possible at the
+problem and then uses normalisation to identify those with the most predictive
+power.
 
-Given every all of these caveats, there does appear to be a hard ceiling on the
-probability of identifying good reads, those without error. Regardless of which
-classifier I tried the probability of classifying reads as accurate is around
-0.66. I hypothesise that this might be a problem of identifying chimeras -
-those sequences that form during the PCR step prior to sequencing. As these bad
-chimera are formed prior to sequencing, it could be considered extremely hard
-to identify these based on errors associated with sequencing. 
+Given all of these caveats, there does appear to be a hard ceiling on the
+probability of identifying correct reads. Regardless of which classifier is
+used the probability of correctly identifying accurate reads is around 0.66. I
+hypothesise that this might be a problem of identifying chimeras - those
+sequences that form during the PCR step prior to sequencing. As chimeras are
+formed prior to sequencing, it could be considered extremely hard to identify
+them based on features associated with sequencing. Tools such as Uchime and
+Perseus should be combined in a pipeline to identify chimeras.
 
-The main results of this appears to be to be the possibility of an increase in
-accuracy when identifying bad reads. This, very initial, work suggests that
-using machine learning may be useful for increasing precision and result in
-fewer accurate reads being thrown away.
+The main results of this small analysis appears to be to be the possibility of
+an increase in accuracy when identifying inaccurate reads for discarding. This,
+very initial, work suggests that using machine learning may be useful for
+increasing precision and therefore translate into fewer accurate reads being
+thrown away.

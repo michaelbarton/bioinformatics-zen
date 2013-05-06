@@ -1,7 +1,7 @@
 ---
   kind: article
   feed: true
-  title: How accurate is marker based sequencing?
+  title: Generating high fidelity 454 data may require 5' trimming
   created_at: "2013-4-17 17:00 GMT"
 ---
 
@@ -16,7 +16,7 @@ One point bothered me about may analysis: how I identified which reads are
 accurate in the output data compared the original mock community data. My
 original method for doing this was:
 
-  * Remove barcodes from reads and trim down to 200bp.
+  * Remove barcodes from reads and trim down to 200bp from the 3' end.
   * Select unique reads and count how many times each unique read is observed
     in the data.
   * Build an alignment from the **N** most abundant unique reads. **N** is
@@ -42,64 +42,77 @@ abundance based approach didn't actually compare the accurate reads against the
 original mock community data. So before going any further I decided to first
 test the accurate reads against the mock community data to determine fidelity.
 
-## Read fidelity in Quince et. al XXXX data
+## Read fidelity in Quince et. al 2009 data
 
-Read fidelity might be considered as a true/false value. Either a read is
-correct or it contains errors such as an insertion, substitution or deletion.
-Consider the following scenario: a read 250bp read with a homopolymer error at
-base 196. If I compare this read with the community sequence from which it
-originated then I will identify this read as inaccurate. Now if I trim this
-read to 195bp and repeat this I will identify the read as accurate. Therefore
-read accuracy is function of which portions of the read you choose to compare
-and as read quality decreases towards the 3' end it is convieniet to trim the
-3' to increase read accuracy.
+I determined read fidelity by trimming the community sequences to 100bp from
+the 5' end then searching how many of sequenced reads contained this substring.
+The advantage of doing the analysis this way is that it is straightforward to
+find exact matching substrings using `grep`. Furthermore using the community
+sequence to search the sequenced reads removes the possibility of incorrect
+trimming of the barcode or primers. I used the divergent sequences and
+corresponding 454 dataset from the [Quince *et. al* 2009][quince] analysis. The
+following code shows this approach.
 
-I determined read fidelity by comparing all community sequences to each read to
-determine if any were a subsequence. I did this in steps of 10bp. Given
-community sequence **A** which is 200bp in length I compare this sequence to a
-read to determine if **A** is a substring of the read. If not, then I reduce
-the mock-community sequence by 10bp from the 3' end (now 190bp) and repeat the
-process. I do this for each community sequence against each read until the
-first match or until there were no more community sequences to compare. To
-emphasise: this process only shows a positive if the generated read exactly
-matches a subsequence of the community sequence from the 5' end. The
-distribution of matches is as follows:
-
-<%= lightbox(amzn('read-analysis/002-read-fidelity/SRR013437.read_fidelity.png'),
-amzn('read-analysis/002-read-fidelity/thumb.SRR013437.read_fidelity.png'),
-"Number of correct reads vs read length.") %>
-
-This figure shows that many reads are accurate at ~240bp with a density of
-accurate reads towards the cutoff at 50bp. The figure also shows that the
-highest density of reads is <6%. This means that the majority of reads ~90% are
-inaccurate when comparing 5' substrings of the mock-community sequences. I also
-examined the distrution of reads for each mock community sequence.
-
-<%= lightbox(amzn('read-analysis/002-read-fidelity/SRR013437.community_fidelity.png'),
-amzn('read-analysis/002-read-fidelity/thumb.SRR013437.community_fidelity.png'),
-"Number of correct reads for each community sequence.") %>
-
-This figure highlights a large variance in the number of accurate reads
-generated for each community sequences. There are 3 mock community sequences
-producing >100 accurate reads, while there are 13 mock community sequences
-producing between 1-10 accurate reads. This highlights a large disparity in the
-volume and accuracy of generated reads with 3log10 differences in read
-generation.
-
-I find these results extraordinary - can there really be such a large disparity
-in how reads are generated? These results are generated with a program I wrote
-myself so the possiblity that my program contains an error should also be
-entertained. There is a relatively straightforward way to test this using a
-grep:
-
+[quince]: http://www.ncbi.nlm.nih.gov/pubmed/19668203
 
 <%= highlight %>
-fastx_trimmer -l 100 -i SRR013437.community.fasta -o trim100.fasta
+fastx_trimmer -l 100 -i SRR013437.community.tab -o trim100.fasta
+
 grep --invert-match '>' trim100.fasta \
   | parallel 'grep {} SRR013437.fasta | wc -l' \
-  | sort -r
+  | sort -r -n \
+  | tr "\\n" " "
+
+#=> 1609 1543 1024 14 5 5 4 4 3 3 2 2 2 2 1 1 0 0 0 0 0 0 0 
 <%= endhighlight %>
 
-This shows the confirms the above results: that a majority of reads are
-inaccurate and of the reads that are accurate there is a wide disparity in
-volume.
+This appears to show a large variance in the number of reads matching a
+community sequence substring. There are 3 community sequences with >1000
+matching reads while the rest of the community sequences have &lt;20 matching
+reads. I found this is somewhat surprising so I double checked what I saw was
+true by comparing the individual read and community sequences. The follow
+alignments compare two example community sequences (8 and 72) with the most
+abundant corresponding unique reads according to nucmer. This highlights errors
+in the 5' end of the reads.
+
+<%= highlight %>
+>8                      CTA-ACGATGA-TACTCGAT
+>SRR013437.14   tccacacc...A.......A........
+>SRR013437.627  tccacacc...A.......A........
+>SRR013437.935  tccacgcc...G.......A........
+>SRR013437.2322 tcctcgcc...A.......A........
+>SRR013437.2423 cccacgcc...A.......A........
+
+>72                  GCCGTAA-CGATGAGAACTAGCC
+>SRR013437.245  tccac.......A...............
+>SRR013437.351  tccac.......A...............
+>SRR013437.433  tccac.......A...............
+>SRR013437.542  tccac.......A...............
+>SRR013437.661  tccac.......A...............
+<%= endhighlight %>
+
+What happens if instead of using 100bp substrings from the 5' of the
+mock=community sequence I drop the first 50bp and repeat the process?
+
+<%= highlight %>
+fastx_trimmer -f 50 -l 150 \
+  -i SRR013437.community.tab \
+  -o trim50_150.fasta
+
+grep --invert-match '>' trim50_150.fasta \
+  | parallel 'grep {} SRR013437.fasta | wc -l' \
+  | sort -r -n \
+  | tr "\\n" " "
+
+#=> 2273 2229 1943 1873 1802 1795 1774 1701 1692 1677 1670
+#   1628 1596 1573 1545 1522 1446 1442 1399 1356 935 635 548 
+<%= endhighlight %>
+
+<%= lightbox(amzn('read-analysis/002-read-fidelity/SRR013437.fidelity.png'),
+amzn('read-analysis/002-read-fidelity/thumb.SRR013437.fidelity.png'), "Number
+of correct reads vs read length.") %>
+
+This figure shows the difference trimming the 5' end has on the number of reads
+matching the mock-community sequence. This figure is on a log. 10 scale on the
+x-axis.
+

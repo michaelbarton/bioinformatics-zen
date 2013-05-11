@@ -35,9 +35,19 @@ code {
   }
 }
 
+ol {
+  padding: 0px 0px 0px 40px;
+  li {
+    list-style: decimal;
+  }
+}
+
 ul.links {
   list-style: none;
-  margin-left: 0px;
+  li {
+    padding: 0px;
+    margin: 0px;
+  }
   span {
     color: #999;
     font-family: Monaco, Andale Mono, Courier New, monospace;
@@ -47,3 +57,4 @@ ul.links {
     color: #555;
   }
 }
+

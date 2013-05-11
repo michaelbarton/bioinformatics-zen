@@ -16,15 +16,15 @@ One point the troubled me however was the method I used to identify which of
 the generated 454 reads are accurate. The approach I used for this was as
 follows:
 
-  * Remove barcodes from reads and trim down to 200bp with the first base
-    beginning after the end of the 5' primer.
-  * Select the unique representative reads and count how many times each unique
-    read is observed in the data.
-  * Build an alignment from the **N** most abundant unique reads. **N** is
-    twice the number of sequences used in the mock-community data.
-  * Use [single linkage clustering][clust] to group the aligned unique reads to
-    within 4bp differences of each other. This merges reads which match to with
-    4bp of another more abundant reads into the same group.
+  1. Remove barcodes from reads and trim down to 200bp with the first base
+     beginning after the end of the 5' primer.
+  2. Select the unique representative reads and count how many times each
+     unique read is observed in the data.
+  3. Build an alignment from the **N** most abundant unique reads. **N** is
+     twice the number of sequences used in the mock-community data.
+  4. Use [single linkage clustering][clust] to group the aligned unique reads
+     to within 4bp differences of each other. This merges reads which match to
+     with 4bp of another more abundant reads into the same group.
 
 The result of this method should be **N** unique reads in the output data and
 each corresponding to one of the mock-community sequences. This approach

@@ -1,8 +1,8 @@
 ---
   kind: article
   feed: true
-  title: Generating high fidelity 454 data may require 5' trimming
-  created_at: "2013-5-08 17:00 GMT"
+  title: Trimming 454 data from the 5' end may improve fidelity
+  created_at: "2013-05-13 12:00 GMT"
 ---
 
 In a previous post [I trained machine learning classifiers][previous] to

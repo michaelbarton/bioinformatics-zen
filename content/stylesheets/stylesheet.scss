@@ -16,16 +16,21 @@ body {
   }
 }
 
-pre {
-  font-size: 12px;
-  background-color: #262526;
-  padding: 10px 0px 15px 15px;
+pre, blockquote {
+  padding: 15px 15px 15px 15px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
 
-code {
-  background: #EEE;
+pre {
+  padding-right: 0px;
+  font-size: 12px;
+  background-color: #262526;
+}
+
+blockquote {
+  background-color: #EEE;
+  font-style:italic;
 }
 
 .centred {

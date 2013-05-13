@@ -9,29 +9,29 @@ A previous post described [training machine learning classifiers][previous] to
 filter inaccurate reads in 16S-based metagenomic studies. This analysis was
 based on available mock community data - where an known set of 16S genes is
 sequenced and the generated reads compared to the original sequences. The value
-of using a mock community is knowing the original sequences allows you to
+of using a mock community is that knowing the original sequences allows you to
 identify the types of errors you are observing in the output data. The method I
 previously used to find the accurate reads using the mock community data was as
 follows:
 
-  1. Remove barcodes and primers from reads and trim down to 200bp
+  1. Remove barcodes and primers from reads and trim down to 200bp.
   2. Select the unique representative reads and count how many times each
      unique read is observed in the data.
   3. Build an alignment from **N**\*2 of the most abundant unique reads. **N**
-     is the number of sequences used in the mock-community data.
+     is the number of sequences used in the mock community data.
   4. Use [single linkage clustering][clust] to group the aligned unique reads
      to within 4bp differences of each other. This merges the unique read that
      matches to with 4bp of another unique read into the more abundant read
      group.
 
 The result of this method should be **N** unique reads in the output data and
-each unique read should then correspond to one of the mock-community sequences.
+each unique read should then correspond to one of the mock community sequences.
 This approach assumes that after removing up to 4 single base errors and
 indels, the remaining most abundant unique read for each mock community
 sequence should be the correct one. This assumption can be described another
-way: any errors resulting from PCR infidelity or 454 errors that generate a
-novel read sequence will not produce more copies than that of the original
-correct sequence.
+way: any novel sequences generated from infidelity in the PCR or sequencing
+steps should not produce more copies than that of the original correct
+sequence.
 
 I built this workflow with a combination of mothur and shell scripting. There
 is a gist on github illustrating this [method of identifying correct reads based
@@ -42,20 +42,20 @@ on abundance][gist].
 [gist]: https://gist.github.com/michaelbarton/5490636
 
 This approach bothered me because it does not actually compare the reads that I
-specify as correct reads against the original mock community. Therefore before
+specify as correct against the original mock community. Therefore before
 pursing further machine learning approaches I aimed to first confirm the reads
-identified as accurate exactly match the mock-community sequences.
+identified as accurate exactly match the mock community sequences.
 
 ## Read fidelity in Quince et. al 2009 data
 
-I used a simple approach to identify accurate reads in the generated 454 data:
-trim each community sequence to a 100bp substring and see how many reads
-contained this substring. I started with the divergent mock-community data from
-[Quince *et. al* 2009][quince]. This is the same data I used for machine
-learning approach to filtering inaccurate reads. I trimmed the community
-sequences to 100bp beginning at 5' end and searched the generated read data for
-exact matching substrings using `grep`. The following code illustrates this
-approach with the resulting number of matches.
+I used a simple approach to identify accurate reads in the 454 data: trim each
+mock community sequence to a 100bp substring and see how many reads contained
+this substring. I started with the divergent mock community data from [Quince
+*et. al* 2009][quince]. This is the same data I used for machine learning
+approach to filtering inaccurate reads. I trimmed the community sequences to
+100bp beginning at 5' end and searched the generated read data for exact
+matching substrings using `grep`. The following code illustrates this approach
+with the resulting number of matches.
 
 [quince]: http://www.ncbi.nlm.nih.gov/pubmed/19668203
 
@@ -71,7 +71,7 @@ grep --invert-match '>' trim100.fasta \
 #=> 1609 1543 1024 14 5 5 4 4 3 3 2 2 2 2 1 1 0 0 0 0 0 0 0 
 <%= endhighlight %>
 
-This shows a large variance in the number of reads matching a mock-community
+This shows a large variance in the number of reads matching a mock community
 sequence substring. There are 3 with &gt;1000 matching reads while the
 remainder of match &lt;20 reads. I double-checked this result by examining a
 couple of the community sequence reads individually. This is illustrated below
@@ -94,9 +94,9 @@ removal of the primer are shown in the rows below.
 >SRR013437.661  tccac.......A...............
 <%= endhighlight %>
 
-This highlights that, for two of these mock-community sequences, there appear
+This highlights that, for two of these mock community sequences, there appear
 to be insertions in the 5' ends of the most abundant reads. These differences
-prevent exact substring matches to the mock-community sequence. I considered if
+prevent exact substring matches to the mock community sequence. I considered if
 this was the case for the for further downstream sequence by repeating this
 process with a 100bp substring 50bp downstream from the 5' end.
 
@@ -115,10 +115,9 @@ grep --invert-match '>' trim50_150.fasta \
 #   1628 1596 1573 1545 1522 1446 1442 1399 1356 935 635 548 
 <%= endhighlight %>
 
-This shows that using a substring 50bp further down finds a larger number of
-exact matches in the reads. The following figure compares the matches to a
-mock-community sequence substring for the two different types of substrings.
-The figure is on a logarithmic scale.
+This shows that using a substring 50bp further downstream finds a larger number
+of exact matches in the reads. The following figure compares the difference in
+the substring matches. The figure is on a logarithmic scale.
 
 <%= lightbox(amzn('read-analysis/002-read-fidelity/SRX002564.fidelity.png'),
 amzn('read-analysis/002-read-fidelity/thumb.SRX002564.fidelity.png'), "Number
@@ -127,23 +126,23 @@ of correct reads vs read length.") %>
 ## Read fidelity in the Human Microbiome Pilot Study
 
 This examined only a single 454 run and one which was generated in 2009. I
-therefore considered further additional 454 data determine if I observed this
-agian. The human microbiome project (HMP) has [a pilot study][pilot] which
-compares a single mock community with the output from several different
-sequencing centres. I repeated the above analysis with 9[^runs] from the 19
-sequencing experiments. I used a sample of 9 experiments to reduce overall
-analysis time.
+therefore considered further additional data determine if I observed this
+result again. The human microbiome project (HMP) has [a pilot study][pilot]
+which compares a single mock community with the output from several different
+sequencing centres. I repeated the above analysis with 9[^runs] from 19 of
+these sequencing experiments. I used a sample of 9 experiments to reduce
+overall analysis time.
 
 [pilot]: http://www.ncbi.nlm.nih.gov/bioproject/48341
 
 The major difference with analysing these data is that there is no specific set
-of mock-community sequences. The HMP instead used three pairs of primers to
+of mock community sequences. The HMP instead used three pairs of primers to
 create amplicons from 22 genomes[^genomes]. I therefore created the 16S
-mock-community[^mock] by simulating PCR *in silico* using the primers and
+mock community[^mock] by simulating PCR *in silico* using the primers and
 corresponding genomes. I then tested the HMP generated reads against this
-mock-community using the same approach as before. The following figure compares
+mock community using the same approach as before. The following figure compares
 the distribution of matching reads for the different substrings of the
-mock-community.
+mock community.
 
 <%= lightbox(amzn('read-analysis/002-read-fidelity/SRP002397.fidelity.png'),
 amzn('read-analysis/002-read-fidelity/thumb.SRP002397.fidelity.png'), "Number
@@ -164,19 +163,19 @@ of correct reads vs read length.") %>
 This figure shows that for two experiments 5' trimming resulted in less matches
 to the community substring. In one of these cases this resulted in &gt;3000
 fewer matching reads. In seven of nine experiments however 5' trimming of the
-mock-community sequence increased the number of matching reads. In two cases 5'
+mock community sequence increased the number of matching reads. In two cases 5'
 trimming produced an improvement of &gt;5000 exact substring matches.
 
 ## Summary
 
-The use of 3' trimming is common to remove errors as the probability of errors
-increases along the length of the generated read. I have not found any articles
-suggesting that 5' trimming may improve read-fidelity so I would be interested
-if anyone can highlight similar approaches. I think it may also be work
-considering if 5' errors could be related to chimerism too.
+The use of 3' trimming in marker-based metagenomics is common. I am not
+familiar with any articles showing that 5' trimming may improve read-fidelity
+however. I would be interested if anyone can highlight similar approaches. I
+think it may also be work considering if this 5' trimming could be related to
+chimerism.
 
 Trimming the 5' end should not however be used in every case without prior
-consideration. Instead I believe a quality-control mock-community should be
+consideration. Instead I believe a quality-control mock community should be
 added to each sequencing run to assess whether this is necessary. This way both
 5' and 3' trimming could be tuned to each specific sequencing run. A similar
 point is argued in Schloss *et. al* 2011:
@@ -199,8 +198,8 @@ should be made to correctly label the accurate reads in the training data.
 Therefore I believe a constructing a machine learning filter may require the
 optimisation of two factors: how much of each read needs to be trimmed and how
 accurately the remaining reads can be accurately filtered for inaccuracy. This
-would need to balance read length for phylogenetic analysis against how may
-errors in the generated reads can be tolerated.
+would balance read length for phylogenetic analysis against how may errors in
+the generated reads can be tolerated.
 
 ## Footnotes
 

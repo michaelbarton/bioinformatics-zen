@@ -50,7 +50,7 @@ compile '/markup/*' do
   begin
     filter :r_code_fix
     filter :erb
-    filter :rdiscount
+    filter :kramdown
 
     layout @item[:layout] || 'default'
   rescue Exception => e

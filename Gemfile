@@ -12,7 +12,7 @@ group :development do
   gem 'nokogiri',       '~> 1.5.0'
   gem 'w3c_validators', '~> 1.2.0'
 
-  gem 'rdiscount',      '~> 2.0.0'
+  gem 'kramdown',       '~> 1.0.1'
   gem 'haml',           '~> 4.0.0'
   gem 'sass',           '~> 3.2.0'
 

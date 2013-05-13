@@ -16,16 +16,21 @@ body {
   }
 }
 
-pre {
-  font-size: 12px;
-  background-color: #262526;
-  padding: 10px 0px 15px 15px;
+pre, blockquote {
+  padding: 15px 15px 15px 15px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
 
-code {
-  background: #EEE;
+pre {
+  padding-right: 0px;
+  font-size: 12px;
+  background-color: #262526;
+}
+
+blockquote {
+  background-color: #EEE;
+  font-style:italic;
 }
 
 .centred {
@@ -35,9 +40,19 @@ code {
   }
 }
 
+ol {
+  padding: 0px 0px 0px 40px;
+  li {
+    list-style: decimal;
+  }
+}
+
 ul.links {
   list-style: none;
-  margin-left: 0px;
+  li {
+    padding: 0px;
+    margin: 0px;
+  }
   span {
     color: #999;
     font-family: Monaco, Andale Mono, Courier New, monospace;
@@ -47,3 +62,4 @@ ul.links {
     color: #555;
   }
 }
+

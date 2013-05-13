@@ -2,7 +2,7 @@
   kind: article
   feed: true
   title: Trimming 454 reads at the 5' end may improve fidelity
-  created_at: "2013-05-13 12:00 GMT"
+  created_at: "2013-05-13 13:15 GMT"
 ---
 
 A previous post described [training machine learning classifiers][previous] to

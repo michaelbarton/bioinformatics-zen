@@ -32,24 +32,28 @@ This helps when trying to find a specific file. Being verbose as possible in
 naming your files is useful because often sets of files are all related to a 
 similar subject. Take the following example:
 
-    ancova\_sequence\_hydrophobicity.R
-    ancova\_sequence\_hydrophobicity\_interaction\_term.R
-    ancova\_sequence\_hydrophobicity\_residuals.R
+<%= highlight %>
+ancova_sequence_hydrophobicity.R
+ancova_sequence_hydrophobicity_interaction_term.R
+ancova_sequence_hydrophobicity_residuals.R
+<%= endhighlight %>
 
 All three files contain a script fitting an ancova model, but all differ 
 slighty in focusing on different parts of the model. Finding the one you need 
 is still simple for you, but perhaps not so in a few months time when you 
 return to the results to write a paper:
 
-    ancova\_sequence\_hydrophobicity.R
-    ancova\_sequence\_hydrophobicity.csv
-    ancova\_sequence\_hydrophobicity.png
-    ancova\_sequence\_hydrophobicity\_interaction\_term.R
-    ancova\_sequence\_hydrophobicity\_interaction\_term.csv
-    ancova\_sequence\_hydrophobicity\_interaction\_term.png
-    ancova\_sequence\_hydrophobicity\_residuals.R
-    ancova\_sequence\_hydrophobicity\_residuals.csv
-    ancova\_sequence\_hydrophobicity\_residuals.png
+<%= highlight %>
+ancova_sequence_hydrophobicity.R
+ancova_sequence_hydrophobicity.csv
+ancova_sequence_hydrophobicity.png
+ancova_sequence_hydrophobicity_interaction_term.R
+ancova_sequence_hydrophobicity_interaction_term.csv
+ancova_sequence_hydrophobicity_interaction_term.png
+ancova_sequence_hydrophobicity_residuals.R
+ancova_sequence_hydrophobicity_residuals.csv
+ancova_sequence_hydrophobicity_residuals.png
+<%= endhighlight %>
 
 This time I now have the files for the results of each model (.csv) and a plot 
 of these results (.png). This illustrates how quickly the number of files can 
@@ -58,25 +62,27 @@ since they all have very similar names.
 
 Here's an alternative way I think these files could instead be organised:
 
-    ancova\_sequence\_hydrophobicity/
-      lib/
-        generate\_ancova\_model.r
-      scripts/
-        model.r
-        model\_interaction\_term.r
-        model\_residuals.r
-      results/
-        model.csv
-        model\_interaction\_term.csv
-        model\_residuals.csv
-      pictures/
-        model.png
-        model\_interaction\_term.png
-        model\_residuals.png
+<%= highlight %>
+ancova_sequence_hydrophobicity/
+  lib/
+    generate_ancova_model.r
+  scripts/
+    model.r
+    model_interaction_term.r
+    model_residuals.r
+  results/
+    model.csv
+    model_interaction_term.csv
+    model_residuals.csv
+  pictures/
+    model.png
+    model_interaction_term.png
+    model_residuals.png
+<%= endhighlight %>
 
 Each sub directory describes its contents, which satifies the requirement for 
 verbose naming. Furthermore the directory path contributes to describing each 
-file, e.g. `ancova\_sequence\_hydrophobicity/results/model\_residuals.csv`. 
+file, e.g. `ancova_sequence_hydrophobicity/results/model_residuals.csv`. 
 This is helpful if you are referencing the file else where and want an idea of 
 what the file contains.
 

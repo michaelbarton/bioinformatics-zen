@@ -1,9 +1,9 @@
 def image(url,alt,width=400,options={})
-  link = "<img src='#{urlify(url)}' width=#{width} alt='#{alt}'>"
-  if options[:link]
-    link = "<a href='#{urlify(options[:link])}'>#{link}</a>"
-  end
-  "<div class='centred'>#{link}</div>"
+  "<div class='centred'>
+    <a href='#{urlify(url)}'>
+      <img src='#{urlify(url)}' width='#{width}' alt='#{alt}' />
+    </a>
+  </div>"
 end
 
 def youtube(video,title="YouTube")

@@ -14,12 +14,13 @@
       #content
         .hentry
           = render "_title"
-          - if item[:category]
+          - if item[:category] || item[:meta]
             ~ yield
             .hentry
               = render "_footer"
-            .hentry
-              = comments(@item)
+            - if item[:category] 
+              .hentry
+                = comments(@item)
           - else
             = render "_front"
       = render "_sidebar"

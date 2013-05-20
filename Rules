@@ -31,6 +31,10 @@ route '/stylesheets/_*/' do; nil; end
 route '/markup/' do
   "/index.html"
 end
+route '/markup/faq/' do
+  item[:meta] = true
+  "/faq/index.html"
+end
 route '/markup/*/' do
   _, _, category, basename = item.identifier.split("/")
 

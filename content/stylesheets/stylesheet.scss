@@ -40,17 +40,26 @@ blockquote {
   }
 }
 
-ol {
+ol,ul {
   padding: 0px 0px 0px 40px;
+}
+
+ol {
   li {
     list-style: decimal;
   }
 }
 
-ul.links {
-  list-style: none;
+ul {
   li {
-    padding: 0px;
+    list-style: disc;
+  }
+}
+
+ul.links {
+  padding-left: 0px;
+  li {
+    list-style: none;
     margin: 0px;
   }
   span {

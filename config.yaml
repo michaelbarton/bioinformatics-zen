@@ -23,6 +23,7 @@ site:
   navigation:
     index: '/'
     about: 'http://www.michaelbarton.me.uk'
+    FAQ: '/faq'
     email: 'mailto:mail@bioinformaticszen.com'
     youtube: 'http://www.youtube.com/user/bioinformaticszen'
     feed: 'http://feeds.feedburner.com/BioinformaticsZen'

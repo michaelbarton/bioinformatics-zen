@@ -55,7 +55,7 @@ def favicon
 end
 
 def site_title
- (@item[:long_title] || @item[:title]) + ' · ' + @site.config[:site][:title]
+ (@item[:long_title] || @item[:title]) + ' &middot; ' + @site.config[:site][:title]
 end
 
 def time_for(time)

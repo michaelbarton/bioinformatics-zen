@@ -7,6 +7,7 @@ data_sources:
     type: filesystem_unified
     items_root: /
     layouts_root: /
+    encoding: utf-8
 deploy:
   default:
     dst: "webserver:/home/admin/sites/bioinformaticszen.com"

@@ -1,43 +1,55 @@
 ---
   kind: article
-  title: Reproducible assembly benchmarks
+  title: Reproducible software benchmarks
   created_at: "2009-01-26 00:00 GMT"
 ---
 
-New bioinformatics software is continuous produced and published. This can make
-keeping track of the latest developments difficult. One way to stay up to date
-is to continuously examine the literature and attend conferences. When finding
-out about new bioinformatics software, there is still the problem of know how
-effective the software is. For example given a new paper published on a genome
-assembler, how can you know how effective it will be on your data? The
-publication may include benchmarks but do these suffer from an author bias to
-the best performing aspects of the assembler?
+New bioinformatics software is continuous produced and published. The constant
+stream of new releases makes it difficult to keep track of improvements to
+algorithms for common bioinformatics tasks. An example of this problem is the
+domain of genome assembly where there is already a large number of existing
+software and new approaches are being published.
 
-A final point to consider is that even given the best assembler for your data,
-how easy is it to install? Does the software require complex dependencies to
-install? Does the software inexplicably fail with obscure error messages? The
-poor usability experience of bioinformatics software can lead to scientists
-using the software that the colleague sitting next to them knows how to install
-and use, rather that the current state of the art.
+When researching which bioinformatics software to use in for data, there is the
+problem understanding how effective the software is. For example given a new
+paper published on a genome assembler, how can you know how well it will
+assemble your data? A publication may include benchmarks these may not be
+applicable to different data, or may suffer from the author's bias.
+
+Even if you know which is the best genome assembler for your data, another
+question is how easy is it to install? Does the software require complex
+dependencies to install? Or does it fail inexplicably with obscure error
+messages? The poor usability experience of many bioinformatics software can
+lead to scientists using the software that the colleague sitting next to them
+knows how to install and debug, rather than what may be the state of the art.
 
 ## A registry of assemblers
 
-The recent [Assemblathon 1][asm1] and [Assemblathon 2][asm2] collectives aimed
-to evaluate the current state of genome assembly. The method for their approach
-was to release a set of reads and ask the genomics community to submit their
-best assembly. The quality and accuracy of each of the submitted assemblies was
-then evaluated. The [Genome Assembly Gold-Standard Evaluations (GAGE)][gage]
-took several genome assemblers and ran them against four different read
-datasets. The results of each assembler were then evaluated for performance.
-The aim of this was determine which assembler gave the best results.
+There is precedent for solving these problems and previous approaches are:
 
-I believe that this can be taken a step further to solve some of the problems I
-described above. For instance:
+    * The recent [Assemblathon 1][asm1] and [Assemblathon 2][asm2] aimed to
+      evaluate the current state of genome assembly. Their approach was to
+      release a set of genome reads and ask the community to submit their best
+      assembly. The quality and accuracy of each of the submitted assemblies
+      was then evaluated and compared with each other.
 
-  * A registry of available assemblers, that is continuously updated as new
-    assemblers become available and are published. This can act as a
-    centralised repository for the current state of the art in genome assembly.
-    Anyone should also be able to register an assembler.
+   *  The [Genome Assembly Gold-Standard Evaluations (GAGE)][gage] took the
+      opposite approach and instead themselves ran several genome assemblers
+      against four different read datasets. The results of each assembler were
+      then evaluated for performance.
+
+I believe that these approaches are the right direction for the bioinformatics
+community to move in. The development of objective performance benchmarks, not
+just for genome assembly but for all common tasks, would help researchers which
+is the best software and which they should be using in their own research. I
+believe that these approaches can be taken a step further to solve the problems
+I described above. For instance:
+
+  * Create a registry of available assemblers that is continuously updated as
+    new assemblers become available and are published. This can act as a
+    centralised repository for all available genome assemblers. Anyone can and
+    should register their assembler with this database. This would then allow
+    researchers to browse current available assemblers.
 
   * Continuously benchmark software against test datasets. This would attempt
     to provide an objective evaluation of each assembler's effectiveness.
@@ -52,7 +64,7 @@ described above. For instance:
 To this end I created the website [nucleotides - a registry of genome
 assemblers and benchmarks][nuc].
 
-## Reproducible assembly benchmarks using Docker
+## Reproducible genome assembly benchmarks using Docker
 
 The key to this website is that all assemblers are constructed as
 [Docker][docker] images. If you are unfamiliar with Docker, an image is

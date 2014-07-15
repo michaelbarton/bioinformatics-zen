@@ -1,6 +1,6 @@
 ---
   kind: article
-  title: Reproducible software benchmarks
+  title: Continuous, reproducible genome assembler benchmarking
   created_at: "2009-01-26 00:00 GMT"
 ---
 
@@ -38,31 +38,35 @@ There is precedent for solving these problems and previous approaches are:
       against four different read datasets. The results of each assembler were
       then evaluated for performance.
 
-I believe that these approaches are the right direction for the bioinformatics
-community to move in. The development of objective performance benchmarks, not
-just for genome assembly but for all common tasks, would help researchers which
-is the best software and which they should be using in their own research. I
-believe that these approaches can be taken a step further to solve the problems
-I described above. For instance:
+I believe that these approaches are critical for the bioinformatics community.
+The development of objective performance benchmarks, not just for genome
+assembly but for all common tasks, helps researchers determine which software
+they should be using in their research. I believe that these approaches can be
+taken a step further to solve the problems I described above. For instance:
 
   * Create a registry of available assemblers that is continuously updated as
-    new assemblers become available and are published. This can act as a
-    centralised repository for all available genome assemblers. Anyone can and
-    should register their assembler with this database. This would then allow
-    researchers to browse current available assemblers.
+    new assemblers become available. This acts as a centralised repository for
+    all available genome assemblers. Anyone can and should register their
+    assembler with this database. This would then allow researchers to browse
+    all available assemblers in a single place.
 
-  * Continuously benchmark software against test datasets. This would attempt
-    to provide an objective evaluation of each assembler's effectiveness.
-    Furthermore by running these benchmarks on a regular and reoccurring basis
-    new developments could be continuously evaluated.
+  * Continuously benchmark the assemblers against reference data. This would
+    provide an objective evaluation of each assembler's effectiveness for a
+    given data set. Furthermore running these benchmarks regularly allows new
+    assemblers to be evaluated and compared against existing benchmarks. This
+    allow researchers to compare which genome assembler performs best for a
+    given type of data, e.g. a low GC content genome, and use the best
+    performing for their own data.
 
-  * Simple installation and configuration of parameters. The assembler
-    developer should specify the configuration of the assembler's parameters
-    for most common scenarios. Furthermore the installation of the assembler
-    should be as simple as possible, allowing a low barrier of entry for use.
+  * Provide simple installation and configuration of parameters. The assembler
+    developer provides an out-of-the-box version of the assembler that includes
+    defaults parameters that works for most common scenarios. Furthermore the
+    installation of the assembler should be as simple as possible, allowing a
+    low barrier of entry for use. This allows a researcher to use an assembler
+    without requiring difficult of manual installation of software.
 
-To this end I created the website [nucleotides - a registry of genome
-assemblers and benchmarks][nuc].
+I created the website [nucleotides - a registry of genome assemblers and
+benchmarks][nuc] with the end of satisfying all of these goals..
 
 ## Reproducible genome assembly benchmarks using Docker
 

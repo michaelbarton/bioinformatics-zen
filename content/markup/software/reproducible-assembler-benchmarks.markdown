@@ -71,7 +71,8 @@ with the end of satisfying these goals. This website provides, a currently
 short, list of genome assemblers. Each of these assemblers is shown alongside
 benchmarks resulting from assembly a test set of reads and then comparing back
 with the reference genome. Finally each assembler is packaged within a Docker
-image so that each assembler can be downloaded from [Docker.io][].
+image so that each assembler can be downloaded from
+[Docker.io](http://docker.io).
 
 ## Reproducible genome assembly benchmarks using Docker
 

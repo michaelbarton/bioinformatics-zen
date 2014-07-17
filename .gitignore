@@ -3,3 +3,4 @@ output
 .sass-cache
 config.yaml
 .rake_tasks
+crash.log

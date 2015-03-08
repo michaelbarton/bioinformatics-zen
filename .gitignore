@@ -1,6 +1,8 @@
-tmp
-output
+build
 .sass-cache
 config.yaml
-.rake_tasks
 crash.log
+.bundle
+vendor
+.aws_credentials
+tmp

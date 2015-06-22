@@ -1,17 +1,8 @@
-credentials = .aws_credentials
+build: $(shell find source) $(fetch) Gemfile.lock
+	bundle exec middleman build --verbose
 
-publish: build
-	s3cmd sync \
-		--config $(credentials) \
-		--delete-removed \
-		--acl-public \
-		$</* s3://www.bioinformaticszen.com/
-
-build: Gemfile.lock
-	bundle exec nanoc compile
-
-dev: Gemfile.lock
-	bundle exec nanoc watch
+dev: $(shell find source) $(fetch) Gemfile.lock
+	bundle exec middleman server
 
 ########################################
 #

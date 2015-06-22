@@ -1,7 +1,7 @@
-build: $(shell find source) $(fetch) Gemfile.lock
+build: Gemfile.lock
 	bundle exec middleman build --verbose
 
-dev: $(shell find source) $(fetch) Gemfile.lock
+dev: Gemfile.lock
 	bundle exec middleman server
 
 ########################################

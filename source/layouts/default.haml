@@ -1,0 +1,18 @@
+!!!
+%html{ :lang => 'en' }
+  = partial "header"
+  %body{:onload => "prettyPrint()" }
+    #wrapper
+      #header
+        %h1
+          %a.brand{:href => '/' }
+            = "Bioinformatics Zen"
+        %p
+          = "Michael Barton's bioinformatics notes"
+      #content
+        .hentry
+          = partial "title"
+          = yield
+          = partial "footer"
+      = partial "sidebar"
+    = google_analytics data.config[:site][:analytics_token]

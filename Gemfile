@@ -1,15 +1,5 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-gem 'nanoc',          '~> 3.5.0'
-gem 'nokogiri',       '~> 1.5.0'
-gem 'w3c_validators', '~> 1.2.0'
-gem 'kramdown',       '~> 1.0.1'
-gem 'haml',           '~> 4.0.0'
-gem 'sass',           '~> 3.2.0'
-gem 'compass',        '~> 0.11.0'
-gem 'jsmin',          '~> 1.0.0'
-gem 'rainpress',      '~> 1.0.0'
-gem 'rb-fsevent',     '~> 0.9.1'
-gem 'listen',         '~> 0.7.2'
-gem 'fssm',           '~> 0.2.0'
-gem 'adsf',           '~> 1.1.0'
+gem 'middleman-s3_sync',    '~> 3.0.0'
+gem 'middleman',            '~> 3.2.0'
+gem "middleman-livereload", "~> 3.3.0"

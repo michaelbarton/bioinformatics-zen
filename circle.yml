@@ -1,0 +1,8 @@
+machine:
+  ruby:
+    version: 2.0.0p481
+dependencies:
+  override:
+    - script/bootstrap
+  cache_directories:
+    - vendor

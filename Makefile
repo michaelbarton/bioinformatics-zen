@@ -13,11 +13,13 @@ build: Gemfile.lock
 dev: Gemfile.lock
 	bundle exec nanoc watch
 
-bootstrap: Gemfile.lock $(credentials)
+########################################
+#
+# Bootstrap resources
+#
+########################################
 
-$(credentials): ~/.aws_bioinformaticszen
-	cp -f $< $@
-	chmod 400 $@
+bootstrap: Gemfile.lock
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle

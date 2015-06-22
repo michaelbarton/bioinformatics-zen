@@ -1,8 +1,13 @@
 machine:
   ruby:
-    version: 2.0.0p481
+    version: 2.2.1
+
 dependencies:
   override:
     - script/bootstrap
   cache_directories:
     - vendor
+
+test:
+  override:
+    - script/build

@@ -3,15 +3,9 @@
   = partial "header"
   %body{:onload => "prettyPrint()" }
     #wrapper
-      #header
-        %h1
-          %a.brand{:href => '/' }
-            = "Bioinformatics Zen"
-        %p
-          = "Michael Barton's bioinformatics notes"
+      = partial "title"
       #content
         .hentry
-          = partial "title"
           = yield
           = partial "footer"
       = partial "sidebar"

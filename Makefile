@@ -10,10 +10,21 @@ dev: Gemfile.lock
 #
 ########################################
 
-bootstrap: Gemfile.lock
+bootstrap: Gemfile.lock vendor/bootstrap
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle
+
+vendor/bootstrap:
+	mkdir -p vendor
+	wget \
+	  --quiet \
+	  --output-document bootstrap.zip \
+	  https://github.com/twbs/bootstrap/archive/v3.3.4.zip
+	unzip bootstrap.zip
+	mv bootstrap-3.3.4 $@
+	rm bootstrap.zip
+	touch $@
 
 clean:
 	rm -rf build

@@ -1,21 +1,10 @@
 %head
-  %meta{:charset => 'utf-8'}
-  = google_webmaster_verification
+  %meta{charset: 'utf-8'}
 
-  %title
-    = site_title
+  %link{href: "http://www.michaelbarton.me.uk", rel: "author" }
 
-  -# Site feed
-  - if data.config[:site][:feed]
-    %link{ :href => data.config[:site][:feed], :rel => "alternate", :type => "application/rss+xml" }
+  %link{rel: "stylesheet", href: "/stylesheets/stylesheet.css" }
+  %script{src: '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'}
+  %script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
 
-  -# Specify author of the site
-  %link{:href => data.config[:author][:uri], :rel => "author" }
-
-  = stylesheets
-  = favicon
-  = scripts
-
-  -# HTML5 modernizer
-  / [if IE]
-    %script{:src => "http://html5shiv.googlecode.com/svn/trunk/html5.js"}
+  %meta{name: "viewport", content: "width=device-width, initial-scale=1"}

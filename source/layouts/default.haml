@@ -1,12 +1,10 @@
-!!!
 %html{ :lang => 'en' }
   = partial "header"
-  %body{:onload => "prettyPrint()" }
-    #wrapper
-      = partial "title"
-      #content
-        .hentry
-          = yield
-          = partial "footer"
-      = partial "sidebar"
-    = google_analytics data.config[:site][:analytics_token]
+  %body
+    .container
+      .site_title
+        = partial "title"
+      .page_title
+        = partial "page_title"
+      .content
+        = yield

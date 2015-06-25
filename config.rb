@@ -7,6 +7,11 @@ activate :s3_sync do |s3_sync|
   s3_sync.acl    = 'public-read'
 end
 
+activate :blog do |blog|
+  blog.permalink = "post/{short}/index.html"
+  blog.sources   = "content/:category/:short.html"
+end
+
 set :css_dir,      'stylesheets'
 set :js_dir,       'javascripts'
 set :images_dir,   'images'

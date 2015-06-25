@@ -1,0 +1,13 @@
+---
+  kind: article
+  title: Using sed to update text and images in the commandline
+  date: "2009-09-10 00:00 GMT"
+---
+
+In this video I'm illustrating how the spelling of the sulfur across text and
+image files can be maintained consistently using the command line program
+[sed][sed].
+
+<%= youtube 'd0TkCdqekS0', 'Using sed to update text and images in the commandline' %>
+
+[sed]: http://en.wikipedia.org/wiki/Sed

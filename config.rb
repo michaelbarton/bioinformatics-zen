@@ -26,5 +26,6 @@ end
 # silence i18n warning
 ::I18n.config.enforce_available_locales = false
 
-page "*", :layout => "layouts/default"
-page "/", :layout => "layouts/front-page"
+page "*",         :layout => "layouts/default"
+page "/",         :layout => "layouts/front-page"
+page "/atom.xml", :layout => false

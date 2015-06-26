@@ -4,9 +4,9 @@
     .container
       .site_title
         = partial "title"
-      .page_title
-        = partial "page_title"
-      .content
+      %article
+        %header
+          = partial "page_title"
         = yield
-      .footer
-        = partial "footer"
+        %footer
+          = partial "footer"

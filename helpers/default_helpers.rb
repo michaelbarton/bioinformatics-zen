@@ -5,7 +5,7 @@ module DefaultHelpers
   end
 
   def pretty_date(item)
-    Time.parse(item[:created_at]).strftime('%b %d %y')
+    Time.parse(item).strftime('%a %B %e %Y')
   end
 
 end

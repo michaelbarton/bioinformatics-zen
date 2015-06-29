@@ -7,5 +7,9 @@ module DefaultHelpers
   def pretty_date(item)
     Time.parse(item).strftime('%a %B %e %Y')
   end
+  
+  def articles_by_year
+    blog.articles.group_by {|a| a.date.year }
+  end
 
 end

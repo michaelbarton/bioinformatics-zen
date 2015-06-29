@@ -6,7 +6,7 @@
       .site_title
         = partial "title"
       %article
-        - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
+        - articles_by_year.each do |year, articles|
           %h2
             = year
           %ul

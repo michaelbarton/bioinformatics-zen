@@ -9,7 +9,8 @@
         - articles_by_year.each do |year, articles|
           %h2
             = year
-          %ul
+          %ul.index
             - articles.each do |article|
               %li
+                = "\u2022"
                 = link_to article.title, article.url

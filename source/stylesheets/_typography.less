@@ -29,11 +29,20 @@ h2 {
   padding-bottom: 1em;
 }
 
-p {
+p, ul {
   font-size: @font-size-base * 1.2;
   margin-bottom: 2em;
   line-height: 1.8;
   font-weight: 300;
   font-family: "Open Sans", "serif";
 
+}
+
+ul.index {
+  li {
+    list-style: none;
+    a:visited {
+     color:inherit;
+    }
+  }
 }

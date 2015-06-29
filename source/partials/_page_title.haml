@@ -1,6 +1,7 @@
 %h2
   = current_page.data.title
-%p
-  %time{pubdate: "pubdate"}
-    Published
-    = pretty_date(current_page.data.date)
+- if current_page.data.date
+  %p
+    %time{pubdate: "pubdate"}
+      Published
+      = pretty_date(current_page.data.date)

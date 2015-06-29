@@ -1,12 +1,12 @@
 --- 
-title: FAQ
+title: Frequently emailed questions
 ---
 
-## Can you give me a Bioinformatics PhD studentship or a job?
+### Can you give me a Bioinformatics PhD studentship or a job?
 
 No, I'm not a professor or a manager.
 
-## How can I find a PhD?
+### How can I find a PhD?
 
 Take a little time to apply to individual supervisors rather than spamming many
 researchers. Writing a generic cover letter and CV, then sending these to
@@ -23,7 +23,7 @@ you about their research. You could also email the supervisor, and ask if you
 can phone to talk about the project further. If you come across as a bright
 young researcher with a lot to offer, you'll definitely get their interest.
 
-## Should I pursue a further degree in bioinformatics, such as a masters?
+### Should I pursue a further degree in bioinformatics, such as a masters?
 
 This depends on how you feel, but for me I'm glad I did a masters. A year long
 course (in the UK) gave me a chance to learn programming, statistics and other
@@ -36,7 +36,7 @@ you're not already familiar. Doing an evening class or getting a good text book
 and practising at home will really help when you start on your research
 project. Furthermore make sure to learn the language used on the course.
 
-## What are the job prospects for finding a job with a masters?
+### What are the job prospects for finding a job with a masters?
 
 This is difficult question to answer because it varies depending on the skills
 of the individual versus the requirements of the job. One suggestion would be
@@ -55,7 +55,7 @@ any job, can still be very frustrating. One way to consider the investment in a
 masters is this: if you did the masters and found a job that was in field but
 did not initially pay a large salary would you still be happy you did it?
 
-## What are the job prospects for finding a job with a PhD?
+### What are the job prospects for finding a job with a PhD?
 
 I think there could be many opportunities for a post-doctoral position if you
 would like to pursue the PhD path. There are however limited numbers of tenured
@@ -65,7 +65,7 @@ doc after doing my PhD, and I found the job search very unpleasant. A PhD is
 however may be required to persue higher level positions, and some PhDs do make
 it all the way to become a professors.
 
-## Which programming language should I use?
+### Which programming language should I use?
 
 A simple answer would be Python. This language has become more and more popular
 in bioinformatics, and so will have an increasing biolibrary base, as well as a

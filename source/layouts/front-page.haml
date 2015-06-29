@@ -3,7 +3,14 @@
   = partial "header"
   %body
     .container
-      .main
-        .content
-          = partial "title"
-          Need front page template
+      .site_title
+        = partial "title"
+      %article
+        - articles_by_year.each do |year, articles|
+          %h2
+            = year
+          %ul.index
+            - articles.each do |article|
+              %li
+                = "\u2022"
+                = link_to article.title, article.url

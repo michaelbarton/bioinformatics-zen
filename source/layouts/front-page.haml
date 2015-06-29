@@ -3,7 +3,13 @@
   = partial "header"
   %body
     .container
-      .main
-        .content
-          = partial "title"
-          Need front page template
+      .site_title
+        = partial "title"
+      %article
+        - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
+          %h2
+            = year
+          %ul
+            - articles.each do |article|
+              %li
+                = link_to article.title, article.url

@@ -179,15 +179,13 @@ The importance of code testing is widely discussed, so I'm not going to go into
 detail. Validations however receive less attention, but I believe they can be
 very important in computational research. The majority of data in
 bioinformatics has been compiled by a script, and you can't be 100% sure that
-the data you're given is in the format you expect, or even that [you're not
-making mistakes yourself][3]. Validations are a really simple way of making
+the data you're given is in the format you expect, or even that you're not
+making mistakes yourself. Validations are a really simple way of making
 sure that the data is what you expect. Here's an simple one line validation
 that makes sure the DNA sequence is coding, by ensuring that it begins with a
 start codon, finishes with a stop codon, and contains only valid DNA sequence.
 I use this in the following method so that any sequences that don't match this
 criteria will print an error at the command line, when the data is loaded.
-
-[3]: http://www.michaelbarton.me.uk/research/2007/12/dirty-laundry-in-public/
 
 <%= highlight %>
     # Checks that the sequence has a start codon,

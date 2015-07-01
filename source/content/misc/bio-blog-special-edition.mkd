@@ -13,17 +13,17 @@ href="http://plindenbaum.blogspot.com/">Pierre Lindenbaum</a> and <a
 href="http://konradscons.blogspot.com/">Konrad Forstner</a>, who contributed 
 particularly large articles covering every aspect of being a bioinformatian.
 
-<a href="http://www.ghastlyfop.com/blog/">Euan Adie</a> (Stew) wrote about 
+<a href="https://twitter.com/stew">Euan Adie</a> (Stew) wrote about 
 revision control, creating applications and blogging. <a 
 href="http://scienceroll.com/">Bertalan MeskÃ³</a> sent in a list of genetic 
-disorder databases. <a href="http://nftb.net/">Roland Krause</a> offers tips on 
+disorder databases. <a href="https://twitter.com/spitshine">Roland Krause</a> offers tips on 
 managing and searching data sets. <a href="http://myfakeif.blogspot.com/">Ryan 
 Castillo</a> wrote about his experiences in bioinformatics. <a 
 href="http://paraschopra.com/blog/">Paras Chopra</a> offers advice for 
 undergraduates on how to use their summers. <a 
 href="http://pbeltrao.blogspot.com/">Pedro Beltrao</a>, editor of bio::blogs, 
 discusses the importance of keeping up to date on the literature. Also, <a 
-href="http://www.nodalpoint.org/user/duncan">Duncan Hull</a> whose observations 
+href="https://twitter.com/dullhunk">Duncan Hull</a> whose observations 
 I was unable to add due to lack of time and space (read: my poor organisational 
 skills)
 

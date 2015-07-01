@@ -42,8 +42,8 @@ in R.
 
 ### Converting a character vector to a binary variable
 
-I have the following vector from a [survey of bioinformaticians][survey] 
-describing whether each respondent is married or not.
+I have the following vector from a survey describing whether each respondent is
+married or not.
 
 <%= highlight %>
 married <- c("Yes","Yes","No","No","Yes","Yes","","No","Yes")
@@ -224,7 +224,6 @@ about R I'd recommend two good books: [The R Inferno PDF][inferno] or
 [hardcopy][] and [The Art of R Programming][art]. Both of these have a lot of 
 information about the "right" way to program in R.
 
-[survey]: http://bioinfsurvey.org
 [neil]: https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
 [inferno]: http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
 [hardcopy]: http://www.lulu.com/shop/patrick-burns/the-r-inferno/paperback/product-18809753.html

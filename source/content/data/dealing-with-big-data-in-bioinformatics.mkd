@@ -146,7 +146,7 @@ computer scientist or a software engineer, but a biologist and what I've
 outlined is what allowed to me to produce the results I need. I'd be happy to
 read any further suggestions in the comments though.
 
-[ar]: http://ar.rubyonrails.org/
+[ar]: http://guides.rubyonrails.org/active_record_querying.html
 [database]: /post/using-a-database/
 [ar_index]: http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#M001911
 [ree]: http://www.rubyenterpriseedition.com/
@@ -154,7 +154,7 @@ read any further suggestions in the comments though.
 [ruby19]: http://www.ruby-lang.org/en/news/2009/07/20/ruby-1-9-1-p243-released/
 [csv]: http://blog.grayproductions.net/articles/getting_code_ready_for_ruby_19
 [norm]: http://en.wikipedia.org/wiki/Database_normalization
-[merge]: http://rwiki.sciviews.org/doku.php?id=tips:data-frames:merge
+[merge]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/merge.html
 [premature]: http://fetter.org/optimization.html
 [batches]: http://archives.ryandaigle.com/articles/2009/2/23/what-s-new-in-edge-rails-batched-find
 [assoc]: http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations

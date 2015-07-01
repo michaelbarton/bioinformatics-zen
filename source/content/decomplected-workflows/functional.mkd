@@ -11,7 +11,7 @@ Makefiles can result in simple and reproducible workflows][make]. Here I'm
 going to outline simplifying workflows further by taking a functional approach
 to building them.
 
-[make]: /post/decomplected-workflows-makefiles/
+[make]: /post/makefiles/
 
 Functional programming is an alternative paradigm to imperative programming
 such as C or object orientated programming with Java. There are two concepts in

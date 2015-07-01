@@ -141,7 +141,7 @@ d_ply(crabs, .(sp, sex), something_else)
 
 Again this is an example of how one function can accept another function as an argument. Compare how concise this code is with the code a few paragraphs up which uses for loops to do the same thing. The plyr package has more functionality than this though and is worth spending some time looking at. Also worth checking out are the [foreach][foreach] and [iterators][iter] packages which provide similar functionality.
 
-[dry]: http://en.wikipedia.org/wiki/Don't_repeat_yourself
+[dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [cap]: http://en.wikipedia.org/wiki/Copy_and_paste_programming
 [hadly]: http://had.co.nz/
 [plyr]: http://plyr.had.co.nz/

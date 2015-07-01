@@ -119,7 +119,7 @@ are experienced in creating them.
 
 ### Further reading
 
- * [How to write maintainable code](http://seanskti.wordpress.com/2006/10/08/six-easy-tips-for-more-maintainable-code/)
+ * [How to write maintainable code](https://seanskti.wordpress.com/2006/10/08/six-easy-tips-for-more-maintainable-code/)
  * [Twelve steps to better code](http://www.joelonsoftware.com/articles/fog0000000043.html)
  * [Strategies for commenting code](http://particletree.com/features/successful-strategies-for-commenting-code/)
  * [Common types of bad design](http://sourcemaking.com/antipatterns/software-development-antipatterns)

@@ -225,7 +225,7 @@ about R I'd recommend two good books: [The R Inferno PDF][inferno] or
 information about the "right" way to program in R.
 
 [survey]: http://bioinfsurvey.org
-[neil]: http://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
+[neil]: https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
 [inferno]: http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
 [hardcopy]: http://www.lulu.com/shop/patrick-burns/the-r-inferno/paperback/product-18809753.html
 [art]: http://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843

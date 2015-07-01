@@ -1,8 +1,12 @@
+test: build Gemfile.lock 
+	  bundle exec htmlproof --check-html --href-ignore '#' $<
+
 build: Gemfile.lock
 	bundle exec middleman build --verbose
 
 dev: Gemfile.lock
 	bundle exec middleman server
+
 
 ########################################
 #

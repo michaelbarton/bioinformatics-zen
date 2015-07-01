@@ -8,3 +8,4 @@ gem "middleman-blog",       "~> 3.5.0"
 gem 'libv8',        '= 3.16.14.7' # Version 3.16.14.8 is broken on OSX
 gem 'therubyracer', '~> 0.12.0'
 gem 'less',         '~>  2.6.0'
+gem 'html-proofer', '~>  2.1.0'

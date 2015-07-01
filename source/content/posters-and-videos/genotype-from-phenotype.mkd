@@ -27,14 +27,13 @@ I usually get started by on a new poster by searching the posters section on
 [Deviant Art](http://www.deviantart.com/) around a theme I am interested in. In
 this case I felt like going for ["Grunge Minimalism."][search] There's plenty
 of inspiration to be found on deviant art when searching for different themes
-and I was particularly inspired by the [Alice in Wonderland poster by
-daveforyou][alice]. You can see similarities in the lines and colours between
+and I was particularly inspired by an Alice in Wonderland poster from deviant art (no longer available). You can see similarities in the lines and colours between
 this poster and how I ended up designing mine.
 
 <%= image 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/alice_poster_by_daveforyou-d3j2iy5.jpeg', 'Minimalist grundge style poster for alice in Wonderland', 320, :link => 'http://daveforyou.deviantart.com/gallery/#/d3j2iy5' %>
 
 [search]: http://browse.deviantart.com/?qh=&section=&q=minimalism+grunge
-[alice]: http://daveforyou.deviantart.com/gallery/#/d3j2iy5
+[alice]: http://daveforyou.deviantart.com/
 
 ## Planning
 

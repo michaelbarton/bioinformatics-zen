@@ -1,5 +1,18 @@
 module DefaultHelpers
 
+  def youtube(id)
+    url = "https://www.youtube.com/embed/#{id}?"
+    params = {
+      enablejsapi: 1,
+      origin: "http://bioinformaticszen.com",
+      hd: 1,
+      rel: 0,
+      autohide: 1,
+      showinfo: 1 
+    }
+    url + params.map{|k, v| "#{k}=#{v}" }.join("&")
+  end
+
   def amzn(file)
     File.join "http://s3.amazonaws.com/bioinformatics-zen/", file
   end

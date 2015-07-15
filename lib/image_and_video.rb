@@ -6,10 +6,6 @@ def image(url,alt,width=400,options={})
   </div>"
 end
 
-def youtube(video,title="YouTube")
-  "<a href='http://www.youtube.com/watch?v=#{video}&amp;hd=1' id='lightbox_youtube' title='#{title}'><img src='http://img.youtube.com/vi/#{video}/0.jpg' alt='#{title}'/></a>"
-end
-
 def lightbox(image, thumbnail, alt, width=320)
   "<div class='centred'>
       <a id='lightbox_image' href='#{urlify(image)}'>

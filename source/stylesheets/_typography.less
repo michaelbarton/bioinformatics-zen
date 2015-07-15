@@ -1,13 +1,28 @@
 @import '_global_settings';
 
-body {
+@nav-colour: #F8F8F8;
+
+html, body {
   color: #444;
+  height: 100%;
 }
 
-footer {
-  padding-top: 2em;
+.container {
+  padding-bottom: 50px;
+}
+
+.navbar {
+  background-color: @nav-colour;
+  box-shadow: 0 0 2px grey;
+  border-radius: 0px;
+}
+
+.footer {
+  padding-top: 1em;
   padding-bottom: 2em;
-  background: #eee;
+  box-shadow: 0 0 3px 0 grey;
+  background: @nav-colour;
+  text-align: center;
 }
 
 h1 {
@@ -47,8 +62,3 @@ ul.index {
   }
 }
 
-.navbar {
-  background-color: #F8F8F8;
-  box-shadow: 0 0 2px grey;
-  border-radius: 0px;
-}

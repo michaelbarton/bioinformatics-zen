@@ -54,32 +54,32 @@ Ruby class. The name of the class (Gene) corresponds to the table (genes). The
 properties (name \& sequence) correspond to columns in the table, and get/set
 methods for the object.
 
-<%= highlight %>
-    class Gene < DataMapper::Base
-      property :name,      :string
-      property :sequence,  :text
-    end
-<%= endhighlight %>
+``` ruby
+class Gene < DataMapper::Base
+  property :name,      :string
+  property :sequence,  :text
+end
+```
 
 Using this class, data can be manipulated using object oriented programming,
 making the code more readable. Even if you're not familiar with Ruby I think
 the below code is simple and easy to understand, which would not necessarily be
 the case for hard-coded SQL statements.
 
-<%= highlight %>
-    # Create object using accessors
-    gene = Gene.new
-    gene.name = 'ALS2'
-    gene.sequence = 'ATG...'
-    gene.save!
+``` ruby
+# Create object using accessors
+gene = Gene.new
+gene.name = 'ALS2'
+gene.sequence = 'ATG...'
+gene.save!
 
-    # Search and get an array of
-    # records matching a specific criteria
-    genes = Gene.all( :name => 'ALS2' )
+# Search and get an array of
+# records matching a specific criteria
+genes = Gene.all( :name => 'ALS2' )
 
-    # Delete the first record in this array
-    genes.first.destroy!
-<%= endhighlight %>
+# Delete the first record in this array
+genes.first.destroy!
+```
 
 #### Use make-type files instead of scripts
 
@@ -92,29 +92,29 @@ created an example set of analyses where instead of each being a script they
 are instead a task in the Rake file.
 
 
-<%= highlight %>
-    desc 'Delete all exiting rows'
-    task :delete\_sequences do
-      # Clear the sequence table
-    end
+``` ruby
+desc 'Delete all exiting rows'
+task :delete\_sequences do
+  # Clear the sequence table
+end
 
-    desc 'Load protein sequences into the databases'
-    task :load\_sequences =&gt; :delete\_sequences do
-      # Load a set of DNA sequences into my database
-    end
+desc 'Load protein sequences into the databases'
+task :load\_sequences =&gt; :delete\_sequences do
+  # Load a set of DNA sequences into my database
+end
 
-    desc 'Calculates statistics for gene sequences'
-    task :sequence\_stats do
-      # Calculate sequence mean and SD.
-    end
+desc 'Calculates statistics for gene sequences'
+task :sequence\_stats do
+  # Calculate sequence mean and SD.
+end
 
-    desc 'Reset project and repeat all analysis'
-    task :rebuild =&gt; [
-     :delete\_sequences,
-     :load\_sequences,
-     :sequence\_stats]
-    end
-<%= endhighlight %>
+desc 'Reset project and repeat all analysis'
+task :rebuild =&gt; [
+ :delete\_sequences,
+ :load\_sequences,
+ :sequence\_stats]
+end
+```
 
 As the example shows, the characteristic of a Rake file is a set of named tasks
 that each perform an action. Within these tasks any valid Ruby code can be
@@ -132,12 +132,12 @@ This is a handy way of keeping track of what all the tasks in your project are
 doing. This would also be useful for anyone else who was looking at your
 project.
 
-<%= highlight %>
-    rake :rebuild
-    rake :delete\_sequences
-    rake :load\_sequences
-    rake :sequence\_stats
-<%= endhighlight %>
+``` ruby
+rake :rebuild
+rake :delete\_sequences
+rake :load\_sequences
+rake :sequence\_stats
+```
 
 #### Keep data code in models, and analysis code in tasks
 
@@ -154,24 +154,24 @@ data is in the rake task.
 
 ##### gene.rb
 
-<%= highlight %>
-    def self.mean\_length
-       genes = Gene.find(:all)
-       lengths = genes.map{|gene| gene.sequence.length}
-       lengths.to\_statarray.mean
-    end
-<%= endhighlight %>
+``` ruby
+def self.mean\_length
+   genes = Gene.find(:all)
+   lengths = genes.map{|gene| gene.sequence.length}
+   lengths.to\_statarray.mean
+end
+```
 
 ##### analysis.rake
 
-<%= highlight %>
-    desc 'Calculates statistics for gene sequences'
-    task :sequence\_stats do
-      File.open('results.txt','w') do |file|
-        file.puts "Mean length : #{ Gene.mean\_length }"
-      end
-    end
-<%= endhighlight %>
+``` ruby
+desc 'Calculates statistics for gene sequences'
+task :sequence\_stats do
+  File.open('results.txt','w') do |file|
+    file.puts "Mean length : #{ Gene.mean\_length }"
+  end
+end
+```
 
 #### Use testing and validations
 
@@ -187,28 +187,28 @@ start codon, finishes with a stop codon, and contains only valid DNA sequence.
 I use this in the following method so that any sequences that don't match this
 criteria will print an error at the command line, when the data is loaded.
 
-<%= highlight %>
-    # Checks that the sequence has a start codon,
-    # a stop codon, and contains only ATGCs
-    # and line breaks
-    validates\_format\_of :sequence,
-      :with => /^ATG[ATGC\n]+(TAG|TAA|TGA)$/im
+``` ruby
+# Checks that the sequence has a start codon,
+# a stop codon, and contains only ATGCs
+# and line breaks
+validates\_format\_of :sequence,
+  :with => /^ATG[ATGC\n]+(TAG|TAA|TGA)$/im
 
-    def self.create\_from\_flatfile(entry)
+def self.create\_from\_flatfile(entry)
 
-      gene = Gene.new
-      gene.name = entry.definition.split(/\s+/).first
-      gene.sequence = entry.data
+  gene = Gene.new
+  gene.name = entry.definition.split(/\s+/).first
+  gene.sequence = entry.data
 
-      if gene.valid?
-        gene.save!
-      else
-        puts "#{gene.name} is not valid sequence "
-        # Could raise an error here instead
-        # Or even better write to an error log
-      end
-    end
-<%= endhighlight %>
+  if gene.valid?
+    gene.save!
+  else
+    puts "#{gene.name} is not valid sequence "
+    # Could raise an error here instead
+    # Or even better write to an error log
+  end
+end
+```
 
 #### Summary
 

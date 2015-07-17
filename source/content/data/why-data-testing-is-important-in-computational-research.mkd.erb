@@ -19,7 +19,7 @@ methods. The first counts the number of cysteine amino acid residues in a
 protein sequence and the second returns the mean number of cysteines
 per-residue.
 
-<%= highlight %>
+``` ruby
 module CysteineStatistics
 
   def n_cys
@@ -36,13 +36,13 @@ class String
   include CysteineStatistics
 end
 
-<%= endhighlight %>
+```
 
 These two methods are mixed into the String class to give me the required
 functionality. As I want to be sure my code is doing what I want I'll write
 some test cases.
 
-<%= highlight %>
+``` ruby
 class TestCysteineStatistics &lt; Test::Unit::TestCase
 
   def test_n_cysteines
@@ -56,25 +56,25 @@ class TestCysteineStatistics &lt; Test::Unit::TestCase
   end
 
 end
-<%= endhighlight %>
+```
 
 Both these tests pass though so I feel confident my code is doing what I
 expect. Given that my code works I start to analyse a real set of protein
 sequences.
 
-<%= highlight %>
+``` ruby
 # Read in each sequence, then print out the average number of cysteines
 CSV.open(out_file,'w') do |csv|
   CSV.open(in_file,'r') {|row| csv &lt;&lt; [row[0], row[1].avg_cys]}
 end
-<%= endhighlight %>
+```
 
 Which gives me a file containing average cysteine count for all my protein
 sequences. My next step may be to correlate these values with some structural
 stability measure as part of my research. However if I did this I would be
 wrong. Here's why.
 
-<%= highlight %>
+``` ruby
 class TestCysteineStatistics &lt; Test::Unit::TestCase
 
   # A shortcut method to find the entry in the data file
@@ -93,9 +93,9 @@ class TestCysteineStatistics &lt; Test::Unit::TestCase
   end
 
 end
-<%= endhighlight %>
+```
 
-<%= highlight %>
+```
 Loaded suite test_data
 Started
 FF
@@ -112,7 +112,7 @@ test_avg_cysteines_for_3(TestCysteineStatistics) [test_data.rb:15]:
 &lt;0.0388349514563107&gt;.
 
 2 tests, 2 assertions, 2 failures, 0 errors
-<%= endhighlight %>
+```
 
 
 Here I created a second test suite to take two proteins from my calculated data
@@ -126,16 +126,16 @@ what I want. Nevertheless, the error however creeps in because the translated
 stop codons are included in the analysed protein sequence. So I think my
 proteins sequence looks like this:
 
-<%= highlight %>
+```
 AMTWVCVLI
-<%= endhighlight %>
+```
 
 When each protein sequence contains a '*' character at the end and is actually
 n+1 residues in length and looks like this:
 
-<%= highlight %>
+```
 AMTWVCVLI*
-<%= endhighlight %>
+```
 
 This would meant all of my calculations were off by 1 and the degree of my
 error would be inversely proportional to the length of each examined sequence.

@@ -30,7 +30,7 @@ other generating a read composed of two origins. An additional rarer problem is
 PCR infidelity where base changes are introduced during the amplification
 process.
 
-As the use of marker-based approaches increases, many articles are highlighting
+``` R
 the need to identify and remove these poor quality reads. Not doing so can
 produce results biased by a large number of false positives leading to
 artefactually inflated diversity. If you are interested in the literature on
@@ -38,7 +38,7 @@ this topic [my citeulike page has some articles bookmarked][bookmark].
 
 [bookmark]: http://www.citeulike.org/user/michaelbarton/tag/16s
 
-I'm going to highlight one particular article: [Reducing the Effects of PCR
+``` R
 Amplification and Sequencing Artefacts on 16S rRNA-Based Studies][article] by
 Patrick D. Schloss, Dirk Gevers and Sarah L. Westcott. Part of this article
 focuses on identifying inaccurate reads based on features of the reads. These
@@ -106,7 +106,7 @@ examined if the average quality score of a 50bp sliding window dropped below 35
 and if there were homopolymers of any type greater than 8bp. In R this
 rule-based classifier might look as follows:
 
-<%= highlight %>
+``` R
 with(data,{
   prediction <- rep(0,length(bad.read))
   prediction[homop_ATGC > 8]     <- 1
@@ -114,7 +114,7 @@ with(data,{
 
   print.score("heuristic",prediction,bad.read)
 })
-<%= endhighlight %>
+```
 
 The result of the `print.score` function are the following metrics:
 
@@ -158,7 +158,7 @@ an elastic net generalised logistic regression. This combines both L1 and L2
 normalisation to penalise model coefficients with the aim of preventing model
 overfitting.
 
-<%= highlight %>
+``` R
 require('glmnet')
 
 x <- as.matrix(data[,!(names(data) %in% c('read','bad.read'))])
@@ -169,7 +169,7 @@ lambda  <- cv.glmnet(x,y,family=c("binomial"))$lambda.min
 predict <- predict.logit(predict(model, newx=x, s=lambda))
 
 print.score("logistic",predict,y)
-<%= endhighlight %>
+```
 
 <table>
   <tr>
@@ -227,7 +227,7 @@ machine learning. A random forest contains many individual decision trees each
 trained with a subset of the data and features. The predicted output is the
 modal average of all the forest classifiers.
 
-<%= highlight %>
+``` R
 require('randomForest')
 
 rf <- randomForest(y=factor(data$bad.read),
@@ -236,7 +236,7 @@ rf <- randomForest(y=factor(data$bad.read),
 predict <- as.numeric(predict(rf)) - 1
 
 print.score("random_forest",predict,data$bad.read)
-<%= endhighlight %>
+```
 
 <table>
   <tr>
@@ -288,7 +288,7 @@ best of both worlds. I therefore created an ensemble classifier based on the
 random forest and logistic regression classifiers above. The results of this
 are as follows:
 
-<%= highlight %>
+``` R
 require('randomForest')
 require('glmnet')
 
@@ -320,7 +320,7 @@ opt.weight <- weight[which(scores == max(scores))]
 prediction <- weighted.predictions(opt.weight,rf.pred,glm.pred)
 
 print.score("ensemble",prediction,data$bad.read)
-<%= endhighlight %>
+```
 
 <table>
   <tr>

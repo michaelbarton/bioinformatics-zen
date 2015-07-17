@@ -28,14 +28,14 @@ commands. An example Makefile looks like this:
 
 [make]: http://www.gnu.org/software/make/
 
-<%= highlight %>
+```
 two.txt: one.txt
     # Command line steps to create 'two.txt' using 'one.txt'
 
 one.txt:
     # Command line steps to create 'one.txt'
     # Multiple lines of shell commands can be used.
-<%= endhighlight %>
+```
 
 Each target is described on the unindented lines. The name of the created file
 comes before the colon ':' and the dependencies needed to create this file come
@@ -92,10 +92,10 @@ I'll outline in the next section.
 Any file can be a dependency to a Make target, including the script doing the
 data processing. For example, consider the example Makefile target:
 
-<%= highlight %>
+```
 output.txt: bin/analyse input.txt
     $^ > $@
-<%= endhighlight %>
+```
 
 The target is a file called `output.txt` which requires two dependencies:
 `bin/analyse` and `input.txt`. The target code takes advantage of Makefile
@@ -103,10 +103,10 @@ macros, which simplify writing targets. In this case `$^` expands to the list
 of dependencies and `$@` expands to the target file. This is therefore similar
 to writing:
 
-<%= highlight %>
+```
 output.txt: bin/analyse input.txt
     bin/analyse input.txt > output.txt
-<%= endhighlight %>
+```
 
 The advantage of making `bin/analyse` as a target dependency is that whenever
 this file is edited this step and any downstream steps will be regenerated when
@@ -121,7 +121,7 @@ requirement.
 
 Consider this example Makefile with three targets:
 
-<%= highlight %>
+```
 all: prot001.txt prot0002.txt prot003.txt
 
 %.txt: ./bin/intensive_operation %.fasta
@@ -129,7 +129,7 @@ all: prot001.txt prot0002.txt prot003.txt
 
 %.fasta:
     curl database.example.com/$* > $@
-<%= endhighlight %>
+```
 
 Here the target `all` depends on the files: `prot00[1-3].txt`. This target
 however defines no code to create them. Furthermore in the following lines
@@ -139,13 +139,13 @@ are tasks to generate files based on two file type extensions: `.txt` or
 expanded to create targets for files that match the extensions. For instance
 the following steps would be executed to generate `prot001.txt`.
 
-<%= highlight %>
+```
 prot001.txt: ./bin/intensive_operation prot001.fasta
     ./bin/intensive_operation prot001.fasta > prot001.txt
 
 prot001.fasta:
     curl database.example.com/prot001 > prot001.fasta
-<%= endhighlight %>
+```
 
 This wild card % target specification allows the process to be abstracted out
 independently of individual files. Generalised targets are instead created for
@@ -155,7 +155,7 @@ means you can specify additional files to be generated in the `all` task
 without changing the rest of the workflow. Idiomatically, I would use a
 variable named `objects` to specify the output I am interested in.
 
-<%= highlight %>
+```
 objects = prot001.txt prot002.txt prot003.txt
 
 all: $(objects)
@@ -165,7 +165,7 @@ all: $(objects)
 
 %.fasta:
     curl http://database.example.com/$* > $@
-<%= endhighlight %>
+```
 
 You could go even further than this however and move the list of target files
 to a separate file and read their names in as a dependency. This would mean you
@@ -179,9 +179,9 @@ Bigger data sets require more time to process and taking advantage of
 multi-core processors is a cheap way to reduce this. Given the Makefile I
 outlined in the previous section I can invoke `make` as follows.
 
-<%= highlight %>
+```
 make -j 4
-<%= endhighlight %>
+```
 
 As I defined my targets above by abstracting out the process based on file
 extension each target step can be run independently. Therefore Make can use a

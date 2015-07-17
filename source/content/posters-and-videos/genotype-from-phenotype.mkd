@@ -73,7 +73,7 @@ the converted images.
 'http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/layout_thumb.png',
 'Basic poster layout.') %>
 
-[convert]: http://inkscape.org/doc/tracing/tutorial-tracing.html
+[convert]: https://inkscape.org/en/doc/tracing/tutorial-tracing.html
 
 ## Colours
 

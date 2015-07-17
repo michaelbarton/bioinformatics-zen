@@ -60,5 +60,5 @@ projects easier to manage, maintain, and repeat.
 [ant]: http://ant.apache.org/
 [rake]: http://rake.rubyforge.org/
 [biorake]: http://github.com/jandot/biorake/tree/master
-[cap]: http://www.capify.org/
+[cap]: http://capistranorb.com/
 [Perl]: http://www.bioperl.org/wiki/Main_Page

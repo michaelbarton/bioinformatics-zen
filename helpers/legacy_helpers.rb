@@ -10,7 +10,7 @@ module LegacyHelpers
 
   def lightbox(image, thumbnail, alt, width=320)
     "<div class='centred'>
-        <a id='lightbox_image' href='#{image}'>
+        <a data-toggle='lightbox' href='#{image}'>
           <img src='#{thumbnail}' width='#{width}' alt='#{alt}' />
         </a>
     </div>"

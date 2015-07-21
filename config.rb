@@ -13,7 +13,7 @@ activate :blog do |blog|
 end
 
 set :css_dir,      'stylesheets'
-set :js_dir,       'javascripts'
+set :js_dir,       'javascript'
 set :images_dir,   'images'
 set :partials_dir, 'partials'
 
@@ -21,6 +21,10 @@ configure :build do
   activate :minify_css
   activate :minify_javascript
   activate :asset_hash
+end
+
+after_configuration do
+	sprockets.append_path File.join(root, "vendor")
 end
 
 # silence i18n warning

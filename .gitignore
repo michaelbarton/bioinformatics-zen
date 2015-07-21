@@ -1,8 +1,5 @@
 build
-.sass-cache
-config.yaml
-crash.log
 .bundle
 vendor
-.aws_credentials
-tmp
+Gemfile.lock
+source/stylesheets/_*.css

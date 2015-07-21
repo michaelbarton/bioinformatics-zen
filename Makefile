@@ -14,10 +14,15 @@ dev: Gemfile.lock
 #
 ########################################
 
-bootstrap: Gemfile.lock vendor/bootstrap
+bootstrap: Gemfile.lock vendor/bootstrap vendor/fancybox vendor/javascripts
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle
+
+vendor/javascripts: vendor/fancybox
+	mkdir -p $@
+	cp ./vendor/fancybox/fancybox/jquery.fancybox-1.3.4.pack.js $@/fancybox.min.js
+	touch $@
 
 vendor/bootstrap:
 	mkdir -p vendor
@@ -28,6 +33,17 @@ vendor/bootstrap:
 	unzip bootstrap.zip
 	mv bootstrap-3.3.4 $@
 	rm bootstrap.zip
+	touch $@
+
+vendor/fancybox:
+	mkdir -p vendor
+	wget \
+	  --quiet \
+	  --output-document fancybox.zip \
+	  http://fancybox.googlecode.com/files/jquery.fancybox-1.3.4.zip
+	unzip fancybox.zip
+	mv jquery.fancybox-1.3.4 $@
+	rm fancybox.zip
 	touch $@
 
 clean:

@@ -20,7 +20,7 @@ measurements from 200 crabs. These measurements are:
 
 The first rows of these data can be seen as follows:
 
-<%= highlight %>
+``` R
 R> library(MASS)
 R> data(crabs)
 R> head(crabs)
@@ -32,7 +32,7 @@ R> head(crabs)
 4  B   M     4  9.6 7.9 20.1 23.1 8.2
 5  B   M     5  9.8 8.0 20.3 23.0 8.2
 6  B   M     6 10.8 9.0 23.0 26.5 9.8
-<%= endhighlight %>
+```
 
 Each row contains the species of the crab (Blue/Orange), the crab sex
 (Male/Female), the row index and the five measured morphological
@@ -59,7 +59,7 @@ I'll begin by using R to calculate the PCA on the crab data. I'll then attach
 the first three components to the original crab data so that they can be
 compared. 
 
-<%= highlight %>
+``` R
 # Perform PCA on the data
 # retx returns the principal component weights for each crab
 R> crab.pca <- prcomp(crabs[,4:8],retx=TRUE)
@@ -77,7 +77,7 @@ R> head(crabs)
 4 Blue Male     4  9.6 7.9 20.1 23.1 8.2 -20.34 -0.8358 -0.21830
 5 Blue Male     5  9.8 8.0 20.3 23.0 8.2 -20.21 -0.6955 -0.36252
 6 Blue Male     6 10.8 9.0 23.0 26.5 9.8 -15.34 -0.7950 -0.08414
-<%= endhighlight %>
+```
 
 The column `PC1`is the first component, and so forth. Each row shows the value
 each crab is given in each component e.g. the weight for the first crab in the
@@ -86,7 +86,7 @@ component is -0.3364. In addition to each of the crabs (observations) having PCA
 weights, the variables also have weights. These can be observed in the
 `rotations` part of the returned PCA object.
 
-<%= highlight %>
+``` R
 R> head(crab.pca$rotation)
      PC1     PC2     PC3     PC4     PC5
 FL   0.2890  0.3233 -0.5072  0.7343  0.1249
@@ -94,7 +94,7 @@ RW   0.1973  0.8647  0.4141 -0.1483 -0.1409
 CL   0.5994 -0.1982 -0.1753 -0.1436 -0.7417
 CW   0.6617 -0.2880  0.4914  0.1256  0.4712
 BD   0.2837  0.1598 -0.5469 -0.6344  0.4387
-<%= endhighlight %>
+```
 
 A common application for PCA is to discriminate your data into partitions based
 on the underlying structure in the data. I can use the components to spread and
@@ -136,7 +136,7 @@ distribution of this ratio.
 <%= image(amzn('/principal_components_analysis/third_component_density.png'),'') %>
 
 Two more overlapping but obvious distributions, so it appears that the third
-component highlights a discriminating effect based on the ratio of body depth
+``` R
 to carapace width. As I wrote, PCA can be used to discriminate based on the
 underlying trends in the data. I can therefore plot the distribution of crabs
 based on these two derived ratios, which produces this figure.
@@ -144,7 +144,7 @@ based on these two derived ratios, which produces this figure.
 <%= image(amzn('/principal_components_analysis/morphology.png'),'') %>
 
 I coloured the crabs based on their species and used different point types to
-further highlight gender. Looking at this plot, I think you can see a
+``` R
 biological relationship from the second and third principal components.
 
 The x-axis, which we derived from the second component, appears to be related

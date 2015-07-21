@@ -14,10 +14,34 @@ dev: Gemfile.lock
 #
 ########################################
 
-bootstrap: Gemfile.lock vendor/bootstrap
+bootstrap: Gemfile.lock \
+	vendor/bootstrap \
+	vendor/stylesheets \
+	vendor/javascripts/ekko-lightbox.min.js \
+	vendor/javascripts/bootstrap.min.js
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle
+
+vendor/stylesheets:
+	mkdir -p $@
+	wget \
+		--quiet \
+		--output-document $@/ekko-lightbox.min.css \
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
+	touch $@
+
+vendor/javascripts/bootstrap.min.js:
+	mkdir -p $(dir $@)
+	cp ./vendor/bootstrap/dist/js/bootstrap.min.js $@
+
+vendor/javascripts/ekko-lightbox.min.js:
+	mkdir -p $(dir $@)
+	wget \
+		--quiet \
+		--output-document $@ \
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.js
+	touch $@
 
 vendor/bootstrap:
 	mkdir -p vendor
@@ -28,6 +52,17 @@ vendor/bootstrap:
 	unzip bootstrap.zip
 	mv bootstrap-3.3.4 $@
 	rm bootstrap.zip
+	touch $@
+
+vendor/fancybox:
+	mkdir -p vendor
+	wget \
+	  --quiet \
+	  --output-document fancybox.zip \
+	  https://github.com/fancyapps/fancyBox/zipball/v2.1.5
+	unzip fancybox.zip
+	mv fancyapps-fancyBox-* $@
+	rm fancybox.zip
 	touch $@
 
 clean:

@@ -14,14 +14,33 @@ dev: Gemfile.lock
 #
 ########################################
 
-bootstrap: Gemfile.lock vendor/bootstrap vendor/fancybox vendor/javascripts
+bootstrap: Gemfile.lock \
+	vendor/bootstrap \
+	vendor/stylesheets \
+	vendor/javascripts/ekko-lightbox.min.js \
+	vendor/javascripts/bootstrap.min.js
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle
 
-vendor/javascripts: vendor/fancybox
+vendor/stylesheets:
 	mkdir -p $@
-	cp ./vendor/fancybox/fancybox/jquery.fancybox-1.3.4.pack.js $@/fancybox.min.js
+	wget \
+		--quiet \
+		--output-document $@/ekko-lightbox.min.css \
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
+	touch $@
+
+vendor/javascripts/bootstrap.min.js:
+	mkdir -p $(dir $@)
+	cp ./vendor/bootstrap/dist/js/bootstrap.min.js $@
+
+vendor/javascripts/ekko-lightbox.min.js:
+	mkdir -p $(dir $@)
+	wget \
+		--quiet \
+		--output-document $@ \
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.js
 	touch $@
 
 vendor/bootstrap:
@@ -40,9 +59,9 @@ vendor/fancybox:
 	wget \
 	  --quiet \
 	  --output-document fancybox.zip \
-	  http://fancybox.googlecode.com/files/jquery.fancybox-1.3.4.zip
+	  https://github.com/fancyapps/fancyBox/zipball/v2.1.5
 	unzip fancybox.zip
-	mv jquery.fancybox-1.3.4 $@
+	mv fancyapps-fancyBox-* $@
 	rm fancybox.zip
 	touch $@
 

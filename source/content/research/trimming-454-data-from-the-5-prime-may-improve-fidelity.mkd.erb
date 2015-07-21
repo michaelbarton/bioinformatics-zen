@@ -59,7 +59,7 @@ with the resulting number of matches.
 
 [quince]: http://www.ncbi.nlm.nih.gov/pubmed/19668203
 
-``` bash
+~~~ bash
 fastx_trimmer -l 100 -i SRX002564.community.tab -o trim100.fasta
 
 grep --invert-match '>' trim100.fasta \
@@ -69,7 +69,7 @@ grep --invert-match '>' trim100.fasta \
   | tr "\\n" " "
 
 #=> 1609 1543 1024 14 5 5 4 4 3 3 2 2 2 2 1 1 0 0 0 0 0 0 0 
-```
+~~~
 
 This shows a large variance in the number of reads matching a mock community
 sequence substring. There are 3 with &gt;1000 matching reads while the
@@ -78,7 +78,7 @@ couple of the community sequence reads individually. This is illustrated below
 where the community sequence is shown in the top row and generated reads after
 removal of the primer are shown in the rows below.
 
-```
+~~~
 >8                      CTA-ACGATGA-TACTCGAT
 >SRR013437.14   tccacacc...A.......A........
 >SRR013437.627  tccacacc...A.......A........
@@ -92,7 +92,7 @@ removal of the primer are shown in the rows below.
 >SRR013437.433  tccac.......A...............
 >SRR013437.542  tccac.......A...............
 >SRR013437.661  tccac.......A...............
-```
+~~~
 
 This highlights that, for two of these mock community sequences, there appear
 to be insertions in the 5' ends of the most abundant reads. These differences
@@ -100,7 +100,7 @@ prevent exact substring matches to the mock community sequence. I considered if
 this was the case for the for further downstream sequence by repeating this
 process with a 100bp substring 50bp downstream from the 5' end.
 
-```
+~~~ bash
 fastx_trimmer -f 50 -l 150 \
   -i SRX002564.community.tab \
   -o trim50_150.fasta
@@ -113,7 +113,7 @@ grep --invert-match '>' trim50_150.fasta \
 
 #=> 2273 2229 1943 1873 1802 1795 1774 1701 1692 1677 1670
 #   1628 1596 1573 1545 1522 1446 1442 1399 1356 935 635 548 
-```
+~~~
 
 This shows that using a substring 50bp further downstream finds a larger number
 of exact matches in the reads. The following figure compares the difference in

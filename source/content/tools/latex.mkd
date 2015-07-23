@@ -84,7 +84,7 @@ found on [Andrew Robert's website][latex_citations].
 <object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/jvh_2EQ1iwM&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/jvh_2EQ1iwM&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
 <p/>
 
-[thesis]: http://bit.ly/lBZs
+[thesis]: http://tex.stackexchange.com/questions/326/latex-templates-for-writing-a-thesis
 [table]: http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/
 [subfig]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
 [replace]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/

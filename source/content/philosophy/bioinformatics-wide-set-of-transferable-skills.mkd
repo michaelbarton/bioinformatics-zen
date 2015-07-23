@@ -38,7 +38,7 @@ in programmers.
 Computational biologists are more than simply a programmer who works in
 a a biology department though. Developing *in silico* hypotheses requires
 storing, manipulating and analysing biological data. Recent years have seen
-the amount of this data [increase and increase][deluge]. Therefore
+the amount of this data increase and increase. Therefore
 data-munging skills, the bread and butter of a bioinformatician, will be
 attractive to companies. Particularly those dealing with ["Big Data."][big]
 
@@ -84,7 +84,6 @@ decide your career lies elsewhere.
 [hiring]: https://gist.github.com/6443
 [clever-algorithms]: http://www.cleveralgorithms.com/
 [scripting]: http://memeburn.com/2011/07/the-future-of-wordpress-qa-with-founder-matt-mullenweg/
-[deluge]: http://www.google.com/search?q=data+deluge
 [motivate]: http://www.youtube.com/watch?v=u6XAPnuFjJc
 [clojure]: http://clojure.org/
 [big]: http://www.nature.com/news/specials/bigdata/index.html

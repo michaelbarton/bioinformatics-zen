@@ -21,7 +21,7 @@ managing and searching data sets. <a href="http://myfakeif.blogspot.com/">Ryan
 Castillo</a> wrote about his experiences in bioinformatics. <a 
 href="http://paraschopra.com/blog/">Paras Chopra</a> offers advice for 
 undergraduates on how to use their summers. <a 
-href="http://pbeltrao.blogspot.com/">Pedro Beltrao</a>, editor of bio::blogs, 
+href="http://www.evocellnet.com/p/research.html">Pedro Beltrao</a>, editor of bio::blogs, 
 discusses the importance of keeping up to date on the literature. Also, <a 
 href="https://twitter.com/dullhunk">Duncan Hull</a> whose observations 
 I was unable to add due to lack of time and space (read: my poor organisational 

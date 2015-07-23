@@ -54,8 +54,8 @@ Vim plugin. This gives Vim all the functionality to rival any IDE.
 
 [eclipse]: http://www.eclipse.org/
 [netbeans]: http://www.netbeans.org/
-[snippets]: http://www.vim.org/scripts/script.php?script_id=1318
-[nerd]: http://www.vim.org/scripts/script.php?script_id=1658
-[fuzzy]: http://www.vim.org/scripts/script.php?script_id=1984
-[latex]: http://vim-latex.sourceforge.net/
-[rails]: http://www.vim.org/scripts/script.php?script_id=1567
+[snippets]: https://github.com/honza/vim-snippets
+[nerd]: https://github.com/scrooloose/nerdtree
+[fuzzy]: https://github.com/junegunn/fzf
+[latex]: https://github.com/lervag/vimtex
+[rails]: https://github.com/tpope/vim-rails

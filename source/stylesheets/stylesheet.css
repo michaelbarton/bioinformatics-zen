@@ -2,7 +2,7 @@
  * = require _global_settings
  * = require _grid
  * = require _typography
- * = require _prettify
+ * = require _highlight.min
  * = require stylesheets/ekko-lightbox.min.css
  * = require _images
  */

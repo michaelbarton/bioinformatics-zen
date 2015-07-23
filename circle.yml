@@ -3,6 +3,8 @@ machine:
     version: 2.2.1
 
 dependencies:
+  pre:
+    - sudo apt-get update && sudo apt-get install --reinstall ca-certificates
   override:
     - script/bootstrap
   cache_directories:

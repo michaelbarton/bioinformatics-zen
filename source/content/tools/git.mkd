@@ -67,7 +67,7 @@ compared, or visualised as a network.
 [history]: http://en.wikipedia.org/wiki/Git_(software)#History
 [gh]: https://www.github.com
 [git]: http://git-scm.com/
-[video]: http://schacon.github.com/2008/06/02/railsconf-git-talk.html
+[video]: http://schacon.github.io/2008/06/02/railsconf-git-talk.html
 [research]: http://mendicantbug.com/2008/11/30/10-reasons-to-use-git-for-research/
 [new]: https://github.com/blog/120-new-to-git
 [guide]: http://www-cs-students.stanford.edu/~blynn/gitmagic/

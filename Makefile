@@ -1,6 +1,6 @@
 test: build Gemfile.lock 
 	bundle exec ./plumbing/check-forbidden-words forbidden_words.txt $(shell ls build/post/*/index.html)
-	bundle exec htmlproof --verbose --check-html --href-ignore '#' $<
+	bundle exec htmlproof --disable-external --check-html --href-ignore '#' $<
 
 build: Gemfile.lock
 	bundle exec middleman build --verbose

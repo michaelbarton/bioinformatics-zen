@@ -32,17 +32,17 @@ which ever language seems the most appropriate for the task given their
 different strengths and weaknesses. This however tends to be mostly bash for
 speed of development or Python for collaborative projects, this is ironic as I
 quite dislike python. I think this dislike comes from already gotten used to
-the advantages of functional languages or lisps first. In python I miss the
-strong generalised algebraic data typing of Haskell, or elegant macros such as
-`->` in Clojure, which are both aspects of what makes these languages a
-pleasure to use. I don't think you can really avoid python when working in
-bioinformatics, but the libraries functools, pymonad and itertools can help to
-make it more functional.
+the advantages of functional languages or lisps. In Python I miss the strong
+generalised algebraic data typing of Haskell, or elegant macros such as `->` in
+Clojure, which are both aspects of what makes these languages a pleasure to
+use. I don't think you can really avoid python when working in bioinformatics,
+but the libraries functools, pymonad and itertools can help to make it more
+functional.
 
 I also use R regularly for modelling and statistics. I used to hate R, however
 the libraries ggplot2, dplyr, tidyr, readr, stringr and magrittr make it feel
-like working in a different, more usuable language. The amazes me because all
-but one were created by one person - [Hadley Wickham][].
+like working in a different, more usable language. The amazes me because
+almost all were created by one person - [Hadley Wickham][].
 
 [Hadley Wickham]: http://had.co.nz/
 
@@ -63,12 +63,11 @@ cleared out many of my vim settings in favour of these sensible defaults.
 [dot]: https://github.com/michaelbarton/dotfiles
 
 I try to automate everything as much as possible. I hate doing manual tasks
-more than a couple of times. I think as a developers being forced, such as by
-infrastructure or tooling, is something that I find the most annoying.
-
-As an example I have a script called [gitme][] which clones a git repository,
+more than a couple of times. Being forced, such as by infrastructure or
+tooling, is something that I find the most annoying. As an example of
+automation, I have a script called [gitme][] which clones a git repository,
 switches to the last committed git branch, splits and arranges tmux windows,
-bootstraps the project as I described below, and finally starts an autotesting
+bootstraps the project as I describe below, and finally starts an autotesting
 script. This script allows me to pull and immediately start working on a cloned
 project.
 

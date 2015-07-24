@@ -5,9 +5,9 @@ date: "2015-07-24 12:00:00 BST"
 ---
 
 I've been in the bioinformatics field for almost 10 years, originally coming
-from a biology background I deciding to move into computing after struggling to
-find a job doing lab work after my degree. This post is a general outline of
-how I now develop since then.
+from a molecular biology degree background, I deciding to move into computing
+after struggling to find a job doing lab work. This post is a general outline
+of how I now develop since then.
 
 ## Programming languages
 
@@ -20,27 +20,29 @@ several years writing Java. The ability to dynamically define methods on
 classes or dynamically look up missing methods combined with a simple syntax
 felt very liberating. I used Ruby for several years and it's still my choice
 when I want a scripting language. I wrote a Ruby program to [help finish and
-submit genome sequences][nextgs] which I used during my postdoc and which I'm
-still proud of.
+submit genome sequences][nextgs] which I used during my postdoc. I'm still
+proud of this because I used all modern software development practices - though
+afterwards I did [question the value of good scientific software][question].
 
+[question]: /post/whats-the-point-of-writing-good-scientific-software/
 [nextgs]: http://next.gs
 
 These days I've also learnt Python, Haskell, Clojure and Erlang. I try use
 which ever language seems the most appropriate for the task given their
 different strengths and weaknesses. This however tends to be mostly bash for
-speed of development or Python for collaborative projects, this ironic as I
-quite dislike python. I learnt Python at the JGI as this is the language of
-choice. My dislike I think comes from already gotten used to the advantages of
-functional languages or lisps first. I miss the strong generalised algebraic
-data typing, or elegant macros such as `->` that are part of what makes both of
-these languages a pleasure for me to write in. Having said that, using the
-python libraries functools, pymonad and itertools can help to write very nice
-functional python.
+speed of development or Python for collaborative projects, this is ironic as I
+quite dislike python. I think this dislike comes from already gotten used to
+the advantages of functional languages or lisps first. In python I miss the
+strong generalised algebraic data typing of Haskell, or elegant macros such as
+`->` in Clojure, which are both aspects of what makes these languages a
+pleasure to use. I don't think you can really avoid python when working in
+bioinformatics, but the libraries functools, pymonad and itertools can help to
+make it more functional.
 
-I also use R regularly for modelling and statistics. I used to despise R,
-however the libraries ggplot2, dplyr, tidyr, readr, stringr and magrittr make
-it feel like working in a new language. The amazing this is that all but that
-last of these were created by one person - [Hadley Wickham][].
+I also use R regularly for modelling and statistics. I used to hate R, however
+the libraries ggplot2, dplyr, tidyr, readr, stringr and magrittr make it feel
+like working in a different, more usuable language. The amazes me because all
+but one were created by one person - [Hadley Wickham][].
 
 [Hadley Wickham]: http://had.co.nz/
 
@@ -51,10 +53,10 @@ OSX. I use vim as my editor, tmux for a window manager and zsh as the shell. I
 love using vim and I think I wouldn't have had such a enjoyable career so far
 if I hadn't picked it up, and then subsequently spent the time tuning and
 tweaking it. A good habit I've gotten into is to consciously notice pain points
-when I'm coding and try to create a shell editor shortcut to address it. I
+when I'm coding and try to create a shell or editor shortcut to address it. I
 first created my [dotfiles repository][dot] 7 years ago and it has over 1,000
-commits on it. I've since found Tim Pope's [vim sensible][vim], and cleared out
-many of my vim settings in favour of these sensible defaults.
+commits on it since then. I've since found Tim Pope's [vim sensible][vim], and
+cleared out many of my vim settings in favour of these sensible defaults.
 
 [vim]: https://github.com/tpope/vim-sensible
 
@@ -76,19 +78,18 @@ project.
 
 Trying to focus and avoid distractions is very important to me. I feel that an
 unbroken period of 3-4 hours is very valuable for working on projects. I try to
-find them and make the most of them of these periods and what I've felt has
-worked for me:
+make the most of these periods and what I've felt has worked for me:
 
   * The [self control app][app] is excellent. This allows you to block a list
-    of websites for a set period of time, and there's no way to unblock them. I
-    use this to block email, twitter and hacker news. Twitter and email are
-    terrible distractions to getting anything done.
+    of websites for a set period of time, and there's no way to unblock them
+    until the time is up. I use this to block email, twitter and hacker news.
+    Twitter and email are terrible distractions to getting anything done.
 
   * Getting up very early. I built [nucleotid.es][] by getting up at 6am every
     morning for about 6 months. An average of 2-3 hours of time everyday
-    allowed me to create the site and create a prototype to prove that this is
-    useful. These hours in the morning feel like my most productive and usually
-    there's no one else awake to interrupt you.
+    allowed me to create the prototype site to prove that this could be useful.
+    These hours in the morning feel like my most productive and usually there's
+    no one else awake to interrupt you.
 
 [nucleotid.es]: http://nucleotid.es/
 [app]: https://selfcontrolapp.com/

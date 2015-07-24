@@ -14,3 +14,9 @@ test:
   override:
     - script/build
     - script/test
+deployment:
+  deploy:
+    branch: master
+    owner: michaelbarton
+    commands:
+      - ./script/publish

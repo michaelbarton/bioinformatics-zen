@@ -4,8 +4,6 @@ activate :livereload
 activate :s3_sync do |s3_sync|
   s3_sync.bucket                = 'bioinformaticszen.com'
   s3_sync.region                = 'us-west-1'
-  s3_sync.aws_access_key_id     = ENV['AWS_ACCESS_KEY']
-  s3_sync.aws_secret_access_key = ENV['AWS_SECRET_KEY']
   s3_sync.acl                   = 'public-read'
 end
 

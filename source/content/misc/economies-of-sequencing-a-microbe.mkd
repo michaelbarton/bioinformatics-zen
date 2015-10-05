@@ -1,4 +1,4 @@
-# The new economics of sequencing a microbe
+# The economics of sequencing a microbe
 
 I wrote this blog post jointly with Alex Copeland the QC and Assembly group
 lead, and Alicia Clum the production team lead. [Alicia recently joined
@@ -34,7 +34,7 @@ post processing. Our four microbial isolate products are:
     the microbial improved draft because this often produces a single contig
     assembly. We produce 250-500 of these a year.
 
-  * **Single Cell* - An isolated single cell, where the DNA is amplified using
+  * **Single Cell** - An isolated single cell, where the DNA is amplified using
     multiple displacement amplification. After amplification this is sequenced
     the same as the Microbial minimal draft.
 

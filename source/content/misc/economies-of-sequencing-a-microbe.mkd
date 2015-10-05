@@ -1,0 +1,117 @@
+# The new economics of sequencing a microbe
+
+I wrote this blog post jointly with Alex Copeland the QC and Assembly group
+lead, and Alicia Clum the production team lead. [Alicia recently joined
+twitter][Alicia] and you should definitely follow her. She may have mentioned
+that she wanted everyone to send her all their genome assembly questions but I
+may have misheard her. This post a condensed version of discussion in my office
+after PacBio announced their new Sequel long-read sequencer. This contains some
+hand-wavy statements and back-of-the-envelope calculations. This post aims to
+provide some insight of how we make decisions about sequencing.
+
+[Alicia]: https://twitter.com/alicia_clum
+
+The Sequel long-read sequencer is the successor to the current RSII system,
+providing 7x the gigabase pair output per SMRT cell at about the half the price
+of the instrument. [Keith Bradnam has a round up][] of all the news and blogs
+discussing the announcement. The Joint Genome Institute (JGI) will be recieving
+one of the Sequels are part of the early access program and so we are
+considering how to integrate this into our existing pipelines.
+
+[Keith Bradnam]: http://www.acgt.me/blog/2015/10/1/who-is-saying-what-about-the-new-pacbio-sequel-system
+
+The JGI offers four microbial isolate "products." Each product is a combination
+of different DNA extraction, library preparation, sequencing and informatics
+post procesing. Our four microbial isolate products are:
+
+  * **Microbial Minimal Draft** - A cultured microbe, with a small non-complex
+    genome sequenced 2x150bp, 275bp insert, on Illumina, usually a 1T HiSeq. We
+    produce around 1000 of these each year.
+
+  * **Microbial Improved Draft** - Library preparation includes using ampure
+    bead purification to select fragments greater than 10kbp, then sequenced on
+    the PacBio RSII usually requiring only 1 SMRT cell. A "better" product than
+    the microbial improved draft because this often produces a single contig
+    assembly. We produce 250-500 of these a year.
+
+  * **Single Cell* - An isolated single cell, where the DNA is amplified using
+    multiple displacement amplification. After amplification this is sequenced
+    the same as the Microbial minimal draft.
+
+  * **Fungal Improved Draft** - Same as a microbial improved draft except that
+    this is larger eukaryotic genome requiring more SMRT cells. Extra attention
+    is required in assembly because of organelles. We use the terms "fungal"
+    and "microbial" to make the distinction in preparation and assembly even
+    though in both product types we are usually sequencing microbes.
+
+## Sequencing Fungi
+
+The first point to make is that there is no "Fungal Minimal Draft", i.e. no
+Illumina-based product compared to the PacBio "Fungal Improved Draft." The
+reason for this is that an Illumina fungal genome also required a long-mate
+pair library (e.g. 8kbp) in addition to the standard 2x150bp fragment library.
+The extra costs associated with preparing two different libraries versus a
+single PacBio library which produces a more contiguous assembly is the reason
+we now do all fungal sequencing on PacBio. 
+
+Given that we already use 2-3 SMRT cells for a fungal genome, switching to the
+PacBio Sequel will likely mean that we save money. This is calulated using the
+announced numbers: 7X the GBp per SMRT cell at 2-3X the SMRT cell cost would
+mean approximately a 2X cost saving.
+
+## Sequencing Microbes
+
+The second point, and the reason to write this blog post, is what effect could
+the PacBio Sequel have on current our microbial sequencing? Considering our
+existing PacBio microbial sequencing, switching to the Sequel would more data
+that we do not necessary need because, in most cases, one SMRT cell is enough
+to get a good assembly for the average microbe. Using one Sequel SMRT cell
+would make each microbial assembly 2-3X more expensive than it already is.
+Therefore it is unlikely we would do a straight switch over to the Sequel.
+There are however two caveats to this.
+
+The first caveat is that we are currently in the middle of sequencing 1000
+actinomycetes - bacteria we sequence on the PacBio RSII as microbial improved
+drafts. These are have more complex genomes, with high GC-bias, meaning 2-3
+RSII SMRT cells are usually needed. Therefore in these cases where we are
+already using multiple SMRT cells, switching to the Sequel would make sense for
+the same cost-saving described above.
+
+The second caveat is that the increased Sequel capacity makes PacBio barcoding
+a possibility. Something we only currently do for Illumina sequencing. If you
+are unfamiliar with barcoding, this is the process of combinining multiple
+different sequencing libraries into a pool and then sequencing them all
+together. A unique oligonucleotide 'barcode' is added to each library during
+preparation which allows the FASTQ data to separated back into the original
+library after sequencing. If we could take advantage of the extra Sequel
+capacity and sequence 7 microbes per SMRT cell using barcodes, then the same
+cost savings would apply.
+
+An additional possibility that would streamline laboratory preparation, and
+therefore cost, is to skip barcoding entirely. The reason being that the
+long-read overlaps are unambiguous enough that the genomes would simply
+assemble together out of the pool, similar to that of a metagenome. This would
+however would require the production planning to ensure that the pairwise
+genome distance between any two organisms is large enough to ensure no
+cross-assembly. I had a short twitter conversation and this approach with [Mick
+Watson who outlinied some possible problems][problems].
+
+[problems]: https://twitter.com/bioinformatics/status/650391667741069312
+
+## Why don't we sequencing everything on PacBio
+
+In the process of discussing the Sequel that question arose that we have
+considered multiple times in the past: why don't we sequence all microbes on
+the PacBio? The current reason we don't do this is that an Illumina microbial
+minimal draft costs around $40 for all sample and library preparation, and
+sequencing. A PacBio microbial improved draft preparation and sequencing on a
+single SMRT cell costs around $400. The difference in cost is therefore 10X.
+Sequencing 1000 microbes on Illumina instead of PacBio RSII saves approximately
+($400 - $40) * 1000/year = $360,000 a year.
+
+This is a pure cost-only comparison and if that was the only reason for our
+decision making then would we would sequence everything on Illumina 1T using a
+standard fragment library. The quality of the assemblies we provide is also
+important and is why we don't only do this. If the costs drop in future with
+the new PacBio Sequel platform I think it is likely we would reevaluate this
+decision about microbial isolate sequencing.

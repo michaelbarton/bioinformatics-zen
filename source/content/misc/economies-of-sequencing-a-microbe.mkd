@@ -29,31 +29,31 @@ PacBio announcement are:
 
   * **Prokaryotic Minimal Draft** - A cultured bacteria or archaea, with a
     non-complex genome. Sequenced as a 2x150bp, 275bp insert fragment library
-    on an Illumina 1T HiSeq. We produced around 1000 of these each year.
+    on an Illumina 1T HiSeq. We sequenced 1050 of these last financial year.
 
   * **Prokaryotic Improved Draft** - Library preparation using ampure bead
     purification to select fragments greater than 10kbp. Sequenced on the
     PacBio RSII usually requiring only a single SMRT cell. A "better" product
     than the prokaryotic minimal draft because this often produces a single
     contig assembly. Used for more complex prokaryotic genomes such as
-    actinomycetes. We produced 250 of these last financial year, and expect to
-    produce double that amount this year.
+    actinomycetes. We sequenced 200 of these last financial year, and expect to
+    produce ~500 amount this year.
 
   * **Eukaryotic Minimal Draft** - a cultured eukaryote, usually fungal.
     Similar to the prokaryotic minimal draft this is sequenced as a 2x150bp,
     275bp insert fragment library on an Illumina 1T HiSeq. Typically sequence
     eukaryotes with more tractable genomes, such as aspergillus, using this
-    protocol. We produced around 150 of these last financial year.
+    protocol. We sequenced 100 of these in the last financial year.
 
   * **Eukaryotic Standard Draft** - Two libraries generated, one standard
     Illumina fragment, and one 4kb long mate pair library. The long mate pairs
-    allow us to generate a better assembly than the minimal draft using
-    allpaths.
+    using allpaths allow us to generate a better assembly than the minimal
+    draft. We sequenced ~100 of these in the last financial year.
 
   * **Eukaryotic Improved Draft** - Same as a prokaryotic improved draft except
     that this is larger eukaryotic genome and requires 3-4 SMRT cells. Extra
     attention is required in assembly due to the presence of organelles. We
-    sequenced 110 last FY and aim to sequence 160 this FY.
+    sequenced less than 10 of these in the last financial year.
 
 ## Eukaryotic Sequencing
 

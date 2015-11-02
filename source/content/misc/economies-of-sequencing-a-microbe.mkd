@@ -8,33 +8,34 @@ I wrote this blog post jointly with Alex Copeland the QC and Assembly group
 lead, and Alicia Clum the Genome Assembly and Analysis lead. [Alicia recently
 joined twitter][Alicia] and you should definitely follow her. She may have
 mentioned that she wanted everyone to send her all their genome assembly
-questions but I may have misheard her. This post a condensed version of
-discussion in my office after PacBio announced their new Sequel long-read
-sequencer. This contains some hand-wavy statements and back-of-the-envelope
-calculations. This post aims to provide some insight into how we make decisions
-about sequencing.
+questions but I could have misheard her. This post is a condensed version of
+discussion in we had in my office after PacBio announced their new Sequel
+long-read sequencer. This contains some hand-wavy statements and calculations,
+however the aim is to provide some insight into how we make decisions about
+sequencing here at the JGI..
 
 [Alicia]: https://twitter.com/alicia_clum
 
-The PacBio Sequel will provide ~7x the output per SMRT cell at the half the
-instrument price of the RSII ($300k vs. $750k). The caveat being that the
-individual SMRT cell price will be 2-3X more expensive. [Keith Bradnam has a
-round up][] of all the news and blogs discussing the announcement. The Joint
-Genome Institute (JGI) will be receiving one of the Sequels in November are
-part of the early access program. Therefore we are already in the process of
-considering how to integrate the Sequel into our existing pipelines.
+The PacBio Sequel specifications indicate ~7x the output per SMRT cell at the
+half the instrument price of the RSII ($300k vs. $750k). The caveat being that
+the individual SMRT cell price will be 2-3X more expensive. [Keith Bradnam has
+a round up][Keith Bradnam] of all the news and blogs discussing the
+announcement. The Joint Genome Institute (JGI) will be receiving one of the
+Sequels in November are part of the early access program. Therefore we are
+already in the process of considering how to integrate the Sequel into our
+existing pipelines.
 
 [Keith Bradnam]: http://www.acgt.me/blog/2015/10/1/who-is-saying-what-about-the-new-pacbio-sequel-system
 
-The JGI offers several assembly products for prokaryotes and eukaryotes. Each
-product is a combination of different DNA extraction, library preparation,
-sequencing and informatics post-processing. Our microbial isolate products
-relevant to the PacBio announcement and this discussion are:
+The JGI offers several microbial assembly products for prokaryotes and
+eukaryotes. Each product is a combination of different DNA extraction, library
+preparation, sequencing and informatics post-processing. Our microbial isolate
+products relevant to the PacBio announcement and this discussion are:
 
   * **Prokaryotic Minimal Draft** - A cultured bacteria or archaea, with a
     typically simple genome. Sequenced as a 2x150bp, 275bp insert fragment
-    library on an Illumina 1T HiSeq with a large degree of pooling. We
-    sequenced 1050 of these last financial year.
+    library on an Illumina 1T HiSeq with 48x pooling. We sequenced 1050 of
+    these last financial year.
 
   * **Prokaryotic Improved Draft** - Library preparation using AMPure bead
     purification to select fragments greater than 10kbp. Sequenced on the
@@ -46,41 +47,42 @@ relevant to the PacBio announcement and this discussion are:
 
   * **Eukaryotic Minimal Draft** - a cultured eukaryote, usually fungal.
     Similar to the prokaryotic minimal draft this is sequenced as a 2x150bp,
-    275bp insert fragment library on an Illumina 1T HiSeq with eight fold
-    pooling. Typically sequence eukaryotes with more tractable genomes, such as
+    275bp insert fragment library on an Illumina 1T HiSeq with 8x pooling.
+    Typically sequence eukaryotes with more tractable genomes, such as
     *Aspergillus*, using this protocol. We sequenced 100 of these in the last
     financial year.
 
-  * **Eukaryotic Standard Draft** - Two libraries generated following the
-    ALLPATHS-LG recipe: one standard Illumina fragment, and one 4kb long mate
-    pair library. The long mate pairs using ALLPATHS-LG allow us to generate a
-    better assembly than the minimal draft. We sequenced ~100 of these in the
-    last fiscal year.
+  * **Eukaryotic Standard Draft** - Two libraries generated and sequenced using
+    the ALLPATHS-LG recipe: one standard Illumina fragment, and one 4kb long
+    mate pair library. The long mate pairs using ALLPATHS-LG allow us to
+    generate a better assembly than the minimal draft. We sequenced ~100 of
+    these in the last fiscal year.
 
   * **Eukaryotic Improved Draft** - Same as a prokaryotic improved draft except
     that this is larger eukaryotic genome and requires ~5 SMRT cells for a
-    40Mbp haploid genome. Extra attention is required in assembly due to the
+    ~40Mbp haploid genome. Extra attention is required in assembly due to the
     presence of organelles. We sequenced less than 10 of these in the last
-    financial year. The last few years this has been one Illumina fragment
-    library, one Illumina long mate pair library and one PacBio library. This
-    financial year will now switch to the 20kbp Blue Pippin library which has
-    higher labour and reagent costs but which results in a better assembly.
+    financial year. For the last few years this product has been a combined
+    draft of one Illumina fragment library, one Illumina long mate pair library
+    and one PacBio library. This financial year will now switch to the 20kbp
+    Blue Pippin library which has higher labour and reagent costs but which
+    results in a better assembly.
 
 ## Eukaryotic Sequencing
 
 You may notice that there is no 'Prokaryotic Standard Draft' in this list, i.e.
 no combined standard fragment and long mate pair sequencing of prokayotes. The
 reason is that producing the long mate pair library and sequencing on Illumina
-costs us about the same as sequencing on the PacBio RSII, while PacBio long
-reads give us a better assembly overall with the same current throughput.
+costs us about the same as sequencing on the PacBio RSII, while a PacBio 10kbp
+library gives us a better assembly overall with the same current throughput.
 
 For the same reason this fiscal year we are also discontinuing the "Eukaryotic
 Standard Draft". Recent analysis by Alicia shows that we can also get better
-assemblies switching to PacBio for eukaryotes rather than continuing with the
-long mate pair and fragment approach. The extra costs associated with preparing
-two different libraries versus a single PacBio library which also produces a
-more contiguous assembly means we will do half our fungal draft sequencing on
-the PacBio for the next financial year.
+assemblies switching to 10kbp PacBio libraries for eukaryotes rather than
+continuing with the long mate pair and fragment approach. The extra costs
+associated with preparing two different libraries versus a single PacBio
+library which also produces a more contiguous assembly means we will do half
+our fungal draft sequencing on the PacBio for the next financial year.
 
 This then leads into the Sequel announcement - given that we already use ~5
 SMRT cells for a eukaryotic genome, switching to the PacBio Sequel will likely
@@ -103,10 +105,10 @@ however two caveats to this.
 The first caveat is that we are currently in the middle of sequencing 1000
 *Actinomycetes* - bacteria that we sequence on the PacBio RSII as prokaryotic
 improved drafts. These are high GC, repeat-rich genomes, with especially long
-repeats, meaning 2-3 RSII SMRT cells are usually needed. Therefore in these
-cases where we are already using multiple SMRT cells, switching to the Sequel
-would make sense for the same cost-saving described above. An added advantage,
-and worth mentioning in the context, is that PacBio displays no GC-bias when
+repeats, meaning 2-3 RSII SMRT cells are usually needed. Therefore in the cases
+where we are already using multiple SMRT cells, switching to the Sequel would
+make sense for the same cost-saving described above. An added advantage, and
+worth mentioning in this context, is that PacBio displays no GC-bias when
 sequencing so this is an additional advantage for organisms with very high or
 low GC genomes. An example is the JGI recently completed sequencing and
 assembly of two *Piromyces* fungal genomes with <20% GC which, for the last 10
@@ -132,14 +134,14 @@ Watson who outlined some possible problems][problems].
 
 [problems]: https://twitter.com/bioinformatics/status/650391667741069312
 
-## Why don't we sequencing everything on PacBio
+## Why don't we sequence everything on PacBio?
 
 In the process of discussing the Sequel the question arose that we have
 considered multiple times in the past: why don't we sequence all microbes on
 the PacBio? One reason is that an Illumina prokaryotic minimal draft costs
 around 1/10th as much as a PacBio prokaryotic improved draft. Sequencing 1000
-microbes on Illumina instead of PacBio RSII saves approximately $360,000 a
-year.
+microbes on Illumina instead of PacBio RSII is the difference in approximately
+$360,000 a year.
 
 This is a pure cost-only comparison and if cost was the only factor, then we
 would sequence everything on Illumina 1T using a standard fragment library.

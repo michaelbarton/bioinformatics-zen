@@ -26,12 +26,12 @@ process of considering how to integrate the Sequel into our existing pipelines.
 
 [Keith Bradnam]: http://www.acgt.me/blog/2015/10/1/who-is-saying-what-about-the-new-pacbio-sequel-system
 
-The JGI offers several assembly products for Prokaryotes and Eukaryotes. Each
+The JGI offers several assembly products for prokaryotes and Eukaryotes. Each
 product is a combination of different DNA extraction, library preparation,
 sequencing and informatics post-processing. Our microbial isolate products
 relevant to the PacBio announcement and this discussion are:
 
-  * **Prokaryotic Minimal Draft** - A cultured bacteria or Archaea, with a
+  * **Prokaryotic Minimal Draft** - A cultured Bacteria or Archaea, with a
     typically simple genome. Sequenced as a 2x150bp, 275bp insert fragment
     library on an Illumina 1T HiSeq with 48x pooling. We sequenced 1050 of
     these last financial year.
@@ -44,10 +44,10 @@ relevant to the PacBio announcement and this discussion are:
     *Actinomycetes*. We sequenced 250 of these last financial year, and expect
     to produce ~500 this year.
 
-  * **Eukaryotic Minimal Draft** - A cultured Eukaryote, usually fungal.
+  * **Eukaryotic Minimal Draft** - A cultured eukaryote, usually fungal.
     Similar to the prokaryotic minimal draft this is sequenced as a 2x150bp,
     275bp insert fragment library on an Illumina 1T HiSeq with 8x pooling.
-    Typically sequence Eukaryotes with more tractable genomes, such as
+    Typically sequence eukaryotes with more tractable genomes, such as
     *Aspergillus*, using this protocol. We sequenced 100 of these in the last
     financial year.
 
@@ -70,14 +70,14 @@ relevant to the PacBio announcement and this discussion are:
 ## Eukaryotic Sequencing
 
 You may notice that there is no 'Prokaryotic Standard Draft' in this list, i.e.
-no combined standard fragment and long mate pair sequencing of prokayotes. The
+no combined standard fragment and long mate pair sequencing of prokaryotes. The
 reason is that producing the long mate pair library and sequencing on Illumina
 costs us about the same as sequencing on the PacBio RSII, while a PacBio 10kbp
 library produces a better assembly overall with the same current throughput.
 
 For the same reason this fiscal year we are also discontinuing the Illumina
 "Eukaryotic Standard Draft". Recent analysis by Alicia shows that we can also
-get better assemblies switching to 10kbp+ PacBio libraries for Eukaryotes
+get better assemblies switching to 10kbp+ PacBio libraries for eukaryotes
 rather than continuing with the long mate pair and fragment approach. The extra
 costs associated with preparing two different libraries versus a single PacBio
 library which also produces a more contiguous assembly means we will do half
@@ -95,7 +95,7 @@ The second point, and the reason to write this blog post, is what effect could
 the PacBio Sequel have on current our prokaryotic sequencing? Considering our
 existing PacBio prokaryotic sequencing, switching to the Sequel would mean more
 data that we do not necessarily require because, in most cases, one SMRT cell
-is sufficient to get a complete assembly for the average bacteria/archaeon.
+is sufficient to get a complete assembly for the average Bacteria/Archaea.
 Using one Sequel SMRT cell would make each prokaryotic assembly 2-3X more
 expensive than it already is. Therefore, it is unlikely we would do a straight
 switch over to the Sequel for prokaryotes if cost was the only consideration.

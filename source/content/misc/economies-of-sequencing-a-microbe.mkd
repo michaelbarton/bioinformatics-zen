@@ -16,14 +16,13 @@ sequencing here at the JGI..
 
 [Alicia]: https://twitter.com/alicia_clum
 
-The PacBio Sequel specifications indicate ~7x the output per SMRT cell at the
-half the instrument price of the RSII ($300k vs. $750k). The caveat being that
-the individual SMRT cell price will be 2-3X more expensive. [Keith Bradnam has
-a round up][Keith Bradnam] of all the news and blogs discussing the
-announcement. The Joint Genome Institute (JGI) will be receiving one of the
-Sequels in November are part of the early access program. Therefore we are
-already in the process of considering how to integrate the Sequel into our
-existing pipelines.
+The PacBio Sequel specifications indicate ~7x the output per SMRT cell at half
+the instrument price of the RSII ($300k vs. $750k). The caveat being that the
+individual SMRT cell price will be 2-3X more expensive. [Keith Bradnam has a
+round up][Keith Bradnam] of all the news and blogs discussing the announcement.
+The Joint Genome Institute (JGI) will be receiving one of the Sequels in
+November as part of the early access program. Therefore we are already in the
+process of considering how to integrate the Sequel into our existing pipelines.
 
 [Keith Bradnam]: http://www.acgt.me/blog/2015/10/1/who-is-saying-what-about-the-new-pacbio-sequel-system
 
@@ -45,7 +44,7 @@ products relevant to the PacBio announcement and this discussion are:
     *Actinomycetes*. We sequenced 250 of these last financial year, and expect
     to produce ~500 this year.
 
-  * **Eukaryotic Minimal Draft** - a cultured eukaryote, usually fungal.
+  * **Eukaryotic Minimal Draft** - A cultured eukaryote, usually fungal.
     Similar to the prokaryotic minimal draft this is sequenced as a 2x150bp,
     275bp insert fragment library on an Illumina 1T HiSeq with 8x pooling.
     Typically sequence eukaryotes with more tractable genomes, such as
@@ -64,9 +63,9 @@ products relevant to the PacBio announcement and this discussion are:
     presence of organelles. We sequenced less than 10 of these in the last
     financial year. For the last few years this product has been a combined
     draft of one Illumina fragment library, one Illumina long mate pair library
-    and one PacBio library. This financial year will now switch to the 20kbp
-    Blue Pippin library which has higher labour and reagent costs but which
-    results in a better assembly.
+    and one PacBio library. This financial year will now switch to a 20kbp Blue
+    Pippin library which has higher labour and reagent costs compared with an
+    AMPure PacBio library but which results in a better assembly.
 
 ## Eukaryotic Sequencing
 
@@ -111,8 +110,8 @@ make sense for the same cost-saving described above. An added advantage, and
 worth mentioning in this context, is that PacBio displays no GC-bias when
 sequencing so this is an additional advantage for organisms with very high or
 low GC genomes. An example is the JGI recently completed sequencing and
-assembly of two *Piromyces* fungal genomes with <20% GC which, for the last 10
-years, have resisted all previous attempts at sequencing and assembly.
+assembly of a *Piromyces* fungal genome with <20% GC which which , for the last
+decade, has resisted all previous attempts at sequencing and assembly.
 
 The second caveat is that the increased Sequel capacity makes pooling
 important. If you are unfamiliar with pooling, this is the process of combining

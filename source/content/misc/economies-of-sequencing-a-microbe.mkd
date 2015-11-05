@@ -4,7 +4,7 @@ title: The economics of PacBio sequencing a microbe
 date: "2015-11-02 07:00:00"
 ---
 
-This post is a condensed version of discussion in we had in my office after
+This post is a condensed version of a discussion in we had in my office after
 PacBio announced their new Sequel long-read sequencer. This contains some
 hand-wavy statements and calculations, however the aim is to provide some
 insight into how we make decisions about sequencing here at the JGI. I wrote
@@ -147,5 +147,4 @@ This is a pure cost-only comparison and if cost was the only factor, then we
 would sequence everything on Illumina 1T using a standard fragment library.
 However, assembly quality is extremely important, and is why we don't only do
 this. If the costs drop in future with the new PacBio Sequel platform , we will
-will reevaluate opportunities for applying PacBio to prokaryotic isolate
-sequencing.
+reevaluate opportunities for applying PacBio to prokaryotic isolate sequencing.

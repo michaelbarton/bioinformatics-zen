@@ -1,8 +1,14 @@
 ---
 kind: article
 title: An audio discussion of microbial sequencing
-date: "2015-11-20 07:00:00"
+date: "Tue Nov 24 09:00:00 EST 2015"
 ---
+
+This is an audio follow-up the discussion I [previously posted about PacBio
+sequencing.][post] This include Me, Alex Copeland and Alicia Copeland talking
+about long read sequencing and how we organise sequencing at the JGI.
+
+[post]: /post/economies-of-sequencing-a-microbe/
 
 <iframe
   width="100%"

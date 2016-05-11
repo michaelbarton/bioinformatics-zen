@@ -30,16 +30,15 @@ other generating a read composed of two origins. An additional rarer problem is
 PCR infidelity where base changes are introduced during the amplification
 process.
 
-~~~ R
+As the use of marker-based approaches increases, many articles are highlighting
 the need to identify and remove these poor quality reads. Not doing so can
 produce results biased by a large number of false positives leading to
 artefactually inflated diversity. If you are interested in the literature on
-this topic [my citeulike page has some articles bookmarked][bookmark]. 
+this topic [my citeulike page has some articles bookmarked][bookmark].
 
 [bookmark]: http://www.citeulike.org/user/michaelbarton/tag/16s
 
-~~~ R
-Amplification and Sequencing Artefacts on 16S rRNA-Based Studies][article] by
+[Amplification and Sequencing Artefacts on 16S rRNA-Based Studies][article] by
 Patrick D. Schloss, Dirk Gevers and Sarah L. Westcott. Part of this article
 focuses on identifying inaccurate reads based on features of the reads. These
 features include the quality of the read, length of the longest homopolymer and
@@ -54,7 +53,7 @@ discarded?
 
 [article]: http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0027310
 
-# The Data
+## The Data
 
 For this analysis I'll be using the mock community from the [PyroNoise][]
 paper. This is an artificial community of 23 sequences that was 454 sequenced.
@@ -96,9 +95,9 @@ as a starting point for a machine learning algorithm. Further features can be
 added in future. Given this feature set and accompanying accuracy labels, the
 next step was to create classifiers.
 
-# Classifiers
+## Classifiers
 
-## Heuristic Classifier
+### Heuristic Classifier
 
 In the Schloss *et. al* article the authors compared several different
 heuristics for filtering and removing reads to improve quality. Two of these
@@ -148,7 +147,7 @@ with the given classifier.
 
 [mcc]: http://en.wikipedia.org/wiki/Matthews_correlation_coefficient
 
-## Regularised Logistic Classifier
+### Regularised Logistic Classifier
 
 The first classifier I trained was a generalised logistic regression
 classifier. This uses a link function to map a linear regression to a value
@@ -220,7 +219,7 @@ score over the length of the read also appears play a role in classification.
 Regarding homopolymer length the most important overall features associated
 with error appear to be homopolymers of G and C bases.
 
-## Random Forest Classifier
+### Random Forest Classifier
 
 Random forest classifiers are one best performing algorithms in the field of
 machine learning. A random forest contains many individual decision trees each
@@ -276,7 +275,7 @@ relatively unchanged. The improvement in the Matthews correlation coefficient
 is therefore mainly due to the improvement in accuracy of which bad reads are
 identified - fewer correct reads are thrown away.
 
-## Ensemble Classifier
+### Ensemble Classifier
 
 Combinations of machine learning algorithms often perform better than the sum
 of the parts. The 'ensemble' approaches may show improved performance when each
@@ -373,7 +372,7 @@ regression.
 amzn('machine-learning-ngs/thumb.SRR013437.ensemble.png'), "Performance on
 ensemble learning model.") %>
 
-# Summary
+## Summary
 
 These current classifiers have not been tested for predictive power only the
 degree to which can explain the difference in between good and bad reads in a

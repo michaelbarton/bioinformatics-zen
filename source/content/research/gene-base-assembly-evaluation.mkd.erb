@@ -1,0 +1,329 @@
+---
+  kind: article
+  feed: true
+  title: Gene-based assembly evaluation
+  date: "2017-03-07 19:00 GMT"
+---
+
+The Joint Genome Institute sequences thousands of microbial genomes each year.
+Producing high quality genome assemblies from these genomes is a priority and
+we spend time constantly evaluating the available assembler software to
+determine which provides the best performance. [QUAST][] is a tool for
+evaluating the quality of a genome assembly using the lengths and numbers of
+contigs present. QUAST has more than 100+ citations on pubmed which is an
+indication of its popularity within the genomics community.
+
+[QUAST]: http://quast.sourceforge.net/
+
+Increasingly we get requests at the JGI to ensure that our assemblies have
+complete rRNA genes or operons. Other requests include asking that the complete
+set of tRNA genes, or the signal recognition protein is in the assembly. The
+JGI users we produce genomes for use these genes for phylogenetic analysis or
+simply to examine genes of particular interest.
+
+We therefore would like to be able to examine the quality of a genome assembly
+not only through the size of the constituent contigs, but also whether these
+particular genes are present or not. QUAST generates metrics from the numbers
+of genes present in the assembly versus [a reference GFF file][gff]. We would
+like to use further, more detailed metrics to evaluate assembly quality, using
+such characteristics as whether a complete rRNA operon, or the minimum set of
+tRNAs are present. The goal is to use these metrics as an additional factor
+when deciding which genome assembly software to use in the JGI pipelines.
+
+[gff]: http://quast.bioinf.spbau.ru/manual.html#genes
+
+## GAET - a gene-based assembly evaluation tool
+
+We have developed GAET at the JGI to produce these additional metrics for
+assembler selection. GAET takes either a GFF files from a genome assembly, or
+two GFF files one from a genome assembly and one from a reference genome. The
+reference genome in most cases is a complete or nearly complete draft sequence
+that is used as the objective for comparison, or ground truth. This allows GAET
+to produce two groups of metrics, the second being a super set of the first.
+
+  * When given a single GFF file, GAET will calculate metrics for whether genes
+  of interest are present, and metrics about the numbers and lengths of
+  different categories of genes. These categories are taken from the feature
+  type in the third column of the GFF.
+
+  * When given an assembly and a reference GFF file, GAET will compute the same
+  assembly metrics described above, and compute them for the reference GFF
+  also. GAET will then furthermore calculate the SHA256 digests for the gene
+  sequences in both GFF files, then calculate set metrics for the gene
+  categories.
+
+## Example usage - comparing spades and abyss
+
+The spades team recently released version [3.10.0][spades] of their assembler,
+and version [2.0.0][abyss] of the ABySS assembler was also recently released .
+The JGI regularly tests new versions of assemblers to see if they might be
+suitable for our colony cultured and single cell microbial products. The
+following section illustrates using GAET to compare these two assemblers.
+
+[spades]: https://github.com/ablab/spades/releases/tag/v3.10.0
+[abyss]: http://www.bcgsc.ca/platform/bioinfo/software/abyss
+
+GAET can be run on the command line with two GFF files, one for the reference
+GFF annotations and one for the assembly GFF annotations. In this example the
+different spades GFF files are compared with the GFF files for the reference.
+Prokka can be used to generate annotations for Archaea and Bacteria. At the JGI
+we use [a modified version of barrnap][barrnap] to annotate additional RNA
+genes.
+
+[barrnap]: https://github.com/tseemann/barrnap/pull/18
+
+``` bash
+gaet spades_3.10.0.gff --reference reference.gff --output spades_3.10.0_metrics.yml
+gaet abyss_2.0.1.gff --reference reference.gff --output abyss_2.0.1_metrics.yml
+```
+
+The generated files contain a YAML formatted dictionary of all the metrics
+produced by GAET. One of the genes that JGI users are most interested in are
+those responsible for coding ribosomal RNA (rRNA). GAET provides count metrics
+these genes which may be used to compare the assemblers.
+
+<table>
+  <tr>
+    <th>Gene count</th>
+    <th>Abyss</th>
+    <th>Spades</th>
+  </tr>
+  <tr>
+    <td>16S</td>
+    <td>4</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>23S</td>
+    <td>4</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>5S</td>
+    <td>4</td>
+    <td>2</td>
+  </tr>
+</table>
+
+The table indicates that Prokka finds more of each rRNA gene in the abyss
+assembly compared with that of spades. Intuitively this suggests that if you
+care about creating a genome assembly that contains the most rRNA genes, then
+you should use abyss. Another set of genes that JGI users are interested in are
+the transfer RNAs. GAET also provides metrics on each tRNA gene in the
+assembly. A subset of these is listed here.
+
+<table>
+  <tr>
+    <th>Gene count</th>
+    <th>Abyss</th>
+    <th>Spades</th>
+  </tr>
+  <tr>
+    <td>Alanine</td>
+    <td>3</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>Glycine</td>
+    <td>7</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>Serine</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>Tyrosine</td>
+    <td>1</td>
+    <td>2</td>
+  </tr>
+</table>
+
+Comparing this subset of amino acids shows a more mixed result contrasted with
+that of the rRNA genes. Where in some cases spades has more tRNA genes than
+abyss, and in other cases the reverse is true. In addition to specific counts
+of individual genes, the quality of an assembly can be evaluated counts of the
+identified genes. GAET also provides metrics to examine global gene counts. The
+table below contrasts gene counts in the spades and abyss assemblies, and shows
+the absolute difference between the two.
+
+<table>
+  <tr>
+    <th>Gene type</th>
+    <th>Abyss</th>
+    <th>Spades</th>
+    <th>Abs. Diff.</th>
+  </tr>
+  <tr>
+    <td>CDS</td>
+    <td>3056</td>
+    <td>3130</td>
+    <td>74</td>
+  </tr>
+  <tr>
+    <td>rRNA</td>
+    <td>15</td>
+    <td>7</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>tRNA</td>
+    <td>54</td>
+    <td>56</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>repeat region</td>
+    <td>7</td>
+    <td>6</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>all</td>
+    <td>6259</td>
+    <td>6394</td>
+    <td>135</td>
+  </tr>
+</table>
+
+These metrics are a global summary of annotations for either genome assembly.
+The table shows that the spades *M. ruber* assembly is annotated with more
+genes, with the exception of rRNA.
+
+## Comparison with a reference
+
+All the metrics shown so far can be generated without reference set of
+annotations to compare with. If a reference GFF file is provided, GAET will
+provide an additional set of metrics which can be used to evaluate the quality
+of assembly using the reference as a ground truth for what should be expected.
+Missing genes in the assembly are an indication that regions of the genome are
+missing in the assembly. Extra genes in the assembly not found in the reference
+may indicate spuriously assembled regions or even point to possible errors in
+the reference sequence.
+
+The table below illustrates these metrics, showing the gene count difference
+between each assembly's annotations and the reference annotations. The genes
+used are the same as those compared above.
+
+<table>
+  <tr>
+    <th>Gene diff.</th>
+    <th>Abyss</th>
+    <th>Spades</th>
+  </tr>
+  <tr>
+    <td>16S</td>
+    <td>2</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>23S</td>
+    <td>2</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>5S</td>
+    <td>2</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Alanine</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Glycine</td>
+    <td>2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Serine</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>Tyrosine</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+</table>
+
+The abyss assembly contains two extra copies of the 16S, 23S and 5S not found
+in the reference. This table highlights the importance of comparing the
+assembly with a reference when ever possible, as the presence of additional
+genes does not necessarily mean the better. The comparison of the tRNA genes
+shows that the assemblies also contain additional copies not found in the
+reference. The most likely explanation for this is sequence variations in each
+assemblies tRNA genes.
+
+<table>
+  <tr>
+    <th>Gene diff.</th>
+    <th>Abyss</th>
+    <th>Spades</th>
+    <th>Abs. Diff.</th>
+  </tr>
+  <tr>
+    <td>CDS</td>
+    <td>86</td>
+    <td>222</td>
+    <td>136</td>
+  </tr>
+  <tr>
+    <td>rRNA</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>tRNA</td>
+    <td>0</td>
+    <td>5</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>repeat region</td>
+    <td>13</td>
+    <td>0</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <td>all</td>
+    <td>99</td>
+    <td>228</td>
+    <td>129</td>
+  </tr>
+</table>
+
+This table contrasts the assembly gene count with reference gene count using
+the symmetric difference of the two gene sets. The lower the value, the more
+closely the assembly reflects the reference sequence for the given group of
+genes. Here this shows that abyss struggles with repeat regions with the
+difference in repeat regions between the abyss assembly and reference is 13.
+Spades alternatively struggles with tRNA genes, with 5 genes being different
+between the reference and the assembly.
+
+## Getting GAET
+
+GAET is BSD licensed and [available on gitlab][gitlab]. Documentation is
+available on [how to use GAET][how], and the meaning of the [produced GAET
+output][output]. GAET is written in Python 3.5 and can be installed using pip.
+
+[gitlab]: https://gitlab.com/michaelbarton/gaet
+[how]: https://gitlab.com/michaelbarton/gaet/raw/master/doc/src/gaet.1.md
+[output]: https://gitlab.com/michaelbarton/gaet/raw/master/doc/src/gaet-format.5.md
+
+```bash
+pip --install gaet
+```
+
+Many users have not migrated to Python 3.5, and therefore GAET is also
+available as a precompiled binary generated using [pyinstaller][]. This can be
+downloaded and simply run any Linux system.
+
+[pyinstaller]: http://www.pyinstaller.org/
+
+```
+wget https://s3-us-west-1.amazonaws.com/bioboxes-packages/gaet/latest.tar.xz
+```

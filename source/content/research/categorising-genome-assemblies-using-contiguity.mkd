@@ -1,0 +1,191 @@
+---
+  kind: article
+  feed: true
+  title: Categorising microbial genome assemblies using contiguity
+  date: "2017-04-15 00:00 GMT"
+---
+
+When I first started doing a post-doc in microbial genomics several years ago,
+one of the first things I had to decide was what assembly software to use on
+our sequencing data. The process I used at the time was to search on pubmed for
+genome assembler papers, then try the subset of those that I could successfully
+compile and run on my laptop. A better approach might have been to look, or ask
+a question on the well-informed community site [seqanswers][seq].
+
+[seq]: http://seqanswers.com/
+
+Regardless of the approach, the underlying problem is the same where may PhD
+students and post-doctoral researchers are unclear as to which is the best
+software to use for their sequence data. What is the best way to then evaluate
+if their results are any good or not?
+
+The Joint Genome Institute suffers from the same problem, with a much larger
+scale. We've sequenced thousands of microbial genomes in the last five years
+and in each case we want to provide the best assembly given the available
+assembly software. Over the last few years we have taken a two-pronged approach
+to resolving this question. This is:
+
+  * Create Docker images with standardised interfaces to the majority of recent
+    genome assembly software. This is the [bioboxes project][bioboxes] in
+    conjuction with [Peter Belmann][peter] and the other CAMI collaborators.
+
+  * Exhaustively test all genome assembly software on real Illumina microbial
+    sequencing data where we have a high quality reference genome we can
+    benchmark the assembly against.
+
+[bioboxes]: http://bioboxes.org/
+[peter]: https://twitter.com/_pbelmann_
+
+I write exhaustively because the total running time of this approach required
+80 days of running time, or 411 days of total CPU time if we were to run each
+assembler in serial. This produced 516 million contigs, totalling 233 gigabases
+of FASTA sequence. Collecting all these contigs then allows us to benchmark
+each of these assemblies by comparison to the high-quality reference sequence
+using [QUAST][] In this instance when I write "high-quality" I specifically
+mean either a pacbio assembly or a previously manually curated genome assembly.
+For the rest of this post I will use a subset of metrics to quantify these
+generated assemblies. These are the n\*50 and l\*50, specifically n50, ng50,
+na50, nga50, l50, lg50, la50, and lga50.
+
+## Contiguity metrics
+
+[QUAST]: http://quast.sourceforge.net/quast
+
+Many scientists have impaled themselves on the spike of attempting to explain
+these esoteric metrics. I must unfortunately similarly skewer myself because
+understanding the meaning of each of these is essential to understanding the
+rest of this post. Therefore I have created the below drawing with the aim of
+illustrating this.
+
+TODO: insert drawing
+
+The n50 metric[^n50] is then calculated in the following steps, where each
+numbered point corresponds to same numbered point in the figure.
+
+  1. Order all the contigs in the assembly by their length.
+
+  2. Calculate a running cumulative sum of the contig lengths
+
+  3. Find the point in the cumulative sum which half the total sum. In this
+     figure the sum of contig lengths is 19, and the halfway point is therefore
+     9.5.
+
+  4. Pick the first contig that is greater than (specifically not greater then
+     or equal to) this halfway point in this running cummulative sum. The
+     length of this contig is the value returned as the calculated n50 metric.
+
+This is the basic n50 metric. The other n\*50 metrics are updates to this basic
+calculation:
+
+  * ng50: Instead of using the halfway of point of the cumulative sum to find
+    the pivot in the assembly, use half the sum of the reference the assembly
+    if it is available. This is to prevent extraneous or duplicated contigs
+    falsely inflating the n50 value. [^ng50]
+
+  * na50: Before calculating n50, select only the contigs that align to the
+    reference genome. This prevents falsely inflating the n50 value with
+    contigs that should not be part of the assembly, such as contaminants or
+    missamblies. [^nga50]
+
+  * nga50: a combination of both of the above. Select only the contigs that
+    align to the reference, and use half the sum of the reference contigs as
+    the pivot point. This is the current strictest method of calculating
+    n50.[^nga50]
+
+The l\*50 are calculated with exactly the same method as outlined, with the
+exception that instead of returning the length of the contig greater than the
+pivot, it's index is returned. In the example above, using starting at 1 with
+right-most contig count until the first contig greater than the pivot. This is
+the l50 metric. All the n\*50 variants described above, apply the same way to
+the corresponding l\*50 metrics.
+
+I won't go into any further into the background of these metrics. Keith Bradnam
+has a more detailed description about [why the n50 metrics are
+useful][why-n50].
+
+[why-n50]: http://www.acgt.me/blog/2013/7/8/why-is-n50-used-as-an-assembly-metric.html
+
+## Scaling contiguity metrics
+
+I'm going to define one further metric based on these previously described:
+n\*s50. Any n\*s50 metric is the corresponding n\*50 metric divided by the sum
+of the reference contigs. The reason for doing is as follows: imagine two
+genomes _A_ and _B_, the length genome _A_ is 100Mbp and the length genome _B_
+is 10Mbp. The lengths of the contigs for the genome assembly _A'_ are {40, 30,
+20, 10} and the lengths of the contigs for genome assembly _B'_ are {4, 3, 2,
+1}. The the ng50 for _A'_ is 40 while the ng50 for _B'_ is 4.
+
+This example is to illustrate when comparing two _different_ genomes, the size
+of the genome is a component in the ng50 value. We can say that _A'_ is a
+better assembly than _B'_ because of the ng50 is higher for _A'_ but we know
+that this is simply an artefact of the original genome size. Dividing both by
+the reference size returns ngs50 values of 0.4 for both.
+
+This is an important because when comparing genome assemblers we want to
+compare across a variety of different genomes of unequal sizes. The signal we
+wish to identify in how well an assembler does versus another should not be a
+factor of the genome size. [^lg50]
+
+## Categorising genome assemblies
+
+Converting n\*50 metrics into n\*s50 metrics allows the assemblies from two
+differ genomes to be compared on the same scale. This then allows assemblies
+from different genomes to be clustered together using the distances between
+their contiguity metrics. The figure belows shows how ~3300 different genome
+assemblies cluster together using the mclust model based clustering
+software[^clust]. The visualisation is generating by embedding the assemblies
+in two dimension using t-Distributed Stochastic Neighbor Embedding
+(t-SNE)[^tsne].
+
+# TODO: Insert clustering visualisation
+
+
+## Notes
+
+[^n50]: [Keith Bradnam believes][keith] the first occurence of n50 was in the [human genome paper][human].
+
+[^ng50]: The ng50 metric was first defined in the [assemblathon 1 paper][asm1].
+
+[^nga50]: I believe both na50 and nga50 were defined by the team behind [QUAST][].
+
+[^lg50]: The l\*50 metrics are invariant of size since they are calculated as the number of contigs. I would argue that larger genomes are likely to have more difficult regions to assemble, therefore resulting in a higher l\*50 value. I therefore would argue it is important to scale this metric by the reference length too.
+
+[^clust]: Scrucca L, Fop M, Murphy TB, Raftery AE. mclust 5: Clustering, Classification and Density Estimation Using Gaussian Finite Mixture Models. The R journal. 2016;8(1):289-317.
+
+[^tsne]: L.J.P. van der Maaten and G.E. Hinton. Visualizing High-Dimensional Data Using t-SNE. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.
+
+[keith]: http://www.acgt.me/blog/2015/6/11/l50-vs-n50-thats-another-fine-mess-that-bioinformatics-got-us-into
+
+[human]: http://www.nature.com/nature/journal/v409/n6822/full/409860a0.html
+
+[asm1]: http://genome.cshlp.org/content/21/12/2224
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

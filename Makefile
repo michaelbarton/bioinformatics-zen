@@ -1,7 +1,7 @@
-publish: build Gemfile.lock 
+publish: build Gemfile.lock
 	bundle exec middleman s3_sync
 
-test: build Gemfile.lock 
+test: build Gemfile.lock
 	bundle exec ./plumbing/check-forbidden-words forbidden_words.txt $(shell ls build/post/*/index.html)
 	bundle exec htmlproof --disable-external --check-html --href-ignore '#' $<
 
@@ -72,5 +72,8 @@ vendor/fancybox:
 
 clean:
 	rm -rf build
+
+clean_all:
+	rm -rf build vendor Gemfile.lock
 
 .PHONY: build dev bootstrap

@@ -33,7 +33,7 @@ vendor/stylesheets:
 	wget \
 		--quiet \
 		--output-document $@/ekko-lightbox.min.css \
-		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.css
 	touch $@
 
 vendor/javascripts/bootstrap.min.js:

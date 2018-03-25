@@ -44,78 +44,77 @@ $(document).ready(function () {
     <li><p>Each of the metrics: N*50 metrics, misassemblies and total length were scaled by the corresponding reference genome length, studentised to have a mean of 0, and to have a standard deviation of 1<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. This is to prevent the magnitude of the variable being the main component in the data.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p></li>
   </ul>
   <p>Figure <a href="#fig:plot-pca">1</a> below visualises the first two principal components using these scaled contiguity metrics. The loadings of each of the contiguity metrics are shown as the vectors on the plot. The length of each vector shows how much variance is explained, and the angle between any two shows how much a given variable correlates with another in the same component.</p>
-   <figure class="figure">
-      <span id="fig:plot-pca"></span>
-      <img class="figure-img img-fluid rounded" src=<%=amzn('comparing-assemblies-by-contiguity-metrics/01-pca-plot.png')%> alt="First two principal components for the variation in contiguity metrics across genome assemblies. Each point represents a single genome assembly from the nucleotid.es data set. The lines represent the loadings of each metric in the two principal components. The amount of variance explained by each component in listed the corresponding axis. Closely related loadings were grouped together for clarity." />
-      <figcaption class="figure-caption">
-      Figure 1: First two principal components for the variation in contiguity metrics across genome assemblies. Each point represents a single genome assembly from the nucleotid.es data set. The lines represent the loadings of each metric in the two principal components. The amount of variance explained by each component in listed the corresponding axis. Closely related loadings were grouped together for clarity.
-      </figcaption>
-    </figure>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-pca",
+    url: amzn('comparing-assemblies-by-contiguity-metrics/01-pca-plot.png'),
+    caption: "Figure 1: First two principal components for the variation in contiguity metrics across genome assemblies. Each point represents a single genome assembly from the nucleotid.es data set. The lines represent the loadings of each metric in the two principal components. The amount of variance explained by each component in listed the corresponding axis. Closely related loadings were grouped together for clarity."}) %>
+
   <p>The sum of first two components in PCA plot explains 55% of the variance in the assembly metric correlation matrix. In this subset of the explained variance, the most visible trend is the orthogonal relationship between the {L50, LA50, LG50, LGA50} metrics and the {N50, NG50, NA50, NGA50} metrics. I.e. these two groups of metrics likely describe two different characteristics of an assembly.</p>
   <p>A second observable trend is that the {L50, LA50} and {LG50, LGA50} metrics separate into two slightly different directions. There is not however the same difference between the corresponding N50/NA50 and NG50/NGA50 metrics. this may be a variant of the pigeon hole principal<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> because L50 is a discrete random variable and two contiguous genome assemblies might have the same value by chance simply because of the limited number of small discrete values L50 can take when the assembly contiguity is very good. The choice of the pivot when calculating LG50 versus L50 may therefore have a larger effect at smaller values. N50 values on the other hand tend to be a very large numbers, in the tens of thousands where the effect of using the assembly or the reference as the pivot in N50 calculation will have a percentage-wise smaller effect on the metric.</p>
 </div>
 <div id="comparing-assemblies-by-contiguity" class="section level2 unnumbered">
   <h2>Comparing assemblies by contiguity</h2>
   <p>After using PCA to identify which metrics contribute to the variation in assemblies, a next step is to focus on a subset of variables that appear to be orthogonal in explaining variation. Figure <a href="#fig:plot-unscale-data">2</a> selects two of these identified variables: LA50 on the x-axis and NA50 on the y-axis. This figure further highlights possible pigeon hole effect in LA50, where small (good-contiguity) values are clumped into discrete buckets along the <span class="math inline">\(x\)</span>-axis, and each of these buckets has a range of NA50 values along the <span class="math inline">\(y\)</span>-axis. This trend is not apparent at the lower right end of the plot where LA50 is larger and more continuous. This figure also shows a general trend where LA50 and NA50 are anti-correlated at values associated with good-contiguity genome assemblies, but does not hold for poor-contiguity genome assemblies. Specifically in the upper left of the plot there is a linear relationship, while in the lower right in the range of values where L50 is greater than 100 indicating a poor assembly, the linear relationship no longer holds.</p>
-  <div class="figure"><span id="fig:plot-unscale-data"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/02-unscaled-data.png')%> alt="Comparison of genome assemblies by LA50 and NA50 metrics. Each point is a single genome assembly from the nucleotid.es data set." />
-    <p class="caption">
-    Figure 2: Comparison of genome assemblies by LA50 and NA50 metrics. Each point is a single genome assembly from the nucleotid.es data set.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-unscale-data",
+    url: amzn('comparing-assemblies-by-contiguity-metrics/02-unscaled-data.png'),
+    caption: "Figure 2: Comparison of genome assemblies by LA50 and NA50 metrics. Each point is a single genome assembly from the nucleotid.es data set."}) %>
+
   <p>The sequencing data used here for benchmarking were produced from two types of methods for extracting DNA: cultured colony isolates and multiple displacement amplification <span class="citation">[<a href="#ref-splits2006">9</a>]</span>. The first, isolate DNA, is extracted from a large number of microbial cells forming a colony. DNA can usually be generated in abundance with this method. Multiple displace amplification (MDA) data is often extracted from a single cell, and relies on polymerase chain reaction (PCR) amplification of the genome through random hexamer priming. The non-deterministic nature of the hexamer amplification means the entire genomic DNA might not be extracted, but only a fraction instead. We might anticipate that the random nature of which parts of the genome are extracted in MDA data has a strong effect on the resulting contiguity of the assembly, and therefore should not be treated the same as isolate data. We can examine this by repeating Figure <a href="#fig:plot-unscale-data">2</a> but highlighting the method used to extract the DNA.</p>
-  <div class="figure"><span id="fig:plot-unscale-data-by-benchmark"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/03-unscaled-data-by-benchmark.png')%>
-    alt="Comparison of genome assembly LA50 and NA50 metrics coloured by DNA extraction method. Each point is a single genome assembly from the nucleotid.es data set. Trending lines are added using loess smoothing." />
-    <p class="caption">
-    Figure 3: Comparison of genome assembly LA50 and NA50 metrics coloured by DNA extraction method. Each point is a single genome assembly from the nucleotid.es data set. Trending lines are added using loess smoothing.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-unscale-data-by-benchmark",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/03-unscaled-data-by-benchmark.png"),
+    caption: "Figure 3: Comparison of genome assembly LA50 and NA50 metrics coloured by DNA extraction method. Each point is a single genome assembly from the nucleotid.es data set. Trending lines are added using loess smoothing."}) %>
+
   <p>Figure <a href="#fig:plot-unscale-data-by-benchmark">3</a> shows a bipartite distribution between the colony-isolated and the MDA assemblies. The colony-isolated data shows a clear inverse relationship between the NA50 and LA50 metrics, while the MDA data shows no relationship. This indicates that the type of DNA extraction method has a significant effect on whether any conclusions can be drawn about the contiguity of an assembly based on N*50 or L*50 metrics. To put this another way, N*50 and L*50 metrics may be useful for examining colony-isolated assemblies for contiguity but, as is already generally accepted <span class="citation">[<a href="#ref-chitsaz2011">10</a>]</span>, MDA data breaks many of the assumptions used for in assessing the quality of isolate assembled genomes.</p>
 </div>
 <div id="comparing-assemblies-across-genomes" class="section level2 unnumbered">
   <h2>Comparing assemblies across genomes</h2>
   <p>The N*50 family of metrics may have some drawbacks when comparing assemblies between different organisms. To illustrate this consider two genomes <em>A</em> and <em>B</em>, where the length of genome <em>A</em> is 100Mbp and the length of genome <em>B</em> is 10Mbp. The lengths of the contigs for the genome assembly <em>A’</em> are {40, 30, 20, 10} and the lengths of the contigs for genome assembly <em>B’</em> are {4, 3, 2, 1}. If we use N50 to compare these two genomes, then N50 for <em>A’</em> is 40 while the N50 for <em>B’</em> is 4. We might say that <em>A’</em> is a more contiguous assembly than <em>B’</em> because the N50 is higher for <em>A’</em>, however we know that this is an artefact of the length of the originating genome. Dividing both of these metrics by the length of the genome returns the value of 0.,4 comparing both assemblies on the same scale.</p>
   <p>The purpose of this example is to highlight when comparing the assemblies from two <em>different</em> genomes, the size of the genome is a component in the N*50 value. Therefore, it may be useful to define a metric based on N50, but scaled by the originating genome length: NS50. For the purpose of this analysis any N*S50 metric is the corresponding N*50 metric divided by the sum of the reference genome contigs. The reason for doing so is when comparing genome assembly software we want to compare across a variety of different genomes, of unequal sizes. The signal we wish to identify is how well an assembler performs, and not any factors of the original genome size. Converting N*50 metrics into N*S50 metrics allows assemblies from two different genomes to be compared because these metrics are now invariant of the original genome length.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
-  <div class="figure"><span id="fig:plot-main-variables"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/04-scaled-data-by-benchmark.png')%> alt="Comparison of LA50 and NA50 scaled by reference genome length. Each point is a single genome assembly from the nucleotid.es data set coloured by DNA extraction method. Trending lines are added using loess smoothing." />
-    <p class="caption">
-    Figure 4: Comparison of LA50 and NA50 scaled by reference genome length. Each point is a single genome assembly from the nucleotid.es data set coloured by DNA extraction method. Trending lines are added using loess smoothing.
-    </p>
-  </div>
+
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-main-variables",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/04-scaled-data-by-benchmark.png"),
+    caption: "Figure 4: Comparison of LA50 and NA50 scaled by reference genome length. Each point is a single genome assembly from the nucleotid.es data set coloured by DNA extraction method. Trending lines are added using loess smoothing."}) %>
+
   <p>Using NS*50 metric, Figure <a href="#fig:plot-main-variables">4</a> is the same as Figure <a href="#fig:plot-unscale-data-by-benchmark">3</a> but using NAS50, the scaled version of NA50. The y-axis shows NAS50, the x-axis shows LA50, the colour of each point is the extraction method. Figure <a href="#fig:plot-main-variables">4</a> is the most significant of this discussion, because it highlights the inverse relationship between NAS50 and LA50 for colony-isolated data, with much less variance in the relationship compared with Figure <a href="#fig:plot-unscale-data-by-benchmark">3</a>. The dashed line in the plot highlights the theoretical limit where LA50 metric cannot be any greater than 1, and when NA50 is scaled by the reference genome it also cannot be smaller than 1. A point (1,1) in the upper left therefore represents the perfect genome assembly, while values along this line LA50 <span class="math inline">\(\cdot\)</span> NAS50 = 1 such as (10, 0.1), (100, 0.01) indicate progressively less contiguous assemblies. The product of all these values is still however 1.</p>
   <p>The dashed line in Figure <a href="#fig:plot-main-variables">4</a> appears to be an upper-bound on the product of these two metrics rather than a trend for colony-isolated assemblies. Specifically colony-isolated assemblies in Figure <a href="#fig:plot-main-variables">4</a> fall below this line rather than around it. Figure <a href="#fig:plot-summarise-contiguity-relationship">5</a> compares this distribution of LA50 <span class="math inline">\(\cdot\)</span> NAS50, and shows a bimodal distribution. MDA data is associated with much smaller values of LA50 <span class="math inline">\(\cdot\)</span> NAS50, which is not unexpected given that the size and quality of the genome assembled will strongly depend on lysis, and how much of the source material was amplified.</p>
-  <div class="figure"><span id="fig:plot-summarise-contiguity-relationship"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/06-distribution-by-extration-method.png')%> alt="Histogram of NAS50 * LA50 distribution. Data are coloured by DNA extraction method." />
-    <p class="caption">
-    Figure 5: Histogram of NAS50 * LA50 distribution. Data are coloured by DNA extraction method.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-summarise-contiguity-relationship",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/06-distribution-by-extration-method.png"),
+    caption: "Figure 5: Histogram of NAS50 * LA50 distribution. Data are coloured by DNA extraction method."}) %>
+
   <p>Figure <a href="#fig:plot-p50-residual">6</a> compares NS50 <span class="math inline">\(\cdot\)</span> L50 on the x-axis with percent genome fraction on the y-axis. Genome fraction is defined by QUAST as the percentage of bases aligned to the reference genome. The figure shows these two variables are correlated for MDA data, with an upper limit at (NS50 <span class="math inline">\(\cdot\)</span> L50 <span class="math inline">\(\sim 10^{-\frac{1}{2}}\)</span>, 1) as highlighted by the dashed line. An interesting possibility may be if you can accurately estimate the size of the originating genome, it would be possible to determine percentage genome fraction for MDA data using NS50 <span class="math inline">\(\cdot\)</span> L50 without having the reference genome to align against. Estimating a genome size without a genome should be possible from peaks in the sequencing kmer histogram.</p>
   <p>The colony-isolated data shows no relationship between percentage genome fraction and NS50 <span class="math inline">\(\cdot\)</span> L50. This suggests for isolates that most of the genome ends up in the assembly where the estimated genome fraction is at ~100%, but with varying degrees of contiguity along the NS50 <span class="math inline">\(\cdot\)</span> L50 axis. This is as might be expected given that assemblies from colony-isolated microbial DNA should have most of the genomic DNA present.</p>
-  <div class="figure"><span id="fig:plot-p50-residual"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/07-comparison-with-genome-fraction.png')%> alt="Comparison of NAS50 * LA50 with percent genome fraction. Genome fraction is the percentage of aligned bases to the reference genome as estimated by QUAST. A theoretical limit between isolate and MDA assemblies is shown by the dashed line." />
-    <p class="caption">
-    Figure 6: Comparison of NAS50 * LA50 with percent genome fraction. Genome fraction is the percentage of aligned bases to the reference genome as estimated by QUAST. A theoretical limit between isolate and MDA assemblies is shown by the dashed line.
-    </p>
-  </div>
-</div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-p50-residual",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/07-comparison-with-genome-fraction.png"),
+    caption: "Figure 6: Comparison of NAS50 * LA50 with percent genome fraction. Genome fraction is the percentage of aligned bases to the reference genome as estimated by QUAST. A theoretical limit between isolate and MDA assemblies is shown by the dashed line."}) %>
+
+
 <div id="contiguity-is-only-one-aspect-of-an-assembly" class="section level2 unnumbered">
   <h2>Contiguity is only one aspect of an assembly</h2>
   <p>I attended the <a href="https://www.regonline.com/builder/site/Default.aspx?EventID=1964406">CAMI2 and M3 workshop</a> in 2017 and was fortunate to see Mihai Pop give a talk on “Metagenome assembly and validation”. One of the points he discussed was that it is not enough to consider assembly contiguity alone, because large contiguous assemblies can be created by liberally introducing misassemblies. I.e. longer contigs may be generated by incorrectly assembling difficult genomic regions. Therefore it’s worth measuring the extent to which contiguity and misassemblies are inversely correlated.</p>
-  <div class="figure"><span id="fig:plot-summarise-misassemblies"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/08-misassembly-distribution.png')%> alt="Distribution of misassemblies across genome assemblies, coloured by DNA extraction method." />
-    <p class="caption">
-    Figure 7: Distribution of misassemblies across genome assemblies, coloured by DNA extraction method.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:plot-summarise-misassemblies",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/08-misassembly-distribution.png"),
+    caption: "Figure 7: Distribution of misassemblies across genome assemblies, coloured by DNA extraction method."}) %>
+
   <p>Figure <a href="#fig:plot-summarise-misassemblies">7</a> shows the distribution of number of misassemblies per megabase across the data. A small value (0.1) was added to 0 values to visualise them on a log10 scale. This figure shows, as might be expected given chimeric reads and very uneven coverage, that MDA data has a much greater number of misassemblies than colony-isolated data. The number of misassemblies in MDA data ranges over two orders of magnitude.</p>
-  <div class="figure"><span id="fig:p50-vs-misassemblies"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/09-comparison-with-misassemblies.png')%> alt="Comparison of NAS50*LA50 with number of misassemblies per megabase. Trending lines are added using loess smoothing." />
-    <p class="caption">
-    Figure 8: Comparison of NAS50*LA50 with number of misassemblies per megabase. Trending lines are added using loess smoothing.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:p50-vs-misassemblies",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/09-comparison-with-misassemblies.png"),
+    caption: "Figure 8: Comparison of NAS50*LA50 with number of misassemblies per megabase. Trending lines are added using loess smoothing."}) %>
+
   <p>Figure <a href="#fig:p50-vs-misassemblies">8</a> compares the distribution of misassemblies on the y-axis and NS50 <span class="math inline">\(\cdot\)</span> L50 on the x-axis. This indicates there is no readily-observable relationship between the contiguity of an assembly and the number of misassemblies. This is particularly the case for the colony-isolated data. The MDA data might suggest some relationship but given the density and spread of the data, there is no trend I would trust to use as a metric for evaluating the number of misassemblies. I think this reinforces Mihai Pop’s point that contiguity metrics alone are not enough to identify the quality of an assembly, and methods for identifying misassemblies should also be used too.</p>
 </div>
 <div id="summary" class="section level2 unnumbered">
@@ -134,12 +133,12 @@ $(document).ready(function () {
 <div id="postscript---evaluation-of-reference-free-metrics" class="section level2 unnumbered">
   <h2>Postscript - evaluation of reference-free metrics</h2>
   <p>The ideal metrics to benchmark the contiguity of an assembly would be LGA50 and NGA50 because this pivot for calculating the metric is length of reference rather than the length of assembly which may contain spurious or misassembled contigs. Excluding any contigs that do not align to the reference also removes parts of the assembly that have low sequence similarity. Without a reference however, it is only possible to calculate L50 and N50 respectively. Figure <a href="#fig:compare-metrics">9</a> therefore compares N50/NGA50 and L50/LGA50 respectively to determine the correspondence between the reference-based and non-reference-based metrics.</p>
-  <div class="figure"><span id="fig:compare-metrics"></span>
-    <img src=<%=amzn('comparing-assemblies-by-contiguity-metrics/10-comparison-with-reference-metrics.png')%> alt="Comparison of reference-based assembly contiguity metrics with non-reference-based counterparts. Only colony isolated genome assemblies are plotted. Trend lines are added using a linear model." />
-    <p class="caption">
-    Figure 9: Comparison of reference-based assembly contiguity metrics with non-reference-based counterparts. Only colony isolated genome assemblies are plotted. Trend lines are added using a linear model.
-    </p>
-  </div>
+
+  <%= partial(:figure, :locals => {
+    anchor: "fig:compare-metrics",
+    url: amzn("comparing-assemblies-by-contiguity-metrics/10-comparison-with-reference-metrics.png"),
+    caption: "Figure 9: Comparison of reference-based assembly contiguity metrics with non-reference-based counterparts. Only colony isolated genome assemblies are plotted. Trend lines are added using a linear model."}) %>
+
   <p>Figure <a href="#fig:compare-metrics">9</a> indicates there is good correspondence between these two sets of metrics, therefore you might assume that L50 is a good proxy for LGA50, and N50 correspondingly for NGA50. This however does come with the caveat, that the two plots above were generated using only colony-isolated data. It’s not possible to calculate NG50 when the size of the assembly is less than 50% the length of the reference as is common in MDA data. Contiguity metrics should therefore be used with even more caution on MDA data. This may also hold true for metagenome assemblies, which if complex enough and without enough sequencing depth, would also not contain 50% the length of the original genomes.</p>
   <table>
     <tbody>

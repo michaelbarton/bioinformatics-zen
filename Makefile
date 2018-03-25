@@ -36,9 +36,11 @@ vendor/stylesheets:
 		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
 	touch $@
 
+
 vendor/javascripts/bootstrap.min.js:
 	mkdir -p $(dir $@)
 	cp ./vendor/bootstrap/dist/js/bootstrap.min.js $@
+
 
 vendor/javascripts/ekko-lightbox.min.js:
 	mkdir -p $(dir $@)

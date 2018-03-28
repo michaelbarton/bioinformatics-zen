@@ -1,17 +1,17 @@
-publish: build Gemfile.lock 
+dev: Gemfile.lock
+	bundle exec middleman server
+
+
+publish: build Gemfile.lock
 	bundle exec middleman s3_sync
 
-test: build Gemfile.lock 
+test: build Gemfile.lock
 	bundle exec ./plumbing/check-forbidden-words forbidden_words.txt $(shell ls build/post/*/index.html)
 	bundle exec htmlproof --disable-external --check-html --href-ignore '#' $<
 
 build: Gemfile.lock
 	bundle exec middleman build --verbose
 	touch $@
-
-dev: Gemfile.lock
-	bundle exec middleman server
-
 
 ########################################
 #
@@ -36,9 +36,11 @@ vendor/stylesheets:
 		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
 	touch $@
 
+
 vendor/javascripts/bootstrap.min.js:
 	mkdir -p $(dir $@)
 	cp ./vendor/bootstrap/dist/js/bootstrap.min.js $@
+
 
 vendor/javascripts/ekko-lightbox.min.js:
 	mkdir -p $(dir $@)

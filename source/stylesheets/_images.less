@@ -1,3 +1,5 @@
+@import '_global_settings';
+
 .centred {
   img {
     display: block;
@@ -7,4 +9,34 @@
 
 .modal-dialog {
   max-width: 750px !important;
+}
+
+figure {
+  border-radius: 10px;
+  margin-top: 4em;
+  margin-bottom: 4em;
+  box-shadow: 0 1px 4px 0 hsla(0, 0%, 0%, 0.125);
+  img {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    margin: 0 auto;
+    width: 90%;
+    display: block;
+  }
+  figcaption {
+    background: hsl(0, 0%, 97%);
+    p {
+      color: hsl(0, 0%, 45%);
+      font-size: @font-size-base;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      line-height: 1.3;
+      font-weight: 400;
+      font-family: "Open Sans", "serif";
+
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }

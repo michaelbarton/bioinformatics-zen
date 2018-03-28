@@ -1,7 +1,13 @@
-%h2
-  = current_page.data.title
-- if current_page.data.date
-  %p
-    %time{pubdate: "pubdate"}
-      Published
-      = pretty_date(current_page.data.date)
+%header
+  %h2
+    = current_page.data.title
+  - if current_page.data.date
+    %span.subheading
+      %time{pubdate: "pubdate"}
+      %p
+        = "//  "
+        = pretty_date(current_page.data.date)
+      %p
+        - if current_page.data.authors
+          = "//  Written with "
+          = current_page.data.authors

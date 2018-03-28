@@ -3,11 +3,8 @@ kind: article
 feed: true
 title: "Examining microbial genome assemblies using contiguity metrics"
 date: "2018-04-01 00:00 GMT"
+authors: "Alicia Clum and Alex Copeland"
 ---
-
-
-<h4 class="author"><em>Michael Barton, Alicia Clum, Alex Copeland</em></h4>
-
 
 <p>An issue many researchers and analysts face is what is the best way to determine if a produced genome assembly is good or not, and by what criteria? Previous research has addressed this problem in assembly, including the Assemblathon 1 <span class="citation">[<a href="#ref-earl2011">1</a>]</span>, Assemblathon 2 <span class="citation">[<a href="#ref-salzberg2012">2</a>]</span>, GAGE <span class="citation">[<a href="#ref-bradnam2013">3</a>]</span>, and CAMI <span class="citation">[<a href="#ref-sczyrba2017">4</a>]</span>. The <a href="http://jgi.doe.gov/">Joint Genome Institute</a> faces the same problem on a larger scale. We’ve sequenced thousands of microbial genomes in the last five years and in every case we want to provide the best assembly given the available sequencing hardware, library preparation and assembly software. Over the last few years we have taken a two-fold approach to determine which assembly software to use.</p>
 <ul>
@@ -30,7 +27,7 @@ date: "2018-04-01 00:00 GMT"
 <p>The L*50 metrics are calculated using the same method, but return instead the 1-based index of the contig. Starting at 1, the contigs are assigned an incrementing index until the first contig greater than the pivot. The index of this contig is the value of the L50 metric and represents the number of contigs which contain about half the assembly. All the N*50 variants described above have the corresponding L*50 metric. Keith Bradnam however has a detailed blog post about <a href="http://www.acgt.me/blog/2013/7/8/why-is-n50-used-as-an-assembly-metric.html">why the N50 metrics are useful</a> <span class="citation">[<a href="#ref-bradnam2013">3</a>]</span>.</p>
 <p>The data I’m using here is a snapshot from a few months ago. You can <a href="https://s3-us-west-1.amazonaws.com/michaelbarton/notebook-data/2017-05-19-contiguity-metrics/data/input_data.csv.xz">download this data</a> for yourself, and this article is also an <a href="http://rmarkdown.rstudio.com/">RMarkdown</a> document containing all the steps used to analyse the data. You can <a href="https://gitlab.com/michaelbarton/rmd-assembly-quality">view the source or submit a pull request through the gitlab repository</a>.</p>
 <div id="exploration-of-contiguity-metrics" class="section level2 unnumbered">
-  <h2>Exploration of contiguity metrics</h2>
+  <h3>Exploration of contiguity metrics</h3>
   <p>Given all the metrics collected across ~6.5k genome assemblies in the nucleotid.es benchmarking project different, an exploratory first step is to determine if there are any obvious trends in these metrics across genomes and assemblers. <a href="http://setosa.io/ev/principal-component-analysis/">Principal Components Analysis</a> (PCA) is a common choice for the exploration of multivariate data because it allows projecting a multi-dimensional space into a lower two dimensional space which is then more easily visualised. Prior to performing PCA, metrics across all assemblies were preprocessed in the following way:</p>
   <ul>
     <li><p>Any missing values were converted to 0. Missing values may be observed if the sum of contigs in an assembly are less the half the reference genome length, and therefore any *G50 metric cannot be calculated.</p></li>
@@ -47,7 +44,7 @@ date: "2018-04-01 00:00 GMT"
   <p>A second observable trend is that the {L50, LA50} and {LG50, LGA50} metrics separate into two slightly different directions. There is not however the same difference between the corresponding N50/NA50 and NG50/NGA50 metrics. This may be a variant of the pigeon hole principle<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>: because L50 is a discrete random variable and two contiguous genome assemblies might have the same value by chance simply due to the limited number of discrete values L50 can take when the assembly contiguity is very good. The choice of the pivot when calculating LG50 versus L50 may therefore have a larger effect at smaller values. N50 values on the other hand tend to be a very large numbers, in the tens of thousands and so is distributed more like a continuous variable.</p>
 </div>
 <div id="comparing-assemblies-by-contiguity" class="section level2 unnumbered">
-  <h2>Comparing assemblies by contiguity</h2>
+  <h3>Comparing assemblies by contiguity</h3>
   <p>After using PCA to identify which metrics contribute to the variation in assemblies, a next step is to focus on a subset of variables that appear to be orthogonal in explaining variation. <a href="#fig:plot-unscale-data">Figure 2</a> selects two of these identified variables: LA50 on the x-axis and NA50 on the y-axis. This figure further highlights possible pigeon hole effect in LA50, where small (good-contiguity) values are clumped into discrete buckets along the <span class="math inline">\(x\)</span>-axis, and each of these buckets has a range of NA50 values along the <span class="math inline">\(y\)</span>-axis. This trend is not apparent at the lower right end of the plot where LA50 is larger and more continuous. This figure also shows a general trend where LA50 and NA50 are anti-correlated at values associated with good-contiguity genome assemblies, but does not hold for poor-contiguity genome assemblies. Specifically in the upper left of the plot there is a linear relationship, while in the lower right in the range of values where L50 is greater than 100 indicating a poor assembly, the linear relationship no longer holds.</p>
 
   <%= partial(:figure, :locals => {
@@ -65,7 +62,7 @@ date: "2018-04-01 00:00 GMT"
   <p><a href="#fig:plot-unscale-data-by-benchmark">Figure 3</a> shows a bipartite distribution between the colony-isolated and the MDA assemblies. The colony-isolated data shows a clear inverse relationship between the NA50 and LA50 metrics, while the MDA data shows no relationship. This indicates that the type of DNA extraction method has a significant effect on whether any conclusions can be drawn about the contiguity of an assembly based on N*50 or L*50 metrics. To put this another way, N*50 and L*50 metrics may be useful for examining colony-isolated assemblies for contiguity but, as is already generally accepted <span class="citation">[<a href="#ref-chitsaz2011">10</a>]</span>, MDA data breaks many of the assumptions used for assessing the quality of isolate assembled genomes.</p>
 </div>
 <div id="comparing-assemblies-across-genomes" class="section level2 unnumbered">
-  <h2>Comparing assemblies across genomes</h2>
+  <h3>Comparing assemblies across genomes</h3>
   <p>The N*50 family of metrics are not suitable for comparing assemblies between organisms with different genome sizes. To illustrate this, consider two genomes <em>A</em> and <em>B</em>, where the length of genome <em>A</em> is 100Mbp and the length of genome <em>B</em> is 10Mbp. The lengths of the contigs for the genome assembly <em>A’</em> are {40, 30, 20, 10} and the lengths of the contigs for genome assembly <em>B’</em> are {4, 3, 2, 1}. If we use N50 to compare these two genomes, then N50 for <em>A’</em> is 40 while the N50 for <em>B’</em> is 4. We might say that <em>A’</em> is a more contiguous assembly than <em>B’</em> because the N50 is higher for <em>A’</em>, however we know that this is an artefact of the length of the originating genome. Dividing both of these metrics by the length of the genome returns the value of 0.4 comparing both assemblies on the same scale.</p>
   <p>When comparing the assemblies from two <em>different</em> genomes, the size of the genome is a component in the N*50 value. Therefore, it may be useful to define a metric based on N50, but divided by the originating genome length: NS50. For the purpose of this analysis any N*S50 metric is the corresponding N*50 metric divided by the sum of the reference genome contigs. The reason for doing so is when comparing genome assembly software we want to compare across a variety of different genomes, of unequal sizes. The signal we wish to identify is how well an assembler performs, and not any factors of the original genome size. Converting N*50 metrics into N*S50 metrics allows assemblies from two different genomes to be compared because these metrics are now invariant of the original genome length.<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a></p>
 
@@ -93,7 +90,7 @@ date: "2018-04-01 00:00 GMT"
 
 
 <div id="contiguity-is-only-one-aspect-of-an-assembly" class="section level2 unnumbered">
-  <h2>Contiguity is only one aspect of an assembly</h2>
+  <h3>Contiguity is only one aspect of an assembly</h3>
   <p>I attended the <a href="https://www.regonline.com/builder/site/Default.aspx?EventID=1964406">CAMI2 and M3 workshop</a> in 2017 and was fortunate to see Mihai Pop give a talk on “Metagenome assembly and validation”. One of the points he discussed was that it is not enough to consider assembly contiguity alone, because large contiguous assemblies can be created by liberally introducing misassemblies. I.e. longer contigs may be generated by incorrectly assembling difficult genomic regions. Therefore it’s worth measuring the extent to which contiguity and misassemblies are inversely correlated.</p>
 
   <%= partial(:figure, :locals => {
@@ -111,7 +108,7 @@ date: "2018-04-01 00:00 GMT"
   <p><a href="#fig:p50-vs-misassemblies">Figure 8</a> compares the distribution of misassemblies on the y-axis and NS50 <span class="math inline">\(\cdot\)</span> L50 on the x-axis. This indicates there is no readily-observable relationship between the contiguity of an assembly and the number of misassemblies. This is particularly the case for the colony-isolated data. The MDA data might suggest some relationship but given the density and spread of the data, there is no trend I would trust to use as a metric for evaluating the number of misassemblies. I think this reinforces Mihai Pop’s point that contiguity metrics alone are not enough to identify the quality of an assembly, and methods for identifying misassemblies should also be used too.</p>
 </div>
 <div id="summary" class="section level2 unnumbered">
-  <h2>Summary</h2>
+  <h3>Summary</h3>
   <ul>
     <li><p>When examining the contiguity of a microbial assembly using a subset of the metrics produced by QUAST. The N*50 and L*50 metrics are near orthogonal in describing 55% of the variation identified in the first two principal components.</p></li>
     <li><p>When N*50 metrics are scaled by the length of the originating microbial genome (as N*S50), then L*50 and N*50 are inversely proportional in culture-colony isolated microbial DNA, such that there appears to be an upper limit at NS50 <span class="math inline">\(\cdot\)</span> L50 = 1.</p></li>
@@ -120,11 +117,11 @@ date: "2018-04-01 00:00 GMT"
   </ul>
 </div>
 <div id="acknowledgements" class="section level2 unnumbered">
-  <h2>Acknowledgements</h2>
+  <h3>Acknowledgements</h3>
   <p>The work was conducted at the U.S. Department of Energy Joint Genome Institute, a DOE Office of Science User Facility, and is supported under Contract No. DE-AC02-05CH11231. Multiple instances of advice and suggestions provided on Cross Validated to make the model fitting part of this analysis possible.</p>
 </div>
 <div id="postscript---evaluation-of-reference-free-metrics" class="section level2 unnumbered">
-  <h2>Postscript - evaluation of reference-free metrics</h2>
+  <h3>Postscript - evaluation of reference-free metrics</h3>
   <p>The ideal metrics to benchmark the contiguity of an assembly would be LGA50 and NGA50 because this pivot for calculating the metric is length of reference rather than the length of assembly which may contain spurious or misassembled contigs. Excluding any contigs that do not align to the reference also removes parts of the assembly that have low sequence similarity. Without a reference however, it is only possible to calculate L50 and N50 respectively. <a href="#fig:compare-metrics">Figure 9</a> therefore compares N50/NGA50 and L50/LGA50 respectively to determine the correspondence between the reference-based and non-reference-based metrics.</p>
 
   <%= partial(:figure, :locals => {
@@ -135,7 +132,7 @@ date: "2018-04-01 00:00 GMT"
   <p><a href="#fig:compare-metrics">Figure 9</a> indicates there is good correspondence between these two sets of metrics, therefore you might assume that L50 is a good proxy for LGA50, and N50 correspondingly for NGA50. This however does come with the caveat, that the two plots above were generated using only colony-isolated data. It’s not possible to calculate NG50 when the size of the assembly is less than 50% the length of the reference as is common in MDA data. Contiguity metrics should therefore be used with even more caution on MDA data. This may also hold true for metagenome assemblies, which if complex enough and without enough sequencing depth, would also not contain 50% the length of the original genomes.</p>
 </div>
 <div id="references" class="section level2 unnumbered">
-  <h2>References</h2>
+  <h3>References</h3>
   <!--chapter:end:notebook.Rmd-->
   <div class="references">
     <div id="ref-earl2011">

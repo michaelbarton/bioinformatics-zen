@@ -70,8 +70,8 @@
     url: amzn('aggregated-assembly-metrics/01-nag50-by-assembler.png'),
     caption: "Figure 1: Plot of NA50 distribution across genome assembler version. The x-axis is NA50 scaled by source genome length, shown on a log. scale. The rows on the y-axis are the benchmark genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. Organism labels are hidden for brevity."}) %>
 
+    <figure id="tab:na50-model-summary">
     <table>
-       <caption><span id="tab:na50-model-summary">Table 1: </span>Summary of first six most parsimonious models with NA50 as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
        <thead>
           <tr class="header">
              <th align="left">Fixed Term</th>
@@ -140,6 +140,9 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 1: Summary of first six most parsimonious models with NA50 as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
+    </figure>
+
     <p>All the models described (Table <a href="#tab:model-table">6</a>) were fitted with NA50 as the response variable. The best five models according to lowest BIC are listed in Table <a href="#tab:na50-model-summary">1</a>. This table shows the dBIC, residual deviance, and residual degrees of freedom for each model.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> The dBIC value shows the delta between each model and the model with the lowest BIC. Therefore the most parsimonious model for explaining variance in NA50, according to BIC, was assembler command line arguments with a random effect for source genome and variance components for both assembler arguments and genome. The next most parsimonious model had a dBIC much higher than 10, indicating there is no support for any other models <span class="citation">[<a href="#ref-burnham2002">29</a>]</span>.</p>
     <p>The null model with random effect for source organism was more parsimonious compared with all models using only software as an explanatory effect (not shown in the table for clarity). This emphasises the importance considering of the biological source when benchmarking bioinformatics software, and any performance metrics must account for inherent random effects in the benchmark data used. The model comparison suggests not accounting for this is likely to conflate the efficacy of the software with the inherent differences in the data used for benchmarking.</p>
  </div>
@@ -177,8 +180,9 @@
 
     <p>Figure <a href="#fig:plot-feature-dist">3</a> compares annotation L1 norm distance per megabase for all the genomes used in benchmarking, across all assemblers. The higher the L1 norm, the larger the difference between the reference and assembly annotated feature sets. In the majority of cases, the number of annotations different between the reference and the assembly is fewer than 200 per megabase, not including any genome specific effects. The exceptions to this were MEGAHIT/1.0.6 and LightAssembler which in many cases had a much larger number of differences compared with the other assemblers.</p>
     <p>Similarly to the previous sections, the same models listed in Table <a href="#tab:model-table">6</a> were fitted to describe the L1 norm distance between each assembly and the corresponding reference. The model for assembler with a random effect for source genome is the most parsimonious (Table <a href="#tab:table-feature-models">5</a>). Figure <a href="#fig:plot-feature-coef">4</a> shows the model estimated coefficients for the least-worst set of arguments for each assembler version. The figure shows that MEGAHIT/1.0.6 had higher number of incorrect annotations than the majority of the other assemblers, while this appears to be much improved in MEGAHIT/1.1.1. This again emphasises the importance of considering versioning in bioinformatics software. Light assembler could not be shown on the same scale as the other assemblers due to the estimated coefficient being much greater than the other assemblers. Outside of MEGAHIT/1.0.6 and LightAssembler the difference between the best and worst performing assembler was approximately 25 incorrect annotations per megabase. Therefore the choice of genome assembler is expected to have a non-trivial effect on downstream annotated features.</p>
+
+    <figure id="tab:assemblers-by-feature-table">
     <table>
-       <caption><span id="tab:assemblers-by-feature-table">Table 2: </span>List of five best performing assemblers by average L1 norm feature distance between the reference genome and the generated assembly. The ‘Assembler’, ‘Version’ and ‘Biobox Task’ columns refer to the parameters used to run the Docker image containing the software. The ‘Biobox Task’ refers to the biobox task name that can be used to replicate the command line arguments used for benchmarking. The ‘Estimate’ column is the upper 95% confidence interval on the average L1 norm distance across all the benchmark genomes. Larger values indicate an expected greater number of incorrect features in an assembly.</caption>
        <thead>
           <tr class="header">
              <th align="left">Assembler</th>
@@ -226,6 +230,9 @@
           </tr>
        </tbody>
     </table>
+    <figcaption><span >Table 2: </span>List of five best performing assemblers by average L1 norm feature distance between the reference genome and the generated assembly. The ‘Assembler’, ‘Version’ and ‘Biobox Task’ columns refer to the parameters used to run the Docker image containing the software. The ‘Biobox Task’ refers to the biobox task name that can be used to replicate the command line arguments used for benchmarking. The ‘Estimate’ column is the upper 95% confidence interval on the average L1 norm distance across all the benchmark genomes. Larger values indicate an expected greater number of incorrect features in an assembly.</caption>
+    </figure>
+
     <p>Table <a href="#tab:assemblers-by-feature-table">2</a> lists the top five assembler biobox Docker images according the upper 95% confidence interval on the linear model estimated efficacy of each assembler. This table illustrates how linear models may be used to generate a single metric for each assembler across a range of benchmark genomes, which can then be used to automatically rank and select the assembly pipeline providing the likely greatest number of correct annotations. This analysis suggests at this time version v0.11.0 of the JGI isolate pipeline biobox, running the ‘default’ task was the best choice of assembler for microbial isolate Illumina sequencing data. This improves over running SPAdes alone by approximately 0.5 correct features per megabase, highlighting how preprocessing raw sequence data before assembly can result in improvements over using the raw data alone. The high ranking of shovill and StriDe assemblers, both of which also contain trimming and error correction, also points to how preprocessing can increase the expected number of correct annotations.</p>
     <p>These conclusions are based on the data used, and different data may produce different conclusions. Specifically, earlier analysis with a smaller data set showed that the most parsimonious model was only the assembler used, regardless of the version or command line arguments. This highlights how this analysis is data-dependent on the source genomes and assemblers, and greater numbers of benchmark genomes, or including additional models terms would likely lead to smaller confidence intervals in the estimated coefficients.</p>
  </div>
@@ -247,8 +254,8 @@
     url: amzn('aggregated-assembly-metrics/05-model-fit-check.png'),
     caption: "Figure 5: Model checking plots for NA50 fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
+    <figure>
     <table>
-       <caption><span id="tab:table-misassembly-models">Table 3: </span>Summary of first six most parsimonious models with number of misassemblies as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
        <thead>
           <tr class="header">
              <th align="left">Fixed Term</th>
@@ -317,14 +324,16 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 3: Summary of first six most parsimonious models with number of misassemblies as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
+    </figure>
 
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-misassembly-model-fit",
     url: amzn('aggregated-assembly-metrics/06-model-fit-check.png'),
     caption: "Figure 6: Model checking plots for misassemblies fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
+    <figure id="tab:table-incorrect-models">
     <table>
-       <caption><span id="tab:table-incorrect-models">Table 4: </span>Summary of first six most parsimonious models with number of incorrect bases as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
        <thead>
           <tr class="header">
              <th align="left">Fixed Term</th>
@@ -393,14 +402,16 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 4: Summary of first six most parsimonious models with number of incorrect bases as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
+    </figure>
 
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-incorrect-bases-model-fit",
     url: amzn('aggregated-assembly-metrics/07-model-fit-check.png'),
     caption: "Figure 7: Model checking plots for incorrect bases model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
+    <figure id="tab:table-feature-models">
     <table>
-       <caption><span id="tab:table-feature-models">Table 5: </span>Summary of first six most parsimonious models with L1 norm feature distance between reference and assembly as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
        <thead>
           <tr class="header">
              <th align="left">Fixed Term</th>
@@ -469,14 +480,16 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 5: Summary of first six most parsimonious models with L1 norm feature distance between reference and assembly as the response variable. The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F).</caption>
+    </figure>
 
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-feature-model-fit",
     url: amzn('aggregated-assembly-metrics/08-model-fit-check.png'),
     caption: "Figure 8: Model checking plots for feature L1 norm fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
+    <figure id="tab:model-table">
     <table>
-       <caption><span id="tab:model-table">Table 6: </span>Comparison of the mixed effect models considered in this analysis, where each row defines the terms used in the model. The ‘Fixed’ and ‘Random’ terms are those fitted as explanatory variables, along with the natural log of the genome length. The ‘Variance Model’ column lists where the variance was also modelled as a component, i.e. whether different terms had different variances. Null terms indicate that this was simply modelled as the mean of the data with a model estimated constant coefficient.</caption>
        <thead>
           <tr class="header">
              <th align="left">Fixed Term</th>
@@ -662,8 +675,11 @@
           </tr>
        </tbody>
     </table>
+    <figcaption><span >Table 6: </span>Comparison of the mixed effect models considered in this analysis, where each row defines the terms used in the model. The ‘Fixed’ and ‘Random’ terms are those fitted as explanatory variables, along with the natural log of the genome length. The ‘Variance Model’ column lists where the variance was also modelled as a component, i.e. whether different terms had different variances. Null terms indicate that this was simply modelled as the mean of the data with a model estimated constant coefficient.</caption>
+    </figure>
+
+    <figure>
     <table>
-       <caption><span id="tab:table-missing-data">Table 7: </span>List of biobox images failing to produce an assembly when run on benchmarking data.</caption>
        <thead>
           <tr class="header">
              <th align="left">Assembler</th>
@@ -729,8 +745,11 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 7: List of biobox images failing to produce an assembly when run on benchmarking data.</caption>
+    </figure>
+
+    <figure id="tab:table-images">
     <table>
-       <caption><span id="tab:table-images">Table 8: </span>List of biobox short read assembler Docker images used in the benchmarks.</caption>
        <thead>
           <tr class="header">
              <th align="left">Assembler</th>
@@ -836,8 +855,12 @@
           </tr>
        </tbody>
     </table>
+    <figcaption><span >Table 8: </span>List of biobox short read assembler Docker images used in the benchmarks.</caption>
+    </figure>
+
+
+    <figure>
     <table>
-       <caption><span id="tab:table-organisms">Table 9: </span>List of source microbial genomes used in the benchmarks.</caption>
        <thead>
           <tr class="header">
              <th align="left">Biological Source</th>
@@ -928,6 +951,10 @@
           </tr>
        </tbody>
     </table>
+    <figcaption>Table 9: List of source microbial genomes used in the benchmarks.</figcaption>
+    </figure>
+
+
     <p></p>
  </div>
  <div id="references" class="section level2 unnumbered">

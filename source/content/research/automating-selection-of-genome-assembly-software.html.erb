@@ -68,7 +68,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-na50-dist",
     url: amzn('aggregated-assembly-metrics/01-nag50-by-assembler.png'),
-    caption: "Figure 1: Plot of NA50 distribution across genome assembler version. The x-axis is NA50 scaled by source genome length, shown on a log. scale. The rows on the y-axis are the benchmark genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. Organism labels are hidden for brevity."}) %>
+    caption_name: "Figure 1: Plot of NA50 distribution across genome assembler version.",
+    caption_desc: "The x-axis is NA50 scaled by source genome length, shown on a log. scale. The rows on the y-axis are the benchmark genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. Organism labels are hidden for brevity."}) %>
 
     <figure id="tab:na50-model-summary">
     <table>
@@ -156,7 +157,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-assembler-parameters",
     url: amzn('aggregated-assembly-metrics/02-assembly-aggregated-metrics.png'),
-    caption: "Figure 2: Plot of assembly quality metrics by genome and assembler. Each figure shows the efficacy of the assembler coefficients estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\% confidence intervals for each estimate. The x-axis for the model coefficient plots are ordered by the least-worst bound on the confidence interval for each assembler. Figures A and C include the different versions of the assembly software used. Figure B does not include the assembly software version because the most parsimonious model indicated software version is not a factor in rate."}) %>
+    caption_name: "Figure 2: Plot of assembly quality metrics by genome and assembler.",
+    caption_desc: "Each figure shows the efficacy of the assembler coefficients estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\% confidence intervals for each estimate. The x-axis for the model coefficient plots are ordered by the least-worst bound on the confidence interval for each assembler. Figures A and C include the different versions of the assembly software used. Figure B does not include the assembly software version because the most parsimonious model indicated software version is not a factor in rate."}) %>
 
     <p>Figure <a href="#fig:plot-assembler-parameters">2</a>A shows the linear-model estimated NA50 coefficient for each assembler, the model coefficients are exponentiated to appear on 0-1 scale as NA50 scaled by reference genome length. The estimated coefficients show that the choice of genome assembler had a relatively minor effect on the contiguity of the assembly, where most assemblers can be expected to produce similar contiguity. The exceptions to this are LightAssembler and MEGAHIT/1.0.6. MEGAHIT versions 1.0.6 and 1.1.1 have different estimates with non-overlapping confidence intervals, highlighting the important of considering and reporting which version of an assembler was used in any genomic analysis. Overall though the choice of assembler appears to have only a minor affect on contiguity.</p>
     <p>Figure <a href="#fig:plot-assembler-parameters">2</a>B shows the estimated average misassembly coefficients for each genome assembler, exponentiated to return to the original scale. The estimated coefficients are more uniformly distributed across a range of values than the estimated NA50 coefficients. In this case there are assemblers such as LightAssembler, tadpole and MEGAHIT that generate fewer misassemblies than assemblers such as Ray, Minia, StriDe and the JGI isolate pipeline. The assemblers that have the largest coefficients for NA50, also tend to have the largest coefficients for misassemblies per megabase, indicating an inverse relationship between contiguity and misassemblies.</p>
@@ -173,12 +175,14 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-feature-dist",
     url: amzn('aggregated-assembly-metrics/03-l1-norm-by-assembler.png'),
-    caption: "Figure 3: Plot of genome feature correctness by assembler version. The x-axis is the L1 norm distance of the annotated features between the assembly and the reference, shown on a log. scale. The rows on the y-axis are the benchmarked genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. The y-axis is ordered by the geometric mean of values for each organism. Organism labels are hidden for brevity."}) %>
+    caption_name: "Figure 3: Plot of genome feature correctness by assembler version.",
+    caption_desc: "The x-axis is the L1 norm distance of the annotated features between the assembly and the reference, shown on a log. scale. The rows on the y-axis are the benchmarked genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. The y-axis is ordered by the geometric mean of values for each organism. Organism labels are hidden for brevity."}) %>
 
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-feature-coef",
     url: amzn('aggregated-assembly-metrics/04-l1-norm-aggregated-metrics.png'),
-    caption: "Figure 4: Plot of assembler average genome feature L1 norm distance coefficients estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\% confidence intervals for each estimate. The x-axis is ordered by the lower bound on the confidence interval. The estimated coefficient for LightAssembler is not included on this scale due to it being much greater than all other estimated coefficients."}) %>
+    caption_name: "Figure 4: Plot of assembler average genome feature L1 norm distance coefficients.",
+    caption_desc: "Coefficients were estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\% confidence intervals for each estimate. The x-axis is ordered by the lower bound on the confidence interval. The estimated coefficient for LightAssembler is not included on this scale due to it being much greater than all other estimated coefficients."}) %>
 
     <p>Figure <a href="#fig:plot-feature-dist">3</a> compares annotation L1 norm distance per megabase for all the genomes used in benchmarking, across all assemblers. The higher the L1 norm, the larger the difference between the reference and assembly annotated feature sets. In the majority of cases, the number of annotations different between the reference and the assembly is fewer than 200 per megabase, not including any genome specific effects. The exceptions to this were MEGAHIT/1.0.6 and LightAssembler which in many cases had a much larger number of differences compared with the other assemblers.</p>
     <p>Similarly to the previous sections, the same models listed in Table <a href="#tab:model-table">6</a> were fitted to describe the L1 norm distance between each assembly and the corresponding reference. The model for assembler with a random effect for source genome is the most parsimonious (Table <a href="#tab:table-feature-models">5</a>). Figure <a href="#fig:plot-feature-coef">4</a> shows the model estimated coefficients for the least-worst set of arguments for each assembler version. The figure shows that MEGAHIT/1.0.6 had higher number of incorrect annotations than the majority of the other assemblers, while this appears to be much improved in MEGAHIT/1.1.1. This again emphasises the importance of considering versioning in bioinformatics software. Light assembler could not be shown on the same scale as the other assemblers due to the estimated coefficient being much greater than the other assemblers. Outside of MEGAHIT/1.0.6 and LightAssembler the difference between the best and worst performing assembler was approximately 25 incorrect annotations per megabase. Therefore the choice of genome assembler is expected to have a non-trivial effect on downstream annotated features.</p>
@@ -258,7 +262,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-na50-model-fit",
     url: amzn('aggregated-assembly-metrics/05-model-fit-check.png'),
-    caption: "Figure 5: Model checking plots for NA50 fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
+    caption_name: "Figure 5: Model checking plots for NA50 fitted model.",
+    caption_desc: "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
     <figure>
     <table>
@@ -338,7 +343,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-misassembly-model-fit",
     url: amzn('aggregated-assembly-metrics/06-model-fit-check.png'),
-    caption: "Figure 6: Model checking plots for misassemblies fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
+    caption_name: "Figure 6: Model checking plots for misassemblies fitted model.",
+    caption_desc: "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
     <figure id="tab:table-incorrect-models">
     <table>
@@ -418,7 +424,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-incorrect-bases-model-fit",
     url: amzn('aggregated-assembly-metrics/07-model-fit-check.png'),
-    caption: "Figure 7: Model checking plots for incorrect bases model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
+    caption_name: "Figure 7: Model checking plots for incorrect bases model.",
+    caption_desc: "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
     <figure id="tab:table-feature-models">
     <table>
@@ -498,7 +505,8 @@
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-feature-model-fit",
     url: amzn('aggregated-assembly-metrics/08-model-fit-check.png'),
-    caption: "Figure 8: Model checking plots for feature L1 norm fitted model. These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
+    caption_name: "Figure 8: Model checking plots for feature L1 norm fitted model.",
+    caption_desc: "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
     <figure id="tab:model-table">
     <table>

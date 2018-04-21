@@ -75,4 +75,7 @@ vendor/fancybox:
 clean:
 	rm -rf build
 
+clean_all:
+	rm -fr vendor Gemfile.lock
+
 .PHONY: build dev bootstrap

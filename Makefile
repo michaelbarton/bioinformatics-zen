@@ -21,19 +21,19 @@ build: Gemfile.lock
 
 bootstrap: Gemfile.lock \
 	vendor/bootstrap \
-	vendor/stylesheets \
+	vendor/stylesheets/ekko-lightbox.css \
 	vendor/javascripts/ekko-lightbox.min.js \
 	vendor/javascripts/bootstrap.min.js
 
 Gemfile.lock: Gemfile
 	bundle install --path vendor/bundle
 
-vendor/stylesheets:
-	mkdir -p $@
+vendor/stylesheets/ekko-lightbox.css:
+	mkdir -p $(dir $@)
 	wget \
 		--quiet \
-		--output-document $@/ekko-lightbox.min.css \
-		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.min.css
+		--output-document $@ \
+		https://raw.githubusercontent.com/ashleydw/lightbox/master/dist/ekko-lightbox.css
 	touch $@
 
 
@@ -74,5 +74,8 @@ vendor/fancybox:
 
 clean:
 	rm -rf build
+
+clean_all:
+	rm -fr vendor Gemfile.lock
 
 .PHONY: build dev bootstrap

@@ -1,5 +1,3 @@
 %figure{id: anchor}
-  %img{class: "figure-img img-fluid rounded", src: url, alt: caption}
-  %figcaption
-    %p
-      = caption
+  %img{class: "figure-img img-fluid rounded", src: url, alt: caption_name}
+  = partial(:figure_caption, :locals => {caption_name: caption_name, caption_desc: caption_desc})

@@ -65,7 +65,7 @@
  <div id="example-model-fitting-for-contiguity" class="section level2 unnumbered">
     <h2>Example model fitting for contiguity</h2>
     <p>As an example, model fitting and comparison was performed by fitting each these model using NA50 as the explanatory variable. <a href="#fig:plot-na50-dist">Figure 1</a> shows the distribution of NA50 values scaled by the length of the source genome. NA50, a metric used to assess assembly quality based on contiguity, is defined as the contig length where the cumulative sum of the ordered contigs lengths in the assembly was at least half the total assembly length, removing any contigs that don’t align to the reference sequence. Scaling NA50 by the reference length controls for the size of the genome when comparing assemblies from two different source organisms. This becomes a unitless metric between 0-1, where 1 represents an assembly without any gaps.</p>
-    <p><a href="#fig:plot-na50-dist">Figure 1</a> shows that scaled NA50 is distributed across four orders of magnitude from <span class="math inline">\(10^{-3} - 10^{0}\)</span>, and is variable both between organisms and within the same organism. The figure highlights that assembly quality appears to be highly dependent on the organism being sequenced, even when accounting for the differences in the length of the source organism using the <emph>ln. length</emph> term in <a href="#eq:model-fit">Equation 1</a>. This effect is modelled by the <span class="math inline">\(\beta_2\)</span> component in <a href="#eq:model-fit">Equation 1</a>, the per-organism variability in assembly quality. In the case of contiguity, this is likely due to the repeat content of the genome and short read length <span class="citation">[<a href="#ref-koren2015">28</a>]</span>. The effect of GC content or number of repeats in the genome were not considered, all these factors would instead be lumped into the single genome-specific term.</p>
+    <p><a href="#fig:plot-na50-dist">Figure 1</a> shows that scaled NA50 is distributed across four orders of magnitude from <span class="math inline">\(10^{-3} - 10^{0}\)</span>, and is variable both between organisms and within the same organism. The figure highlights that assembly quality appears to be highly dependent on the organism being sequenced, even when accounting for the differences in the length of the source organism using the <span class="math inline">\(ln. length\)</span> term in <a href="#eq:model-fit">Equation 1</a>. This effect is modelled by the <span class="math inline">\(\beta_2\)</span> component in <a href="#eq:model-fit">Equation 1</a>, the per-organism variability in assembly quality. In the case of contiguity, this is likely due to the repeat content of the genome and short read length <span class="citation">[<a href="#ref-koren2015">28</a>]</span>. The effect of GC content or number of repeats in the genome were not considered, all these factors would instead be lumped into the single genome-specific term.</p>
 
   <%= partial(:figure, :locals => {
     anchor: "fig:plot-na50-dist",
@@ -267,7 +267,7 @@
     caption_name: "Figure 5: Model checking plots for NA50 fitted model.",
     caption_desc: "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals."}) %>
 
-    <figure>
+    <figure id="tab:table-misassembly-models">
     <table>
        <thead>
           <tr class="header">
@@ -703,7 +703,7 @@
       caption_desc: "The ‘Fixed’ and ‘Random’ terms are those fitted as explanatory variables, along with the natural log of the genome length. The ‘Variance Model’ column lists where the variance was also modelled as a component, i.e. whether different terms had different variances. Null terms indicate that this was simply modelled as the mean of the data with a model estimated constant coefficient." }) %>
     </figure>
 
-    <figure>
+    <figure id="tab:table-missing-data">
     <table>
        <thead>
           <tr class="header">
@@ -888,7 +888,7 @@
     </figure>
 
 
-    <figure>
+    <figure id="tab:table-organisms">
     <table>
        <thead>
           <tr class="header">

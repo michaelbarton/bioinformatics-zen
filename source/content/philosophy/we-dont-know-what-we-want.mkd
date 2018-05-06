@@ -1,0 +1,114 @@
+---
+  kind: article
+  title: A problem in bioinformatics: we often don't know what we want.
+  feed: true
+  date: "2013-02-27 08:00:00"
+---
+
+Probably thousands of graduate students and post docs ask a variant of the same
+question every day: which software is the best for for what I need to do? This
+might be assembling sequence data into a complete genome, doing genome wide
+associate studies, or the hundreds of other steps that need to be done as part
+of writing a paper or thesis. The problem we have in science is that not that
+no one agrees on what makes one tool better than another, but instead no one
+even knows what makes one tool better than another.
+
+# Outline
+
+  * There is rarely any single pass fail criteria.
+
+  * Comparable to computer vision machine to learning whether an image contains
+    a picture of a cat or a dog.
+
+  * There is instead 1000+ metrics than can be collected on a single genome.
+
+  * What mean for one genome to be better than another? Perhaps the N50 should
+    be higher, if so, how many misassemblies or incorrect genes should be
+    tolerate for that.
+
+  * Perhaps if we accurately assembled all the coding regions as best as
+    possible. What then about the regions in between the genes, do we not care
+    if there was less contiguity? Would a set of 100% accurate genomes be
+    assembled.
+
+  * For the sake of argument a perfect assembly is when we passed our sequence
+    reads to an assembler and got a single contig of the complete genome with
+    no mistakes or errors in it, and at the same time we don't care about SNP
+    data.
+
+  * This then frames this as a binary choice: either we get this single perfect
+    result with no mistakes or we get a assembly that has some mistakes whether
+    this is gaps, or incorrect regions.
+
+  * Once we have to accept we're unlikely to get a single perfect assembly
+    we'll have to make some trade offs around what types of errors we'll
+    accept. What errors might we be willing to accept?
+
+  * We might then respond with something like, I'm willing to accept a little
+    bit of misassembly in exchange for more contiguity, but with mostly correct
+    gene sequences.
+
+  * This gets more to the point of what we care about, but we have to drill
+    down into even more detail. What do we mean when we say contiguity maybe
+    NG50? What about misassemblies? Is it the size or the number of
+    missamblies? Would you happier with one giant misassembly or hundreds of
+    little ones. When you say mostly correct coding regions, do you mean that
+    95% of the genes are 100% accurate, or 100% of the genes should be at least
+    95% accurate. By the way how much do you care about rRNA genes?
+
+  * But to choose whether one assembler is better than another we have to
+    quantify this exactly. We have to be able to say my function for comparing
+    one assembler with another is something like:
+
+      * 70% * The inverse of the number of incorrect bases across all coding
+        genes divided by the total number of bases across all coding genes.
+
+      * 10% * The inverse of the number of incorrect bases in the rRNA genes.
+        divided by the total number of bases across rRNA coding genes.
+
+      * 10% * The NG50 of the genome divided by the length of the genome.
+
+      * 5% * The number of bases in misassembled regions divided by the length
+        of the genome
+
+      * 5% * The number of misassembly regions divided by the length of the
+        genome
+
+  * Adding up all these figures together should return a metric between 0-1
+    that when comparing two assemblies should tell you which one is better than
+    the other for a single metric. With this metric, you could then write a
+    simple script that would test all the different assemblers and tell you
+    which one is the best.
+
+  * Fine when just looking at single genome assembly. What if you had to
+    compare two genomes? We might repeat this process for every single genome
+    we looked at.
+
+  * If this was infeasible or intractable because of the computational costs or
+    because we didn't want to spend all of our time doing this, we would have
+    to instead perform this analysis for representative sample and then
+    extrapolate for all the data we might eventually look at.
+
+  * Once we do any kind extrapolation, then the question includes a
+    statisitical component. Do we just want the assembler that produces the
+    best by mean? What if one assembler has a higher mean but also a wider
+    variance.
+
+  * In cases like this we'll have to make decisions around best on average or
+    produces a the least worst result.
+
+# Summary
+
+  * Should ideally frame the assembly in terms of a downstream objective that
+    we can more measurably care about. For example we are generally sequencing
+    a genome for the sake of doing something with that genome sequences.
+
+  * Maybe using the genomes to identify genotypic differences between
+    environments.
+
+  * Unfortunately we the objective functin we optmise around is being the first
+    to publish in a high as ranked journal as possible.
+
+  * When I tell you one assembler is better than another, you can be assured
+    that I have almost no idea what I'm talking about, and it's almost
+    definitely not what you had in mind either.

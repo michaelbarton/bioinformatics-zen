@@ -1,104 +1,93 @@
 ---
   kind: article
-  title: "A problem in bioinformatics: we don't even know what we want."
+  title: "A problem in bioinformatics: we often don't even know what we want."
   feed: true
   date: "2013-02-27 08:00:00"
 ---
 
-I've spent the last few years while I was at the JGI trying to answer a
-question that everyone in bioinformatics asked in one form or another: which
-software is the best for analysing my data? This question can be asked for
-doing genome-wide associate studies, RNA-seq, HPLC, or any of the hundreds of
-other data analysis steps needed to be done as part of writing a paper or
-thesis. I'll argue here that the problem is not that no one agrees on which
-tool, but rather that no one even knows what makes one tool better than
-another.
+While I worked at the JGI I spent time trying to answer a one of the most
+commons bioinformatics questions: which software is the best for analysing my
+data? This question is asked as part all the variety steps needed to be done as
+part of doing an analysis or writing a paper. This could be genome-wide
+associate studies, RNA-seq, HPLC, the list is endless. I'll argue here that the
+problem is not that we don't know which tools are the best, but rather that
+don't even know what makes one tool better than another.
 
-For any exploratory analysis you might be interested in, there is rarely any
-single pass or fail criteria. Instead there are a 1000+ different metrics than
-can be measured on a biological data set. As an example, after sequencing then
-assembling a genome, what would it mean for one assembly of the genome to be
-better than another? Should the contiguity (NG50) should be as high as
-possible, and if so how many misassemblies or incorrect genes can be tolerated
-for more contiguity?
+For any biological data analysis, there is rarely any single pass or fail
+criteria. Biology doesn't often have the types of problems that are popularised
+in machine learning, such as "does this image contain a cat?" Instead there are
+a 1000+ different metrics than can be measured on a biological data set. As an
+example, after sequencing then assembling a genome, what would it mean for one
+assembly of the genome to be better than another? Should the genome be as
+contiguous as possible? If contiguity is what we care about how many
+incorrectly assembly regions can be tolerated in the pursuit of better
+contiguity?
 
-The purpose of sequencing a genome might be to get the parts that are useful
-for downstream analysis, such as protein-coding regions. Perhaps if all the
-protein-coding regions assembled are as "correct" as possible would we care if
-there was less contiguity, such as in non-coding regions, for the sake 100%
-accurate protein-genes. If the answer is no, then what should the percentage
-accuracy of coding to non-coding regions be, 5%/95%? What would those
-percentages even be measured as?
+Continuing with genome sequencing as an example, the purpose might be to get
+the parts of the genome that are useful for downstream analysis. Instead of
+asking what the quality of the genome sequence looks like, we can ask about the
+quality of the parts of the genome we're interested for analysis, such as the
+protein-coding regions. If all the protein-coding regions assembled are as
+"correct" as possible would we care if there was less contiguity, such as in
+non-coding regions?
 
-Assume the case where a genome assembler produced a perfect genome assembly. We
-would compare this perfect assembly with a gold standard and find the two
-sequences are identical. A single contig containing no mistakes or errors. This
-simple illustrates benchmarking as high dimensional problem if we don't get
-single perfect result we then have to decide what kinds of errors we're happy
-with and along what axes these errors lie. Concretely we might say, I'm willing
-to accept a little bit of misassembly in exchange for more contiguity, with
-mostly correct gene sequences.
+If it would be possible to get a genome assembly with 100% accurate
+protein-genes, at the expense of hard to assembly non-coding regions would that
+be satisfactory? If the answer to that is no, then what should the ratio of
+coding to non-coding regions be, 100:1?
 
 Once we decide what the criteria we care about are, we have to get into the
 details of how we measure them. What do we mean when we say contiguity, do we
 want to use NG50? What about misassemblies? Would we measure this by the how
-many bases are misassembled or by how independent misassemblies there are. If we
-require mostly correct coding regions, would we prefer 95% of the genes are
+many bases are misassembled or by how independent misassemblies there are. If
+we require mostly correct coding regions, would we prefer 95% of the genes are
 100% accurate, or 100% of the genes should be at least 95% accurate. Would we
 weight rRNA genes by these same amounts?
 
 To choose whether one assembler is better than another we have to quantify
 these amounts exactly. We need a function that produces a quantifiable metric
-for each assembly which we can then use to sort the assemblers. This could look
-something like:
+for each assembly which we can then use to sort all available assembly
+software. This could look something like:
 
-  * 70* The inverse of the number of incorrect bases across all coding genes
-    divided by the total number of bases across all coding genes.
+  * 70% of incorrect bases across all coding genes, divided by the total number
+    of bases across all coding genes.
 
-  * 10% The inverse of the number of incorrect bases in the rRNA genes. divided
-    by the total number of bases across rRNA coding genes.
+  * 10% of the number of incorrect bases in the rRNA genes, divided by the
+    total number of bases across rRNA coding genes.
 
-  * 10% The NG50 of the genome divided by the length of the genome.
+  * 10% The fragmentation (NG50) of the genome divided by the length of the
+    genome.
 
   * 5% The number of bases in misassembled regions divided by the length of the
     genome.
 
   * 5% The number of misassembly regions divided by the length of the genome.
 
-Adding up all these figures together should return a metric between 0-1 that
-gets closer to one as the assembly improves along the axes we care about. Even
-in the case when one metric increases while another decreases, we would still
-get a single metric to use for comparing two assemblies to tell if which one is
-better than the other.
+Adding up all these single metrics together should return a metric between 0-1
+that gets closer to 1 as the assembly improves along the axes we care about.
+Even in the case when one metric increases while another decreases, we would
+still have a single loss function we can use for comparing two assemblies to
+tell if which one is better than the other by the metrics we care about.
 
 ## Summary
 
 Choosing what makes one tool better than another is difficult because we never
 know the specifics of what we want ahead of time. Using the example of genome
 assembly we know that that we want a good genome that has mostly correct
-genomes, good contiguity, and not too many misassemblies or incorrect bases. The
-problem with comparing two assemblers is that we quickly have to get very
-specific about what constitutes better or there is no way to generate a single
-absolute scale for comparing software where the results can be measured along a
-[1000 different axes][axes].
+genomes, good contiguity, and not too many misassemblies or incorrect bases.
+The problem with quantitatively comparing two assemblers is that we have to be
+very specific about what makes one assembler better than another or there is no
+way to determine what is the best tool. Anyone who generates a ranking of
+bioinformatics software to determine which is better than another, has to have
+made these kinds of trade-offs around which metrics are most important.
 
-[axes]: https://github.com/nucleotides/nucleotides-data/blob/master/controlled_vocabulary/metric.yml
+[ranking]: /post/automating-selection-of-genome-assembly-software/
 
-An alternative to this is to frame the quality in terms of a downstream
-solution. Instead of saying that what we do and don't care about, ask how the
-quality of affects the downstream process where the genome is used, than
-[optimise][] the assembly around this process. For example we are generally
-sequencing a genome for the sake of doing something with that genome sequence,
-such as answering a biological question, rather than just for the sake of
-sequencing the genome.
-
-[optimise]: https://blog.sigopt.com/posts/evaluating-hyperparameter-optimization-strategies
-
-Finally I think it's important to emphasise each genome assembly is only a
-point estimate around some distribution. If the genome were prepared with a
-different library preparation method, sequenced on a different machine, or
-analysed with different parameters we would get a different set assembly which
-could be just as valid as any previous assembly. Accounting for biological and
-technical variance can make us more uncertain in our results, but more
-confident that what we are presenting is closer to the how the very uncertain
-real biological world looks.
+In closing, every kind of biological analysis such as a genome assembly is only
+a single data point draw from some distribution of possible values. If the
+genome were prepared with a different library preparation method, sequenced on
+a different machine, or a different plate colony picked, this would generate a
+different result just as valid as any previous assembly. Accepting this
+inherent biological and technical variance make us more uncertain in our
+results, but more confident that any uncertainty about software reliability is
+closer to the how the very uncertain real world looks.

@@ -1,5 +1,9 @@
-dev: Gemfile.lock
-	bundle exec middleman server
+export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+dev: # Gemfile.lock
+	docker-compose run --rm builder server
+	# bundle exec middleman server
 
 
 publish: build Gemfile.lock
@@ -9,9 +13,10 @@ test: build Gemfile.lock
 	bundle exec ./plumbing/check-forbidden-words forbidden_words.txt $(shell ls build/post/*/index.html)
 	bundle exec htmlproof --disable-external --check-html --href-ignore '#' $<
 
-build: Gemfile.lock
-	bundle exec middleman build --verbose
-	touch $@
+build: # Gemfile.lock
+	docker-compose run --rm builder build --verbose
+	# bundle exec middleman build --verbose
+	# touch $@
 
 ########################################
 #

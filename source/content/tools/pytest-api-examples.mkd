@@ -10,7 +10,7 @@ been using most of the features it provides, since I tend to only use
 `@pytest.mark` from the API. I spent some time reading through the pytest
 documentation and playing with some examples in a [pytest jupyter notebook][] to
 get more familiarity with what's possible. After a few hours of playing around
-with pytest, realised there pytest has much more functionality than I had been.
+with pytest, realised there pytest has much more functionality than I had been using.
 Read below for some of the examples. Most of this article is a reconstitution of
 what's in the [pytest documentation][] for my own self-learning. In addition to
 the pytest documentation there's useful videos, and plugins listed on the
@@ -319,4 +319,3 @@ def test_file_2(example_data_file: pathlib.Path):
     Running test 1
     Using cached version of file.
     Running test 2
-

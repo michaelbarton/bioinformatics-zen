@@ -403,3 +403,7 @@ def test_file_2(example_data_file: pathlib.Path):
     Using cached version of file.
     Running test 2
 
+<hr/>
+
+Thanks to [Peter Kerpedjiev](https://twitter.com/pkerpedjiev) for proof reading
+this post.

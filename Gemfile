@@ -11,3 +11,4 @@ gem 'middleman-s3_sync',    '~> 3.0.0'
 gem 'middleman',            '~> 3.4.1'
 gem "middleman-livereload", "~> 3.3.0"
 gem "middleman-blog",       "~> 3.5.0"
+gem "middleman-syntax"

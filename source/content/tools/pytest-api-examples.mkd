@@ -28,6 +28,7 @@ function. The pytest API comes with a few builtin fixtures: useful ones for
 temporary files are [tmp_path][] and [tmp_path_factory][] shown below.
 
 [tmp_path_factory]: https://docs.pytest.org/en/stable/tmpdir.html#tmp-path-factory-example
+[tmp_path]: https://docs.pytest.org/en/stable/tmpdir.html#the-tmpdir-fixture
 
 
 ~~~ python
@@ -401,5 +402,4 @@ def test_file_2(example_data_file: pathlib.Path):
     Running test 1
     Using cached version of file.
     Running test 2
-
 

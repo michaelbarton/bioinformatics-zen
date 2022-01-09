@@ -1,3 +1,13 @@
+build_image: Dockerfile Gemfile
+	docker-compose build runner
+
+########################################
+#
+# Legacy Targets
+#
+########################################
+
+
 dev: Gemfile.lock
 	bundle exec middleman server
 

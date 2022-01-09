@@ -3,3 +3,4 @@ build
 vendor
 Gemfile.lock
 source/stylesheets/_*.css
+.idea

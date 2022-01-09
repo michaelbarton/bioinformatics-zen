@@ -1,6 +1,6 @@
 ---
 name: Continuous Integration
-on: [push, merge]
+on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest

@@ -1,12 +1,12 @@
 activate :directory_indexes
-# activate :livereload
+activate :livereload
 activate :syntax
 
-# activate :s3_sync do |s3_sync|
-#   s3_sync.bucket                = 'www.bioinformaticszen.com'
-#   s3_sync.region                = 'us-west-1'
-#   s3_sync.acl                   = 'public-read'
-# end
+activate :s3_sync do |s3_sync|
+  s3_sync.bucket                = 'www.bioinformaticszen.com'
+  s3_sync.region                = 'us-west-1'
+  s3_sync.acl                   = 'public-read'
+end
 
 activate :blog do |blog|
   blog.permalink = "post/{short}/index.html"

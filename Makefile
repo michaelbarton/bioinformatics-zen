@@ -4,7 +4,7 @@ image: Dockerfile Gemfile
 	docker-compose build runner
 
 build: image
-	docker-compose run --rm runner bundle exec middleman build --verbose
+	docker-compose run --rm runner bundle exec middleman build
 
 ########################################
 #

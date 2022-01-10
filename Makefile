@@ -1,9 +1,9 @@
 export COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
 
-build_image: Dockerfile Gemfile
+image: Dockerfile Gemfile
 	docker-compose build runner
 
-build:
+build: image
 	docker-compose run --rm runner bundle exec middleman build
 
 ########################################

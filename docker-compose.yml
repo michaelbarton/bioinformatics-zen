@@ -3,3 +3,6 @@ services:
 
   runner:
     build: .
+    volumes:
+      - .:/mnt/src:rw
+    working_dir: /mnt/src

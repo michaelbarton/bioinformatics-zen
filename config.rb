@@ -1,6 +1,6 @@
 activate :directory_indexes
 # activate :livereload
-# activate :syntax
+activate :syntax
 
 # activate :s3_sync do |s3_sync|
 #   s3_sync.bucket                = 'www.bioinformaticszen.com'

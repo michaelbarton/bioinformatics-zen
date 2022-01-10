@@ -1,5 +1,10 @@
+export COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1
+
 build_image: Dockerfile Gemfile
 	docker-compose build runner
+
+build:
+	docker-compose run --rm runner bundle exec middleman build
 
 ########################################
 #
@@ -19,9 +24,6 @@ test: build Gemfile.lock
 	bundle exec ./plumbing/check-forbidden-words forbidden_words.txt $(shell ls build/post/*/index.html)
 	bundle exec htmlproof --disable-external --check-html --href-ignore '#' $<
 
-build: Gemfile.lock
-	bundle exec middleman build --verbose
-	touch $@
 
 ########################################
 #

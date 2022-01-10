@@ -2,4 +2,6 @@ source "https://rubygems.org"
 
 gem "builder", "~> 3.2"
 gem 'middleman', '~> 4.4'
-gem 'mini_racer'
+gem 'middleman-blog', '~> 4.0'
+gem 'middleman-syntax', '~> 3.2'
+gem 'mini_racer', '~> 0.6'

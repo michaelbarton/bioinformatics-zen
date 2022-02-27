@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article>
+	<header>
+		<h2>
+			{{ title }}
+		</h2>
+		<span class='subheading'>
+			<time pubdate='pubdate'>
+				<p>
+				{{ page.date | readableDate }}
+				</p>
+			</time>
+		</span>
+	</header>
+	<p>
+	{{ content | safe }}
+	</p>
+</article>

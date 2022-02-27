@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta content='IE=edge' http-equiv='X-UA-Compatible'>
+		<meta content='width=device-width, initial-scale=1' name='viewport'>
+		<link href='http://www.michaelbarton.me.uk' rel='author'>
+		<link href='/css/styles.css' rel='stylesheet'>
+		<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+		<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+		<script src='/js/all-5fcabbb4.js'></script>
+		<title>
+			Bioinformatics Zen {% if title %} | {{title}} {% endif %}
+		</title>
+	</head>
+
+	<body>
+		<nav class='navbar'>
+			<div class='navigation'>
+				<ul class='nav nav-justified'>
+					<li>
+						<a href="http://twitter.com/bioinformatics">Twitter</a>
+					</li>
+					<li>
+						<a href="/feed.xml">Feed</a>
+					</li>
+					<li>
+						<a href="http://www.michaelbarton.me.uk">About</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class='container'>
+			<div class='site_title'>
+				<h1>
+					<a href='/'>
+						Bioinformatics Zen
+					</a>
+				</h1>
+				<i>A blog about bioinformatics and mindfulness by Michael Barton</i>
+			</div>
+			  {{ content | safe }}
+		</div>
+	</body>
+</html>

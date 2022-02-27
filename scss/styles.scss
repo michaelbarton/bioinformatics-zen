@@ -1,0 +1,218 @@
+@import url("http://fonts.googleapis.com/css?family=Raleway:100,400|Open+Sans:400,700");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+
+/* Required by the eleventy syntax highlighting plugin */
+@import url("https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css");
+
+/* typography */
+
+// Copied from the boostrap website.
+// Doesn't seem to be imported.
+$font-size-base: 14px;
+$nav-colour: #f8f8f8;
+
+html,
+body {
+  color: #444;
+  height: 100%;
+}
+
+header {
+  padding-bottom: 2em;
+
+  .subheading {
+    p {
+      margin: 0 0 -0.5em;
+    }
+    font-size: $font-size-base;
+    color: hsl(0, 0%, 45%);
+    font-style: italic;
+    font-family: "Raleway", "san-serif";
+  }
+}
+
+strong {
+  color: hsl(0, 0%, 15%);
+  font-weight: 700;
+}
+
+.container {
+  padding-bottom: 50px;
+}
+
+.navbar {
+  background-color: $nav-colour;
+  box-shadow: 0 0 2px grey;
+  border-radius: 0px;
+}
+
+.footer {
+  padding-top: 1em;
+  padding-bottom: 2em;
+  box-shadow: 0 0 3px 0 grey;
+  background: $nav-colour;
+  text-align: center;
+}
+
+h1 {
+  font-weight: 100;
+  font-family: "Raleway", "san-serif";
+  letter-spacing: 0.02em;
+
+  padding-top: 2em;
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+h2 {
+  font-family: "Raleway", "san-serif";
+  padding-top: 2em;
+}
+
+h3 {
+  font-family: "Raleway", "san-serif";
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+p,
+ul {
+  font-size: $font-size-base * 1.2;
+  margin-bottom: 2em;
+  line-height: 1.8;
+  font-weight: 400;
+  font-family: "Open Sans", "serif";
+}
+
+ul.index {
+  padding-top: 4em;
+  padding-left: 0;
+  li {
+    span {
+      font-size: $font-size-base * 0.95;
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+      font-weight: 800;
+      color: #999;
+      // Spacing between date and title.
+      padding-right: 0.5em;
+    }
+    list-style: none;
+    a:visited {
+      color: inherit;
+    }
+  }
+}
+
+pre,
+blockquote {
+  padding: 15px 15px 15px 15px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+pre {
+  font-size: 12px;
+}
+
+blockquote {
+  background-color: #eee;
+  font-style: italic;
+}
+
+/* Grid */
+
+.container {
+  // @include make-row();
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 700px;
+}
+
+.navigation {
+  // @include make-row();
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 500px;
+}
+
+/* Images */
+
+.centred {
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* tables */
+
+@mixin table_styles {
+  margin: 0 auto;
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+table {
+  @include table_styles;
+}
+
+td {
+  padding: 10px;
+}
+
+tr {
+  border-collapse: collapse;
+  border-bottom: 1px solid #ccc;
+}
+
+.small_table {
+  width: 40%;
+}
+
+/* Figures */
+
+@mixin figure_element {
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+@mixin figure_text {
+  line-height: 1.3;
+  font-weight: 400;
+  font-family: "Open Sans", "serif";
+}
+
+figure {
+  border-radius: 10px;
+  margin-top: 4em;
+  margin-bottom: 4em;
+  box-shadow: 0 1px 4px 0 hsla(0, 0%, 0%, 0.125);
+
+  table {
+    @include table_styles;
+    @include figure_element;
+    @include figure_text;
+    font-size: $font-size-base * 0.9;
+
+    color: hsl(0, 0%, 25%);
+  }
+
+  img {
+    @include figure_element;
+  }
+
+  figcaption {
+    background: hsl(0, 0%, 97%);
+    p {
+      @include figure_element;
+      @include figure_text;
+      font-size: $font-size-base;
+
+      color: hsl(0, 0%, 45%);
+    }
+  }
+}

@@ -26,7 +26,7 @@ module.exports = function (config) {
   config.addPassthroughCopy("js");
 
   // Rebuild the site if the scss file changes.
-  config.addWatchTarget('./scss');
+  config.addWatchTarget("./scss");
   config.setBrowserSyncConfig({
     files: "./_site/css/styles.css",
   });
@@ -44,9 +44,9 @@ module.exports = function (config) {
     );
   });
 
-config.addCollection("feedPosts", function (collection) {
-  return collection.getAll().filter((item) => item.feed);
-});
+  config.addCollection("feedPosts", function (collection) {
+    return collection.getAll().filter((item) => item.feed);
+  });
 
   // add support for syntax highlighting
   config.addPlugin(syntaxHighlight);

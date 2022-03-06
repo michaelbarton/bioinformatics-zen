@@ -10,7 +10,7 @@ shell: image
 	docker-compose run --rm runner /bin/bash
 
 fmt: image
-	docker-compose run --rm runner prettier --write scss/* post/* .eleventy.js
+	docker-compose run --rm runner prettier --write scss/* post/* .eleventy.js **/*.yml
 
-image: Dockerfile package.json
+image: Dockerfile package.json package-lock.json
 	docker-compose build runner

@@ -1,12 +1,14 @@
 version: "3.9"
 services:
-
   runner:
     build: .
     volumes:
-      - .:/mnt/src:rw
+      - ./:/mnt/src:rw
+      # An anonymous volume:
+      # This keeps the current container contents of the directory and means it is
+      # not overwritten by the contents of the mounted directory.
+      - /mnt/src/node_modules
     ports:
       - "8080:8080"
     command: ["npm", "run", "start"]
-    working_dir: /mnt/src
     environment: []

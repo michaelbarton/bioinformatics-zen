@@ -17,5 +17,8 @@ jobs:
       - name: Build docker image
         run: make image
 
+      - name: Check markdown formatting
+        run: make fmt_check
+
       - name: Check site builds
         run: make build

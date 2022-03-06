@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Raleway:100,400|Open+Sans:400,700");
+@import url("http://fonts.googleapis.com/css?family=Raleway:400|Open+Sans:400,700");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
 /* Required by the eleventy syntax highlighting plugin */
@@ -13,27 +13,96 @@ $nav-colour: #f8f8f8;
 
 html,
 body {
-  color: #444;
   height: 100%;
+
 }
 
-header {
-  padding-bottom: 2em;
-
-  .subheading {
-    p {
-      margin: 0 0 -0.5em;
-    }
-    font-size: $font-size-base;
-    color: hsl(0, 0%, 45%);
-    font-style: italic;
-    font-family: "Raleway", "san-serif";
-  }
+p,
+ul {
+  font-size: $font-size-base * 1.2;
+  margin-bottom: 2em;
+  line-height: 1.8;
+  font-weight: 400;
+  font-family: "Open Sans", "serif";
+  color: #444;
 }
 
 strong {
   color: hsl(0, 0%, 15%);
   font-weight: 700;
+}
+
+// Header for each article
+header {
+  padding-bottom: 2em;
+
+  // This is the date part of each page
+  time {
+    font-size: $font-size-base;
+    color: hsl(0, 0%, 55%);
+    font-style: italic;
+  }
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 400;
+  font-family: "Raleway", "san-serif";
+  letter-spacing: 0.02em;
+
+  padding-top: 2em;
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+h2 {
+  font-family: "Raleway", "san-serif";
+  padding-top: 2em;
+  font-size: 2em;
+}
+
+h3 {
+  font-family: "Raleway", "san-serif";
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+pre,
+blockquote {
+  padding: 15px 15px 15px 15px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+pre {
+  font-size: 12px;
+}
+
+blockquote {
+  background-color: #eee;
+  font-style: italic;
+}
+
+ul.index {
+  padding-top: 4em;
+  padding-left: 0;
+  li {
+    span {
+      font-size: $font-size-base * 0.95;
+      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+      font-weight: 900;
+      color: #999;
+      // Spacing between date and title.
+      padding-right: 0.5em;
+    }
+    list-style: none;
+    a:visited {
+      color: inherit;
+    }
+  }
 }
 
 .container {
@@ -54,84 +123,15 @@ strong {
   text-align: center;
 }
 
-h1 {
-  font-weight: 100;
-  font-family: "Raleway", "san-serif";
-  letter-spacing: 0.02em;
-
-  padding-top: 2em;
-
-  a:hover {
-    text-decoration: none;
-  }
-}
-
-h2 {
-  font-family: "Raleway", "san-serif";
-  padding-top: 2em;
-}
-
-h3 {
-  font-family: "Raleway", "san-serif";
-  padding-top: 2em;
-  padding-bottom: 1em;
-}
-
-p,
-ul {
-  font-size: $font-size-base * 1.2;
-  margin-bottom: 2em;
-  line-height: 1.8;
-  font-weight: 400;
-  font-family: "Open Sans", "serif";
-}
-
-ul.index {
-  padding-top: 4em;
-  padding-left: 0;
-  li {
-    span {
-      font-size: $font-size-base * 0.95;
-      font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-      font-weight: 800;
-      color: #999;
-      // Spacing between date and title.
-      padding-right: 0.5em;
-    }
-    list-style: none;
-    a:visited {
-      color: inherit;
-    }
-  }
-}
-
-pre,
-blockquote {
-  padding: 15px 15px 15px 15px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-}
-
-pre {
-  font-size: 12px;
-}
-
-blockquote {
-  background-color: #eee;
-  font-style: italic;
-}
-
 /* Grid */
 
 .container {
-  // @include make-row();
   margin-right: auto;
   margin-left: auto;
   max-width: 700px;
 }
 
 .navigation {
-  // @include make-row();
   margin-right: auto;
   margin-left: auto;
   max-width: 500px;

@@ -17,4 +17,4 @@ services:
     image: amazon/aws-cli
     volumes:
       - ./_site:/mnt/src:ro
-    command: ["aws", "s3", "sync", "/mnt/src", "s3://${S3_BUCKET}", "--delete"]
+    command: ["s3", "sync", "/mnt/src", "s3://${S3_BUCKET}", "--delete"]

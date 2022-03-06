@@ -12,3 +12,9 @@ services:
       - "8080:8080"
     command: ["npm", "run", "start"]
     environment: []
+
+  deploy:
+    image: amazon/aws-cli
+    volumes:
+      - ./_site:/mnt/src:ro
+    command: ["aws", "s3", "sync", "/mnt/src", "s3://${S3_BUCKET}", "--delete"]

@@ -6,15 +6,9 @@ layout: default
 		<h2>
 			{{ title }}
 		</h2>
-		<span class='subheading'>
-			<time pubdate='pubdate'>
-				<p>
-				{{ page.date | readableDate }}
-				</p>
-			</time>
-		</span>
+		<time pubdate datetime="{{page.date}}">
+			{{ page.date | readableDate }}
+		</time>
 	</header>
-	<p>
 	{{ content | safe }}
-	</p>
 </article>

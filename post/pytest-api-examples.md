@@ -20,7 +20,7 @@ and plugins listed on the [awesome pytest][] GitHub repository.
 [pytest documentation]: https://docs.pytest.org/en/stable/example/index.html
 [awesome pytest]: https://github.com/augustogoulart/awesome-pytest
 
-## Pytest Fixtures
+### Pytest Fixtures
 
 Fixtures are a large part of the pytest API, and the part I was least familiar
 with. Fixtures are included in test function by adding them as parameters to the
@@ -45,7 +45,7 @@ def test_with_tmp_path_factory(tmp_path_factory: pytest.TempPathFactory):
 
 ```
 
-## Using fixtures to teardown
+### Using fixtures to teardown
 
 Documentation: [pytest fixture][], [fixture finalization][]
 
@@ -93,7 +93,7 @@ def test_fixture_teardown_2(example_data_file_with_teardown: pathlib.Path):
     Fetching a large file from S3.
     Cleaning up file: /var/folders/kw/hfflzwfs3xl1_xzq83270dh40000gn/T/tmpznlgytod
 
-## Scoping fixtures
+### Scoping fixtures
 
 Documentation: [scope sharing][]
 
@@ -142,7 +142,7 @@ def test_fixture_session_teardown_2(example_data_file_for_session: pathlib.Path)
     Running test 2
     Cleaning up file: /var/folders/kw/hfflzwfs3xl1_xzq83270dh40000gn/T/tmp5t2gy4fi
 
-## Parameterising fixtures
+### Parameterising fixtures
 
 If you find yourself using the same `pytest.mark.parametrize` arguments multiple
 times in your tests, this can be refactored into a fixture using
@@ -194,7 +194,7 @@ def test_cli_app(invalid_file):
     CLI test passes checking for file: /var/folders/kw/hfflzwfs3xl1_xzq83270dh40000gn/T/tmp8n_8y0xu
     CLI test passes checking for file: /non_existing_file
 
-## Break up expensive serial tests
+### Break up expensive serial tests
 
 There can be scenarios in end to end tests where it's necessary to test the
 output artefact with multiple assertions. An example of this might be:
@@ -296,7 +296,7 @@ def test_averates_data_file(computation_data: typing.Dict[str, pathlib.Path]):
     assert averages_file.read_text()
 ```
 
-## Use LineMatcher for testing large text
+### Use LineMatcher for testing large text
 
 The `LineMatcher` helper class provides methods that can reduce boiler plate
 testing large blocks of text. This provides methods for testing presence and
@@ -331,7 +331,7 @@ def test_large_text():
     matcher.no_fnmatch_line("And looked down two as far as I could")
 ```
 
-## Caching large files or computations
+### Caching large files or computations
 
 Documentation: [Cache config][cache]
 

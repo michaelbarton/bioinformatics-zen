@@ -3,3 +3,5 @@ _site
 css
 .idea
 
+# Want to ignore the env file because don't want the environment variables checked in.
+.env

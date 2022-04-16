@@ -1,0 +1,37 @@
+name: Deploy Site
+
+on:
+  push:
+    branches: [master] # run on pushes to master
+
+env:
+  TERM: xterm
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      # https://stackoverflow.com/questions/60176044/how-do-i-use-an-env-file-with-github-actions
+      - name: Setup environment variables
+        run: |
+          touch .env
+          echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
+          echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} >> .env
+          echo AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} >> .env
+          echo S3_BUCKET=${{ secrets.S3_BUCKET }} >> .env
+
+      - name: Build images
+        run: |
+          make image
+          docker-compose build deploy
+
+      - name: Build site
+        run:
+          - make _site
+
+      - name: Deploy site
+        run: make deploy

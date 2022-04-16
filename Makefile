@@ -10,13 +10,13 @@ _site: image
 dev: image
 	 docker-compose up --remove-orphans
 
-deploy: # _site
+deploy: _site
 	docker-compose --env-file=.env run --rm deploy
 
 shell: image
 	docker-compose --env-file=.env run --rm runner /bin/bash
 
-shell_deploy: # _site
+shell_deploy:
 	docker-compose --env-file=.env run --rm deploy /bin/bash
 
 fmt: image

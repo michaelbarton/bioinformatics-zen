@@ -1,10 +1,8 @@
 name: Deploy Site
 
-on: [push]
-
-# on:
-# push:
-# branches: [master] # run on pushes to master
+on:
+  push:
+    branches: [master] # run on pushes to master
 
 env:
   TERM: xterm
@@ -26,8 +24,14 @@ jobs:
           echo AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} >> .env
           echo S3_BUCKET=${{ secrets.S3_BUCKET }} >> .env
 
-      - name: Build deploy image
-        run: docker-compose build deploy
+      - name: Build images
+        run: |
+          make image
+          docker-compose build deploy
 
-      - name: Check markdown formatting
+      - name: Build site
+        run:
+          - make _site
+
+      - name: Deploy site
         run: make deploy

@@ -30,8 +30,7 @@ jobs:
           docker-compose build deploy
 
       - name: Build site
-        run:
-          - make _site
+        run: make _site
 
       - name: Deploy site
         run: make deploy

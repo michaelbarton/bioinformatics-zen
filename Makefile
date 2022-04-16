@@ -10,11 +10,14 @@ _site: image
 dev: image
 	 docker-compose up --remove-orphans
 
-deploy: _site
-	docker-compose run --rm deploy
+deploy: # _site
+	docker-compose --env-file=.env run --rm deploy
 
 shell: image
-	docker-compose run --rm runner /bin/bash
+	docker-compose --env-file=.env run --rm runner /bin/bash
+
+shell_deploy: # _site
+	docker-compose --env-file=.env run --rm deploy /bin/bash
 
 fmt: image
 	docker-compose run --rm runner npx prettier --write ${CHECK_FILES}

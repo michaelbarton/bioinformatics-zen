@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   runner:
-    build: .
+    build:
+      context: .
+      target: build
     volumes:
       - ./:/mnt/src:rw
       # An anonymous volume:
@@ -11,10 +13,13 @@ services:
     ports:
       - "8080:8080"
     command: ["npm", "run", "start"]
-    environment: []
 
   deploy:
     image: amazon/aws-cli
     volumes:
+      - ./bin:/mnt/bin:ro
       - ./_site:/mnt/src:ro
-    command: ["s3", "sync", "/mnt/src", "s3://${S3_BUCKET}", "--delete"]
+    entrypoint: ""
+    command: /mnt/bin/deploy
+    env_file:
+      - .env

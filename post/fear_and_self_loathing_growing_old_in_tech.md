@@ -12,12 +12,10 @@ title: "Fear and self-loathing: getting old in tech"
 - Is the fear about age real or does it mean I have more experience and can do
   more.
 - Try to get end paragraphs to snap, especially into the next ones.
-
 - Pointing at a chunk of money in my bank account is an easy thing to point to
   and say, I must have done well. But money is a poor filler for the hole
   that's inside me. For the voice of my 20 year old self looking up from
   promise of a future technology career and asking: is this it?
-
 - Mention the struggle I had with getting out of bed during COVID. Just looking
   at my phone each morning.
 - Picture illustration of cambiozola cheese
@@ -25,17 +23,23 @@ title: "Fear and self-loathing: getting old in tech"
 - Put quote in a fake github repo pull request comment.
 - HTML tags <hopeful>
 
+
+{% include 'image_widthed.njk',
+  width: 720,
+	url: 'https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png',
+	alt: 'Picture of my face with "cynical" written over the top in bright letters.' %}
+
 When I was young and starting my career, I was hungry to learn. I would spend
 ten hours a day reading, note-taking, and playing with code. Introducing myself
 to a world where DNA could be manipulated with computers was exhilarating.
-Until then, I had worked in odd jobs doing butchery or running a  checkout at
-Sainsbury's supermarket. After manual jobs, finding out about bioinformatics
-and programming was like finding a new room in a house after living in it for
-25 years. I was so energised that I'd read the O'Reilly Java book cover to
-cover. I'd sit there each evening in my tiny Newcastle rental, on my secondhand
-IKEA desk, and make notes about what I was learning: magic words like linked
-lists, classes, abstract classes, abstract factories, abstract factory
-factories, abstract factory impls and so forth.
+Until then, I had worked in odd jobs doing butchery or running a checkout at
+Sainsbury's. After manual jobs, learning about bioinformatics and programming
+was like finding a new room in a house after living in it for 25 years. I was
+so energised that I'd read the O'Reilly Java book cover to cover. I'd sit there
+each evening in my tiny Newcastle rental, on my secondhand IKEA desk, and make
+notes about new concepts: magic words like hash tables, linked lists, classes,
+abstract classes, abstract factories, abstract factory factories, abstract
+factory impls, and other exciting java concepts.
 
 Caption: The O'Reilly Java book; like many Java programmers, I can only assume
 from the tiger's expression that it has "seen some shit".

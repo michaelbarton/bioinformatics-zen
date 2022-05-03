@@ -24,7 +24,7 @@ title: "Fear and self-loathing: getting old in tech"
 - HTML tags <hopeful>
 
 
-{% include 'image_widthed.njk',
+{% include 'image.njk',
   width: 720,
 	url: 'https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png',
 	alt: 'Picture of my face with "cynical" written over the top in bright letters.' %}

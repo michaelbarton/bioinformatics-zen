@@ -2,6 +2,7 @@
 
 - Fix URL for fear and loathing blog post.
 - Make images responsive so they appear correctly on mobile
+- Make navbar mobile responsive
 
 ## [[20220508]]
 

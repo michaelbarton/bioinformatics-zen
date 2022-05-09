@@ -54,7 +54,7 @@ late eighties he would have instead said he saw the greatest minds of his
 generation paid six figures to create the apps that enslave their own
 attention.
 
-**Author note**: *the end of that paragraph is way too melodramatic.*
+**Author note**: _the end of that paragraph is way too melodramatic._
 
 > It seems like a lifetime, or at least a Main Era—the kind of peak that never
 > comes again. San Francisco in the middle sixties was a very special time and
@@ -198,4 +198,3 @@ to be part of a team creating a better future. And working at a startup focused
 on identifying infectious diseases, there's a chance to help people who need a
 better future right now. And that's a future in tech industry I still want to
 be a part of creating.
-

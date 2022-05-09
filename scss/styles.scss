@@ -138,6 +138,11 @@ ul.index {
 
 /* Images */
 
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
 .centred {
   img {
     display: block;

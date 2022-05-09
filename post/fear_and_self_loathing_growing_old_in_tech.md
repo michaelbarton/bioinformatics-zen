@@ -4,7 +4,7 @@ feed: true
 date: 2022-05-09
 title: "Fear and self-loathing: getting old in tech"
 description: "Is there still a chance to do something meaningful in tech?"
-image_card: "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png"
+image_card: "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/thumbnail.png"
 ---
 
 {% include 'image.njk',

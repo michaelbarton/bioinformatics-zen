@@ -1,3 +1,9 @@
+## [[20220509]]
+
+- Fix URL for fear and loathing blog post.
+- Make images responsive so they appear correctly on mobile
+- Make navbar mobile responsive
+
 ## [[20220508]]
 
 - Release blog post about fear and self loathing working in the tech industry.

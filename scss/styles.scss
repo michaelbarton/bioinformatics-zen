@@ -108,12 +108,6 @@ ul.index {
   padding-bottom: 50px;
 }
 
-.navbar {
-  background-color: $nav-colour;
-  box-shadow: 0 0 2px grey;
-  border-radius: 0px;
-}
-
 .footer {
   padding-top: 1em;
   padding-bottom: 2em;
@@ -137,6 +131,11 @@ ul.index {
 }
 
 /* Images */
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
 
 .centred {
   img {

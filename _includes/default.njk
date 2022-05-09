@@ -25,19 +25,24 @@
 	</head>
 
 	<body>
-		<nav class='navbar'>
-			<div class='navigation'>
-				<ul class='nav nav-justified'>
-					<li>
-						<a href="http://twitter.com/bioinformatics">Twitter</a>
-					</li>
-					<li>
-						<a href="/feed.xml">Feed</a>
-					</li>
-					<li>
-						<a href="http://www.michaelbarton.me.uk">About</a>
-					</li>
-				</ul>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-justified">
+						<li><a href="https://twitter.com/bioinformatics">twitter</a></li>
+						<li><a href="/feed.xml">feed</a></li>
+						<li><a href="http://www.michaelbarton.me.uk/">about</a></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 
@@ -50,7 +55,7 @@
 				</h1>
 				<i>A blog about bioinformatics and mindfulness by Michael Barton</i>
 			</div>
-			  {{ content | safe }}
+			{{ content | safe }}
 		</div>
 	</body>
 </html>

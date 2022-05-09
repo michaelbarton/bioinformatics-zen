@@ -1,8 +1,10 @@
 ---
 tags: post
-feed: false
-date: 2022-05-10
+feed: true
+date: 2022-05-09
 title: "Fear and self-loathing: getting old in tech"
+description: "As I'm getting older, I'm asking myself what does it mean to work in tech. Is it just about the money or is there still a chance to do something more meaningful?"
+image_card: "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png"
 ---
 
 {% include 'image.njk',

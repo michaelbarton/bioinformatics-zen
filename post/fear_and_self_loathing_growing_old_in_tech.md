@@ -1,8 +1,10 @@
 ---
 tags: post
-feed: false
-date: 2022-05-10
+feed: true
+date: 2022-05-09
 title: "Fear and self-loathing: getting old in tech"
+description: "As I'm getting older, I'm asking myself what does it mean to work in tech. Is it just about the money or is there still a chance to do something more meaningful?"
+image_card: "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png"
 ---
 
 {% include 'image.njk',
@@ -173,7 +175,7 @@ reason to be asking myself this when I'm 50, next year, or possibly even next
 week. It's the most urgent question to ask myself, what would I do with my time
 if I knew I only had two or three good years left? Urgent because this is what
 we spend most of our waking time doing, and ultimately because we just don't
-have as much time as we think. Do I want to use that time earning $400k a year
+have as much time as we think. Do I want to use that time earning >$400k a year
 so that that hundreds of thousands of people spend an extra few seconds
 browsing ads?
 

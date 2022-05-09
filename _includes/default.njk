@@ -10,6 +10,15 @@
 		<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 		<script src='/js/all-5fcabbb4.js'></script>
+		{% if image_card %}
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:creator" content="@bioinformatics"} />
+		<meta property="og:url" content="http://www.bioinformaticszen.com/{{page.url}}" />
+		<meta property="og:title" content="{{title}}" />
+		<meta property="og:description" content="{{description}}" />
+		<meta name="twitter:image" content="{{image_card}}" />
+		<meta property="og:image" content="{{image_card}}" />
+		{% endif %}
 		<title>
 			Bioinformatics Zen {% if title %} | {{title}} {% endif %}
 		</title>

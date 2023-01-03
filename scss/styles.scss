@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Raleway:400|Open+Sans:400,700");
+@import url("http://fonts.googleapis.com/css?family=Raleway:400,800|Open+Sans:400,700");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
 /* Required by the eleventy syntax highlighting plugin */
@@ -104,6 +104,25 @@ ul.index {
   }
 }
 
+.lede {
+  ul::before {
+    content: "Summary";
+    font-family: "Raleway", "san-serif";
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: rgba(70, 120, 178, 0.2);
+  padding-top: 1em;
+  padding-right: 2em;
+  padding-bottom: 1em;
+  border-radius: 10px;
+  // Spacing between paragraphs
+  ul li { padding: 1em 0px; }
+}
+
 .container {
   padding-bottom: 50px;
 }
@@ -143,6 +162,11 @@ ul.index {
     margin: 0 auto;
   }
 }
+
+.banner_image {
+  padding-bottom: 4em;
+}
+
 
 /* tables */
 
@@ -215,6 +239,7 @@ figure {
   }
 }
 
+// Hide this custom element
 here {
   display: none;
 }

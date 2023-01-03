@@ -15,7 +15,10 @@ module.exports = function (config) {
   };
 
   // configure the library with options
-  let markdownLib = markdownIt(options).use(markdownItFootnote);
+  let markdownLib = markdownIt(options)
+		.use(markdownItFootnote)
+		// Render custom `lede` fenced blocks.
+		.use(require("markdown-it-container"), 'lede', {});
 
   // set the library to process markdown files
   config.setLibrary("md", markdownLib);

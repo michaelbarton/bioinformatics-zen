@@ -120,7 +120,9 @@ ul.index {
   padding-bottom: 1em;
   border-radius: 10px;
   // Spacing between paragraphs
-  ul li { padding: 1em 0px; }
+  ul li {
+    padding: 1em 0px;
+  }
 }
 
 .container {
@@ -166,7 +168,6 @@ ul.index {
 .banner_image {
   padding-bottom: 4em;
 }
-
 
 /* tables */
 

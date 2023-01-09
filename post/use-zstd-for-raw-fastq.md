@@ -14,19 +14,19 @@ image_card: "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-f
 	alt: 'Stylised graphics of money with DNA helix in the foreground.' %}
 
 :::lede
--   The increasing throughput of Illumina DNA sequencing means
-    institutions and companies are spending tens of thousands of dollars
-    to store terabytes of raw DNA sequence (FASTQ). This data is stored
-    using gzip, a 30-year-old compression algorithm.
--   Common bioinformatics tools should support more recent compression
-    algorithms such as zstd for FASTQ data. Zstd has wide industry
-    support, with comparable run times and would likely reduce storage
-    costs by 50% over gzip.
+
+- The increasing throughput of Illumina DNA sequencing means
+  institutions and companies are spending tens of thousands of dollars
+  to store terabytes of raw DNA sequence (FASTQ). This data is stored
+  using gzip, a 30-year-old compression algorithm.
+- Common bioinformatics tools should support more recent compression
+  algorithms such as zstd for FASTQ data. Zstd has wide industry
+  support, with comparable run times and would likely reduce storage
+  costs by 50% over gzip.
+
 :::
 
-
-Gzip is outperformed by other algorithms
-----------------------------------------
+## Gzip is outperformed by other algorithms
 
 The original implementation of gzip (Gailly/Madler) has been surpassed
 in performance by other gzip implementations. For example,
@@ -48,8 +48,7 @@ bioinformatics tools can move to support ingesting zstd-compressed FASTQ
 format this could save everyone time and money with minimal impact on IO
 time.
 
-A toy benchmark
----------------
+## A toy benchmark
 
 As an example a zstd compressed FASTQ file
 ([SRR7589561](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=SRR7589561&display=metadata))
@@ -82,8 +81,7 @@ be minimally impacted.
     url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/decompress-time-example-1.png', anchor: '', short_desc: 'Total decompression time in seconds by algorithm.'
 %}
 
-Detailed comparison of flags
-----------------------------
+## Detailed comparison of flags
 
 This figure compares the compressed output file size for all the
 different available gzip implementations with zstd for different
@@ -108,8 +106,7 @@ compression time.
     url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/plot-compression-time-1.png', anchor: '', short_desc: 'Compression ratio versus compression time.', long_desc: 'Each colour represents a different compression tool implementation. Each argument was benchmarked five times. Note that zopfli has a single point because it only compresses to the max ratio.'
 %}
 
-Takeaway
-========
+# Takeaway
 
 The gzip implementation is superseded by other compression algorithms
 such as zstd. By continuing to only support gzip for FASTQ, the

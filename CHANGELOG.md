@@ -1,6 +1,9 @@
 ## 2023.01.03
 
 - Add blog post about using zstd for raw FASTQ file compression.
+- Image macros use a class tag if provided.
+- Image with caption macros can provide both a long and short description.
+- Add script to convert markdown documents to use captioned image macros.
 
 ## 2022.05.09
 

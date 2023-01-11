@@ -61,7 +61,7 @@ downloaded ~1.5Gb of FASTQ data and compressed it with either `pigz` or
 %}
 
 FASTQ files do however take longer to compress with zstd. The `ztsd -15`
-command takes ~70s which is 50% longer than `pigz -9` at ~35s. However,
+command takes ~70s which is 100% longer than `pigz -9` at ~35s. However,
 it’s worth noting when storing raw FASTQ from a sequencer, these files
 are compressed once, and then stored for years. This additional CPU time
 cost is more than offset by savings in storage costs. The same does not

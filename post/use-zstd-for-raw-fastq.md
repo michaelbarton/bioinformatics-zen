@@ -45,8 +45,8 @@ algorithms with better compression ratios. Companies like
 [Uber](https://www.uber.com/en-GB/blog/cost-efficiency-big-data/) are
 reported to be switching to zstd over gzip. If the most common
 bioinformatics tools can move to support ingesting zstd-compressed FASTQ
-format this could save everyone time and money with minimal impact on IO
-time.
+format this could save everyone time and money with minimal impact on
+compression times.
 
 ## A toy benchmark
 
@@ -61,13 +61,13 @@ downloaded ~1.5Gb of FASTQ data and compressed it with either `pigz` or
 %}
 
 FASTQ files do however take longer to compress with zstd. The `ztsd -15`
-command takes ~70s which is 50% longer than `pigz -9` at ~35s. However,
+command takes ~70s which is 100% longer than `pigz -9` at ~35s. However,
 it’s worth noting when storing raw FASTQ from a sequencer, these files
 are compressed once, and then stored for years. This additional CPU time
 cost is more than offset by savings in storage costs. The same does not
 apply to intermediate files such as trimmed or filtered FASTQ in a
-pipeline that tend to be ephemeral. These would require a futher
-examination of tradeoffs.
+pipeline that tend to be ephemeral. These would require a further
+examination of trade offs.
 
 {% include 'image_with_caption.njk',
     url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/compress-time-example-1.png', anchor: '', short_desc: 'Total compression time in seconds by algorithm.'

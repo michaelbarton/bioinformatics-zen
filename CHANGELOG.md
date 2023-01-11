@@ -1,4 +1,8 @@
-## 2023.01.03
+## 2023.01.11
+
+- Fix typo in zstd blog post
+
+## 2023.01.10
 
 - Add blog post about using zstd for raw FASTQ file compression.
 - Image macros use a class tag if provided.

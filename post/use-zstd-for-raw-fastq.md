@@ -14,39 +14,39 @@ image_card: "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-f
 	alt: 'Stylised graphics of money with DNA helix in the foreground.' %}
 
 :::lede
-
-- The increasing throughput of Illumina DNA sequencing means
-  institutions and companies are spending tens of thousands of dollars
-  to store terabytes of raw DNA sequence (FASTQ). This data is stored
-  using gzip, a 30-year-old compression algorithm.
-- Common bioinformatics tools should support more recent compression
-  algorithms such as zstd for FASTQ data. Zstd has wide industry
-  support, with comparable run times and would likely reduce storage
-  costs by 50% over gzip.
-
+-   The increasing throughput of Illumina DNA sequencing means
+    institutions and companies are spending tens of thousands of dollars
+    to store terabytes of raw DNA sequence (FASTQ). This data is stored
+    using gzip, a 30-year-old compression algorithm.
+-   Common bioinformatics tools should support more recent compression
+    algorithms such as zstd for FASTQ data. Zstd has wide industry
+    support, with comparable run times and would likely reduce storage
+    costs by 50% over gzip.
 :::
+
 
 ## Gzip is outperformed by other algorithms
 
-The original implementation of gzip (Gailly/Madler) has been surpassed
-in performance by other gzip implementations. For example,
-[cloudflare-zlib](https://github.com/cloudflare/zlib) outperforms the
-original gzip in compression speeds and should be used instead.
+The original Gailly/Madler implementation of gzip has been surpassed in
+performance by other gzip implementations. For example,
+[cloudflare-zlib](https://github.com/cloudflare/zlib) outperforms Madler
+gzip in compression speeds and should be used instead of the default
+system gzip.
 
-The use of the gzip compression format is still ubiquitous for raw FASTQ
-DNA sequence. This is due to it being the only supported compression
-format for FASTQ in bioinformatics tools. In the thirty years since gzip
-was created there are now alternatives with superior compression ratios.
-Only supporting gzip for FASTQ translates into millions of dollars in
-storage fees on services like Amazon’s S3 and EFS compared with
-algorithms with better compression ratios. Companies like
+The gzip compression format is still ubiquitous for raw FASTQ DNA
+sequence. This is due to it being the only supported compression format
+for bioinformatics tools. In the thirty years since gzip was created
+there are now alternatives with superior compression ratios. Only
+supporting gzip for FASTQ translates into millions of dollars in storage
+fees on services like Amazon’s S3 and EFS compared with algorithms with
+better compression ratios. Companies like
 [Meta](https://engineering.fb.com/2016/08/31/core-data/smaller-and-faster-data-compression-with-zstandard/),
-[Amazon](https://www.infoq.com/news/2022/09/amazon-gzip-zstd/), and
-[Uber](https://www.uber.com/en-GB/blog/cost-efficiency-big-data/) are
-reported to be switching to zstd over gzip. If the most common
+[Amazon](https://twitter.com/adrianco/status/1560854827810361345), and
+[Twitter](https://twitter.com/danluu/status/1560831128914649088) are all
+reportedly using zstd format for storing data. If the most common
 bioinformatics tools can move to support ingesting zstd-compressed FASTQ
-format this could save everyone time and money with minimal impact on IO
-time.
+format this could save everyone time and money with minimal impact on
+compression times.
 
 ## A toy benchmark
 
@@ -61,13 +61,13 @@ downloaded ~1.5Gb of FASTQ data and compressed it with either `pigz` or
 %}
 
 FASTQ files do however take longer to compress with zstd. The `ztsd -15`
-command takes ~70s which is 50% longer than `pigz -9` at ~35s. However,
+command takes ~70s which is 100% longer than `pigz -9` at ~35s. However,
 it’s worth noting when storing raw FASTQ from a sequencer, these files
 are compressed once, and then stored for years. This additional CPU time
 cost is more than offset by savings in storage costs. The same does not
 apply to intermediate files such as trimmed or filtered FASTQ in a
-pipeline that tend to be ephemeral. These would require a futher
-examination of tradeoffs.
+pipeline that tend to be ephemeral. These would require a further
+examination of trade offs.
 
 {% include 'image_with_caption.njk',
     url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/compress-time-example-1.png', anchor: '', short_desc: 'Total compression time in seconds by algorithm.'

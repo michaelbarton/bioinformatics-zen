@@ -2,24 +2,21 @@ name: CI for building site
 
 on: [push]
 
-env:
-  TERM: xterm
-
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Create dummy .env file
-        run: |
-          touch .env
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
 
-      - name: Build docker image
-        run: make image
+      - run: npm ci
 
       - name: Check markdown formatting
         run: make fmt_check

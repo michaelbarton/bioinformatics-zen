@@ -119,9 +119,7 @@ This shows that using a substring 50bp further downstream finds a larger number
 of exact matches in the reads. The following figure compares the difference in
 the substring matches. The figure is on a logarithmic scale.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRX002564.fidelity.png',
-  alt: 'Number of correct reads vs read length.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRX002564.fidelity.png", "Number of correct reads vs read length." %}
 
 ## Read fidelity in the Human Microbiome Pilot Study
 
@@ -144,9 +142,7 @@ mock community using the same approach as before. The following figure compares
 the distribution of matching reads for the different substrings of the
 mock community.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRP002397.fidelity.png',
-  alt: 'Number of correct reads vs read length.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRP002397.fidelity.png", "Number of correct reads vs read length." %}
 
 This figure is harder to interpret because the two distributions overlap. There
 is less of a clear difference as to whether 5' trimming results in a greater
@@ -156,9 +152,7 @@ versus no trimming. A larger value equates to a greater the number of
 substring-matching reads for the 5' trimmed sequence versus the untrimmed
 sequence.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRP002397.difference.png',
-  alt: 'Number of correct reads vs read length.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/read-analysis/002-read-fidelity/SRP002397.difference.png", "Number of correct reads vs read length." %}
 
 This figure shows that for two experiments 5' trimming resulted in less matches
 to the community substring. In one of these cases this resulted in &gt;3000

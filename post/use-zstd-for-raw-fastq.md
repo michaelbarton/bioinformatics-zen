@@ -7,11 +7,7 @@ description: "Stylised graphics of money with DNA helix in the foreground."
 image_card: "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/image_card.jpg"
 ---
 
-{% include 'image.njk',
-	width: 640,
-	class: 'banner_image',
-	url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/image_card.jpg',
-	alt: 'Stylised graphics of money with DNA helix in the foreground.' %}
+{% image "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/image_card.jpg", "Stylised graphics of money with DNA helix in the foreground.", 640, "banner_image" %}
 
 :::lede
 
@@ -56,9 +52,7 @@ is almost 50% the size of the same gzipped file. In the figure below I
 downloaded ~1.5Gb of FASTQ data and compressed it with either `pigz` or
 `zstd`. Pigz is a parallel implementation of the original gzip.
 
-{% include 'image_with_caption.njk',
-    url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/file-size-example-1.png', anchor: '', short_desc: 'FASTQ file size by compression algorithm.'
-%}
+{% image_with_caption "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/file-size-example-1.png", "", "FASTQ file size by compression algorithm." %}
 
 FASTQ files do however take longer to compress with zstd. The `ztsd -15`
 command takes ~70s which is 100% longer than `pigz -9` at ~35s. However,
@@ -69,17 +63,13 @@ apply to intermediate files such as trimmed or filtered FASTQ in a
 pipeline that tend to be ephemeral. These would require a further
 examination of trade offs.
 
-{% include 'image_with_caption.njk',
-    url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/compress-time-example-1.png', anchor: '', short_desc: 'Total compression time in seconds by algorithm.'
-%}
+{% image_with_caption "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/compress-time-example-1.png", "", "Total compression time in seconds by algorithm." %}
 
 The next figure shows that changes in decompression time for the same
 file are relatively small, 3.5s vs 2.2s. Therefore decompression would
 be minimally impacted.
 
-{% include 'image_with_caption.njk',
-    url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/decompress-time-example-1.png', anchor: '', short_desc: 'Total decompression time in seconds by algorithm.'
-%}
+{% image_with_caption "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/decompress-time-example-1.png", "", "Total decompression time in seconds by algorithm." %}
 
 ## Detailed comparison of flags
 
@@ -89,9 +79,7 @@ compression flags on the same SRR7589561 FASTQ file. This shows that
 zstd outperforms gzip at the highest compression levels, with the output
 file sizes being ~60% the size of the highest gzip compression levels.
 
-{% include 'image_with_caption.njk',
-    url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/plot-file-size-1.png', anchor: '', short_desc: 'Output compressed file size ratios by command line flag for each compression tool.', long_desc: 'Each colour represents a different compression tool implementation. Each argument was benchmarked five times. Note that zopfli has a single datum because it only compresses to the max ratio.'
-%}
+{% image_with_caption "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/plot-file-size-1.png", "", "Output compressed file size ratios by command line flag for each compression tool.", "Each colour represents a different compression tool implementation. Each argument was benchmarked five times. Note that zopfli has a single datum because it only compresses to the max ratio." %}
 
 This next plot compares the trade-offs for file size versus the wall
 clock run time taken to compress a FASTQ file. This is for the
@@ -102,9 +90,7 @@ for zopfli, a gzip implementation gives the best compression ratio of
 any gzip implementation but at the expense ~2 orders of magnitude in
 compression time.
 
-{% include 'image_with_caption.njk',
-    url: 'https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/plot-compression-time-1.png', anchor: '', short_desc: 'Compression ratio versus compression time.', long_desc: 'Each colour represents a different compression tool implementation. Each argument was benchmarked five times. Note that zopfli has a single point because it only compresses to the max ratio.'
-%}
+{% image_with_caption "https://s3.amazonaws.com/bioinformatics-zen/202212120000-use-zstd-for-raw-fastq/plot-compression-time-1.png", "", "Compression ratio versus compression time.", "Each colour represents a different compression tool implementation. Each argument was benchmarked five times. Note that zopfli has a single point because it only compresses to the max ratio." %}
 
 # Takeaway
 

@@ -7,10 +7,7 @@ description: "Is there still a chance to do something meaningful in tech?"
 image_card: "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/thumbnail.png"
 ---
 
-{% include 'image.njk',
-  width: 720,
-	url: 'https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png',
-	alt: 'Picture of my face with "cynical" written over the top in bright letters.' %}
+{% image "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/cynical-profile-picture.png", "Picture of my face with \"cynical\" written over the top in bright letters.", 720 %}
 
 When I was young and starting my career, I was hungry to learn. I would spend
 ten hours a day reading, note-taking, and playing with code. Introducing myself
@@ -179,10 +176,7 @@ have as much time as we think. Do I want to use that time earning >$400k a year
 so that that hundreds of thousands of people spend an extra few seconds
 browsing ads?
 
-{% include 'image.njk',
-  width: 560,
-	url: 'https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/here-hopeful.png',
-	alt: 'The word "hopeful" inside HTML "here" tags.' %}
+{% image "https://s3.amazonaws.com/bioinformatics-zen/202204181910-fear-loathing-getting-old-in-tech/here-hopeful.png", "The word \"hopeful\" inside HTML \"here\" tags.", 560 %}
 
 <here>
 	hopeful?

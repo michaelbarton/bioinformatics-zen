@@ -54,9 +54,7 @@ my projects on repository hosting as an example of how I organise everything. I
 find this much simpler that working with large numbers of local project
 directories.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/decomplected/repositories.png',
-  alt: 'A list of my project repositories' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/decomplected/repositories.png", "A list of my project repositories" %}
 
 [repo]: http://repositoryhosting.com/
 [github]: https://github.com/

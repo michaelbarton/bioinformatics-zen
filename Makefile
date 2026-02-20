@@ -1,4 +1,4 @@
-CHECK_FILES := scss/* post/* eleventy.config.js package.json
+CHECK_FILES := scss/* post/*.md eleventy.config.js package.json
 
 build: fmt_check _site
 

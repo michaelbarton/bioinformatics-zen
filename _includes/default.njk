@@ -2,58 +2,37 @@
 <html lang='en'>
 	<head>
 		<meta charset='utf-8'>
-		<meta content='IE=edge' http-equiv='X-UA-Compatible'>
 		<meta content='width=device-width, initial-scale=1' name='viewport'>
-		<link href='http://www.michaelbarton.me.uk' rel='author'>
+		<link href='https://www.michaelbarton.me.uk' rel='author'>
 		<link href='/css/styles.css' rel='stylesheet'>
 		<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
-		<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js'></script>
-		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
-		<script src='/js/all-5fcabbb4.js'></script>
+		<script src='/js/all-5fcabbb4.js' defer></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML' defer></script>
 		{% if image_card %}
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:creator" content="@bioinformatics"} />
-		<meta property="og:url" content="http://www.bioinformaticszen.com/{{page.url}}" />
+		<meta name="twitter:creator" content="@bioinformatics" />
+		<meta property="og:url" content="https://www.bioinformaticszen.com/{{page.url}}" />
 		<meta property="og:title" content="{{title}}" />
 		<meta property="og:description" content="{{description}}" />
 		<meta name="twitter:image:src" content="{{image_card}}" />
 		<meta property="og:image" content="{{image_card}}" />
 		{% endif %}
-		<title>
-			Bioinformatics Zen {% if title %} | {{title}} {% endif %}
-		</title>
+		<title>Bioinformatics Zen{% if title %} | {{title}}{% endif %}</title>
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
-
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-justified">
-						<li><a href="https://twitter.com/bioinformatics">twitter</a></li>
-						<li><a href="/feed.xml">feed</a></li>
-						<li><a href="http://www.michaelbarton.me.uk/">about</a></li>
-					</ul>
-				</div>
-			</div>
+		<nav class="site-nav">
+			<a href="https://twitter.com/bioinformatics">twitter</a>
+			<a href="/feed.xml">feed</a>
+			<a href="http://www.michaelbarton.me.uk/">about</a>
 		</nav>
 
 		<div class='container'>
-			<div class='site_title'>
+			<div class='site-title'>
 				<h1>
-					<a href='/'>
-						Bioinformatics Zen
-					</a>
+					<a href='/'>Bioinformatics Zen</a>
 				</h1>
-				<i>A blog about bioinformatics and mindfulness by Michael Barton</i>
+				<p class='tagline'>A blog about bioinformatics and mindfulness by Michael Barton</p>
 			</div>
 			{{ content | safe }}
 		</div>

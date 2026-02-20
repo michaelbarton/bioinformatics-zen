@@ -1,33 +1,70 @@
 # Bioinformatics Zen Eleventy Blog
 
-## Updating packages
-
-Packages are installed in the separate directory in the Docker image, but the
-package.json file is maintained in the project root. New packages can be added
-with the command:
+## Build
 
 ```
-make shell
-npm add ...
+make build
 ```
+
+Runs `make fmt_check` then `npm run build` (SASS compilation followed by
+Eleventy). The build fails if any checked file is not correctly formatted.
+
+To auto-format before building:
+
+```
+make fmt && make build
+```
+
+## Structure
+
+- `eleventy.config.js` — Eleventy configuration (plugins, shortcodes, filters)
+- `_layouts/` — Page layouts (`default.njk`, `post.njk`)
+- `_data/metadata.js` — Site-wide metadata (title, URL, author)
+- `post/` — Blog posts (`.md` for markdown, `.html` for HTML posts with Liquid)
+- `scss/` — Source stylesheets (compiled to `_site/css/` at build time)
+- `js/` — Client-side scripts (copied to `_site/js/` at build time)
+
+## Shortcodes
+
+Component partials are registered as Eleventy shortcodes and can be used from
+any template:
+
+```liquid
+{% image "url", "alt text" %}
+{% image "url", "alt text", 640 %}
+{% image "url", "alt text", 640, "css-class" %}
+
+{% image_with_caption "url", "anchor-id", "Short description." %}
+{% image_with_caption "url", "anchor-id", "Short desc.", "Long description." %}
+
+{% caption "Short description." %}
+{% caption "Short description.", "Long description." %}
+```
+
+## Formatting
+
+Prettier checks `scss/*`, `post/*.md`, `eleventy.config.js`, and `package.json`.
+HTML files in `post/` are excluded (they contain Liquid template syntax).
 
 ## Stylesheets
 
-The stylesheets are kept in the `scss` directory. When they are changed the
-`sass:watch` command in the `package.json` will compile it to the `css`
-directory. This is the file used in the `link` tag in the template. The
-`addWatchTarget` in the elventy config will rebuild the site when this file
-changes.
+Stylesheets are in `scss/`. The `sass:watch` script in `package.json` compiles
+them to `_site/css/`. `addWatchTarget` in the Eleventy config rebuilds the site
+when they change.
 
 ## Deployment
 
-Relies on an `.env` file with the required `aws cli` credentials. Create this
-locally for testing. The GH actions step will create the .env file as a step
-beforehand. The [required environment variables][env] are:
+Relies on AWS credentials set as environment variables:
 
-- S3_BUCKET
-- AWS_ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
-- AWS_DEFAULT_REGION
+- `S3_BUCKET`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_DEFAULT_REGION`
+
+```
+make deploy
+```
+
+[Required environment variables][env]
 
 [env]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html

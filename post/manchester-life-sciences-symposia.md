@@ -5,9 +5,7 @@ title: "Poster: Manchester Life Sciences Symposia"
 date: 2007-09-18
 ---
 
-{% include 'image.njk',
-  url: 'http://uk-me-michaelbarton.s3.amazonaws.com/posters/2007-manchester-symposia/michael_barton_poster.png',
-  alt: 'A poster illustrating my research into cost related gene expression.' %}
+{% image "http://uk-me-michaelbarton.s3.amazonaws.com/posters/2007-manchester-symposia/michael_barton_poster.png", "A poster illustrating my research into cost related gene expression." %}
 
 Every year, Manchester University Faculty of Life Sciences organises a symposia
 to highlight the work that has been produced by the department. Third year PhD

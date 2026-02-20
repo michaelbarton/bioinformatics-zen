@@ -13,14 +13,14 @@
 		{% if image_card %}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:creator" content="@bioinformatics"} />
-		<meta property="og:url" content="http://www.bioinformaticszen.com/{{page.url}}" />
+		<meta property="og:url" content="{{ metadata.url }}{{page.url}}" />
 		<meta property="og:title" content="{{title}}" />
 		<meta property="og:description" content="{{description}}" />
 		<meta name="twitter:image:src" content="{{image_card}}" />
 		<meta property="og:image" content="{{image_card}}" />
 		{% endif %}
 		<title>
-			Bioinformatics Zen {% if title %} | {{title}} {% endif %}
+			{{ metadata.title }} {% if title %} | {{title}} {% endif %}
 		</title>
 	</head>
 
@@ -50,10 +50,10 @@
 			<div class='site_title'>
 				<h1>
 					<a href='/'>
-						Bioinformatics Zen
+						{{ metadata.title }}
 					</a>
 				</h1>
-				<i>A blog about bioinformatics and mindfulness by Michael Barton</i>
+				<i>{{ metadata.subtitle }}</i>
 			</div>
 			{{ content | safe }}
 		</div>

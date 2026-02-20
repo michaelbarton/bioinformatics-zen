@@ -30,20 +30,14 @@ Google reading this?), here are the three main thoughts, inspired by
 
 #### The meaning of hard work
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/success.png',
-  alt: 'Graph showing hard work versus results ' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/success.png", "Graph showing hard work versus results" %}
 
 #### Two things that are important
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/familyplot.png',
-  alt: 'Spending time with friends and family or working on publications' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/familyplot.png", "Spending time with friends and family or working on publications" %}
 
 #### I've been two of these
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/reward.png',
-  alt: 'Passion versus reward.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/ph-in-phd/reward.png", "Passion versus reward." %}
 
 [indexed]: http://thisisindexed.com/

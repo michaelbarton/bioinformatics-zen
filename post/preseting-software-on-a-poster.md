@@ -25,9 +25,7 @@ the software would be forgotten. I designed the poster as a brief introduction
 to the software. Anyone interested in learning more could follow the short URL
 ([http://next.gs][scaf]) to the website containing more details.
 
-{% include 'image.njk',
-  url: 'http://uk-me-michaelbarton.s3.amazonaws.com/posters/2011-asm/michael_barton_poster.png',
-  alt: 'A poster illustrating my scaffolder software' %}
+{% image "http://uk-me-michaelbarton.s3.amazonaws.com/posters/2011-asm/michael_barton_poster.png", "A poster illustrating my scaffolder software" %}
 
 The left-hand side of the poster describes the problem of creating a genome by
 joining the contigs manually. The larger right-hand side illustrates the

@@ -85,9 +85,7 @@ homopolymer of each nucleotide type and the second was various quality metrics
 for each sequence. I also included original read length too. The distribution
 of these features for accurate and inaccurate reads looks as follows.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.dependencies.png',
-  alt: Distribution of features according to read accuracy.'' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.dependencies.png" %}
 
 This data does not include all the features in Schloss _et. al_, for instance
 barcode and primer errors are not present. I selected only a subset of features
@@ -206,9 +204,7 @@ regularisation coefficient lambda. The graphs are separated into two groups:
 the homopolymer coefficients and the quality coefficients. The coefficient for
 read length is not shown.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.regress.png',
-  alt: 'Value of logistic regression classifier coefficients.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.regress.png", "Value of logistic regression classifier coefficients." %}
 
 Not too much should be given to the interpretation of this figure as it is the
 result of training on only a single data set. This is apparent in the relatively
@@ -368,9 +364,7 @@ result of the random forest overfitting the data and cross validation across
 data sets may give more weight to the broader view provided by the logistic
 regression.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.ensemble.png',
-  alt: 'Performance on ensemble learning model.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen/machine-learning-ngs/SRR013437.ensemble.png", "Performance on ensemble learning model." %}
 
 ## Summary
 

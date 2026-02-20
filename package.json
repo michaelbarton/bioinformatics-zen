@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --style=compressed scss/styles.scss css/styles.css",
+    "sass": "sass --style=compressed scss/styles.scss _site/css/styles.css",
     "watch:eleventy": "eleventy --serve",
     "watch:sass": "npm run sass -- --watch",
     "start": "npm-run-all sass --parallel watch:*",
@@ -14,18 +14,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@11ty/eleventy": "1.0.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.0.0",
-    "eleventy-plugin-embed-everything": "^1.14.0",
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "eleventy-plugin-youtube-embed": "^1.6.5",
-    "luxon": "^2.5.2",
-    "markdown-it-container": "^3.0.0",
+    "luxon": "^3.0.0",
     "markdown-it-footnote": "^3.0.3",
-    "sass": "^1.49.9",
-    "tailwindcss": "^3.0.19"
+    "sass": "^1.49.9"
   },
   "devDependencies": {
-    "@11ty/eleventy-plugin-rss": "^1.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1"
   }

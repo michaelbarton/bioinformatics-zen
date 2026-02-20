@@ -11,26 +11,26 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      # https://stackoverflow.com/questions/60176044/how-do-i-use-an-env-file-with-github-actions
-      - name: Setup environment variables
-        run: |
-          touch .env
-          echo AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} >> .env
-          echo AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} >> .env
-          echo AWS_DEFAULT_REGION=${{ secrets.AWS_DEFAULT_REGION }} >> .env
-          echo S3_BUCKET=${{ secrets.S3_BUCKET }} >> .env
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Build images
         run: |
           make image
-          docker-compose build deploy
+          docker compose build deploy
 
       - name: Build site
         run: make _site
 
       - name: Deploy site
+        env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: make deploy

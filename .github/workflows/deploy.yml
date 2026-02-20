@@ -2,10 +2,7 @@ name: Deploy Site
 
 on:
   push:
-    branches: [master] # run on pushes to master
-
-env:
-  TERM: xterm
+    branches: [master]
 
 jobs:
   deploy:
@@ -15,6 +12,13 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - uses: astral-sh/setup-uv@v5
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -22,13 +26,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      - name: Build images
-        run: |
-          make image
-          docker compose build deploy
+      - run: npm ci
 
       - name: Build site
-        run: make _site
+        run: make build
 
       - name: Deploy site
         env:

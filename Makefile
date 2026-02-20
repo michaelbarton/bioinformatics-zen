@@ -1,6 +1,6 @@
 CHECK_FILES := scss/* post/* eleventy.config.js package.json
 
-build: _site
+build: fmt_check _site
 
 _site:
 	npm run build

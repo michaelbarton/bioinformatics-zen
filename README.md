@@ -68,3 +68,40 @@ make deploy
 [Required environment variables][env]
 
 [env]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+
+## Style PRs
+
+Pull requests that change `scss/styles.scss` or `_layouts/default.njk` must
+include before/after screenshots. Capture them with:
+
+```bash
+# Before
+git stash && make build
+cd _site && python3 -m http.server 8765 &
+node scripts/screenshot.js /tmp/screenshots-before
+kill $(lsof -t -i:8765)
+
+# After
+git stash pop && make build
+cd _site && python3 -m http.server 8765 &
+node scripts/screenshot.js /tmp/screenshots-after
+kill $(lsof -t -i:8765)
+```
+
+Copy screenshots to `.github/screenshots/before/` and `.github/screenshots/after/`,
+then upload to the PR branch via the GitHub Contents API (bypassing the local
+git push proxy):
+
+```bash
+GITHUB_TOKEN=<token> python3 scripts/upload_screenshots.py owner/repo pr-head-branch
+```
+
+Embed them in the PR body using `raw.githubusercontent.com` URLs:
+
+```markdown
+| Viewport | Before | After |
+|----------|--------|-------|
+| Mobile 375px – homepage | ![before](https://raw.githubusercontent.com/owner/repo/BRANCH/.github/screenshots/before/homepage-mobile-375.png) | ![after](…) |
+| Mobile 375px – post     | ![before](…) | ![after](…) |
+| Desktop – homepage      | ![before](…) | ![after](…) |
+```

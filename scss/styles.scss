@@ -1,8 +1,125 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&display=swap");
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
-/* Required by the eleventy syntax highlighting plugin */
-@import url("https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css");
+/* ============================================
+   Prism Okaidia syntax highlighting theme
+   (bundled locally – no CDN dependency)
+   ============================================ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #f8f8f2;
+  background: none;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background: #272822;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #8292a2;
+}
+
+.token.punctuation {
+  color: #f8f8f2;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+  color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+  color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+  color: #e6db74;
+}
+
+.token.keyword {
+  color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+  color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
 
 /* ============================================
    Variables
@@ -18,7 +135,9 @@ $color-text-light: #888;
 $color-text-muted: #aaa;
 $color-border: #e8e8e8;
 $color-bg-subtle: #f8f8f8;
-$color-accent: rgba(70, 120, 178, 0.15);
+$color-link: #1d6fa0;
+$color-link-hover: #145678;
+$color-accent: rgba(29, 111, 160, 0.1);
 
 /* ============================================
    Base
@@ -32,6 +151,24 @@ html {
 body {
   font-size: 1rem;
   height: 100%;
+}
+
+/* ============================================
+   Links
+   ============================================ */
+
+a {
+  color: $color-link;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-link-hover;
+    text-decoration: underline;
+  }
+
+  &:visited {
+    color: $color-link;
+  }
 }
 
 /* ============================================
@@ -54,7 +191,7 @@ body {
     text-transform: lowercase;
 
     &:hover {
-      color: $color-text;
+      color: $color-link;
       text-decoration: none;
     }
   }
@@ -67,7 +204,7 @@ body {
 .site-title {
   padding-top: 2rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid $color-border;
+  border-bottom: 2px solid $color-link;
   margin-bottom: 0;
 }
 
@@ -127,7 +264,7 @@ h1 {
     text-decoration: none;
 
     &:hover {
-      color: #3a5f8a;
+      color: $color-link;
       text-decoration: none;
     }
   }
@@ -181,7 +318,7 @@ pre code {
 
 blockquote {
   background-color: $color-bg-subtle;
-  border-left: 3px solid $color-border;
+  border-left: 3px solid $color-link;
   font-style: italic;
   padding: 1rem 1.5rem;
   margin-left: 0;
@@ -225,7 +362,7 @@ ul.index {
     }
 
     a {
-      color: $color-text;
+      color: $color-link;
       text-decoration: none;
       font-size: 1rem;
       line-height: 1.4;
@@ -234,11 +371,11 @@ ul.index {
       overflow-wrap: break-word;
 
       &:hover {
-        color: #3a5f8a;
+        color: $color-link-hover;
       }
 
       &:visited {
-        color: $color-text;
+        color: $color-link;
       }
     }
   }
@@ -261,8 +398,9 @@ ul.index {
   font-size: 1rem;
   font-weight: 400;
   background-color: $color-accent;
+  border-left: 3px solid $color-link;
   padding: 1.25rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 0 8px 8px 0;
   margin-bottom: 2rem;
 
   ul {

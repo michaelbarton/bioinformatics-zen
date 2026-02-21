@@ -84,17 +84,48 @@ node scripts/screenshot.js /tmp/screenshots-after
 kill $(lsof -t -i:8765)
 ```
 
-Drag the PNG files into the GitHub PR comment box to upload them, then
-embed the resulting URLs in a side-by-side table:
+Save screenshots to `.github/screenshots/before/` and `.github/screenshots/after/`,
+then upload them to the PR's head branch using the GitHub Contents API and
+embed the resulting raw URLs in a side-by-side table.
+
+**Important:** `git push` goes through a local proxy and may not reach the real
+GitHub. Use the Contents API directly to upload files to a branch that already
+exists on GitHub (i.e. the PR's head branch):
+
+```python
+import json, base64, urllib.request, os
+
+TOKEN = os.environ["GITHUB_TOKEN"]
+REPO = "owner/repo"
+BRANCH = "pr-head-branch"   # must already exist on github.com
+
+def gh(method, path, data=None):
+    req = urllib.request.Request(f"https://api.github.com{path}", method=method,
+        headers={"Authorization": f"token {TOKEN}", "Content-Type": "application/json"})
+    if data:
+        req.data = json.dumps(data).encode()
+    with urllib.request.urlopen(req) as r:
+        return json.loads(r.read())
+
+for side in ("before", "after"):
+    for fname in sorted(os.listdir(f".github/screenshots/{side}")):
+        path = f".github/screenshots/{side}/{fname}"
+        content = base64.b64encode(open(path, "rb").read()).decode()
+        existing = gh("GET", f"/repos/{REPO}/contents/{path}?ref={BRANCH}")
+        payload = {"message": f"Add {side} screenshot {fname}", "content": content, "branch": BRANCH}
+        if "sha" in existing:
+            payload["sha"] = existing["sha"]
+        gh("PUT", f"/repos/{REPO}/contents/{path}", payload)
+```
+
+Then reference them via `raw.githubusercontent.com`:
 
 ```markdown
 ## Screenshots
 
 | Viewport | Before | After |
 |----------|--------|-------|
-| Mobile 375px – homepage | ![before](…) | ![after](…) |
+| Mobile 375px – homepage | ![before](https://raw.githubusercontent.com/owner/repo/BRANCH/.github/screenshots/before/homepage-mobile-375.png) | ![after](…) |
 | Mobile 375px – post     | ![before](…) | ![after](…) |
 | Desktop – homepage      | ![before](…) | ![after](…) |
 ```
-
-Do not commit screenshot files to the repository.

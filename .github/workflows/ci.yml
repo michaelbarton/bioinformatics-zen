@@ -23,3 +23,6 @@ jobs:
 
       - name: Check site builds
         run: make build
+
+      - name: Check for broken links
+        run: make link_check

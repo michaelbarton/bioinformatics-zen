@@ -17,5 +17,8 @@ fmt:
 fmt_check:
 	npx prettier --check ${CHECK_FILES}
 
+link_check: _site
+	npx linkinator ./_site --recurse --skip "^https?://" --verbosity ERROR
+
 clean:
 	rm -rf _site

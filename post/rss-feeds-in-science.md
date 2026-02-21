@@ -40,4 +40,4 @@ But on a more serious tone, there's no reason that everything you have to monito
 
 <strong>Where to get started</strong>
 
-All you need to use RSS feeds, is a feed reader. I use <a href="www.google.com/reader">Google Reader</a>, all that's required is a Google log in.
+All you need to use RSS feeds, is a feed reader. I use <a href="http://www.google.com/reader">Google Reader</a>, all that's required is a Google log in.

@@ -33,7 +33,10 @@ module.exports = function (config) {
 
   // Shortcodes replacing the _includes partials.
   config.addShortcode("image", function (url, alt, width = 480, cls = "") {
-    return `<div class="centred ${cls}"><img src="${url}" alt="${alt}" width="${width}px" class="responsive-image"/></div>`;
+    const escapedAlt = (alt || "")
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;");
+    return `<div class="centred ${cls}"><img src="${url}" alt="${escapedAlt}" width="${width}px" class="responsive-image"/></div>`;
   });
 
   config.addShortcode(

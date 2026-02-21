@@ -18,6 +18,11 @@ These are the actively maintained posts.
    Image URLs are additionally checked to ensure the response Content-Type is
    an image MIME type, catching cases where a URL returns HTTP 200 but serves
    an error page or placeholder rather than the actual image.
+
+3. Validate that <img> tags in feed post HTML have well-formed attributes.
+   Catches broken HTML from unescaped quotes in attribute values (e.g. alt text
+   containing literal double-quote characters), which cause browsers to misparse
+   the tag and fail to render the image.
 """
 
 import html as html_module
@@ -26,6 +31,7 @@ import sys
 import urllib.request
 import urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from html.parser import HTMLParser
 from pathlib import Path
 
 SITE_DIR = Path("_site")
@@ -124,6 +130,83 @@ def check_image(url: str) -> str | None:
     return None
 
 
+# Valid attribute names for <img> elements (HTML spec + common global attrs).
+# Attribute names outside this set on an <img> tag indicate broken HTML,
+# typically caused by unescaped quotes in a preceding attribute value.
+_VALID_IMG_ATTRS = frozenset(
+    {
+        "src",
+        "alt",
+        "width",
+        "height",
+        "class",
+        "id",
+        "style",
+        "title",
+        "loading",
+        "decoding",
+        "srcset",
+        "sizes",
+        "crossorigin",
+        "referrerpolicy",
+        "usemap",
+        "ismap",
+        "longdesc",
+        "name",
+        "role",
+        "hidden",
+        "dir",
+        "lang",
+        "tabindex",
+    }
+)
+
+
+class _ImgAttrChecker(HTMLParser):
+    """Parse HTML and collect <img> tags with unexpected attribute names."""
+
+    def __init__(self):
+        super().__init__()
+        self.errors: list[str] = []
+        self._file: str = ""
+
+    def check_file(self, html: str, filename: str) -> list[str]:
+        self.errors = []
+        self._file = filename
+        self.feed(html)
+        return list(self.errors)
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]):
+        if tag != "img":
+            return
+        attr_names = [name for name, _ in attrs]
+        bad = [
+            n
+            for n in attr_names
+            if n not in _VALID_IMG_ATTRS and not n.startswith(("data-", "aria-"))
+        ]
+        if bad:
+            src = next((v for n, v in attrs if n == "src"), "<unknown>")
+            self.errors.append(
+                f"MALFORMED <img> in {self._file}: "
+                f"unexpected attribute(s) {bad!r} "
+                f"(likely unescaped quotes in alt text). src={src}"
+            )
+
+
+def check_img_attributes(slugs: list[str]) -> list[str]:
+    """Return errors for <img> tags with broken attributes in feed post HTML."""
+    checker = _ImgAttrChecker()
+    errors: list[str] = []
+    for slug in slugs:
+        html_file = SITE_DIR / "post" / slug / "index.html"
+        if not html_file.exists():
+            continue
+        html = html_file.read_text()
+        errors.extend(checker.check_file(html, str(html_file)))
+    return errors
+
+
 def collect_external_urls(slugs: list[str]) -> dict[str, set[str]]:
     """
     Extract all external URLs from feed post HTML files, grouped by kind.
@@ -206,6 +289,9 @@ def main() -> int:
 
     print("  Checking lede rendering...")
     errors.extend(check_lede_rendering(slugs))
+
+    print("  Checking img tag attributes...")
+    errors.extend(check_img_attributes(slugs))
 
     print("  Checking external images and links...")
     errors.extend(check_external_urls(slugs))

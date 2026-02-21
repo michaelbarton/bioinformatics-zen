@@ -114,7 +114,8 @@ make build
 # take after screenshots (use /tmp/screenshots-after as DIR)
 ```
 
-Then embed in the PR with a side-by-side table:
+Drag the PNG files into the GitHub PR comment box to upload them, then
+embed the resulting URLs in a side-by-side table:
 
 ```markdown
 ## Screenshots
@@ -126,5 +127,4 @@ Then embed in the PR with a side-by-side table:
 | Desktop – homepage      | ![before](…) | ![after](…) |
 ```
 
-Upload the PNG files as PR attachments (drag into the GitHub comment box) to
-get the URLs for the table.
+Do not commit screenshot files to the repository.

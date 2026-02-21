@@ -1,14 +1,13 @@
---- 
-kind: article
-title: RSS feeds in science
-category: misc
-created_at: "2007-05-10 21:37:19"
 ---
+tags: post
+feed: false
+title: RSS feeds in science
+date: 2007-05-10
+---
+
 <object height="350" width="425">
 <param name="movie" value="http://www.youtube.com/v/K80sbK5e4lc"></param>  <embed src="http://www.youtube.com/v/K80sbK5e4lc" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>
 Science, biology in particular, lags behind in the uptake of new web technologies. For example blogging is still regarded in the mainstream as a frivolous, self-indulgent activity. While, in business, blogs have been embraced as an effective method of communicating with customers - have a look at these wired articles, <a href="http://www.wired.com/wired/archive/15.04/wired40_microsoft.html">here</a> and <a href="http://www.wired.com/wired/archive/15.04/wired40_ceo.html">here</a>.
-
-<!--more-->
 
 However, the adoption of web technologies in science is inevitable. In 5-10 years time, your group will be behind if it doesn't have a blog. It may even be the case that there will be an option on grant applications to enter your blog - the reviewers can read about your most recent thoughts on the field and how you manage your research. As an example of how serious journals consider this, guess how many blogs the journal Nature has. The answer is <a href="http://www.nature.com/blogs/index.html">here</a>. This is direction the web has gone, and where science is heading. But blogging is only part of this, one of the key technologies driving the change is RSS.
 

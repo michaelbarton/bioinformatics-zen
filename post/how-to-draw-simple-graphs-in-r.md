@@ -1,9 +1,10 @@
---- 
-kind: article
-title: How to draw simple graphs in R
-category: misc
-created_at: "2007-05-04 13:49:11"
 ---
+tags: post
+feed: false
+title: How to draw simple graphs in R
+date: 2007-05-04
+---
+
 <script type="text/javascript"><!--
 google_ad_client = "pub-3537851447004532";
 //BZen Banner
@@ -31,12 +32,12 @@ This stores the information in an object called <code>data</code>. The data is 2
 <code>
 head(data)
 Systems.biology Functional.genomics Non.coding.RNA
-1               2                   2              5
-2               2                   2              5
-3               2                   2              6
-4               2                   3              4
-5               2                   4              7
-6               2                   3              5
+1 2 2 5
+2 2 2 5
+3 2 2 6
+4 2 3 4
+5 2 4 7
+6 2 3 5
 </code>
 The first column is the row number, followed by three columns, one for each bioinformatician and their cups of tea that day.
 
@@ -58,12 +59,12 @@ The three variables are identified by the <code>measure.var=c(...</code> argumen
 <code>
 head(data)
 variable value
-1 Systems.biology     2
-2 Systems.biology     2
-3 Systems.biology     2
-4 Systems.biology     2
-5 Systems.biology     2
-6 Systems.biology     2
+1 Systems.biology 2
+2 Systems.biology 2
+3 Systems.biology 2
+4 Systems.biology 2
+5 Systems.biology 2
+6 Systems.biology 2
 </code>
 The first column is the type of bioinformatics, the second the cups of tea. You can see the advantage of this, if I wanted to add another area of research, such as phylogenetics, I would add an extra row rather than an extra column. Now, imagine if we were using the database, this would be the difference between updating the schema and or inserting a new record.
 
@@ -92,12 +93,12 @@ Continuous data is numerical. The example data is in continuous.csv. The file is
 data &lt;- read.csv(file="/Users/mike/Desktop/plots/continuous.csv")
 head(data)
 distance productivity
-1 41.30473     34.69197
-2 36.34507     35.53591
-3 39.88439     36.17467
-4 26.05197     37.84792
-5 39.92318     34.59474
-6 55.23140     34.89835
+1 41.30473 34.69197
+2 36.34507 35.53591
+3 39.88439 36.17467
+4 26.05197 37.84792
+5 39.92318 34.59474
+6 55.23140 34.89835
 </code>
 The data measure shows a bioinformatician's distance from the tea making area and their weekly productivity. Since I'm comparing one value with another, the data is already in the correct format with two columns.
 
@@ -132,7 +133,7 @@ print(plot)
 
 <img src="http://www.bioinformaticszen.com/wp-content/uploads/2007/05/continuous_lm.png" alt="Continuous variable with trend line" class="centre" width="75%" />
 
-Which produces the plot I was after, the line indicates the trend between distance and productivity. However it's worth introducing a note of caution about trend lines. If you follow the line far enough, at some point the number of hours will become negative, something not possible. What we might expect is that hours decreases with distance, but never crosses the x-axis. One way to  look at trends without making assumptions is to use the loess rather than lmline function.
+Which produces the plot I was after, the line indicates the trend between distance and productivity. However it's worth introducing a note of caution about trend lines. If you follow the line far enough, at some point the number of hours will become negative, something not possible. What we might expect is that hours decreases with distance, but never crosses the x-axis. One way to look at trends without making assumptions is to use the loess rather than lmline function.
 <code>
 custom_panel_loess &lt;- function(x,y,...){</code>
 
@@ -154,12 +155,12 @@ We have an idea of the trends in how many cups of tea researchers drink. But wha
 data &lt;- read.csv(file="/Users/mike/Desktop/plots/categorical_categorical.csv")
 head(data)
 SB FG ncRNA SB.1 FG.1 ncRNA.1
-1  2  3     5    0    1       6
-2  2  3     5    0    0       8
-3  2  3     4    0    3       6
-4  2  2     6    0    3       6
-5  2  4     5    0    4       7
-6  2  3     6    0    3       7
+1 2 3 5 0 1 6
+2 2 3 5 0 0 8
+3 2 3 4 0 3 6
+4 2 2 6 0 3 6
+5 2 4 5 0 4 7
+6 2 3 6 0 3 7
 </code>
 Again this data is in wide format, The first three columns is the winter data, the second three columns are the summer data. The data is categorical (area of research), organised, by a second category (season). So first of all I need to shape this into long format . This time I'll need three columns because I have three variables, cups of tea, area of bioinformatics, and season.
 <code>
@@ -173,21 +174,21 @@ In the first two lines I'm splitting the data into two R objects one for winter,
 <code>
 head(summer)
 variable value
-1     SB.1     0
-2     SB.1     0
-3     SB.1     0
-4     SB.1     0
-5     SB.1     0
-6     SB.1     0</code>
+1 SB.1 0
+2 SB.1 0
+3 SB.1 0
+4 SB.1 0
+5 SB.1 0
+6 SB.1 0</code>
 
 head(winter)
 variable value
-1       SB     2
-2       SB     2
-3       SB     2
-4       SB     2
-5       SB     2
-6       SB     2
+1 SB 2
+2 SB 2
+3 SB 2
+4 SB 2
+5 SB 2
+6 SB 2
 
 However I need to add the extra seasonal variable as a new column for each.
 <code>
@@ -198,12 +199,12 @@ The command <code>cbind</code> means bind a new column, I'm calling this column 
 <code>
 head(summer)
 variable value season
-1     SB.1     0 summer
-2     SB.1     0 summer
-3     SB.1     0 summer
-4     SB.1     0 summer
-5     SB.1     0 summer
-6     SB.1     0 summer
+1 SB.1 0 summer
+2 SB.1 0 summer
+3 SB.1 0 summer
+4 SB.1 0 summer
+5 SB.1 0 summer
+6 SB.1 0 summer
 </code>
 You can see that this extra column has now been added. Finally we need to combine the two data set together.
 <code>
@@ -218,7 +219,7 @@ This is corrected by replacing the names of the last three variables with that o
 <code>
 levels(data$variable)[4:6] &lt;- levels(data$variable)[1:3]
 levels(data$variable)
-[1] "SB"    "FG"    "ncRNA"
+[1] "SB" "FG" "ncRNA"
 </code>
 As you can see the names are now consistent. And the only thing that remains is to plot the data.
 <code>
@@ -235,13 +236,13 @@ My final example is continuous data factored by a categorical variable. This is 
 <code>
 data &lt;- read.csv("/path/to/file/continuous_categorical.csv")
 head(data)
-water water.prod       tea tea.prod  hipflask  hf.prod
-1 0.4172023   33.99677 0.7731859 31.71567 1.1661047 24.90616
-2 0.9628104   40.04022 0.5545423 29.11507 0.3830907 31.74964
-3 1.3025050   40.78758 0.9033747 28.75205 1.0460207 29.64453
-4 1.3352481   40.19776 1.2515750 28.68057 1.3909051 20.29845
-5 0.8253107   38.38265 0.9861313 30.44975 0.2510354 31.51177
-6 1.5136886   40.61841 0.9458123 29.50657 1.1346057 25.31571
+water water.prod tea tea.prod hipflask hf.prod
+1 0.4172023 33.99677 0.7731859 31.71567 1.1661047 24.90616
+2 0.9628104 40.04022 0.5545423 29.11507 0.3830907 31.74964
+3 1.3025050 40.78758 0.9033747 28.75205 1.0460207 29.64453
+4 1.3352481 40.19776 1.2515750 28.68057 1.3909051 20.29845
+5 0.8253107 38.38265 0.9861313 30.44975 0.2510354 31.51177
+6 1.5136886 40.61841 0.9458123 29.50657 1.1346057 25.31571
 </code>
 In this data there are three different types of drinks, water, tea, and the contents of a hipflask. The amount consumed is measured, with the corresponding effect on productivity. So here we have two continuous variables, amount drunk and productivity, and one categorical, the type of liquid. The first thing I need to do is convert the data into long format to reflect this.
 <code>
@@ -253,20 +254,20 @@ Here I've split the the data set into three smaller ones, and added an extra col
 <code>
 head(water)
 water water.prod drink
-1 0.4172023   33.99677 water
-2 0.9628104   40.04022 water
-3 1.3025050   40.78758 water
-4 1.3352481   40.19776 water
-5 0.8253107   38.38265 water
-6 1.5136886   40.61841 water
+1 0.4172023 33.99677 water
+2 0.9628104 40.04022 water
+3 1.3025050 40.78758 water
+4 1.3352481 40.19776 water
+5 0.8253107 38.38265 water
+6 1.5136886 40.61841 water
 &gt; head(tea)
 tea tea.prod drink
-1 0.7731859 31.71567   tea
-2 0.5545423 29.11507   tea
-3 0.9033747 28.75205   tea
-4 1.2515750 28.68057   tea
-5 0.9861313 30.44975   tea
-6 0.9458123 29.50657   tea
+1 0.7731859 31.71567 tea
+2 0.5545423 29.11507 tea
+3 0.9033747 28.75205 tea
+4 1.2515750 28.68057 tea
+5 0.9861313 30.44975 tea
+6 0.9458123 29.50657 tea
 </code>
 However looking at the individual data sets we can see that the variable names do not match. For example there's one column named water productivity and another named tea productivity. Actually they are the same variable, productivity. So therefore I have to rename the first two columns to be consistent.
 <code>
@@ -280,12 +281,12 @@ Now I can join this this three datasets back together again. Row bind would have
 data &lt;- rbind(water,tea,hipflask)
 head(data)
 volume productivity drink
-1 0.4172023     33.99677 water
-2 0.9628104     40.04022 water
-3 1.3025050     40.78758 water
-4 1.3352481     40.19776 water
-5 0.8253107     38.38265 water
-6 1.5136886     40.61841 water
+1 0.4172023 33.99677 water
+2 0.9628104 40.04022 water
+3 1.3025050 40.78758 water
+4 1.3352481 40.19776 water
+5 0.8253107 38.38265 water
+6 1.5136886 40.61841 water
 </code>
 All that remains is to plot the data using the <em>given</em> notation for the categorical variable. I've also added a loess function for the using a custom panel. Both of these should be familiar from above.
 <code>

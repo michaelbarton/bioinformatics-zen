@@ -1,9 +1,10 @@
---- 
-kind: article
-title: The right graph, at the right time
-category: misc
-created_at: "2007-02-28 01:13:55"
 ---
+tags: post
+feed: false
+title: The right graph, at the right time
+date: 2007-02-28
+---
+
 I think everyone would agree that the most important thing in science is results. The best scientists produce the most relevant and important results. Of course, the best results won't matter if no one knows about them. Which is why we publish and give presentations.
 
 Sometimes I see results in papers and presentations illustrated poorly. Graphs that don't demostrate the point to the reader/audience in the best possible way. Here I give examples of how data can be presented in different contexts, based on two of my favorite resources. The first is the <a href="http://www.r-project.org/">R language</a> for statistics, the other is <a href="http://www.garrreynolds.com/">Garr Reynolds</a>' <a href="http://www.presentationzen.com/">Presentation Zen</a> ideology.
@@ -38,6 +39,7 @@ Of course you'll need to include a plot to demonstrate controversial and importa
 
 <strong>Finally</strong>
 I'd like to end this post by quoting the R <a href="http://stat.ethz.ch/R-manual/R-patched/library/graphics/html/pie.html">help page</a> on the subject of pie charts
+
 <blockquote> Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data.
 
 Cleveland (1985), page 264: â€œData that can be shown by pie charts always can be shown by a dot chart. This means that judgements of position along a common scale can be made instead of the less accurate angle judgements.â€ This statement is based on the empirical investigations of Cleveland and McGill as well as investigations by perceptual psychologists.</blockquote>

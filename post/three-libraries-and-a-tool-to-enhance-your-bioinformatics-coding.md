@@ -1,12 +1,11 @@
---- 
-kind: article
-title: Three libraries and a tool to enhance your bioinformatics coding
-category: misc
-created_at: "2007-03-30 12:32:21"
 ---
-Coding is fact of life for bioinformatics. If you work in bioinformatics you probably enjoy coding to some extent. It's our equivalent to PCR, western blots and sequencing. So whether your weapon of choice is Java, Perl, Python or C++, here's three packages and a tool worth a look.
+tags: post
+feed: false
+title: Three libraries and a tool to enhance your bioinformatics coding
+date: 2007-03-30
+---
 
-<!--more-->
+Coding is fact of life for bioinformatics. If you work in bioinformatics you probably enjoy coding to some extent. It's our equivalent to PCR, western blots and sequencing. So whether your weapon of choice is Java, Perl, Python or C++, here's three packages and a tool worth a look.
 
 <strong>Logging</strong>
 The most common way to debug a script/application is to include statements that print out the state of a variable. When the variable is not what you expect, this is where the problem is. After all the bugs have been corrected, these print statements are removed, as they are not part of the end product.

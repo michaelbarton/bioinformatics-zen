@@ -1,9 +1,10 @@
---- 
-kind: article
-title: Keep focused, keep an up to date list of ten specific questions
-category: misc
-created_at: "2007-05-20 18:21:03"
 ---
+tags: post
+feed: false
+title: Keep focused, keep an up to date list of ten specific questions
+date: 2007-05-20
+---
+
 <object height="350" width="425">
 <param name="movie" value="http://www.youtube.com/v/w0YPdyFf_fg"></param>  <embed src="http://www.youtube.com/v/w0YPdyFf_fg" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>
 
@@ -14,8 +15,6 @@ created_at: "2007-05-20 18:21:03"
 	<li>Is reading the literature an extremely dull activity, and you rarely read a paper completely?</li>
 </ul>
 Ok, so these questions aren't perfect. Nobody reads scientific papers for fun, and you're a lucky person if you leap of bed with the expectation of a day solving the world's scientific problems. But you get my point I'm trying to make. Being a computational scientist is hard work. No one really knows what you do, day-to-day. You have to be your own boss - is the next slice of code you write going to move you any closer to your goal?
-
-<!--more-->
 
 I'm writing this, because this has been my own personal experience recently. Slipping off the road of enlightenment and publication, moonwalking into the playground of incongruity and jayisgames.com. You can't get a PhD or a paper in systems biology, metagenomics, synthetic biology, or any other buzzword you can think of. You get scientific recognition by answering questions.
 

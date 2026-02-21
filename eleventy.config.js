@@ -25,7 +25,7 @@ module.exports = function (config) {
   });
 
   config.addCollection("feedPosts", function (collection) {
-    return collection.getAll().filter((item) => item.feed);
+    return collection.getAll().filter((item) => item.data.feed);
   });
 
   // Shortcodes replacing the _includes partials.

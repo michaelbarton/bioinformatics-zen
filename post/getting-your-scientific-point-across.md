@@ -1,14 +1,15 @@
---- 
-kind: article
-title: Getting your (scientific) point across
-category: misc
-created_at: "2007-02-17 18:30:33"
 ---
+tags: post
+feed: false
+title: Getting your (scientific) point across
+date: 2007-02-17
+---
+
 A great <a href="http://headrush.typepad.com/creating_passionate_users/2005/01/your_users_brai.html">post</a> at creating passionate users, I think really applicable to science too.
+
 <blockquote>I know this is horribly overgeneralized, but as a high-level rule, we believe:
 
 If you're using formal language in a lecture, learning book [...], you're worrying about how people perceive YOU. If you're thinking only about the USERS, on the other hand, you're probably using more conversational language.</blockquote>
-<!--more-->
 
 How many talks have been to, where you struggled to stay focused on the subject? I know for me that it's a few. I find that at a talk, the audience has to make the effort understand the what the presenter's point is. Rather than the reverse. The worst thing is, that it is almost accepted as standard in scientific presentations. What a lucky situation for the presenter!
 

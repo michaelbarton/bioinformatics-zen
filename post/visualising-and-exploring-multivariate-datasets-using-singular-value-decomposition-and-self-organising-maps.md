@@ -1,12 +1,12 @@
---- 
-kind: article
-title: Visualising and exploring multivariate datasets using singular value decomposition and self organising maps
-category: misc
-created_at: "2007-07-17 22:57:00"
 ---
+tags: post
+feed: false
+title: Visualising and exploring multivariate datasets using singular value decomposition and self organising maps
+date: 2007-07-17
+---
+
 Hola from Madrid, I've come here for a data analysis summer school. Last week, there was an interesting class on dimensionality reduction, and since multivariate datasets are prevalent in this -omic era, I thought to post a discussion of what I learnt. The aim of this example is illustrate one technique for visualising multivariate data, singular value decomposition, and a second technique for exploring it, self organising maps.
 
-<!--more-->
 <h4>The Dataset</h4>
 I'll be doing this example in R, instructions for getting and installing can be found <a href="http://www.r-project.org/">here</a>. I'm using the example crab data which is in the MASS package. This data contains five measured morphological characteristics for both sexes of two species, orange and blue. The morphological categories are as follows
 <ul>
@@ -127,6 +127,7 @@ projection.plot
 <img src="http://img464.imageshack.us/img464/6240/svdplotnr6.png" alt="Singular value decomposition projection of the data" width="420" />
 
 The same as the PCA plot, I now have the data in two dimensions, but remember even though they are plotted on similar scales the x axis explains 95% of the variation in the data, compared with the y axis which only explains about 2%. From the appearance of this plot we can see a continuous arc shape with no easily identifiable clusters. If you saw a set of points identifiably split away from the rest, you could say this was a distinct set of crabs and would look in more detail at their characteristics. Instead, here there are no visible clusters so we use another multivariate method to explore the data - self organising maps.
+
 <h4>Self organising maps</h4>
 A self organising map is a rectangular or a hexagonal grid which, through a number of iterations, shapes itself to best fit the landscape of a dataset. Each node in this grid is associated with a number of points. It's easier to see how Sims work rather than explain them, so here's the code to produce a self organising map.
 
@@ -257,5 +258,6 @@ crabs[extreme.left,]
 </code>
 
 We can see, with the exception of one, that this is indeed the case.
+
 <h4>Summary</h4>
 If you're still reading this - thanks. What I intended to be a short demonstration has come in at over two thousand words. I hope it has been a useful introduction to how SVD can be used to simplify and visualise data, and with a combination of self organising maps and a little intuition you can begin to get an understanding of your multivariate data.

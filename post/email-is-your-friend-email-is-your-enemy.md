@@ -1,12 +1,13 @@
---- 
-kind: article
-title: Email is your friend. Email is your enemy.
-category: misc
-created_at: "2007-05-29 21:49:59"
 ---
+tags: post
+feed: false
+title: Email is your friend. Email is your enemy.
+date: 2007-05-29
+---
+
 <object height="350" width="425">
 <param value="http://www.youtube.com/v/gIYR6VHRkyE" name="movie"></param>  <embed src="http://www.youtube.com/v/gIYR6VHRkyE" type="application/x-shockwave-flash" height="350" width="425"></embed>  </object></p>
-How often do you check your email? Once or twice a day? Obviously it's not really necessary to check email more regularly than this. Well, speaking from experience, this is a bit of a fantasy world. Hands up everybody who I checks their email at least twenty times a day?<!--more--> Working at a computer all day, there are a lot of distractions, <a href="http://news.bbc.co.uk/">BBC News</a>, <a href="http://www.handdrawngames.com/DesktopTD/">Desktop Tower Defense</a>, and <a href="http://www.bioinformaticszen.com/">amazing blogs about bioinformatics</a>. This made worse by the fact that, as an academic, you're your own boss and no one is going to slap you on the wrist for not working. The foremost of all these time-suckers is email. Repetitive email checking can waste your time and break your concentration. As well as making it less impotent as a tool for getting things done.<a href="http://headrush.typepad.com/creating_passionate_users/2006/03/clicker_trained.html"></a>
+How often do you check your email? Once or twice a day? Obviously it's not really necessary to check email more regularly than this. Well, speaking from experience, this is a bit of a fantasy world. Hands up everybody who I checks their email at least twenty times a day? Working at a computer all day, there are a lot of distractions, <a href="http://news.bbc.co.uk/">BBC News</a>, <a href="http://www.handdrawngames.com/DesktopTD/">Desktop Tower Defense</a>, and <a href="http://www.bioinformaticszen.com/">amazing blogs about bioinformatics</a>. This made worse by the fact that, as an academic, you're your own boss and no one is going to slap you on the wrist for not working. The foremost of all these time-suckers is email. Repetitive email checking can waste your time and break your concentration. As well as making it less impotent as a tool for getting things done.<a href="http://headrush.typepad.com/creating_passionate_users/2006/03/clicker_trained.html"></a>
 
 <a href="http://headrush.typepad.com/creating_passionate_users/2006/03/clicker_trained.html">Receiving an email is a reward</a>, of sorts. If someone takes the time to write to you, it's likely to be something interesting. Talking from experience, when things are going slowly, receiving email is the much needed distraction from the drudgery of slow progress. It's almost like your mind has been conditioned like a mouse in experiment - pushing the send/receive button to get another piece of cheese.
 

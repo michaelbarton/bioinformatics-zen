@@ -1,12 +1,11 @@
---- 
-kind: article
-title: Six alternatives to PubMed for searching scientific content
-category: misc
-created_at: "2007-06-24 18:53:17"
 ---
-In my opinion, great coding skills, a thorough knowledge of statistics, and Shakespearian writing ability do not make a great bioinformatician. They help, but the most important things are a relevant scientific question and a good understanding of the literature. If you're like me, the path to scientific enlightenment begins with typing keywords into PubMed until you get the results you were after - the same way you use Google. However the are other options besides PubMed, here are six other options you might not have heard of, worth a look perhaps?
+tags: post
+feed: false
+title: Six alternatives to PubMed for searching scientific content
+date: 2007-06-24
+---
 
-<!--more-->
+In my opinion, great coding skills, a thorough knowledge of statistics, and Shakespearian writing ability do not make a great bioinformatician. They help, but the most important things are a relevant scientific question and a good understanding of the literature. If you're like me, the path to scientific enlightenment begins with typing keywords into PubMed until you get the results you were after - the same way you use Google. However the are other options besides PubMed, here are six other options you might not have heard of, worth a look perhaps?
 
 <a href="http://scholar.google.com/">Google Scholar</a>
 
@@ -14,7 +13,7 @@ Probably the most used scientific literature search engine after PubMed, Google 
 
 <a href="http://www.hubmed.org/">HubMed</a>
 
-This literature search engine is based on the data that PubMed has collected, but adds functionality. Like Google Scholar, HubMed results can be ordered by relevance, and related articles can be viewed. HubMed also has the option to visualise related articles using a graph view - nodes closer to the central article are more related. Another  feature of HubMed clusters search results, the articles are categorised based on keywords. Finally, a feature that I use regularly is the option to save searches as an <a href="http://www.bioinformaticszen.com/2007/05/rss-feeds-in-science/">RSS feed</a>. This means that I don't have to check regularly for new articles - I get updated via feeds.
+This literature search engine is based on the data that PubMed has collected, but adds functionality. Like Google Scholar, HubMed results can be ordered by relevance, and related articles can be viewed. HubMed also has the option to visualise related articles using a graph view - nodes closer to the central article are more related. Another feature of HubMed clusters search results, the articles are categorised based on keywords. Finally, a feature that I use regularly is the option to save searches as an <a href="http://www.bioinformaticszen.com/2007/05/rss-feeds-in-science/">RSS feed</a>. This means that I don't have to check regularly for new articles - I get updated via feeds.
 
 <a href="http://www.connotea.org/">Connotea</a>
 

@@ -1,9 +1,10 @@
---- 
-kind: article
-title: Never lose a great idea again
-category: misc
-created_at: "2007-03-07 00:45:19"
 ---
+tags: post
+feed: false
+title: Never lose a great idea again
+date: 2007-03-07
+---
+
 Scientists have to be left brained, rational and analytical. But at the same time very right brained, inventive and holistic. We produce ideas, and often make a creative leaps to connect previous work and new concepts. Your ideas are part of you as a scientist.
 
 If like me, you're a touch obsessed with your work, you probably think about it everywhere. Maybe you talk abut it with your partner over dinner? How about standing in the shower running things through your head? But how often have you come up with an idea that you've quickly forgotten?
@@ -23,4 +24,4 @@ A little black book with a folder at the back, and a strap to keep it closed. Ha
 A set of cards held together by a bulldog clip. This has a huge following in the <a href="http://en.wikipedia.org/wiki/Getting_Things_Done">GTD</a> community. Once you've written an idea you can pull the card out, leave it on your desk, and process it when you've got more time. Well worth giving a try - mine cost 30p to make.
 
 <a href="http://pileofindexcards.org/wiki/index.php?title=Main_Page"><strong>Index cards</strong></a>
-Slightly more tricky to carry a box of index cards around. More useful in the office. I've got a wall next to my desk covered with index cards, each with a single idea on. Handy when you're writing documents and need to refer to  something you thought of a while ago.
+Slightly more tricky to carry a box of index cards around. More useful in the office. I've got a wall next to my desk covered with index cards, each with a single idea on. Handy when you're writing documents and need to refer to something you thought of a while ago.

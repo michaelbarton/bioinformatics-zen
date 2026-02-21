@@ -1,12 +1,11 @@
---- 
-kind: article
-title: "Bioinformatics : use a database for data"
-category: misc
-created_at: "2007-02-26 15:21:11"
 ---
-Previously, I wrote about <a href="http://www.bioinformaticszen.com/2007/02/organising-yourself-as-a-dry-lab-scientist/">organising your file system</a> to make the relationships between files that produce data, and files containing data more descriptive. One of the best tips I've been given, is to store all my data in a database. Regardless of what the data is, or how <a href="http://www.webinknow.com/2006/10/the_gobbledygoo.html">"mission critical"</a>. Here are some reasons to use a database, rather than files, to store your data.
+tags: post
+feed: false
+title: "Bioinformatics : use a database for data"
+date: 2007-02-26
+---
 
-<!--more-->
+Previously, I wrote about <a href="http://www.bioinformaticszen.com/2007/02/organising-yourself-as-a-dry-lab-scientist/">organising your file system</a> to make the relationships between files that produce data, and files containing data more descriptive. One of the best tips I've been given, is to store all my data in a database. Regardless of what the data is, or how <a href="http://www.webinknow.com/2006/10/the_gobbledygoo.html">"mission critical"</a>. Here are some reasons to use a database, rather than files, to store your data.
 
 <strong>Location independent</strong>
 You create a perl script that analyses file A. You later move file A. So you have to update your perl script with the new location. What if you've got a perl script that analyses file A, B, C etc. Or if you've moved the file several months ago, and you can't rember which is the one you need.

@@ -1,10 +1,12 @@
---- 
-kind: article
-title: Graphical guide to graphics
-category: misc
-created_at: "2007-03-05 10:12:48"
 ---
+tags: post
+feed: false
+title: Graphical guide to graphics
+date: 2007-03-05
+---
+
 A great <a href="http://headrush.typepad.com/creating_passionate_users/2007/03/the_best_user_t.html">post</a> at <a href="http://headrush.typepad.com/">creating passionate users</a>. The point - user manuals are REALLY important.
+
 <blockquote> Bottom line: never underestimate the value of providing fabulous training materials in getting--and keeping--users motivated to get better. And the better they are, the more likely they are to appreciate (and buy) your higher-end versions, evangelize, buy and create accessories, etc.</blockquote>
 I really like <a href="http://www.oreilly.com/store/series/headfirst.csp">head first books</a>. Based on getting you to learn the way your brain wants to, I think their method is fantastic. But could these principles can be applied to science too?.
 

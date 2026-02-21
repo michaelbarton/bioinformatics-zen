@@ -1,10 +1,12 @@
---- 
-kind: article
-title: Shortcuts for generating HTML
-category: misc
-created_at: "2008-06-21 18:16:28"
 ---
+tags: post
+feed: false
+title: Shortcuts for generating HTML
+date: 2008-06-21
+---
+
 Usually at some point youâ€™ll need to produce some web pages. This could be for a group website, or a page to embed a tool in. Writing HTML is an dull way to spend time, so itâ€™s worth knowing some tools that can make HTML generation easier.
+
 <h3>Markdown</h3>
 I use markdown to write blog posts, as itâ€™s just the same as writing plain text but with a few extra markups.
 <blockquote># A level one heading
@@ -31,7 +33,8 @@ text &lt;&lt; 'and so will be marked up as code'
 puts text
 &lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-Writing in markdown means you donâ€™t have to edit HTML. Instead edit the markdown and proof read the resulting HTML in a browser. An analogy for markdown is a more readable syntax that be â€˜compiledâ€™ into HTML. <a href="http://en.wikipedia.org/wiki/Markdown">The Wikipedia entry</a> lists interpreters for all major languages, and there is  <a href="http://daringfireball.net/projects/markdown/">full listing of the markdown syntax</a>. If youâ€™re interested, you can look at the markdown <a href="http://docs.google.com/Doc?id=ddgtztrv_3265psctvd5">I used to write this blog post</a>, which I run through my <a href="http://michaelbarton.tumblr.com/post/35325392/simple-ruby-markdown-script-using-bluecloth-and">Ruby command line markdown parser</a>.
+Writing in markdown means you donâ€™t have to edit HTML. Instead edit the markdown and proof read the resulting HTML in a browser. An analogy for markdown is a more readable syntax that be â€˜compiledâ€™ into HTML. <a href="http://en.wikipedia.org/wiki/Markdown">The Wikipedia entry</a> lists interpreters for all major languages, and there is <a href="http://daringfireball.net/projects/markdown/">full listing of the markdown syntax</a>. If youâ€™re interested, you can look at the markdown <a href="http://docs.google.com/Doc?id=ddgtztrv_3265psctvd5">I used to write this blog post</a>, which I run through my <a href="http://michaelbarton.tumblr.com/post/35325392/simple-ruby-markdown-script-using-bluecloth-and">Ruby command line markdown parser</a>.
+
 <h3>Textile</h3>
 Markdown is great for creating simple HTML content, but sometimes you might need to create more fully featured content, that might include attributes matching a CSS specification. Textileâ€™s syntax is very similar to that of markdown, but also allows a few extra HTML features.
 <blockquote>h2(#with-id). Level Two Heading with attribute
@@ -41,6 +44,7 @@ p(custom-class). Paragraph text with some extra markup
 |<em>. Table |</em>. Heading |
 | Table cell | Table cell |</blockquote>
 Produces this HTML.
+
 <pre><code>&lt;h2 id="with-id"&gt;Level Two Heading with attribute&lt;/h2&gt;
 
 &lt;p class="custom-class"&gt;Paragraph text with some extra markup&lt;/p&gt;
@@ -56,7 +60,9 @@ Produces this HTML.
     &lt;/tr&gt;
 &lt;/table&gt;
 </code></pre>
+
 Like Markdown, the Wikipedia entry lists <a href="http://en.wikipedia.org/wiki/Textile_(markup_language)">interpreters for the major programming languages</a>. There is also a <a href="http://hobix.com/textile/">full listing of the textile syntax</a>
+
 <h3>Haml</h3>
 If Textile isnâ€™t enough, Haml gives you complete control of HTML generation. The downside is that HAML is less readable than Textile or Markdown, but still much easier to edit and maintain than HTML.
 <pre><code>#div-with-id

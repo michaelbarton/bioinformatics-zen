@@ -1,12 +1,11 @@
---- 
-kind: article
-title: Decouple the file parsing from the analysis
-category: misc
-created_at: "2008-01-07 19:27:10"
 ---
-A common task in bioinformatics is to read data from a set of files, arrange into the required format, then run an analysis to verify or falsify your expectation. An example would be reading in the yeast interaction network, and protein evolution rates, then correlating the two sets of data to see if there is a trend. Using Perl, you would specify how each file gets read in, arrange the sets of data by gene name, then correlate the two.
+tags: post
+feed: false
+title: Decouple the file parsing from the analysis
+date: 2008-01-07
+---
 
-<!--more-->
+A common task in bioinformatics is to read data from a set of files, arrange into the required format, then run an analysis to verify or falsify your expectation. An example would be reading in the yeast interaction network, and protein evolution rates, then correlating the two sets of data to see if there is a trend. Using Perl, you would specify how each file gets read in, arrange the sets of data by gene name, then correlate the two.
 
 <strong>Anti Pattern</strong>
 I argue that that it is better to split this single script into two, one that takes the data from the files and outputs it into the required tabular format, the second reads in the table and runs the analysis. Why go through the trouble of doing this? Because in the instance of a single script, the analysis of the data is tightly coupled to the format the data is in, or in other words the analysis code knows too much about the format of the original data files.

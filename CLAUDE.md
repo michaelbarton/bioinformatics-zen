@@ -55,8 +55,11 @@ node scripts/screenshot.js /tmp/screenshots-after
 kill $(lsof -t -i:8765)
 ```
 
-Save to `.github/screenshots/before/` and `.github/screenshots/after/`, then
-upload via (bypasses the local git push proxy):
+Save to `.github/screenshots/before/` and `.github/screenshots/after/` **on
+disk only — never `git add` them**. The directory is in `.gitignore` and a
+pre-commit hook will reject any attempt to commit screenshots.
+
+Upload directly to GitHub via (bypasses the local git push proxy):
 
 ```bash
 GITHUB_TOKEN=<token> python3 scripts/upload_screenshots.py owner/repo pr-head-branch

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Block commits that include files under .github/screenshots/.
+# Screenshots are never committed — they are uploaded directly to GitHub
+# via scripts/upload_screenshots.py.
+if git diff --cached --name-only --diff-filter=ACM | grep -q '^\.github/screenshots/'; then
+  echo "ERROR: Files under .github/screenshots/ must not be committed."
+  echo "       Upload them via:"
+  echo "       GITHUB_TOKEN=<token> python3 scripts/upload_screenshots.py owner/repo <branch>"
+  exit 1
+fi

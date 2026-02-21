@@ -11,7 +11,7 @@ Makefiles][make] and a [functional approach][function] can result in simpler
 and more reproducible workflows. Here I'm going to outline how I break-up
 larger projects to make them easier to manage.
 
-[make]: /post/makefile/
+[make]: /post/makefiles/
 [function]: /post/functional/
 
 In the [previous post][function] I suggested breaking workflow steps into
@@ -37,7 +37,6 @@ up to the latest state. I can then continue to work on the project and push any
 changes back to the git repository at the end of the day.
 
 [git]: /post/git/
-[make]: /post/makefiles/
 
 ## Organisation
 

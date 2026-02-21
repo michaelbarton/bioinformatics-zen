@@ -17,5 +17,14 @@ fmt:
 fmt_check:
 	npx prettier --check ${CHECK_FILES}
 
+link_check: _site
+	python3 -m http.server --directory _site 8765 & \
+	SERVER_PID=$$!; \
+	sleep 1; \
+	npx linkinator http://localhost:8765 --recurse --skip "^https?://(?!localhost)" --verbosity ERROR --retry-errors --retry-errors-count 3; \
+	EXIT_CODE=$$?; \
+	kill $$SERVER_PID 2>/dev/null; \
+	exit $$EXIT_CODE
+
 clean:
 	rm -rf _site

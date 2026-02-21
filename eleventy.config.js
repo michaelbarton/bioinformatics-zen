@@ -22,7 +22,7 @@ module.exports = function (config) {
   // See: https://mrqwest.co.uk/blog/making-dates-readable-11ty-luxon/
   config.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "yyyy.LLL.dd"
+      "yyyy.LLL.dd",
     );
   });
 
@@ -41,7 +41,7 @@ module.exports = function (config) {
       const id = anchor ? ` id="${anchor}"` : "";
       const extra = long_desc ? ` ${long_desc}` : "";
       return `<figure${id}><img class="figure-img img-fluid rounded" src="${url}"><figcaption><p><strong>${short_desc}</strong>${extra}</p></figcaption></figure>`;
-    }
+    },
   );
 
   config.addShortcode("caption", function (short_desc, long_desc = "") {

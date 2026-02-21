@@ -198,5 +198,7 @@ the generated reads can be tolerated.
 ## Footnotes
 
 [^runs]: I used the HMP experiments: SRX020136 SRX020134 SRX020131 SRX020130 SRX020128 SRX019987 SRX019986 SRX019985 SRX019984. Each of these experiments contained 9 individual runs each making for a total of 81 454 GS FLX runs.
+
 [^genomes]: The accessions for the genomes used in the HMP pilot study are: AE017194 DS264586 NC_000913 NC_000915 NC_001263 NC_002516 NC_003028 NC_003112 NC_003210 NC_004116 NC_004350 NC_004461 NC_004668 NC_006085 NC_007493 NC_007494 NC_007793 NC_008530 NC_009085 NC_009515 NC_009614 NC_009617.
+
 [^mock]: The HMP 16S mock community was created by simulating PCR amplification on the genome sequences using [primer search](http://emboss.bioinformatics.nl/cgi-bin/emboss/primersearch) and allowing up to a 20% mismatch against the primer sequence. Amplicons greater than 2000bp were discarded. The primer sequences were trimmed from the simulated amplicons except those with more than 2bp differences which were instead discarded.

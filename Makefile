@@ -29,5 +29,8 @@ link_check: _site
 	kill $$SERVER_PID 2>/dev/null; \
 	exit $$EXIT_CODE
 
+install-hooks:
+	git config core.hooksPath .githooks
+
 clean:
 	rm -rf _site

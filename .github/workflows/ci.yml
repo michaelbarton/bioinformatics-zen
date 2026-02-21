@@ -24,5 +24,8 @@ jobs:
       - name: Check site builds
         run: make build
 
+      - name: Check content structure and images
+        run: make content_check
+
       - name: Check for broken links
         run: make link_check

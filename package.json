@@ -19,6 +19,7 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "eleventy-plugin-youtube-embed": "^1.6.5",
     "luxon": "^3.0.0",
+    "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^3.0.3",
     "sass": "^1.97.3"
   },

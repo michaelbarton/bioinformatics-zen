@@ -8,9 +8,19 @@ These are the actively maintained posts.
 1. Verify that every feed post using :::lede produces a
    <div class="lede"> element in the corresponding built HTML.
 
-2. Verify that all external image URLs in feed post HTML return HTTP 200.
+2. Verify that all external URLs referenced in feed post HTML return HTTP 200.
+   This covers:
+   - <img src="https://..."> (body images)
+   - <meta property="og:image" content="https://..."> (social card images)
+   - <meta name="twitter:image:src" content="https://..."> (twitter card images)
+   - <a href="https://..."> (outbound links)
+
+   Image URLs are additionally checked to ensure the response Content-Type is
+   an image MIME type, catching cases where a URL returns HTTP 200 but serves
+   an error page or placeholder rather than the actual image.
 """
 
+import html as html_module
 import re
 import sys
 import urllib.request
@@ -20,6 +30,13 @@ from pathlib import Path
 
 SITE_DIR = Path("_site")
 POSTS_DIR = Path("post")
+
+# Headers that mimic a browser request to avoid false 406 responses from
+# servers that reject requests without an Accept header (e.g. Uber's CDN).
+_HEADERS = {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0 (compatible; site-link-checker/1.0)",
+}
 
 
 def is_feed_post(md_file: Path) -> bool:
@@ -55,13 +72,51 @@ def check_lede_rendering(slugs: list[str]) -> list[str]:
     return errors
 
 
-def check_url(url: str) -> str | None:
-    """Return an error string if the URL does not return HTTP 200, else None."""
+def _fetch(url: str, method: str) -> tuple[int, str]:
+    """Make an HTTP request and return (status_code, content_type)."""
+    decoded = html_module.unescape(url)
+    req = urllib.request.Request(decoded, method=method, headers=_HEADERS)
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return resp.status, resp.headers.get("Content-Type", "")
+
+
+def check_link(url: str) -> str | None:
+    """Return an error string if the URL does not return HTTP 200, else None.
+
+    Tries HEAD first; falls back to GET for any 4xx HEAD response.  Some
+    servers (e.g. Bluesky) return 404 for HEAD but 200 for GET.  The URL is
+    only reported broken if GET also fails.
+    """
+    last_error: str | None = None
+    for method in ("HEAD", "GET"):
+        try:
+            status, _ = _fetch(url, method)
+            if status == 200:
+                return None
+            last_error = f"HTTP {status}: {url}"
+        except urllib.error.HTTPError as exc:
+            if method == "HEAD" and 400 <= exc.code < 500:
+                last_error = f"HTTP {exc.code}: {url}"
+                continue
+            return f"HTTP {exc.code}: {url}"
+        except Exception as exc:
+            return f"ERROR ({exc}): {url}"
+    return last_error
+
+
+def check_image(url: str) -> str | None:
+    """Return an error if the URL is not a reachable image.
+
+    Uses GET so we can inspect the Content-Type.  A URL that returns HTTP 200
+    with a non-image Content-Type (e.g. an S3 XML error served with 200) is
+    flagged as broken.
+    """
     try:
-        req = urllib.request.Request(url, method="HEAD")
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            if resp.status != 200:
-                return f"HTTP {resp.status}: {url}"
+        status, content_type = _fetch(url, "GET")
+        if status != 200:
+            return f"HTTP {status}: {url}"
+        if not content_type.lower().startswith("image/"):
+            return f"NOT AN IMAGE (Content-Type: {content_type!r}): {url}"
     except urllib.error.HTTPError as exc:
         return f"HTTP {exc.code}: {url}"
     except Exception as exc:
@@ -69,27 +124,63 @@ def check_url(url: str) -> str | None:
     return None
 
 
-def collect_external_image_urls(slugs: list[str]) -> list[str]:
-    """Extract external https:// image src values from feed post HTML files."""
-    img_pattern = re.compile(r'<img\b[^>]*\bsrc="(https?://[^"]+)"', re.IGNORECASE)
-    urls: set[str] = set()
+def collect_external_urls(slugs: list[str]) -> dict[str, set[str]]:
+    """
+    Extract all external URLs from feed post HTML files, grouped by kind.
+
+    Returns a dict with keys 'images' and 'links', each a set of URLs.
+    Images covers <img src>, og:image, and twitter:image meta tags.
+    Links covers <a href>.
+    """
+    img_src = re.compile(r'<img\b[^>]*\bsrc="(https?://[^"]+)"', re.IGNORECASE)
+    meta_img = re.compile(
+        r'<meta\b[^>]*\bcontent="(https?://[^"]+)"[^>]*>', re.IGNORECASE
+    )
+    meta_image_names = re.compile(
+        r'(?:property|name)="(?:og:image|twitter:image[^"]*)"', re.IGNORECASE
+    )
+    anchor = re.compile(r'<a\b[^>]*\bhref="(https?://[^"]+)"', re.IGNORECASE)
+
+    images: set[str] = set()
+    links: set[str] = set()
+
     for slug in slugs:
         html_file = SITE_DIR / "post" / slug / "index.html"
-        if html_file.exists():
-            for match in img_pattern.finditer(html_file.read_text()):
-                urls.add(match.group(1))
-    return sorted(urls)
+        if not html_file.exists():
+            continue
+        html = html_file.read_text()
+
+        for match in img_src.finditer(html):
+            images.add(match.group(1))
+
+        for match in meta_img.finditer(html):
+            if meta_image_names.search(match.group(0)):
+                images.add(match.group(1))
+
+        for match in anchor.finditer(html):
+            links.add(match.group(1))
+
+    return {"images": images, "links": links}
 
 
-def check_external_images(slugs: list[str]) -> list[str]:
-    """Return error messages for any external image URLs that don't return 200."""
-    urls = collect_external_image_urls(slugs)
-    if not urls:
+def check_external_urls(slugs: list[str]) -> list[str]:
+    """Return error messages for any broken external URLs."""
+    grouped = collect_external_urls(slugs)
+    images = grouped["images"]
+    links = grouped["links"]
+
+    tasks: list[tuple] = [(url, "image") for url in sorted(images)] + [
+        (url, "link") for url in sorted(links)
+    ]
+    if not tasks:
         return []
 
     errors = []
     with ThreadPoolExecutor(max_workers=10) as pool:
-        futures = {pool.submit(check_url, url): url for url in urls}
+        futures = {
+            pool.submit(check_image if kind == "image" else check_link, url): url
+            for url, kind in tasks
+        }
         for future in as_completed(futures):
             result = future.result()
             if result:
@@ -116,8 +207,8 @@ def main() -> int:
     print("  Checking lede rendering...")
     errors.extend(check_lede_rendering(slugs))
 
-    print("  Checking external image URLs...")
-    errors.extend(check_external_images(slugs))
+    print("  Checking external images and links...")
+    errors.extend(check_external_urls(slugs))
 
     if errors:
         print("\nContent check FAILED:", file=sys.stderr)

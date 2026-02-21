@@ -55,7 +55,7 @@ I converted my scripts first into a tool called [scaffolder][] and then a
 subsequent tool called [genomer][]. Both of these are tested with integration
 and unit tests, and I create documentation and [screencasts][].
 
-[create]: /post/reuse-contribute-create/
+[create]: /post/reuse,-contribute,-create/
 [scaffolder]: http://next.gs/
 [genomer]: https://github.com/michaelbarton/genomer
 [screencasts]: http://www.youtube.com/watch?v=HfsdJOELFjs

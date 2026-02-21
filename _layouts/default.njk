@@ -5,9 +5,9 @@
 		<meta content='width=device-width, initial-scale=1' name='viewport'>
 		<link href='https://www.michaelbarton.me.uk' rel='author'>
 		<link href='/css/styles.css' rel='stylesheet'>
-		<script src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
-		<script src='/js/all-5fcabbb4.js' defer></script>
+		{% if math %}
 		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML' defer></script>
+		{% endif %}
 		{% if image_card %}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:creator" content="@bioinformatics" />
@@ -22,19 +22,26 @@
 
 	<body>
 		<nav class="site-nav">
-			<a href="https://twitter.com/bioinformatics">twitter</a>
+			<a href="https://bsky.app/profile/mbarton.bsky.social">bluesky</a>
 			<a href="/feed.xml">feed</a>
 			<a href="http://www.michaelbarton.me.uk/">about</a>
 		</nav>
 
 		<div class='container'>
-			<div class='site-title'>
+			<div class='site-title{% if title %} site-title--compact{% endif %}'>
 				<h1>
 					<a href='/'>{{ metadata.title }}</a>
 				</h1>
 				<p class='tagline'>{{ metadata.subtitle }}</p>
 			</div>
 			{{ content | safe }}
+			<footer class="site-footer">
+				<a href="/">{{ metadata.author.name }}</a>
+				<span>&middot;</span>
+				<a href="https://bsky.app/profile/mbarton.bsky.social">bluesky</a>
+				<span>&middot;</span>
+				<a href="/feed.xml">feed</a>
+			</footer>
 		</div>
 	</body>
 </html>

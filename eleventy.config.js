@@ -16,8 +16,6 @@ module.exports = function (config) {
 
   config.setLibrary("md", markdownLib);
 
-  config.addPassthroughCopy("js");
-
   // Add a nunjucks filter to make the dates more readable.
   // See: https://mrqwest.co.uk/blog/making-dates-readable-11ty-luxon/
   config.addFilter("readableDate", (dateObj) => {
@@ -40,7 +38,7 @@ module.exports = function (config) {
     function (url, anchor, short_desc, long_desc = "") {
       const id = anchor ? ` id="${anchor}"` : "";
       const extra = long_desc ? ` ${long_desc}` : "";
-      return `<figure${id}><img class="figure-img img-fluid rounded" src="${url}"><figcaption><p><strong>${short_desc}</strong>${extra}</p></figcaption></figure>`;
+      return `<figure${id}><img src="${url}"><figcaption><p><strong>${short_desc}</strong>${extra}</p></figcaption></figure>`;
     }
   );
 

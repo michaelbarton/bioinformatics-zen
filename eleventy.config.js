@@ -3,6 +3,7 @@ const pluginRss = require("@11ty/eleventy-plugin-rss");
 const embedYouTube = require("eleventy-plugin-youtube-embed");
 const markdownIt = require("markdown-it");
 const markdownItFootnote = require("markdown-it-footnote");
+const markdownItContainer = require("markdown-it-container");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function (config) {
@@ -12,7 +13,9 @@ module.exports = function (config) {
     html: true, // Enable HTML tags in source
     breaks: false, // Don't convert '\n' in paragraphs into <br>
     linkify: true, // Autoconvert URL-like text to links
-  }).use(markdownItFootnote);
+  })
+    .use(markdownItFootnote)
+    .use(markdownItContainer, "lede");
 
   config.setLibrary("md", markdownLib);
 

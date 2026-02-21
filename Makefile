@@ -17,6 +17,9 @@ fmt:
 fmt_check:
 	npx prettier --check ${CHECK_FILES}
 
+content_check: _site
+	python3 bin/check_content.py
+
 link_check: _site
 	python3 -m http.server --directory _site 8765 & \
 	SERVER_PID=$$!; \

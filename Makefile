@@ -1,6 +1,6 @@
-CHECK_FILES := scss/* post/* .eleventy.js package.json
+CHECK_FILES := scss/* post/*.md eleventy.config.js package.json
 
-build: _site
+build: fmt_check _site
 
 _site:
 	npm run build
@@ -18,4 +18,4 @@ fmt_check:
 	npx prettier --check ${CHECK_FILES}
 
 clean:
-	rm -rf _site css
+	rm -rf _site

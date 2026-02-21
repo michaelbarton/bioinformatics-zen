@@ -301,15 +301,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
     these factors would instead be lumped into the single genome-specific term.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/01-nag50-by-assembler.png',
-  anchor: 'fig:plot-na50-dist', short_desc: 'Figure 1: Plot of NA50 distribution
-  across genome assembler version.', long_desc: 'The x-axis is NA50 scaled by
-  source genome length, shown on a log. scale. The rows on the y-axis are the
-  benchmark genomes ordered by the geometric mean across all assemblies. Each
-  facet plot shows all the different assembly values across all assemblers in
-  grey, with the specific values for that assembler highlighted. Organism labels
-  are hidden for brevity.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/01-nag50-by-assembler.png", "fig:plot-na50-dist", "Figure 1: Plot of NA50 distribution across genome assembler version.", "The x-axis is NA50 scaled by source genome length, shown on a log. scale. The rows on the y-axis are the benchmark genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. Organism labels are hidden for brevity." %}
 
   <figure id="tab:na50-model-summary">
     <table>
@@ -382,12 +374,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 1: Summary of first six most
-    parsimonious models with NA50 as the response variable.', long_desc: 'The
-    dBIC shows the difference in Bayesian information criterion between the best
-    model and all other models. ‘R.D.F.’ is the residual degrees of freedom in
-    the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states
-    whether the model converged or not (T/F).' %}
+    {% caption "Table 1: Summary of first six most parsimonious models with NA50 as the response variable.", "The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F)." %}
   </figure>
 
   <p>
@@ -454,18 +441,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
     ranks assemblers by the worst-case expected result.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/02-assembly-aggregated-metrics.png',
-  anchor: 'fig:plot-assembler-parameters', short_desc: 'Figure 2: Plot of
-  assembly quality metrics by genome and assembler.', long_desc: 'Each figure
-  shows the efficacy of the assembler coefficients estimated from a linear model
-  accounting for both the genome and the assembler software used. The error bars
-  show the 95\% confidence intervals for each estimate. The x-axis for the model
-  coefficient plots are ordered by the least-worst bound on the confidence
-  interval for each assembler. Figures A and C include the different versions of
-  the assembly software used. Figure B does not include the assembly software
-  version because the most parsimonious model indicated software version is not
-  a factor in rate for the assemblers and versions tested.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/02-assembly-aggregated-metrics.png", "fig:plot-assembler-parameters", "Figure 2: Plot of assembly quality metrics by genome and assembler.", "Each figure shows the efficacy of the assembler coefficients estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\\% confidence intervals for each estimate. The x-axis for the model coefficient plots are ordered by the least-worst bound on the confidence interval for each assembler. Figures A and C include the different versions of the assembly software used. Figure B does not include the assembly software version because the most parsimonious model indicated software version is not a factor in rate for the assemblers and versions tested." %}
 
   <p>
     <a href="#fig:plot-assembler-parameters">Figure 2</a>A shows the
@@ -567,26 +543,8 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
     estimate this.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/03-l1-norm-by-assembler.png',
-  anchor: 'fig:plot-feature-dist', short_desc: 'Figure 3: Plot of genome feature
-  correctness by assembler version.', long_desc: 'The x-axis is the L1 norm
-  distance of the annotated features between the assembly and the reference,
-  shown on a log. scale. The rows on the y-axis are the benchmarked genomes
-  ordered by the geometric mean across all assemblies. Each facet plot shows all
-  the different assembly values across all assemblers in grey, with the specific
-  values for that assembler highlighted. The y-axis is ordered by the geometric
-  mean of values for each organism. Organism labels are hidden for brevity.' %}
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/04-l1-norm-aggregated-metrics.png',
-  anchor: 'fig:plot-feature-coef', short_desc: 'Figure 4: Plot of assembler
-  average genome feature L1 norm distance coefficients.', long_desc:
-  'Coefficients were estimated from a linear model accounting for both the
-  genome and the assembler software used. The error bars show the 95\%
-  confidence intervals for each estimate. The x-axis is ordered by the lower
-  bound on the confidence interval. The estimated coefficient for LightAssembler
-  is not included on this scale due to it being much greater than all other
-  estimated coefficients.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/03-l1-norm-by-assembler.png", "fig:plot-feature-dist", "Figure 3: Plot of genome feature correctness by assembler version.", "The x-axis is the L1 norm distance of the annotated features between the assembly and the reference, shown on a log. scale. The rows on the y-axis are the benchmarked genomes ordered by the geometric mean across all assemblies. Each facet plot shows all the different assembly values across all assemblers in grey, with the specific values for that assembler highlighted. The y-axis is ordered by the geometric mean of values for each organism. Organism labels are hidden for brevity." %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/04-l1-norm-aggregated-metrics.png", "fig:plot-feature-coef", "Figure 4: Plot of assembler average genome feature L1 norm distance coefficients.", "Coefficients were estimated from a linear model accounting for both the genome and the assembler software used. The error bars show the 95\\% confidence intervals for each estimate. The x-axis is ordered by the lower bound on the confidence interval. The estimated coefficient for LightAssembler is not included on this scale due to it being much greater than all other estimated coefficients." %}
 
   <p>
     <a href="#fig:plot-feature-dist">Figure 3</a> compares annotation L1 norm
@@ -669,16 +627,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 2: List of five best performing
-    assemblers by average L1 norm feature distance between the reference genome
-    and the generated assembly.', long_desc: 'The ‘Assembler’, ‘Version’ and
-    ‘Biobox Task’ columns refer to the parameters used to run the Docker image
-    containing the software. The ‘Biobox Task’ refers to the biobox task name
-    that can be used to replicate the command line arguments used for
-    benchmarking. The ‘Estimate’ column is the upper 95% confidence interval on
-    the average L1 norm distance across all the benchmark genomes. Larger values
-    indicate an expected greater number of incorrect features in an assembly.'
-    %}
+    {% caption "Table 2: List of five best performing assemblers by average L1 norm feature distance between the reference genome and the generated assembly.", "The ‘Assembler’, ‘Version’ and ‘Biobox Task’ columns refer to the parameters used to run the Docker image containing the software. The ‘Biobox Task’ refers to the biobox task name that can be used to replicate the command line arguments used for benchmarking. The ‘Estimate’ column is the upper 95% confidence interval on the average L1 norm distance across all the benchmark genomes. Larger values indicate an expected greater number of incorrect features in an assembly." %}
   </figure>
 
   <p>
@@ -804,13 +753,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
     the benchmarking.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/05-model-fit-check.png',
-  anchor: 'fig:plot-na50-model-fit', short_desc: 'Figure 5: Model checking plots
-  for NA50 fitted model.', long_desc: 'These are in clockwise order from upper
-  left: comparison of model residual quantiles with theoretical quantiles,
-  comparison of model residuals with fitted values, comparison of each assembler
-  image model residuals, and comparison of each genome model residuals.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/05-model-fit-check.png", "fig:plot-na50-model-fit", "Figure 5: Model checking plots for NA50 fitted model.", "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals." %}
 
   <figure id="tab:table-misassembly-models">
     <table>
@@ -882,22 +825,10 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
         </tr>
       </tbody>
     </table>
-    {% include 'caption.njk', short_desc: 'Table 3: Summary of first six most
-    parsimonious models with number of misassemblies as the response variable.',
-    long_desc: 'The dBIC shows the difference in Bayesian information criterion
-    between the best model and all other models. ‘R.D.F.’ is the residual
-    degrees of freedom in the model. ‘Dev.’ is the residual deviance in the
-    model. ‘Conv.’ states whether the model converged or not (T/F).' %}
+    {% caption "Table 3: Summary of first six most parsimonious models with number of misassemblies as the response variable.", "The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F)." %}
   </figure>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/06-model-fit-check.png',
-  anchor: 'fig:plot-misassembly-model-fit', short_desc: 'Figure 6: Model
-  checking plots for misassemblies fitted model.', long_desc: 'These are in
-  clockwise order from upper left: comparison of model residual quantiles with
-  theoretical quantiles, comparison of model residuals with fitted values,
-  comparison of each assembler image model residuals, and comparison of each
-  genome model residuals.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/06-model-fit-check.png", "fig:plot-misassembly-model-fit", "Figure 6: Model checking plots for misassemblies fitted model.", "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals." %}
 
   <figure id="tab:table-incorrect-models">
     <table>
@@ -970,23 +901,10 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 4: Summary of first six most
-    parsimonious models with number of incorrect bases as the response
-    variable.', long_desc: 'The dBIC shows the difference in Bayesian
-    information criterion between the best model and all other models. ‘R.D.F.’
-    is the residual degrees of freedom in the model. ‘Dev.’ is the residual
-    deviance in the model. ‘Conv.’ states whether the model converged or not
-    (T/F).' %}
+    {% caption "Table 4: Summary of first six most parsimonious models with number of incorrect bases as the response variable.", "The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F)." %}
   </figure>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/07-model-fit-check.png',
-  anchor: 'fig:plot-incorrect-bases-model-fit', short_desc: 'Figure 7: Model
-  checking plots for incorrect bases model.', long_desc: 'These are in clockwise
-  order from upper left: comparison of model residual quantiles with theoretical
-  quantiles, comparison of model residuals with fitted values, comparison of
-  each assembler image model residuals, and comparison of each genome model
-  residuals.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/07-model-fit-check.png", "fig:plot-incorrect-bases-model-fit", "Figure 7: Model checking plots for incorrect bases model.", "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals." %}
 
   <figure id="tab:table-feature-models">
     <table>
@@ -1059,23 +977,10 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 5: Summary of first six most
-    parsimonious models with L1 norm feature distance between reference and
-    assembly as the response variable.', long_desc: 'The dBIC shows the
-    difference in Bayesian information criterion between the best model and all
-    other models. ‘R.D.F.’ is the residual degrees of freedom in the model.
-    ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the
-    model converged or not (T/F).' %}
+    {% caption "Table 5: Summary of first six most parsimonious models with L1 norm feature distance between reference and assembly as the response variable.", "The dBIC shows the difference in Bayesian information criterion between the best model and all other models. ‘R.D.F.’ is the residual degrees of freedom in the model. ‘Dev.’ is the residual deviance in the model. ‘Conv.’ states whether the model converged or not (T/F)." %}
   </figure>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/08-model-fit-check.png',
-  anchor: 'fig:plot-feature-model-fit', short_desc: 'Figure 8: Model checking
-  plots for feature L1 norm fitted model.', long_desc: 'These are in clockwise
-  order from upper left: comparison of model residual quantiles with theoretical
-  quantiles, comparison of model residuals with fitted values, comparison of
-  each assembler image model residuals, and comparison of each genome model
-  residuals.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/aggregated-assembly-metrics/08-model-fit-check.png", "fig:plot-feature-model-fit", "Figure 8: Model checking plots for feature L1 norm fitted model.", "These are in clockwise order from upper left: comparison of model residual quantiles with theoretical quantiles, comparison of model residuals with fitted values, comparison of each assembler image model residuals, and comparison of each genome model residuals." %}
 
   <figure id="tab:model-table">
     <table>
@@ -1265,14 +1170,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 6: Comparison of the mixed
-    effect models considered in this analysis, where each row defines the terms
-    used in the model. ', long_desc: 'The ‘Fixed’ and ‘Random’ terms are those
-    fitted as explanatory variables, along with the natural log of the genome
-    length. The ‘Variance Model’ column lists where the variance was also
-    modelled as a component, i.e. whether different terms had different
-    variances. Null terms indicate that this was simply modelled as the mean of
-    the data with a model estimated constant coefficient.' %}
+    {% caption "Table 6: Comparison of the mixed effect models considered in this analysis, where each row defines the terms used in the model.", "The ‘Fixed’ and ‘Random’ terms are those fitted as explanatory variables, along with the natural log of the genome length. The ‘Variance Model’ column lists where the variance was also modelled as a component, i.e. whether different terms had different variances. Null terms indicate that this was simply modelled as the mean of the data with a model estimated constant coefficient." %}
   </figure>
 
   <figure id="tab:table-missing-data">
@@ -1343,9 +1241,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 7: List of biobox images
-    failing to produce an assembly when run on benchmarking data.', long_desc:
-    '' %}
+    {% caption "Table 7: List of biobox images failing to produce an assembly when run on benchmarking data.", "" %}
   </figure>
 
   <figure id="tab:table-images">
@@ -1456,8 +1352,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 8: List of biobox short read
-    assembler Docker images used in the benchmarks.', long_desc: '' %}
+    {% caption "Table 8: List of biobox short read assembler Docker images used in the benchmarks.", "" %}
   </figure>
 
   <figure id="tab:table-organisms">
@@ -1553,8 +1448,7 @@ authors: "Alicia Clum, Alex Copeland, and Kecia Duffy"
       </tbody>
     </table>
 
-    {% include 'caption.njk', short_desc: 'Table 9: List of source microbial
-    genomes used in the benchmarks.', long_desc: '' %}
+    {% caption "Table 9: List of source microbial genomes used in the benchmarks.", "" %}
   </figure>
 </div>
 <div id="references" class="section level2 unnumbered">

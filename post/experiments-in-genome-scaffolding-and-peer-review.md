@@ -83,9 +83,7 @@ highlights when contigs are removed, added, or if their coordinates have been
 updated. Compare this with running diff on a huge block of nucleotide sequence
 or running a pairwise alignment algorithm.
 
-{% include 'image.njk',
-  url: 'http://s3.amazonaws.com/bioinformatics-zen//scaffolder/after.png',
-  alt: 'Example a scaffold file diff.' %}
+{% image "http://s3.amazonaws.com/bioinformatics-zen//scaffolder/after.png", "Example a scaffold file diff." %}
 
 A further reason I wrote Scaffolder is to also make genome scaffolds
 reproducible and remove the manual element from joining contigs together. You

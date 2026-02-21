@@ -8,36 +8,15 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 module.exports = function (config) {
   // Use a different markdown renderer so that footnotes can be created.
   // See: https://www.alpower.com/tutorials/configuring-footnotes-with-eleventy/
-  let options = {
+  let markdownLib = markdownIt({
     html: true, // Enable HTML tags in source
     breaks: false, // Don't convert '\n' in paragraphs into <br>
     linkify: true, // Autoconvert URL-like text to links
-  };
+  }).use(markdownItFootnote);
 
-  // configure the library with options
-  let markdownLib = markdownIt(options)
-    .use(markdownItFootnote)
-    // Render custom `lede` fenced blocks.
-    .use(require("markdown-it-container"), "lede", {});
-
-  // set the library to process markdown files
   config.setLibrary("md", markdownLib);
 
-  // Don't try and do anything to these directories, just copy through.
-  // See: https://michaelsoolee.com/add-css-11ty/
-  config.addPassthroughCopy("css");
   config.addPassthroughCopy("js");
-
-  // Rebuild the site if the scss file changes.
-  config.addWatchTarget("./scss");
-  config.setBrowserSyncConfig({
-    files: "./_site/css/styles.css",
-  });
-
-  // The compiled CSS file is ignored by git.
-  // By default eleventy will ignore any files in the .ignore
-  // https://www.belter.io/eleventy-sass-workflow/
-  config.setUseGitIgnore(false);
 
   // Add a nunjucks filter to make the dates more readable.
   // See: https://mrqwest.co.uk/blog/making-dates-readable-11ty-luxon/
@@ -51,6 +30,24 @@ module.exports = function (config) {
     return collection.getAll().filter((item) => item.feed);
   });
 
+  // Shortcodes replacing the _includes partials.
+  config.addShortcode("image", function (url, alt, width = 480, cls = "") {
+    return `<div class="centred ${cls}"><img src="${url}" alt="${alt}" width="${width}px" class="responsive-image"/></div>`;
+  });
+
+  config.addShortcode(
+    "image_with_caption",
+    function (url, anchor, short_desc, long_desc = "") {
+      const id = anchor ? ` id="${anchor}"` : "";
+      const extra = long_desc ? ` ${long_desc}` : "";
+      return `<figure${id}><img class="figure-img img-fluid rounded" src="${url}"><figcaption><p><strong>${short_desc}</strong>${extra}</p></figcaption></figure>`;
+    }
+  );
+
+  config.addShortcode("caption", function (short_desc, long_desc = "") {
+    return `<figcaption><p><strong>${short_desc}</strong> ${long_desc}</p></figcaption>`;
+  });
+
   // add support for syntax highlighting
   config.addPlugin(syntaxHighlight);
 
@@ -61,6 +58,8 @@ module.exports = function (config) {
   config.addPlugin(pluginRss);
 
   return {
-    passthroughFileCopy: true,
+    dir: {
+      layouts: "_layouts",
+    },
   };
 };

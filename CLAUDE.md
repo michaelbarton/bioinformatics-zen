@@ -2,17 +2,34 @@
 
 ## Build
 
-```bash
-# Compile SCSS and build the site
-npx sass --style=compressed scss/styles.scss css/styles.css
-npx @11ty/eleventy
+```
+make build
 ```
 
-The compiled CSS is gitignored; always rebuild before reviewing output.
+Runs `make fmt_check` then `npm run build`. To auto-format first: `make fmt && make build`.
+
+## Shortcodes
+
+```liquid
+{% image "url", "alt text" %}
+{% image "url", "alt text", 640 %}
+{% image "url", "alt text", 640, "css-class" %}
+
+{% image_with_caption "url", "anchor-id", "Short description." %}
+{% image_with_caption "url", "anchor-id", "Short desc.", "Long description." %}
+
+{% caption "Short description." %}
+{% caption "Short description.", "Long description." %}
+```
+
+## Formatting
+
+Prettier checks `scss/*`, `post/*.md`, `eleventy.config.js`, and `package.json`.
+HTML files in `post/` are excluded (contain Liquid template syntax).
 
 ## Style Review Process
 
-Any change to `scss/styles.scss` or `_includes/default.njk` **must** be reviewed
+Any change to `scss/styles.scss` or `_layouts/default.njk` **must** be reviewed
 with real screenshots before committing. Do not reason about CSS changes in the
 abstract — render and look.
 
@@ -20,7 +37,7 @@ abstract — render and look.
 
 1. **Capture before screenshots** (before touching any files)
 2. Make style changes
-3. Rebuild: `npx sass --style=compressed scss/styles.scss css/styles.css && npx @11ty/eleventy`
+3. Rebuild: `make build`
 4. **Capture after screenshots**
 5. Read both sets of images and inspect them carefully
 6. Identify and fix any issues found, then repeat from step 3
@@ -90,10 +107,10 @@ stashing changes, building, screenshotting, then unstashing.
 
 ```bash
 git stash
-npx sass --style=compressed scss/styles.scss css/styles.css && npx @11ty/eleventy
+make build
 # take before screenshots (use /tmp/screenshots-before as DIR in the script)
 git stash pop
-npx sass --style=compressed scss/styles.scss css/styles.css && npx @11ty/eleventy
+make build
 # take after screenshots (use /tmp/screenshots-after as DIR)
 ```
 

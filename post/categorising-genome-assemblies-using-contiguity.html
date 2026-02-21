@@ -189,15 +189,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     the same component.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/01-pca-plot.png',
-  anchor: 'fig:plot-pca', short_desc: 'Figure 1: First two principal components
-  for the variation in contiguity metrics across genome assemblies.', long_desc:
-  'Each point represents a single genome assembly from the nucleotid.es data
-  set. The lines represent the loadings of each metric in the two principal
-  components. The amount of variance explained by each component in listed the
-  corresponding axis. Closely related loadings were grouped together for
-  clarity.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/01-pca-plot.png", "fig:plot-pca", "Figure 1: First two principal components for the variation in contiguity metrics across genome assemblies.", "Each point represents a single genome assembly from the nucleotid.es data set. The lines represent the loadings of each metric in the two principal components. The amount of variance explained by each component in listed the corresponding axis. Closely related loadings were grouped together for clarity." %}
 
   <p>
     The sum of first two components in PCA plot explains 55% of the variance in
@@ -245,11 +237,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     100 indicating a poor assembly, the linear relationship no longer holds.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/02-unscaled-data.png',
-  anchor: 'fig:plot-unscale-data', short_desc: 'Figure 2: Comparison of genome
-  assemblies by LA50 and NA50 metrics.', long_desc: 'Each point is a single
-  genome assembly from the nucleotid.es data set.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/02-unscaled-data.png", "fig:plot-unscale-data", "Figure 2: Comparison of genome assemblies by LA50 and NA50 metrics.", "Each point is a single genome assembly from the nucleotid.es data set." %}
 
   <p>
     The sequencing data used here for benchmarking were produced from two types
@@ -270,12 +258,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     used to extract the DNA.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/03-unscaled-data-by-benchmark.png',
-  anchor: 'fig:plot-unscale-data-by-benchmark', short_desc: 'Figure 3:
-  Comparison of genome assembly LA50 and NA50 metrics coloured by DNA extraction
-  method.', long_desc: 'Each point is a single genome assembly from the
-  nucleotid.es data set. Trending lines are added using loess smoothing.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/03-unscaled-data-by-benchmark.png", "fig:plot-unscale-data-by-benchmark", "Figure 3: Comparison of genome assembly LA50 and NA50 metrics coloured by DNA extraction method.", "Each point is a single genome assembly from the nucleotid.es data set. Trending lines are added using loess smoothing." %}
 
   <p>
     <a href="#fig:plot-unscale-data-by-benchmark">Figure 3</a> shows a bipartite
@@ -327,12 +310,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     >
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/04-scaled-data-by-benchmark.png',
-  anchor: 'fig:plot-main-variables', short_desc: 'Figure 4: Comparison of LA50
-  and NA50 scaled by reference genome length.', long_desc: 'Each point is a
-  single genome assembly from the nucleotid.es data set coloured by DNA
-  extraction method. Trending lines are added using loess smoothing.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/04-scaled-data-by-benchmark.png", "fig:plot-main-variables", "Figure 4: Comparison of LA50 and NA50 scaled by reference genome length.", "Each point is a single genome assembly from the nucleotid.es data set coloured by DNA extraction method. Trending lines are added using loess smoothing." %}
 
   <p>
     Using NS*50 metric, <a href="#fig:plot-main-variables">Figure 4</a> is the
@@ -366,11 +344,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     strongly depend on lysis, and how much of the source material was amplified.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/06-distribution-by-extration-method.png',
-  alt: '', anchor: 'fig:plot-summarise-contiguity-relationship', short_desc:
-  'Figure 5: Histogram of NAS50 * LA50 distribution.', long_desc: 'Data are
-  coloured by DNA extraction method.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/06-distribution-by-extration-method.png", "fig:plot-summarise-contiguity-relationship", "Figure 5: Histogram of NAS50 * LA50 distribution.", "Data are coloured by DNA extraction method." %}
 
   <p>
     <a href="#fig:plot-p50-residual">Figure 6</a> compares NS50
@@ -397,13 +371,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     colony-isolated microbial DNA should have most of the genomic DNA present.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/07-comparison-with-genome-fraction.png',
-  anchor: 'fig:plot-p50-residual', short_desc: 'Figure 6: Comparison of NAS50 *
-  LA50 with percent genome fraction.', long_desc: 'Genome fraction is the
-  percentage of aligned bases to the reference genome as estimated by QUAST. A
-  theoretical limit between isolate and MDA assemblies is shown by the dashed
-  line.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/07-comparison-with-genome-fraction.png", "fig:plot-p50-residual", "Figure 6: Comparison of NAS50 * LA50 with percent genome fraction.", "Genome fraction is the percentage of aligned bases to the reference genome as estimated by QUAST. A theoretical limit between isolate and MDA assemblies is shown by the dashed line." %}
 </div>
 <div
   id="contiguity-is-only-one-aspect-of-an-assembly"
@@ -425,11 +393,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     misassemblies are inversely correlated.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/08-misassembly-distribution.png',
-  anchor: 'fig:plot-summarise-misassemblies', short_desc: 'Figure 7:
-  Distribution of misassemblies across genome assemblies, coloured by DNA
-  extraction method.', long_desc: '' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/08-misassembly-distribution.png", "fig:plot-summarise-misassemblies", "Figure 7: Distribution of misassemblies across genome assemblies, coloured by DNA extraction method.", "" %}
 
   <p>
     <a href="#fig:plot-summarise-misassemblies">Figure 7</a> shows the
@@ -441,11 +405,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     two orders of magnitude.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/09-comparison-with-misassemblies.png',
-  anchor: 'fig:p50-vs-misassemblies', short_desc: 'Figure 8: Comparison of
-  NAS50*LA50 with number of misassemblies per megabase.', long_desc: 'Trending
-  lines are added using loess smoothing.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/09-comparison-with-misassemblies.png", "fig:p50-vs-misassemblies", "Figure 8: Comparison of NAS50*LA50 with number of misassemblies per megabase.", "Trending lines are added using loess smoothing." %}
 
   <p>
     <a href="#fig:p50-vs-misassemblies">Figure 8</a> compares the distribution
@@ -534,12 +494,7 @@ title: Examining microbial genome assemblies using contiguity metrics
     reference-based and non-reference-based metrics.
   </p>
 
-  {% include 'image_with_caption.njk', url:
-  'http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/10-comparison-with-reference-metrics.png',
-  anchor: 'fig:compare-metrics', short_desc: 'Figure 9: Comparison of
-  reference-based assembly contiguity metrics with non-reference-based
-  counterparts.', long_desc: 'Only colony isolated genome assemblies are
-  plotted. Trend lines are added using a linear model.' %}
+  {% image_with_caption "http://s3.amazonaws.com/bioinformatics-zen/comparing-assemblies-by-contiguity-metrics/10-comparison-with-reference-metrics.png", "fig:compare-metrics", "Figure 9: Comparison of reference-based assembly contiguity metrics with non-reference-based counterparts.", "Only colony isolated genome assemblies are plotted. Trend lines are added using a linear model." %}
 
   <p>
     <a href="#fig:compare-metrics">Figure 9</a> indicates there is good

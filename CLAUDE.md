@@ -45,47 +45,13 @@ abstract — render and look.
 
 ### Taking Screenshots
 
-Start a local server, run the Playwright script below, then kill the server.
+Start a local server, run `scripts/screenshot.js`, then kill the server.
+Pass an output directory as the first argument (defaults to `/tmp/screenshots`).
 
 ```bash
 cd _site && python3 -m http.server 8765 &
-node /tmp/screenshot.js
+node scripts/screenshot.js /tmp/screenshots
 kill $(lsof -t -i:8765)
-```
-
-**`/tmp/screenshot.js`** — write this file before running:
-
-```javascript
-const { chromium } = require('/opt/node22/lib/node_modules/playwright');
-const fs = require('fs');
-
-const DIR = '/tmp/screenshots';
-if (!fs.existsSync(DIR)) fs.mkdirSync(DIR);
-
-const viewports = [
-  { name: 'mobile-375',  width: 375,  height: 667  },
-  { name: 'tablet-768',  width: 768,  height: 1024 },
-  { name: 'desktop-1280', width: 1280, height: 900 },
-];
-
-const pages = [
-  { name: 'homepage', path: '/' },
-  { name: 'post',     path: '/post/pytest-api-examples/' },
-];
-
-(async () => {
-  const browser = await chromium.launch({ headless: true });
-  for (const vp of viewports) {
-    const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
-    const page = await ctx.newPage();
-    for (const pg of pages) {
-      await page.goto('http://localhost:8765' + pg.path, { waitUntil: 'domcontentloaded' });
-      await page.screenshot({ path: `${DIR}/${pg.name}-${vp.name}.png`, fullPage: true });
-    }
-    await ctx.close();
-  }
-  await browser.close();
-})();
 ```
 
 Read the resulting PNG files directly — Claude can view images.
@@ -108,10 +74,14 @@ stashing changes, building, screenshotting, then unstashing.
 ```bash
 git stash
 make build
-# take before screenshots (use /tmp/screenshots-before as DIR in the script)
+cd _site && python3 -m http.server 8765 &
+node scripts/screenshot.js /tmp/screenshots-before
+kill $(lsof -t -i:8765)
 git stash pop
 make build
-# take after screenshots (use /tmp/screenshots-after as DIR)
+cd _site && python3 -m http.server 8765 &
+node scripts/screenshot.js /tmp/screenshots-after
+kill $(lsof -t -i:8765)
 ```
 
 Drag the PNG files into the GitHub PR comment box to upload them, then

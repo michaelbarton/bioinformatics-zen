@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Open+Sans:wght@400;700&display=swap");
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap");
 
 /* ============================================
    Prism Okaidia syntax highlighting theme
@@ -125,8 +124,8 @@ pre[class*="language-"] {
    Variables
    ============================================ */
 
-$font-size-base: 16px;
-$font-body: "Open Sans", Georgia, serif;
+$font-size-base: 18px;
+$font-body: "Lora", Georgia, serif;
 $font-heading: "Raleway", sans-serif;
 $font-mono: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
 
@@ -135,13 +134,19 @@ $color-text-light: #888;
 $color-text-muted: #aaa;
 $color-border: #e8e8e8;
 $color-bg-subtle: #f8f8f8;
-$color-link: #1d6fa0;
-$color-link-hover: #145678;
-$color-accent: rgba(29, 111, 160, 0.1);
+$color-link: #2b6b5e;
+$color-link-hover: #1d4f44;
+$color-accent: rgba(43, 107, 94, 0.1);
 
 /* ============================================
    Base
    ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   font-size: $font-size-base;
@@ -151,6 +156,10 @@ html {
 body {
   font-size: 1rem;
   height: 100%;
+  margin: 0;
+  font-family: $font-body;
+  color: $color-text;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ============================================
@@ -215,6 +224,23 @@ a {
   margin-top: 0.25rem;
   margin-bottom: 0;
   line-height: 1.5;
+}
+
+.site-title--compact {
+  padding-top: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $color-border;
+
+  h1 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 0;
+  }
+
+  .tagline {
+    display: none;
+  }
 }
 
 /* ============================================
@@ -516,6 +542,34 @@ figure table {
 }
 
 /* ============================================
+   Footer
+   ============================================ */
+
+.site-footer {
+  border-top: 1px solid $color-border;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  font-family: $font-mono;
+  color: $color-text-muted;
+  text-align: center;
+  letter-spacing: 0.03em;
+
+  a {
+    color: $color-text-muted;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-link;
+    }
+  }
+
+  span {
+    margin: 0 0.5rem;
+  }
+}
+
+/* ============================================
    Mobile
    ============================================ */
 
@@ -533,6 +587,11 @@ figure table {
 
   .site-title {
     padding-top: 1.5rem;
+  }
+
+  .site-title--compact {
+    padding-top: 1rem;
+    padding-bottom: 0.75rem;
   }
 
   h1 {

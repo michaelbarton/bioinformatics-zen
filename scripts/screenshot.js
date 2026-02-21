@@ -22,6 +22,8 @@ const path = require('path');
 const DIR = process.argv[2] || '/tmp/screenshots';
 if (!fs.existsSync(DIR)) fs.mkdirSync(DIR, { recursive: true });
 
+const MAX_SCREENSHOT_HEIGHT = 2000;
+
 const viewports = [
   { name: 'mobile-375',   width: 375,  height: 667  },
   { name: 'tablet-768',   width: 768,  height: 1024 },
@@ -41,7 +43,9 @@ const pages = [
     for (const pg of pages) {
       await page.goto('http://localhost:8765' + pg.path, { waitUntil: 'domcontentloaded' });
       const file = path.join(DIR, `${pg.name}-${vp.name}.png`);
-      await page.screenshot({ path: file, fullPage: true });
+      const pageHeight = await page.evaluate(() => document.body.scrollHeight);
+      const clipHeight = Math.min(pageHeight, MAX_SCREENSHOT_HEIGHT);
+      await page.screenshot({ path: file, clip: { x: 0, y: 0, width: vp.width, height: clipHeight } });
       console.log(`Saved ${file}`);
     }
     await ctx.close();

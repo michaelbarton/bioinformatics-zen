@@ -410,34 +410,29 @@ ul.index {
 }
 
 /* ============================================
-   Lede / Summary Box
+   Lede
    ============================================ */
 
 .lede {
-  ul::before {
-    content: "Summary";
-    display: block;
-    font-family: $font-heading;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 0.4em;
-  }
-
-  font-size: 1rem;
-  font-weight: 400;
-  background-color: $color-accent;
-  border-left: 3px solid $color-link;
-  padding: 1.25rem 1.5rem;
-  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: $color-text-light;
+  border-bottom: 1px solid $color-border;
+  padding-bottom: 1.5rem;
   margin-bottom: 2rem;
 
   ul {
+    list-style: none;
+    padding-left: 0;
     margin-bottom: 0;
   }
 
   ul li {
-    padding: 0.4em 0;
-    font-weight: 600;
+    padding: 0.3em 0;
+    line-height: 1.8;
+  }
+
+  ul li + li {
+    margin-top: 0.25em;
   }
 }
 
@@ -638,10 +633,6 @@ figure table {
   table {
     display: block;
     overflow-x: auto;
-  }
-
-  .lede {
-    padding: 1rem 1.1rem;
   }
 }
 

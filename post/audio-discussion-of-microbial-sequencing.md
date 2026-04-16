@@ -6,8 +6,8 @@ date: 2015-11-24
 ---
 
 This is an audio follow-up the discussion I [previously posted about PacBio
-sequencing.][post] This include Me, Alex Copeland and Alicia Clum talking
-about microbial, and long read sequencing at the JGI.
+sequencing.][post] This include Me, Alex Copeland and Alicia Clum talking about
+microbial, and long read sequencing at the JGI.
 
 [post]: /post/economies-of-sequencing-a-microbe/
 

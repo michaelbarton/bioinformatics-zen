@@ -29,21 +29,20 @@ resulting in unexpected side effects.
 Removing the dependencies between workflow steps is difficult. Build files such
 as [Rake][rake], [Ant][ant], and [make][make] allow dependencies between
 scripted steps to be formalised: the required previous steps are automatically
-run first. This is useful to force the requirement that all previous results
-are deleted before hand, [or that all rows in the database are
-refreshed][biorake], or even that the entire analysis is repeated from scratch.
-[Capistrano][cap] is a variant where build files can be used to automate
-repetitive tasks across multiple remote computers. All of this can be managed
-using single command line calls.
+run first. This is useful to force the requirement that all previous results are
+deleted before hand, [or that all rows in the database are refreshed][biorake],
+or even that the entire analysis is repeated from scratch. [Capistrano][cap] is
+a variant where build files can be used to automate repetitive tasks across
+multiple remote computers. All of this can be managed using single command line
+calls.
 
 ### Light and fluffy
 
 Light and simple scripts are easier to maintain. To simplify, a script reads in
-a set of input data (such as a protein sequence), analyses the data (formatdb
-on a sequence database followed by BLAST), and then returns to the data (prints
-the results to the command line). Using this simplification, a script only
-needs to know what data is coming in, how to analyse the data, and how to
-return it.
+a set of input data (such as a protein sequence), analyses the data (formatdb on
+a sequence database followed by BLAST), and then returns to the data (prints the
+results to the command line). Using this simplification, a script only needs to
+know what data is coming in, how to analyse the data, and how to return it.
 
 Scripts can be made lighter by reducing the amount of analytical code. Instead
 of writing the code to call and parse BLAST, use existing code such as in

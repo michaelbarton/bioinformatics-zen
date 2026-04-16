@@ -14,4 +14,5 @@ program, and to encourage students to display and discuss their work. My poster
 is finished, and I’ve put it here for anyone who’s interested. Zen Faulkes has
 also been kind enough to [critique this poster on his better posters blog.][bp]
 
-[bp]: http://betterposters.blogspot.com/2013/02/critique-protein-biosynthesis.html
+[bp]:
+  http://betterposters.blogspot.com/2013/02/critique-protein-biosynthesis.html

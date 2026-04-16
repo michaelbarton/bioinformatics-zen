@@ -6,17 +6,17 @@ date: 2007-08-22
 ---
 
 The mouse, or two dimensional motion pointing device, is undoubtedly useful,
-especially when you're new to computers. It lets you open windows, click
-around, and explore. However the more time you spend using a computer, and the
-more proficient you become, the more the mouse becomes a hindrance to how fast
-you can work.
+especially when you're new to computers. It lets you open windows, click around,
+and explore. However the more time you spend using a computer, and the more
+proficient you become, the more the mouse becomes a hindrance to how fast you
+can work.
 
 In a simplistic sense, using the keyboard the majority of the time saves your
 elbow. Regular switching between the keyboard and the mouse will give you
-repetitive strain injury, I know because I get a dull ache in my right elbow
-and wrist when I'm doing it too much. Usually mice are not the best shape
-either, it rotates your wrist about 135 degrees wise to your elbow: put your
-hand on your mouse and have a look.
+repetitive strain injury, I know because I get a dull ache in my right elbow and
+wrist when I'm doing it too much. Usually mice are not the best shape either, it
+rotates your wrist about 135 degrees wise to your elbow: put your hand on your
+mouse and have a look.
 
 The real advantage from using the keyboard, is that it allows you to work much
 faster. If you know the keyboard shortcuts for the five top actions you usually
@@ -32,12 +32,12 @@ line. Powerful and versatile, this is the program I use most. Just about
 anything you do with your mouse, you can do a whole lot faster with the command
 line. Manipulating files, changing directories, and selectively performing
 actions based file type, the list is long. Getting used to the command line has
-a learning curve but the investment is very worthwhile, the returns in the
-speed at which you perform actions will mean you never look back. If you're
-using Linux, you're probably already familiar with using the console, on a Mac
-you'll need to look in /Applications/Utilities for terminal. Windows Vista
-users have something similar in Command Shell, or if you're an XP user I
-recommend downloading cygwin.
+a learning curve but the investment is very worthwhile, the returns in the speed
+at which you perform actions will mean you never look back. If you're using
+Linux, you're probably already familiar with using the console, on a Mac you'll
+need to look in /Applications/Utilities for terminal. Windows Vista users have
+something similar in Command Shell, or if you're an XP user I recommend
+downloading cygwin.
 
 ### Vim
 

@@ -14,18 +14,20 @@ href="http://plindenbaum.blogspot.com/">Pierre Lindenbaum</a> and <a
 href="http://konradscons.blogspot.com/">Konrad Forstner</a>, who contributed
 particularly large articles covering every aspect of being a bioinformatian.
 
-<a href="https://twitter.com/stew">Euan Adie</a> (Stew) wrote about
-revision control, creating applications and blogging. <a
+<a href="https://twitter.com/stew">Euan Adie</a> (Stew) wrote about revision
+control, creating applications and blogging. <a
 href="http://scienceroll.com/">Bertalan MeskÃ³</a> sent in a list of genetic
-disorder databases. <a href="https://twitter.com/spitshine">Roland Krause</a> offers tips on
-managing and searching data sets. <a href="http://myfakeif.blogspot.com/">Ryan
-Castillo</a> wrote about his experiences in bioinformatics. <a
+disorder databases. <a href="https://twitter.com/spitshine">Roland Krause</a>
+offers tips on managing and searching data sets.
+<a href="http://myfakeif.blogspot.com/">Ryan Castillo</a> wrote about his
+experiences in bioinformatics. <a
 href="http://paraschopra.com/blog/">Paras Chopra</a> offers advice for
 undergraduates on how to use their summers. <a
-href="http://www.evocellnet.com/p/research.html">Pedro Beltrao</a>, editor of bio::blogs,
-discusses the importance of keeping up to date on the literature. Also, <a
-href="https://twitter.com/dullhunk">Duncan Hull</a> whose observations
-I was unable to add due to lack of time and space (read: my poor organisational
+href="http://www.evocellnet.com/p/research.html">Pedro Beltrao</a>, editor of
+bio::blogs, discusses the importance of keeping up to date on the literature.
+Also, <a
+href="https://twitter.com/dullhunk">Duncan Hull</a> whose observations I was
+unable to add due to lack of time and space (read: my poor organisational
 skills)
 
 And finally, special thanks go to <a

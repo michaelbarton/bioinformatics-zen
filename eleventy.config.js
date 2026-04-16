@@ -23,7 +23,7 @@ module.exports = function (config) {
   // See: https://mrqwest.co.uk/blog/making-dates-readable-11ty-luxon/
   config.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "yyyy.LLL.dd",
+      "yyyy.LLL.dd"
     );
   });
 

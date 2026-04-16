@@ -32,8 +32,8 @@ skills)
 
 And finally, special thanks go to <a
 href="https://nsaunders.wordpress.com/">Neil Saunders</a> whose entry, on <a
-href="https://nsaunders.wordpress.com/2007/05/29/how-to-create-bioinformatics-code-from-a-published-article/">recreating code
-from bioinformatics papers</a>, was so large I couldn't fit it in the pdf, but
-you should definitely go and take a look.
+href="https://nsaunders.wordpress.com/2007/05/29/how-to-create-bioinformatics-code-from-a-published-article/">recreating
+code from bioinformatics papers</a>, was so large I couldn't fit it in the pdf,
+but you should definitely go and take a look.
 
 <a href="http://bioinformatics-zen.s3.amazonaws.com/bioblogs/special_edition.pdf" title="Download"><img src="http://bioinformatics-zen.s3.amazonaws.com/icons/pdf.png" alt="Download" class="centre" /></a>

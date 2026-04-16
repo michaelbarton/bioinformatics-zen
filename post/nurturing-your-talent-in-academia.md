@@ -26,44 +26,43 @@ give them an insignificant wage for their ability, terrible job security, and a
 short term contract. Throughout their career limit their prospects, and
 discourage personal skills development. Now, make them spend more time fighting
 the bureaucratic system of your institute than carrying out the research they
-are being paid for. Finally, blackmail them into staying in their job by
-stating that if they leave science they'll never be able to return.
+are being paid for. Finally, blackmail them into staying in their job by stating
+that if they leave science they'll never be able to return.
 
-Now consider the opposite, in business, every company knows that if you
-burn-out your staff they will leave. Or if you have a developer that is
-creative, and constantly delivering for you, then you should give them every
-opportunity to keep doing this, not place hurdles in front of them.
+Now consider the opposite, in business, every company knows that if you burn-out
+your staff they will leave. Or if you have a developer that is creative, and
+constantly delivering for you, then you should give them every opportunity to
+keep doing this, not place hurdles in front of them.
 
 <strong>Question the system</strong>
 
 Things don't have to be this way. Academia is only this way because we accept
-it. After returning from VITAE school I believe there are many ways that you
-can continue to nurture the talent and drive that first lead you into academia.
+it. After returning from VITAE school I believe there are many ways that you can
+continue to nurture the talent and drive that first lead you into academia.
 
 Keep trying out new tools and techniques, especially those being developed in
 the software industry. I studied Java during my masters course, but three years
 later I only use Ruby. Java is a great language, and I had great teachers at
 Newcastle, but for me Ruby is the next step and it frees me up from many of the
-repetitive or arduous tasks of programming in Java. This in turn allows me to
-be more creative in my programming, as well as more meticulous. I particularly
-like how Ruby on Rails has improved my database management, which I would not
-have tried if I had my nose to the grind stone and kept chugging away with
-Java.
+repetitive or arduous tasks of programming in Java. This in turn allows me to be
+more creative in my programming, as well as more meticulous. I particularly like
+how Ruby on Rails has improved my database management, which I would not have
+tried if I had my nose to the grind stone and kept chugging away with Java.
 
 Consultancy is an avenue to explore. Everybody has a skill or knowledge that
-someone else is interested in hearing about. The more passion and motivation
-you have, the more you will be able to sell it. Many institutions actively
-encourage consultancy, and it will give you space to explore and develop what
-interests you most. Reading this, you might ask "What do you know about
-becoming consultant?". This is a fair point, but with the help of Manchester
-Business Development Unit, I am going to give it a go, and after all, what do I
-have to lose?
+someone else is interested in hearing about. The more passion and motivation you
+have, the more you will be able to sell it. Many institutions actively encourage
+consultancy, and it will give you space to explore and develop what interests
+you most. Reading this, you might ask "What do you know about becoming
+consultant?". This is a fair point, but with the help of Manchester Business
+Development Unit, I am going to give it a go, and after all, what do I have to
+lose?
 
 A more controversial idea, is to consider leaving academia for a while. I think
-it's a lie that you once you leave science you can't return. Coming back will
-be difficult, but if becoming a management consultant for three years broadens
-your skill set, and belief in yourself, wouldn't the institution be crazy not
-to rehire you?
+it's a lie that you once you leave science you can't return. Coming back will be
+difficult, but if becoming a management consultant for three years broadens your
+skill set, and belief in yourself, wouldn't the institution be crazy not to
+rehire you?
 
 As for your research, start a blog. Write what you're thinking about, you will
 find like-minded people having similar thoughts. Try alternative communication

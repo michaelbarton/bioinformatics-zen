@@ -13,11 +13,11 @@ for phenotypic differences. Click on the image below to see a larger version.
 {% image "http://uk-me-michaelbarton.s3.amazonaws.com/posters/2012-asm/michael_barton_poster.png", "My ASM 2012 Poster." %}
 
 As with [my previous ASM poster][previous], I think less text and a more visual
-overview is more likely to attract interest and start a discussion. ASM
-meetings usually have posters numbering in the thousands so I think a
-text-heavy poster can be a lottery for getting people to talk to you. A lighter
-poster, I hope, gives the impression that you're not going to trap someone who
-expresses an interest with ten minutes of intense conversation.
+overview is more likely to attract interest and start a discussion. ASM meetings
+usually have posters numbering in the thousands so I think a text-heavy poster
+can be a lottery for getting people to talk to you. A lighter poster, I hope,
+gives the impression that you're not going to trap someone who expresses an
+interest with ten minutes of intense conversation.
 
 [previous]: /post/preseting-software-on-a-poster/
 
@@ -25,11 +25,11 @@ expresses an interest with ten minutes of intense conversation.
 
 I usually get started by on a new poster by searching the posters section on
 [Deviant Art](http://www.deviantart.com/) around a theme I am interested in. In
-this case I felt like going for ["Grunge Minimalism."][search] There's plenty
-of inspiration to be found on deviant art when searching for different themes
-and I was particularly inspired by an Alice in Wonderland poster from deviant
-art (no longer available). You can see similarities in the lines and colours
-between this poster and how I ended up designing mine.
+this case I felt like going for ["Grunge Minimalism."][search] There's plenty of
+inspiration to be found on deviant art when searching for different themes and I
+was particularly inspired by an Alice in Wonderland poster from deviant art (no
+longer available). You can see similarities in the lines and colours between
+this poster and how I ended up designing mine.
 
 {% image "http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/alice_poster_by_daveforyou-d3j2iy5.jpeg", "Minimalist grundge style poster for alice in Wonderland" %}
 
@@ -42,8 +42,8 @@ between this poster and how I ended up designing mine.
 I spend a large portion of my time planning a poster before opening Inkscape. I
 think time spent planning tends to pay off many-fold compared with trying to
 plan and create at the same time. My planning is rather straight forward: write
-down the key points I want to include and how I will lay them out on the
-poster. The images below show the papers I generated while planning the poster.
+down the key points I want to include and how I will lay them out on the poster.
+The images below show the papers I generated while planning the poster.
 
 {% image "http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/planning_1.jpg", "Paper drawings from planning my poster." %}
 
@@ -56,8 +56,8 @@ squared paper to ensure that all image have the same proportions. Squared paper
 is also pretty handy for making accurate representations where it matters, for
 instance the genes in the upper right of poster are to-scale representations of
 the nucleotide length. I usually go through several iterations of each drawing
-until I get something I'm really happy with. Below are the final drawings I
-used for the poster.
+until I get something I'm really happy with. Below are the final drawings I used
+for the poster.
 
 {% image "http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/drawings.jpg", "Papers of drawings from poster" %}
 
@@ -68,7 +68,8 @@ each image to a path.][convert] Once in this state it is easy to simplify the
 object path and remove roughness or scanner artefacts. Below is the poster with
 the converted images.
 
-[originals]: http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/originals.pdf
+[originals]:
+  http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/originals.pdf
 
 {% image "http://bioinformatics-zen.s3.amazonaws.com/genotype-poster/layout.png", "Basic poster layout." %}
 

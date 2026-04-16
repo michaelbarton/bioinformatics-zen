@@ -18,9 +18,9 @@ support and the seeming requirement to create large numbers of loops and
 temporary variables.
 
 I've recently started to learn Clojure which has lead me appreciate the
-functional heart of R and how much it can simplify your code. R is almost a
-lisp dialect since it draws much inspiration from Scheme. This, for instance,
-is valid R:
+functional heart of R and how much it can simplify your code. R is almost a lisp
+dialect since it draws much inspiration from Scheme. This, for instance, is
+valid R:
 
 ```r
 sqrt(
@@ -35,9 +35,9 @@ programming" sounded alien and strange. I think this is in part due to the
 academic stereotype associated with functional programming. Languages such as
 Clojure however are proving that functional programming can be better than
 imperative approaches in terms of concise, clear code and for simplifying
-parallelisation. However for the point of this post I'm not going to discuss
-the pros or cons of functional programming but instead give two simple examples
-in R.
+parallelisation. However for the point of this post I'm not going to discuss the
+pros or cons of functional programming but instead give two simple examples in
+R.
 
 ### Converting a character vector to a binary variable
 
@@ -48,9 +48,9 @@ married or not.
 married <- c("Yes","Yes","No","No","Yes","Yes","","No","Yes")
 ```
 
-What I'd like to do is convert this to a binary variable where `Yes` becomes
-`1` and `No` becomes `0`. Here's how I originally would have solved this
-problem using a loop:
+What I'd like to do is convert this to a binary variable where `Yes` becomes `1`
+and `No` becomes `0`. Here's how I originally would have solved this problem
+using a loop:
 
 ```r
 binary.married <- c()
@@ -64,9 +64,9 @@ for(i in 1:length(married)) {
 ```
 
 This example will perform poorly when the `married` variable is very long since
-the new vector `binary.married` is recreated each time to add a new element
-onto the end. If you only take one point away from this post; avoid using `c`
-to repeatedly increment a vector and instead do this:
+the new vector `binary.married` is recreated each time to add a new element onto
+the end. If you only take one point away from this post; avoid using `c` to
+repeatedly increment a vector and instead do this:
 
 ```r
 binary.married <- rep(0,length(married))
@@ -113,13 +113,13 @@ married #=> c(1,1,0,0,1,1,NA,0,1)
 ```
 
 Here I'm using an `apply`-family function. These functions perform as you would
-expect and apply a function to each element in a vector/list/matrix depending
-on which apply is used. Using the apply family of functions is the essence of
-using R well and Neil Saunders has [an excellent overview of the functions in
-the `apply` family.][neil] To expand on the code, this applies the defined
-function to each element in `married` and I used the syntactic sugar for
-creating an inline anonymous function (e.g. `function(args) ...`). This example
-can be written more verbosely for illustration:
+expect and apply a function to each element in a vector/list/matrix depending on
+which apply is used. Using the apply family of functions is the essence of using
+R well and Neil Saunders has [an excellent overview of the functions in the
+`apply` family.][neil] To expand on the code, this applies the defined function
+to each element in `married` and I used the syntactic sugar for creating an
+inline anonymous function (e.g. `function(args) ...`). This example can be
+written more verbosely for illustration:
 
 ```r
 character.to.binary <- function(x){
@@ -137,8 +137,8 @@ much.
 
 The `switch` statement is also worth clarifying too: I define the cases I want
 to match and the unmatched cases then return the default which is `NA`. Why use
-`NA` though? I could just leave this blank instead. For example when
-calculating the proportion of respondents married:
+`NA` though? I could just leave this blank instead. For example when calculating
+the proportion of respondents married:
 
 ```r
 married <- sapply(married,
@@ -174,9 +174,9 @@ income <- c("130,000 - 134,999", "55,000 - 59,999", "90,000 - 94,999",
 ```
 
 This is again a character vector which I want to convert to numeric data.
-Concretely I would like the numerical value for the midpoint of each entry.
-This might seem somewhat tricky but using `sapply` again I can just apply a
-series of functions to each element to get desired result:
+Concretely I would like the numerical value for the midpoint of each entry. This
+might seem somewhat tricky but using `sapply` again I can just apply a series of
+functions to each element to get desired result:
 
 ```r
 to.numeric.midpoint <- function(x){
@@ -189,10 +189,10 @@ to.numeric.midpoint(income)
 
 ```
 
-There are two parts to this function. The first uses `strsplit` to break up
-each entry on `" - "` into a vector with two elements. The `strsplit`
-automatically vectorises this operation to perform this element-wise. The
-result of the `strsplit` operation is therefore as follows:
+There are two parts to this function. The first uses `strsplit` to break up each
+entry on `" - "` into a vector with two elements. The `strsplit` automatically
+vectorises this operation to perform this element-wise. The result of the
+`strsplit` operation is therefore as follows:
 
 ```r
 strsplit(income, ' - ')
@@ -210,10 +210,10 @@ strsplit(income, ' - ')
 ```
 
 A list of vectors is returned and `sapply` then calls the anonymous function on
-each entry in the list. The anonymous function simply removes the `,`
-characters from each element using `gsub`, converts each character element to a
-numeric value using `as.numeric`, then calculates the `sum` of both elements
-and divides the result by 2.
+each entry in the list. The anonymous function simply removes the `,` characters
+from each element using `gsub`, converts each character element to a numeric
+value using `as.numeric`, then calculates the `sum` of both elements and divides
+the result by 2.
 
 ### Further Reading
 
@@ -223,7 +223,10 @@ about R I'd recommend two good books: [The R Inferno PDF][inferno] or
 [hardcopy][] and [The Art of R Programming][art]. Both of these have a lot of
 information about the "right" way to program in R.
 
-[neil]: https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
+[neil]:
+  https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
 [inferno]: http://www.burns-stat.com/pages/Tutor/R_inferno.pdf
-[hardcopy]: http://www.lulu.com/shop/patrick-burns/the-r-inferno/paperback/product-18809753.html
-[art]: http://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843
+[hardcopy]:
+  http://www.lulu.com/shop/patrick-burns/the-r-inferno/paperback/product-18809753.html
+[art]:
+  http://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843

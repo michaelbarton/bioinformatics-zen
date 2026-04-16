@@ -5,21 +5,21 @@ title: The Ph in a Bioinformatics PhD
 date: 2007-08-28
 ---
 
-In a month, I start the third and final year of my PhD. Usually it's around
-this time that students begin thinking about what's gone before and
-contemplate the future, and I'm never one to buck a trend.
+In a month, I start the third and final year of my PhD. Usually it's around this
+time that students begin thinking about what's gone before and contemplate the
+future, and I'm never one to buck a trend.
 
 I did a master's degree in bioinformatics, where before I had never used a
 computer for anything other than email and browsing. On completion, I was
 proficient in Java, R, MySQL, and Linux, all the hard skills I need as a
-bioinformatician. The informatics in bioinformatics, if you like. I look back
-on my masters in a positive light, hard work, but I made some good friends,
-learnt a great deal, and left with high expectations, certain of the career
-I've chosen.
+bioinformatician. The informatics in bioinformatics, if you like. I look back on
+my masters in a positive light, hard work, but I made some good friends, learnt
+a great deal, and left with high expectations, certain of the career I've
+chosen.
 
 I started my PhD, straight after my masters. My hard skills may have improved
-slightly, I've become more proficient in R, but what I have learnt more, are
-the soft skills that a bioinformatician needs. Less tangible than command line
+slightly, I've become more proficient in R, but what I have learnt more, are the
+soft skills that a bioinformatician needs. Less tangible than command line
 piping, but equally as important, these include: dealing with failure, being an
 independent researcher, dealing with failure, self-discipline, dealing with
 failure, what qualifies as publishable data, and dealing with failure.

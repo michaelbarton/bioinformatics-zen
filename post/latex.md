@@ -5,9 +5,9 @@ title: About Latex
 date: 2008-12-24
 ---
 
-LaTeX (pronounced lay-tek) is a document creation system aimed at scientific
-and technical documents. LaTeX documents are written in plain text using markup
-to describe which parts should be sections tables or pictures. The LaTeX system
+LaTeX (pronounced lay-tek) is a document creation system aimed at scientific and
+technical documents. LaTeX documents are written in plain text using markup to
+describe which parts should be sections tables or pictures. The LaTeX system
 parses the markup and formats the text to produce either dvi, postscript or pdf
 output. As LaTeX is entirely text based, the content can be tracked using a
 version control system. Plain text files mean that you can work on a document
@@ -24,13 +24,13 @@ the document, not the formatting. If you were using a graphical editor you
 format the text as type, but with LaTeX you only have to add the markup to the
 document and LaTeX takes care of the rest. This can save a lot of time with
 large documents. The basic features of LaTeX include automatic generation of
-tables of contents, tables of figures and automatic numbering of sections
-tables and figures. BibTeX is the companion to LaTeX which adds simple
-organisation and addition of citations. Citations are added to documents using
-a simple "cite" command in the text, without the requirement for third party
-software. One of the benefits of creating documents using LaTeX is that the
-produced formatting is the result of best practices in typography and document
-presentation, which means LaTeX documents look better than the average.
+tables of contents, tables of figures and automatic numbering of sections tables
+and figures. BibTeX is the companion to LaTeX which adds simple organisation and
+addition of citations. Citations are added to documents using a simple "cite"
+command in the text, without the requirement for third party software. One of
+the benefits of creating documents using LaTeX is that the produced formatting
+is the result of best practices in typography and document presentation, which
+means LaTeX documents look better than the average.
 
 ### Templates and Plugins
 
@@ -40,10 +40,10 @@ LaTeX documents. Many journals also provide LaTeX templates in which papers can
 be submitted. There are templates available for writing a [thesis or
 dissertation][thesis], and there is likely a specific templates which follows
 your own institution guidelines. There are many useful third party plugins for
-adding extras to a document. For example [beautiful formating of
-tables][table], [grouping figures into subfigures][subfig], [replacing text
-inside figures][replace] and even [a framework for including R-code inside a
-LaTeX document][sweave].
+adding extras to a document. For example [beautiful formating of tables][table],
+[grouping figures into subfigures][subfig], [replacing text inside
+figures][replace] and even [a framework for including R-code inside a LaTeX
+document][sweave].
 
 ### Creating a LaTeX document
 
@@ -67,8 +67,8 @@ LaTeX site shows [different examples of LaTeX figure settings][latex_figs].
 
 ### Creating tables in LaTeX
 
-This screencast illustrates adding a simple table to a LaTeX document. The
-table is then formatted to look more "professional" using the [booktabs
+This screencast illustrates adding a simple table to a LaTeX document. The table
+is then formatted to look more "professional" using the [booktabs
 package][table]. More information on tables in LaTeX can be found at [Andrew
 Robert's website][latex_tables] and on the [Wikibooks
 website][wiki_books_tables]
@@ -81,15 +81,16 @@ website][wiki_books_tables]
 
 This screencast shows how to add dynamic references to the text in a document.
 This includes automatically adding references to tables and figures. The second
-half of the video illustrates how to add a bibliography to a LaTeX document,
-and how to cite articles in the text. More information about citations can be
-found on [Andrew Robert's website][latex_citations].
+half of the video illustrates how to add a bibliography to a LaTeX document, and
+how to cite articles in the text. More information about citations can be found
+on [Andrew Robert's website][latex_citations].
 
 <object width="640" height="385"><param name="movie" value="http://www.youtube.com/v/jvh_2EQ1iwM&hl=en&fs=1&hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/jvh_2EQ1iwM&hl=en&fs=1&hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="385"></embed></object>
 
 <p/>
 
-[thesis]: http://tex.stackexchange.com/questions/326/latex-templates-for-writing-a-thesis
+[thesis]:
+  http://tex.stackexchange.com/questions/326/latex-templates-for-writing-a-thesis
 [table]: http://www.ctan.org/tex-archive/macros/latex/contrib/booktabs/
 [subfig]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
 [replace]: http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/

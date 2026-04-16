@@ -8,13 +8,13 @@ date: 2009-01-25
 Writing good code makes life easier. If there's a common theme in
 bioinformatics, it is this: you will write a script, move on to something else,
 then return to the script in a few months or years time and try to remember how
-it works. The clearer the code is originally written, the better to remember
-how it works. Here is a quote ["All programming is maintenance programming,
-because you are rarely writing original code"][maintain]. This means that most
-of your time will be spent fixing and improving code, rather than writing
-fresh. Writing code is personal, and discussing what makes good code is
-controversial. But I'm going do it anyway and describes what I think are a few
-basic principles that can help to make code easier to maintain.
+it works. The clearer the code is originally written, the better to remember how
+it works. Here is a quote ["All programming is maintenance programming, because
+you are rarely writing original code"][maintain]. This means that most of your
+time will be spent fixing and improving code, rather than writing fresh. Writing
+code is personal, and discussing what makes good code is controversial. But I'm
+going do it anyway and describes what I think are a few basic principles that
+can help to make code easier to maintain.
 
 ### Be too descriptive
 
@@ -60,9 +60,9 @@ dna_sequence.scan(nucleotides_per_codon)
 ```
 
 Comments never hurt either, as long as they are correct. Incorrect comments are
-generally not considered useful. Comments are especially useful when the
-meaning of the code is not obvious, but going too much commenting can sometimes
-make code less easy to read
+generally not considered useful. Comments are especially useful when the meaning
+of the code is not obvious, but going too much commenting can sometimes make
+code less easy to read
 
 ```ruby
 # Why the chop?
@@ -97,9 +97,9 @@ and paste to save time, but this will be time consuming in the long term when
 debugging.
 
 For example a common function such as system specific BLAST settings, used
-across a variety of scripts can be kept in a single file. The can then be
-called by any script when required. By moving all the common code to a single
-file, if the BLAST settings change, this is done in just one place.
+across a variety of scripts can be kept in a single file. The can then be called
+by any script when required. By moving all the common code to a single file, if
+the BLAST settings change, this is done in just one place.
 
 ### Books and frameworks
 
@@ -107,16 +107,16 @@ When I used Java, Joshua Bloch's [Effective Java][effective] book helped me
 learn a great deal about how to programme well. When learning Ruby I found the
 [Ruby Way][way] book had many useful examples of how to write in Ruby. I might
 guess for any popular programming language there is a respected book that
-illustrates the best practices in the language. These are not the most useful
-if you're just starting to learn the language, but as you get more confident
-they are great for helping to write better, more maintainable code.
+illustrates the best practices in the language. These are not the most useful if
+you're just starting to learn the language, but as you get more confident they
+are great for helping to write better, more maintainable code.
 
 In addition to good books, examples of the best practices in a language can be
 found in popular open source libraries. [Rails][rails] is a Ruby framework for
 creating dynamic website. Knowing Rails will come in handy if I ever need to
 create an interactive website, but practising with Rails also gives an
-opinionated view of the best way to organise a Ruby project, from people who
-are experienced in creating them.
+opinionated view of the best way to organise a Ruby project, from people who are
+experienced in creating them.
 
 ### Further reading
 

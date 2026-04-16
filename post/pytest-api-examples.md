@@ -16,7 +16,8 @@ reconstitution of what's in the [pytest documentation][] for my own
 self-learning. In addition to the pytest documentation there's useful videos,
 and plugins listed on the [awesome pytest][] GitHub repository.
 
-[pytest jupyter notebook]: https://github.com/michaelbarton/jupyer-pytest-api-examples
+[pytest jupyter notebook]:
+  https://github.com/michaelbarton/jupyer-pytest-api-examples
 [pytest documentation]: https://docs.pytest.org/en/stable/example/index.html
 [awesome pytest]: https://github.com/augustogoulart/awesome-pytest
 
@@ -27,7 +28,8 @@ with. Fixtures are included in test function by adding them as parameters to the
 function. The pytest API comes with a few builtin fixtures: useful ones for
 temporary files are [tmp_path][] and [tmp_path_factory][] shown below.
 
-[tmp_path_factory]: https://docs.pytest.org/en/stable/tmpdir.html#tmp-path-factory-example
+[tmp_path_factory]:
+  https://docs.pytest.org/en/stable/tmpdir.html#tmp-path-factory-example
 [tmp_path]: https://docs.pytest.org/en/stable/tmpdir.html#the-tmpdir-fixture
 
 ```python
@@ -54,8 +56,10 @@ If you want to perform clean up on a fixture after it has been used, you can use
 will then run the code defined after the `yield` statement, after the
 fixture-using test returns.
 
-[fixture finalization]: https://docs.pytest.org/en/latest/fixture.html#teardown-cleanup-aka-fixture-finalization
-[pytest fixture]: https://docs.pytest.org/en/latest/reference.html#pytest-fixture
+[fixture finalization]:
+  https://docs.pytest.org/en/latest/fixture.html#teardown-cleanup-aka-fixture-finalization
+[pytest fixture]:
+  https://docs.pytest.org/en/latest/reference.html#pytest-fixture
 
 ```python
 import tempfile
@@ -97,7 +101,8 @@ def test_fixture_teardown_2(example_data_file_with_teardown: pathlib.Path):
 
 Documentation: [scope sharing][]
 
-[scope sharing]: https://docs.pytest.org/en/latest/fixture.html#scope-sharing-fixtures-across-classes-modules-packages-or-session
+[scope sharing]:
+  https://docs.pytest.org/en/latest/fixture.html#scope-sharing-fixtures-across-classes-modules-packages-or-session
 
 In the example above the code after the `yield` runs every time the fixture is
 used, this might be inappropriate if the fixture is computationally expensive.
@@ -346,7 +351,8 @@ The caveat to using the `get/set` methods is they have to be JSON serialisable,
 so in the examples below I convert `pathlib.Path` objects back and forth to
 strings to serialise into the cache.
 
-[cache]: https://docs.pytest.org/en/stable/cache.html#the-new-config-cache-object
+[cache]:
+  https://docs.pytest.org/en/stable/cache.html#the-new-config-cache-object
 [config_class]: https://docs.pytest.org/en/latest/reference.html#id35
 
 ```python

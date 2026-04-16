@@ -1,0 +1,61 @@
+--------------------------------------------------------------------------------
+
+## title: "LLMs don’t understand the grain of your data" date: today format: html: code-fold: true code-summary: "Show code" toc: true toc-depth: 2 categories: [data-engineering, llms, dbt]
+
+When I generate an analysis notebook figure or table with an LLM I just want to
+move forward with result. I don’t want spend time grading the LLM’s homework.
+There’s no reward for checking the analysis of an LLM - emotionally or from my
+colleagues. Sharing analysis graphs and figures are what I get paid to generate,
+and the expectation with LLMs is that I generate them faster. Even before LLMs
+became much better around November 2025, I knew that faster, more responsive
+analysis gets rewarded over slower, more thoughtful analysis. That’s been true
+of the industry as long I’ve been in it. The spend at which LLMs can generate
+results, and the accompanying expectations, have just compounded this.
+
+I’ve noticed that the friction of having to write everything myself was a form
+of protection. Have to type each character caused me to subconsciously think
+about what I’m doing, without having to try. It was a process running in the
+background. Now with LLMs that background thinking is gone. I have to do it
+consciously, and I’m being nudged by the LLM not to. Even before LLMs became
+good-enough, I already felt that I needed to spend more time thinking ahead, and
+mindfully about the goal.
+
+Here’s a concrete example from a public olist data set of how this can manifest.
+
+INSERT OLIST CODE AND SAMPLES
+
+The LLM identified a potential fan-out issue: where the join would incorrectly
+create additional rows at the wrong grain. The grain of the data — what each row
+represents — matters here. The orders table has one row per order. The payments
+table has one row per installment. Join them naively and a single order becomes
+three rows, and your revenue triples. The LLM caught this. But its fix
+introduced a subtler problem. The cognitive danger with using the LLMs is that
+here it identified a grain issue, and therefore the unconscious bias is that
+there are no other issues in the generated analysis. Especially when the LLM
+sells it in a very positive language. If you manually checked this analysis
+yourself you would find a second subtle bug that affects 2.3% of orders. Not
+impactful perhaps, but also not correct, and presented to me confidently.
+
+Unless the analysis ask is very simple, I always start with planning mode first.
+Planning mode adds a little helpful friction back in: reading the plan. While
+I’m reading I’m thinking and not doing. Anyone who’s ever reviewed someone
+else’s, compared to your own knows that your perspective is different. Using
+planning mode is a good trigger for this shift. The specifically when I do
+planning mode I ask the LLM to include three sections:
+
+- What are the exit criteria, what does success look like?
+- What are the invariants and grain of the data?
+- What are the potential failure modes?
+
+All of these questions are about fighting bias, mine and the LLMs. Kahneman
+might call this System 1 versus System 2. The LLM wants to think fast. I’m
+trying to think slow. Including these questions almost always shows a gap in the
+LLMs thinking - to the extent it makes me worried about code I generated before
+including these questions in the plan. These questions often surface assumptions
+that I didn’t know I or the LLM was making.
+
+Going back to the beginning of this article - working with LLMs has become about
+managing my mental effort as a limited resource. The harder I make it for myself
+to check the work of the LLMs the less likely I am. And the faster the LLM
+generates, the harder it gets.
+

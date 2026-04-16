@@ -4,5 +4,14 @@ css
 .idea
 .github/screenshots
 
+# Ignore quarto generated files, other html can be force checked in
+post/*.html
+
 # Want to ignore the env file because don't want the environment variables checked in.
 .env
+
+# Quarto build-time data (large binaries, recreate with setup_db.py)
+quarto/*/data/
+
+# Python virtual environment
+.venv

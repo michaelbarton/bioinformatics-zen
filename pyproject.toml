@@ -3,4 +3,9 @@ name = "bioinformatics-zen"
 version = "0"
 description = "My personal blog"
 requires-python = ">=3.13"
-dependencies = ["matplotlib>=3.10.8", "pandas>=3.0.2", "quarto>=0.1.0"]
+dependencies = [
+    "duckdb>=1.5.2",
+    "matplotlib>=3.10.8",
+ "pandas>=3.0.2",
+ "quarto>=0.1.0",
+]

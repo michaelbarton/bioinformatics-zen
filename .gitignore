@@ -12,8 +12,9 @@ post/*.html
 # Want to ignore the env file because don't want the environment variables checked in.
 .env
 
-# Quarto build-time data (large binaries, recreate with setup_db.py)
+# Quarto build-time data (large binaries, data)
 quarto/*/data/
+quarto/*/csvs/
 
 # Python virtual environment
 .venv

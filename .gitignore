@@ -3,6 +3,8 @@ _site
 css
 .idea
 .github/screenshots
+.panache-cache
+
 
 # Ignore quarto generated files, other html can be force checked in
 post/*.html

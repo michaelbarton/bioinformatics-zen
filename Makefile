@@ -1,6 +1,10 @@
 CHECK_FILES := scss/* post/*.md eleventy.config.js package.json
 
-build: fmt_check _site
+build: fmt_check quarto_render _site
+
+quarto_render:
+	uv run quarto render quarto/llms-dont-understand-the-grain-of-your-data/index.qmd
+	mv quarto/llms-dont-understand-the-grain-of-your-data/index.html post/llms-dont-understand-the-grain-of-your-data.html
 
 _site:
 	npm run build
@@ -13,9 +17,11 @@ deploy: _site
 
 fmt:
 	npx prettier --write ${CHECK_FILES}
+	panache format quarto/**/*.qmd
 
 fmt_check:
 	npx prettier --check ${CHECK_FILES}
+	panache format --check quarto/**/*.qmd
 
 content_check: _site
 	python3 bin/check_content.py

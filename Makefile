@@ -1,10 +1,13 @@
 CHECK_FILES := scss/* post/*.md eleventy.config.js package.json
+SLUGS := $(notdir $(patsubst %/,%,$(dir $(wildcard quarto/*/index.qmd))))
 
 build: fmt_check quarto_render _site
 
-quarto_render:
-	uv run quarto render quarto/llms-dont-understand-the-grain-of-your-data/index.qmd
-	mv quarto/llms-dont-understand-the-grain-of-your-data/index.html post/llms-dont-understand-the-grain-of-your-data.html
+data:
+	for d in quarto/*/Makefile; do $(MAKE) -C $$(dirname $$d) || exit 1; done
+
+quarto_render: data
+	cd quarto && uv run quarto render
 
 _site:
 	npm run build
@@ -12,7 +15,13 @@ _site:
 dev:
 	npm run start
 
-deploy: _site
+preview: data
+	npm run start & \
+	SERVER_PID=$$!; \
+	cd quarto && uv run quarto preview --no-serve --no-browser; \
+	kill $$SERVER_PID 2>/dev/null
+
+deploy: build
 	uvx --from awscli aws s3 sync _site s3://${S3_BUCKET} --delete
 
 fmt:
@@ -40,3 +49,5 @@ install-hooks:
 
 clean:
 	rm -rf _site
+	rm -f $(addprefix post/,$(addsuffix .html,$(SLUGS)))
+	rm -rf $(addprefix assets/posts/,$(SLUGS))

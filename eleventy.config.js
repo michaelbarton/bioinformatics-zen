@@ -52,6 +52,9 @@ module.exports = function (config) {
     return `<figcaption><p><strong>${short_desc}</strong> ${long_desc}</p></figcaption>`;
   });
 
+  config.setUseGitIgnore(false);
+  config.addPassthroughCopy("assets");
+
   // add support for syntax highlighting
   config.addPlugin(syntaxHighlight);
 

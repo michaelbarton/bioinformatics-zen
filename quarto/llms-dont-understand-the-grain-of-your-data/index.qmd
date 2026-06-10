@@ -1,12 +1,6 @@
 ---
 title: "LLMs don’t understand the grain of your data"
 date: today
-format:
-  html:
-    code-fold: true
-    code-summary: "Show code"
-    toc: true
-    toc-depth: 2
 categories: [data-engineering, llms, dbt]
 ---
 
@@ -20,50 +14,41 @@ analysis gets rewarded over slower, more thoughtful analysis. That’s been true
 of the industry as long I’ve been in it. The spend at which LLMs can generate
 results, and the accompanying expectations, have just compounded this.
 
-I’ve noticed that the friction of having to write everything myself was a form
-of protection. Have to type each character caused me to subconsciously think
+I’ve noticed that the pre-LLM friction of having to write analysis myself was a
+form of protection. Have to type everything caused me to subconsciously think
 about what I’m doing, without having to try. It was a process running in the
 background. Now with LLMs that background thinking is gone. I have to do it
 consciously, and I’m being nudged by the LLM not to. Even before LLMs became
-good-enough, I already felt that I needed to spend more time thinking ahead, and
-mindfully about the goal.
+good-enough, I usually felt that I should spend more time thinking ahead.
 
-Here’s a concrete from a real e-commerce dataset ([Olist][], 100K orders a
-Brazilian e-commerce startup). I gave an LLM the Olist dataset and asked a
-natural business question:
+Here’s a concrete example of this from a real e-commerce dataset ([Olist][],
+100K orders a Brazilian e-commerce startup). I gave an LLM the Olist dataset and
+asked:
 
 > *"Write a SQL query to show total revenue by product category and payment
 > type."*
+>
 
-This is the kind of question a product manager or analyst asks every day.
-Category lives in the `order_items` table. Payment type lives in the `payments`
-table. Both are keyed to `order_id`. The natural SQL joins them directly. The
-LLM flagged the fan-out risk and proposed a fix,
-
-from summing `payment_value` to summing `price + freight_value` from the items
-table, filtered to the primary payment method. This avoids the fan-out inflation
-— the total is now close to correct. But it introduces a different bug: the fix
-misattributes R$191K of voucher revenue which drops from 2.2% to 1.0%. The
-correct approach is proportional allocation which the LLM did not catch. This is
-not to create a gotcha moment, the error in itself is not huge, and likely a
-human could miss the same issue. The important point is I could easily
-misattirubte a level of confidence to the LLMs result compared to if I had
-thought through the problem myself. It looks like it's correct, but it's not.
+TODO: add screenshot image
 
 [Olist]: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 [chat]: https://claude.ai/share/939019a5-b7d5-4516-b26e-ba987f912164
 
-The LLM identified a potential fan-out issue: where the join would incorrectly
-create additional rows at the wrong grain. The grain of the data — what each row
-represents — matters here. The orders table has one row per order. The payments
-table has one row per installment. Join them naively and a single order becomes
-three rows, and your revenue triples. The LLM caught this. But its fix
-introduced a subtler problem. The cognitive danger with using the LLMs is that
-here it identified a grain issue, and therefore the unconscious bias is that
-there are no other issues in the generated analysis. Especially when the LLM
-sells it in a very positive language. If you manually checked this analysis
-yourself you would find a second subtle bug that affects 2.3% of orders. Not
-impactful perhaps, but also not correct, and presented to me confidently.
+This is the kind of question an analyst would ask. Category lives in the
+`order_items` table. Payment type lives in the `payments` table. Both are keyed
+to `order_id`. The natural SQL joins them directly. The LLM identified a
+potential fan-out issue: where the join would incorrectly create additional rows
+at the wrong grain. The grain of the data, what each row represents, matters
+here. The orders table has one row per order. The payments table has one row per
+payment charge - an order paid with a credit card and two vouchers has three
+rows. Join that to a multi-item order naively and the payment values multiply,
+inflating your revenue. The LLM caught this. But its fix introduced a subtler
+problem. The cognitive danger with using the LLMs is that here it identified a
+grain issue, and therefore the unconscious bias is that there are no other
+issues in the generated analysis. Especially when the LLM sells it in a very
+positive language. If you manually checked this analysis yourself you would find
+a second subtle bug that affects 2.3% of orders. Not impactful perhaps, but also
+not correct, and presented to me confidently.
 
 Unless the analysis ask is very simple, I always start with planning mode first.
 Planning mode adds a little helpful friction back in: reading the plan. While
@@ -96,20 +81,14 @@ generates, the harder it gets.
 import pandas as pd
 import sqlite3
 
-# Load the Olist dataset — download from:
-# https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 conn = sqlite3.connect("data/olist.db")
 orders = pd.read_sql("SELECT * FROM orders", conn)
 order_items = pd.read_sql("SELECT * FROM order_items", conn)
 payments = pd.read_sql("SELECT * FROM payments", conn)
-customers = pd.read_sql("SELECT * FROM customers", conn)
 products = pd.read_sql("SELECT * FROM products", conn)
-sellers = pd.read_sql("SELECT * FROM sellers", conn)
 ```
 
-## The anatomy of a silent error {#anatomy}
-
-Here's what the data looks like:
+## The data {#data}
 
 ```{python}
 #| label: tbl-data-overview
@@ -125,36 +104,20 @@ summary = pd.DataFrame({
     "Grain": [
         "One row per order",
         "One row per item in an order (1-21 items)",
-        "One row per payment installment (1-29 per order)"
+        "One row per payment charge (1-29 per order)"
     ]
 })
 summary
 ```
 
-<!-- [WRITE]
-Point out the implication: if you JOIN order_items to payments on order_id, 
-you get a many-to-many fan-out. Every item row × every payment row. 
-This is the kind of thing you'd catch if you were writing the SQL slowly, 
-but an LLM will generate this join without hesitation.
--->
+Joining `order_items` to `payments` on `order_id` produces a many-to-many
+fan-out: every item row × every payment row.
 
-## The experiment {#experiment}
+## The naive query {#query-1}
 
-I gave an LLM the Olist dataset and asked a natural business question:
+The LLM's first attempt joins the tables directly:
 
-> *"Write a SQL query to show total revenue by product category and payment
-> type."*
-
-This is the kind of question a product manager or analyst asks every day.
-Category lives in the `order_items` table. Payment type lives in the `payments`
-table. Both are keyed to `order_id`. The natural SQL joins them directly.
-
-### What the LLM produced {#query-1}
-
-```{sql}
---| eval: false
---| label: llm-query-1
---| code-summary: "LLM's first query"
+```sql
 SELECT
     pr.product_category_name AS category,
     p.payment_type,
@@ -195,25 +158,15 @@ ax.set_xlim(0, wrong_total * 1.15)
 plt.tight_layout()
 plt.show()
 
-print(f"Correct total: R${correct_total:,.2f}")
-print(f"LLM query total: R${wrong_total:,.2f}")
-print(f"Inflation: {wrong_total/correct_total:.0%}")
+print(f"Inflation: {wrong_total/correct_total - 1:.0%}")
 ```
 
-<!-- [WRITE]
-1-2 sentences: The SQL ran clean. No errors. The results look plausible — 
-the category rankings are roughly right, the payment type split is reasonable. 
-You'd put this in a deck without questioning it.
--->
+## The LLM's fix {#query-2}
 
-### The LLM caught the problem — sort of {#query-2}
+The LLM flagged the fan-out and proposed switching to `price + freight_value`
+from the items table, filtered to the primary payment method:
 
-To its credit, the LLM flagged the fan-out risk and proposed a fix:
-
-```{sql}
---| eval: false
---| label: llm-query-2
---| code-summary: "LLM's 'fixed' query"
+```sql
 SELECT
     pr.product_category_name AS category,
     p.payment_type,
@@ -227,53 +180,49 @@ GROUP BY pr.product_category_name, p.payment_type
 ORDER BY total_revenue DESC;
 ```
 
-<!-- [WRITE]
-This is the key moment. The LLM knew enough to spot the obvious problem, 
-but the fix introduces a subtler one. Walk through what's wrong:
--->
-
-The "fix" switches from summing `payment_value` to summing
-`price + freight_value` from the items table, filtered to the primary payment
-method. This avoids the fan-out inflation — the total is now close to correct.
-
-But it introduces a different bug:
+This avoids the inflation but misattributes revenue for orders split across
+payment types. Here's a concrete example:
 
 ```{python}
 #| label: tbl-split-payment
 #| tbl-cap: "An order split across credit card and voucher"
 
 example_order = pd.read_sql("""
-    SELECT order_id FROM payments 
-    GROUP BY order_id 
-    HAVING COUNT(DISTINCT payment_type) > 1 
+    SELECT order_id FROM payments
+    GROUP BY order_id
+    HAVING COUNT(DISTINCT payment_type) > 1
+    ORDER BY order_id
     LIMIT 1
 """, conn).iloc[0, 0]
 
-example_payments = pd.read_sql(f"""
-    SELECT payment_sequential, payment_type, payment_value 
-    FROM payments WHERE order_id = '{example_order}'
+example_payments = pd.read_sql("""
+    SELECT payment_sequential, payment_type, payment_value
+    FROM payments WHERE order_id = ?
     ORDER BY payment_sequential
-""", conn)
+""", conn, params=[example_order])
 
-example_items = pd.read_sql(f"""
-    SELECT order_item_id, price, freight_value 
-    FROM order_items WHERE order_id = '{example_order}'
-""", conn)
+example_items = pd.read_sql("""
+    SELECT order_item_id, price, freight_value
+    FROM order_items WHERE order_id = ?
+""", conn, params=[example_order])
 
 print(f"Order: {example_order}\n")
 print("Payments:")
 print(example_payments.to_string(index=False))
-print(f"\nItems:")
+print("\nItems:")
 print(example_items.to_string(index=False))
 ```
+
+The fix attributes all item revenue to `payment_sequential = 1`, so voucher
+revenue disappears from the breakdown:
 
 ```{python}
 #| label: split-payment-impact
 
 split_orders = pd.read_sql("""
     SELECT COUNT(*) as n FROM (
-        SELECT order_id FROM payments 
-        GROUP BY order_id 
+        SELECT order_id FROM payments
+        GROUP BY order_id
         HAVING COUNT(DISTINCT payment_type) > 1
     )
 """, conn).iloc[0, 0]
@@ -281,28 +230,61 @@ split_orders = pd.read_sql("""
 total_orders = payments.order_id.nunique()
 
 print(f"Orders with split payment types: {split_orders:,} ({split_orders/total_orders:.1%} of all orders)")
-print(f"\nThe 'fix' attributes ALL item revenue to the primary payment method.")
-print(f"Voucher revenue effectively disappears from the breakdown.")
 ```
 
-<!-- [WRITE]
-Drive the point home — but be honest about the nuance:
+```{python}
+#| label: voucher-misattribution
 
-1. The naive query is wrong (27% inflation) — clear-cut
-2. The LLM caught that problem — credit where it's due
-3. Its fix is mostly right but misattributes R$178K of voucher revenue 
-   (voucher drops from 2.4% to 1.0% of total). If you're evaluating 
-   voucher program ROI, this is a bad decision waiting to happen.
-4. The correct approach (proportional allocation) was never attempted
+# Voucher revenue under the LLM's fix: all item revenue is attributed to
+# payment_sequential = 1, so voucher only appears when it IS the primary method
+llm_fix = pd.read_sql("""
+    SELECT p.payment_type, SUM(oi.price + oi.freight_value) as revenue
+    FROM order_items oi
+    JOIN payments p ON oi.order_id = p.order_id
+    WHERE p.payment_sequential = 1
+    GROUP BY p.payment_type
+""", conn)
 
-The point ISN'T that every query is catastrophically wrong. 
-It's that you can't tell which parts are reliable without checking.
-Sometimes the LLM nails it. Sometimes it half-fixes it. Sometimes 
-it's silently 27% off. You have no signal for which situation you're in.
-That uncertainty is the problem — and invariants are how you resolve it.
--->
+# Correct revenue per payment type: each payment row already records its own
+# type and value, so no allocation is needed at this level
+correct_by_type = pd.read_sql("""
+    SELECT payment_type, SUM(payment_value) as revenue
+    FROM payments
+    WHERE order_id IN (SELECT order_id FROM order_items)
+    GROUP BY payment_type
+""", conn)
 
-## The correct approach {#correct}
+llm_voucher = llm_fix.loc[llm_fix.payment_type == "voucher", "revenue"].iloc[0]
+correct_voucher = correct_by_type.loc[correct_by_type.payment_type == "voucher", "revenue"].iloc[0]
+llm_total = llm_fix.revenue.sum()
+correct_total_alloc = correct_by_type.revenue.sum()
+
+print(f"Voucher revenue (LLM fix):    R${llm_voucher:>12,.2f}  ({llm_voucher/llm_total:.1%} of total)")
+print(f"Voucher revenue (correct):    R${correct_voucher:>12,.2f}  ({correct_voucher/correct_total_alloc:.1%} of total)")
+print(f"Misattributed:                R${correct_voucher - llm_voucher:>12,.2f}")
+```
+
+The fix has a third, quieter problem: some orders have no
+`payment_sequential = 1` row at all, so the `WHERE` clause drops them entirely:
+
+```{python}
+#| label: dropped-orders
+
+no_seq1 = pd.read_sql("""
+    SELECT COUNT(*) as n FROM (
+        SELECT order_id FROM payments
+        GROUP BY order_id
+        HAVING SUM(payment_sequential = 1) = 0
+    )
+""", conn).iloc[0, 0]
+
+print(f"Orders with no payment_sequential = 1: {no_seq1}")
+```
+
+## Proportional allocation {#correct}
+
+The correct approach allocates each order's payment across categories
+proportionally by item price:
 
 ```{python}
 #| label: correct-approach
@@ -315,79 +297,55 @@ correct = pd.read_sql("""
         GROUP BY order_id, payment_type
     ),
     order_item_totals AS (
-        SELECT 
+        SELECT
             oi.order_id,
-            pr.product_category_name,
+            COALESCE(pr.product_category_name, '(no category)') as category,
             SUM(oi.price) as category_total,
             SUM(SUM(oi.price)) OVER (PARTITION BY oi.order_id) as order_total
         FROM order_items oi
         JOIN products pr ON oi.product_id = pr.product_id
-        GROUP BY oi.order_id, pr.product_category_name
+        GROUP BY oi.order_id, COALESCE(pr.product_category_name, '(no category)')
     )
-    SELECT 
-        oit.product_category_name as category,
+    SELECT
+        oit.category,
         opt.payment_type,
-        ROUND(SUM(opt.payment_total * (oit.category_total / NULLIF(oit.order_total, 0))), 2) as allocated_revenue
+        ROUND(SUM(opt.payment_total * (oit.category_total / oit.order_total)), 2) as allocated_revenue
     FROM order_item_totals oit
     JOIN order_payment_totals opt ON oit.order_id = opt.order_id
-    GROUP BY oit.product_category_name, opt.payment_type
+    GROUP BY oit.category, opt.payment_type
     ORDER BY allocated_revenue DESC
-    LIMIT 15
 """, conn)
 
-correct
+correct.head(15)
 ```
 
-<!-- [WRITE]
-Brief explanation of the proportional allocation approach. You don't need to 
-belabor it — the code speaks for itself. The point is that this requires 
-thinking about grain BEFORE writing the query, not after.
--->
+## Reconciliation {#reconciliation}
 
-## What I do about it: invariants {#invariants}
+A breakdown is only trustworthy if it sums back to a known total. The allocated
+revenue plus the payments for orders with no item rows (which no category
+breakdown can include) must equal the payments table total:
 
-<!-- [WRITE] 
-This is the framework section — the part people will bookmark and reference.
-Introduce the concept of invariants: things that should be true about 
-your data before and after a transformation.
+```{python}
+#| label: reconciliation
 
-Your approach:
-1. Before writing a query that crosses grains, define what the total SHOULD be
-2. Ask the LLM to include those checks in the query
-3. Think in terms of "before grain" and "after grain" composite keys
+allocated_total = correct.allocated_revenue.sum()
 
-The compounding insight (from your own experience): The first invariant 
-you add to any pipeline is a total revenue check. But the real value comes 
-from the second and third — once you start asserting things about your data, 
-you discover assumptions you didn't know you were making. In your experience 
-with dbt, once you start adding invariants, you catch far more errors than 
-the one you originally set out to prevent.
+no_items = pd.read_sql("""
+    SELECT COUNT(DISTINCT order_id) as orders, SUM(payment_value) as total
+    FROM payments
+    WHERE order_id NOT IN (SELECT order_id FROM order_items)
+""", conn)
 
-Mention dbt tests in passing — "I implement these as dbt tests in practice" — 
-with a link, but don't explain dbt. This is the seed for a follow-up post.
+payments_total = pd.read_sql(
+    "SELECT SUM(payment_value) as total FROM payments", conn
+).iloc[0, 0]
 
-Give 3-4 concrete invariant patterns:
-- Total revenue should remain constant across transformations
-- Row counts at each grain level should be predictable
-- NULL rates should be stable or explainable
-- Distribution shapes shouldn't change after joins
+assert abs(allocated_total + no_items.total[0] - payments_total) < 1.0
 
-The more concrete and stealable these are, the better.
--->
-
-## Why this matters now {#why-now}
-
-<!-- [WRITE]
-The closing argument. Not speculation about future agents — that's 
-too hand-wavy. Instead:
-
-The speed of LLM-assisted analysis is only going to increase. 
-The confirmation bias problem scales with that speed. 
-Until models are skeptical by default, that skepticism has to come from you.
-The invariants approach is how you operationalize that skepticism.
-
-Keep it tight. 3-4 sentences max.
--->
+print(f"Allocated across categories:        R${allocated_total:>13,.2f}")
+print(f"Orders with payments but no items:  R${no_items.total[0]:>13,.2f}  ({no_items.orders[0]} orders)")
+print(f"Payments table total:               R${payments_total:>13,.2f}")
+```
 
 ```{python}
 #| echo: false

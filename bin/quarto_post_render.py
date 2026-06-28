@@ -47,7 +47,17 @@ def process(rendered_html: Path) -> None:
     if main is None:
         sys.exit(f"ERROR: no <main> or <body> found in {rendered_html}")
 
-    head_styles = "\n".join(str(s) for s in soup.head.find_all("style")) if soup.head else ""
+    head_styles_parts = []
+    if soup.head:
+        for s in soup.head.find_all("style"):
+            head_styles_parts.append(str(s))
+        for link in soup.head.find_all("link", rel="stylesheet"):
+            href = link.get("href", "")
+            if href and not href.startswith(("http://", "https://", "//")):
+                css_path = (quarto_dir / href).resolve()
+                if css_path.exists():
+                    head_styles_parts.append(f"<style>\n{css_path.read_text(encoding='utf-8')}\n</style>")
+    head_styles = "\n".join(head_styles_parts)
 
     assets_dir = REPO_ROOT / "assets" / "posts" / slug
     assets_dir.mkdir(parents=True, exist_ok=True)
@@ -77,7 +87,7 @@ def process(rendered_html: Path) -> None:
 def main() -> None:
     outputs = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES", "").strip().splitlines()
     if not outputs:
-        sys.exit("ERROR: QUARTO_PROJECT_OUTPUT_FILES is empty; run via `quarto render`.")
+        return
     for o in outputs:
         process(Path(o).resolve())
 

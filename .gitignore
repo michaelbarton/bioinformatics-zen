@@ -9,6 +9,7 @@ css
 
 # Ignore quarto generated files, other html can be force checked in
 post/*.html
+!post/llms-dont-understand-the-grain-of-your-data.html
 
 # Want to ignore the env file because don't want the environment variables checked in.
 .env

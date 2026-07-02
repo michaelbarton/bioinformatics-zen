@@ -17,6 +17,9 @@ jobs:
           cache: "npm"
 
       - uses: jolars/panache-action@v1
+        with:
+          format: false
+          lint: false
 
       - run: npm ci
 

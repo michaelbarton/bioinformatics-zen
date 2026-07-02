@@ -18,6 +18,7 @@ jobs:
 
       - uses: jolars/panache-action@v1
         with:
+          version: "2.35.0"
           format: false
           lint: false
 

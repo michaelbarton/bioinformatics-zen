@@ -5,9 +5,9 @@ categories: [data-engineering, llms, dbt]
 ---
 
 When I generate an analysis notebook figure or table with an LLM I just want to
-move forward with the result. I don’t want to spend time grading the LLM’s homework.
-There’s no reward for checking the analysis of an LLM - emotionally or from my
-colleagues. Sharing analysis graphs and figures are what I get paid to generate,
+move forward with the result. I don’t want to spend time grading the LLM’s
+homework. There’s no reward for checking the analysis of an LLM — emotionally or
+from my colleagues. Analysis graphs and figures are what I get paid to generate,
 and the expectation with LLMs is that I generate them faster. Even before LLMs
 became much better around November 2025, I knew that faster, more responsive
 analysis gets rewarded over slower, more thoughtful analysis. That’s been true
@@ -19,7 +19,7 @@ form of protection. Having to type everything caused me to subconsciously think
 about what I was doing, without conscious effort. It was a process running in
 the background. Now with LLMs that background thinking is gone. I have to do it
 consciously, and I’m being nudged by the LLM not to. Even before LLMs became
-good-enough, I usually felt that I should spend more time thinking ahead.
+good enough, I usually felt that I should spend more time thinking ahead.
 
 Here’s a concrete example using publicly available real e-commerce data
 ([Olist][], 100K orders from a Brazilian e-commerce startup). I gave an LLM this
@@ -32,31 +32,29 @@ data and asked:
 
 [olist]: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
 
-This is the kind of question an analyst might ask. Category lives in the
-`order_items` table. Payment type lives in the `payments` table. Both are keyed
-to `order_id`. The natural SQL joins them directly. The LLM identified a
-potential fan-out issue: where the join would incorrectly create additional rows
-at the wrong grain. The grain of the data, what each row represents, matters
-here. The orders table has one row per order. The payments table has one row per
-payment charge - an order paid with a credit card and two vouchers has three
-rows. Join that to a multi-item order naively and the payment values multiply,
-inflating the revenue. The LLM caught this, but its fix introduced a subtler
-problem. The cognitive danger with using the LLMs is that here it identified a
-grain issue, and therefore my unconscious bias is that there are no other issues
-in the generated analysis. Especially when the LLM sells it in very positive
-language. However if I manually checked this analysis myself I would find a
+This is the kind of question an analyst might ask. Category comes from the items
+side of an order (`order_items` joined to `products`). Payment type lives in the
+`payments` table. Both are keyed to `order_id`. The natural SQL joins them
+directly. The LLM identified a potential fan-out issue: where the join would
+incorrectly create additional rows at the wrong grain. The grain of the data,
+what each row represents, matters here. The orders table has one row per order.
+The payments table has one row per payment charge — an order paid with a credit
+card and two vouchers has three rows. Join that to a multi-item order naively
+and the payment values multiply, inflating the revenue. The LLM caught this, but
+its fix introduced a subtler problem. The cognitive danger is that the LLM
+identified a grain issue, and therefore my unconscious bias is that there are no
+other issues in the generated analysis. Especially when the LLM sells it in very
+positive language. However, if I checked this analysis myself I would find a
 second subtle bug that affects 2.3% of orders. Not impactful perhaps, but
 incorrect — and presented confidently.
 
-So what's the fix? Not a better prompt — adding back the friction that LLMs
-strip away.
-
-Unless the analysis ask is very simple, I always start with planning mode first.
-Planning mode adds a little helpful friction back in: reading the plan. While
-I’m reading, I’m thinking and not doing. Anyone who’s ever reviewed someone
-else’s code, knows that the perspective is different. Using planning mode is a
-good trigger for this shift. Specifically when I do planning mode, I have a
-[Claude exit hook][claude exit hook], this asks the LLM questions like:
+I don’t have any easy answers for this, but I don’t think it can be solved by
+better prompting. Unless the analysis ask is very simple, I always start with
+planning mode. Planning mode adds a little helpful friction back in: reading the
+plan. While I’m reading, I’m thinking and not doing. Anyone who’s ever reviewed
+someone else’s code knows that the perspective is different. Using planning mode
+is a good trigger for this shift. Specifically, when I use planning mode I have
+a [Claude exit hook][claude exit hook], which asks the LLM questions like:
 
 [claude exit hook]:
   https://github.com/michaelbarton/dotfiles/blob/master/claude/hooks/plan-review.sh
@@ -65,26 +63,26 @@ good trigger for this shift. Specifically when I do planning mode, I have a
 - What are the invariants and grain of the data?
 - What are the potential failure modes?
 
-All of these questions are about fighting bias, mine and the LLMs. Kahneman
+All of these questions are about fighting bias, mine and the LLM’s. Kahneman
 might call this System 1 versus System 2. The LLM wants to think fast. I’m
 trying to think slow. Including these questions almost always shows a gap in the
-LLM’s thinking - to the extent it makes me worried about code I generated before
-including these questions in the plan. These questions often surface assumptions
-that I didn’t know I, or the LLM, was making.
+LLM’s thinking — to the extent it makes me worried about code I generated before
+adopting this habit. These questions often surface assumptions that I didn’t
+know I, or the LLM, was making.
 
-Going back to the beginning of this article - working with LLMs has become about
-managing my mental effort as a limited resource. The harder I make it for myself
-to check the work of the LLMs the less likely I am. And the faster the LLM
+Going back to the beginning of this article — working with LLMs has become about
+managing my mental effort as a limited resource. The harder it is to check the
+work of the LLM, the less likely I am to do it. And the faster the LLM
 generates, the harder it gets.
 
 ## Appendix
 
-You don't need to read this appendix to understand the point I'm making in this
+You don’t need to read this appendix to understand the point I’m making in this
 article. This section is here if you want to get into the details about how
 subtle bugs can show up due to data grain misunderstanding. Exactly the type of
-issue that current generation of frontier LLMs still seem to struggle with.
-I didn't get a chance to try with Fable, but perhaps someone could try using the
-original prompt as above, and see how it performs.
+issue that the current generation of frontier LLMs still seem to struggle with.
+I didn’t get a chance to try with Fable, but perhaps someone could try using the
+original prompt above and see how it performs.
 
 ```{python}
 # | echo: false
@@ -99,7 +97,9 @@ conn = duckdb.connect("data/olist.duckdb", read_only=True)
 # | echo: false
 # | label: tbl-data-overview
 # | tbl-cap: "Three tables in the Olist data at three different grains."
-conn.sql("""
+display(
+    HTML(
+        conn.sql("""
     select
       'orders' as "Table",
       count(*) AS "Rows",
@@ -124,7 +124,11 @@ conn.sql("""
       count(distinct order_id),
       'One row per payment charge'
     from payments
-""").df()
+""")
+        .df()
+        .to_html(index=False)
+    )
+)
 ```
 
 Joining `order_items` to `payments` on `order_id` produces a many-to-many
@@ -179,18 +183,27 @@ example_order = conn.sql("""
     LIMIT 1
 """).fetchone()[0]
 
-payments_html = conn.sql(f"""
+payments_html = (
+    conn.sql(f"""
     SELECT payment_sequential, payment_type, payment_value
     FROM payments WHERE order_id = '{example_order}'
     ORDER BY payment_sequential
-""").df().to_html()
+""")
+    .df()
+    .to_html(index=False)
+)
 
-items_html = conn.sql(f"""
+items_html = (
+    conn.sql(f"""
     SELECT order_item_id, price, freight_value
     FROM order_items WHERE order_id = '{example_order}'
-""").df().to_html()
+""")
+    .df()
+    .to_html(index=False)
+)
 
-display(HTML(f"""
+display(
+    HTML(f"""
 <figure>
 <figcaption>Table 2: An order split across credit card and voucher</figcaption>
 <p><strong>Order:</strong> <code>{example_order}</code></p>
@@ -199,10 +212,11 @@ display(HTML(f"""
 <p><strong>Items</strong></p>
 {items_html}
 </figure>
-"""))
+""")
+)
 ```
 
-The second query however attributes all item revenue to
+The second query, however, attributes all item revenue to
 `payment_sequential = 1`, so vouchers which are `payment_sequential = 2`
 disappear from the breakdown:
 
@@ -277,8 +291,8 @@ print(f"Orders with no payment_sequential = 1: {no_seq1}")
 
 The likely correct approach would allocate each order's payment across
 categories proportionally by item price, accounting for vouchers, and
-potentially other sequential payment types. I haven't added that query here, but
-it starts to get more complex. If you're still reading here, then I think you
+potentially other sequential payment types. I haven’t added that query here, but
+it starts to get more complex. If you’re still reading here, then I think you
 get the point already about the LLM getting it wrong with a naive prompt.
 
 ```{python}

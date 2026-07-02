@@ -16,13 +16,19 @@ jobs:
           node-version: "22"
           cache: "npm"
 
+      - uses: jolars/panache-action@v1
+        with:
+          version: "2.35.0"
+          format: false
+          lint: false
+
       - run: npm ci
 
       - name: Check markdown formatting
         run: make fmt_check
 
       - name: Check site builds
-        run: make build
+        run: make _site
 
       - name: Check content structure and images
         run: make content_check

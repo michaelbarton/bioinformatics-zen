@@ -1,0 +1,21 @@
+project:
+  type: default
+  post-render:
+    - ../bin/quarto_post_render.py
+
+execute:
+  cache: true
+
+format:
+  html:
+    theme: none
+    highlight-style: github
+    code-fold: show
+    code-summary: "Show code"
+    code-copy: false
+    toc: false
+    anchor-sections: false
+    code-tools: false
+    embed-resources: false
+    template-partials:
+      - _partials/title-block.html

@@ -644,3 +644,18 @@ figure table {
 here {
   display: none;
 }
+
+/* ============================================
+   Quarto code-fold blocks
+   ============================================ */
+
+details.code-fold {
+  margin: 1em 0;
+
+  summary {
+    cursor: pointer;
+    font-size: 0.85rem;
+    user-select: none;
+    color: #666;
+  }
+}

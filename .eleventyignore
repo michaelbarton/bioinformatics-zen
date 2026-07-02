@@ -1,0 +1,12 @@
+node_modules
+_site
+css
+.idea
+.github
+.panache-cache
+.env
+.venv
+quarto
+README.md
+CHANGELOG.md
+CLAUDE.md

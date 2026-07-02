@@ -1,0 +1,785 @@
+---
+tags: post
+layout: post
+title: "You can’t rely on LLMs to understand the grain of your data"
+date: 2026-07-01
+---
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+<style>
+.tippy-box[data-animation=fade][data-state=hidden]{opacity:0}[data-tippy-root]{max-width:calc(100vw - 10px)}.tippy-box{position:relative;background-color:#333;color:#fff;border-radius:4px;font-size:14px;line-height:1.4;white-space:normal;outline:0;transition-property:transform,visibility,opacity}.tippy-box[data-placement^=top]>.tippy-arrow{bottom:0}.tippy-box[data-placement^=top]>.tippy-arrow:before{bottom:-7px;left:0;border-width:8px 8px 0;border-top-color:initial;transform-origin:center top}.tippy-box[data-placement^=bottom]>.tippy-arrow{top:0}.tippy-box[data-placement^=bottom]>.tippy-arrow:before{top:-7px;left:0;border-width:0 8px 8px;border-bottom-color:initial;transform-origin:center bottom}.tippy-box[data-placement^=left]>.tippy-arrow{right:0}.tippy-box[data-placement^=left]>.tippy-arrow:before{border-width:8px 0 8px 8px;border-left-color:initial;right:-7px;transform-origin:center left}.tippy-box[data-placement^=right]>.tippy-arrow{left:0}.tippy-box[data-placement^=right]>.tippy-arrow:before{left:-7px;border-width:8px 8px 8px 0;border-right-color:initial;transform-origin:center right}.tippy-box[data-inertia][data-state=visible]{transition-timing-function:cubic-bezier(.54,1.5,.38,1.11)}.tippy-arrow{width:16px;height:16px;color:#333}.tippy-arrow:before{content:"";position:absolute;border-color:transparent;border-style:solid}.tippy-content{position:relative;padding:5px 9px;z-index:1}
+</style>
+<style>
+.tippy-box[data-theme~=light-border]{background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,8,16,.15);color:#333;box-shadow:0 4px 14px -2px rgba(0,8,16,.08)}.tippy-box[data-theme~=light-border]>.tippy-backdrop{background-color:#fff}.tippy-box[data-theme~=light-border]>.tippy-arrow:after,.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{content:"";position:absolute;z-index:-1}.tippy-box[data-theme~=light-border]>.tippy-arrow:after{border-color:transparent;border-style:solid}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:before{border-top-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-arrow:after{border-top-color:rgba(0,8,16,.2);border-width:7px 7px 0;top:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow>svg{top:16px}.tippy-box[data-theme~=light-border][data-placement^=top]>.tippy-svg-arrow:after{top:17px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:before{border-bottom-color:#fff;bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-arrow:after{border-bottom-color:rgba(0,8,16,.2);border-width:0 7px 7px;bottom:17px;left:1px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow>svg{bottom:16px}.tippy-box[data-theme~=light-border][data-placement^=bottom]>.tippy-svg-arrow:after{bottom:17px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:before{border-left-color:#fff}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-arrow:after{border-left-color:rgba(0,8,16,.2);border-width:7px 0 7px 7px;left:17px;top:1px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow>svg{left:11px}.tippy-box[data-theme~=light-border][data-placement^=left]>.tippy-svg-arrow:after{left:12px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:before{border-right-color:#fff;right:16px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-arrow:after{border-width:7px 7px 7px 0;right:17px;top:1px;border-right-color:rgba(0,8,16,.2)}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow>svg{right:11px}.tippy-box[data-theme~=light-border][data-placement^=right]>.tippy-svg-arrow:after{right:12px}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow{fill:#fff}.tippy-box[data-theme~=light-border]>.tippy-svg-arrow:after{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMCA2czEuNzk2LS4wMTMgNC42Ny0zLjYxNUM1Ljg1MS45IDYuOTMuMDA2IDggMGMxLjA3LS4wMDYgMi4xNDguODg3IDMuMzQzIDIuMzg1QzE0LjIzMyA2LjAwNSAxNiA2IDE2IDZIMHoiIGZpbGw9InJnYmEoMCwgOCwgMTYsIDAuMikiLz48L3N2Zz4=);background-size:16px 6px;width:16px;height:6px}
+</style>
+<style>
+.top-right{position:absolute;top:1em;right:1em}.visually-hidden{border:0;clip:rect(0 0 0 0);height:auto;margin:0;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap}.hidden{display:none !important}.zindex-bottom{z-index:-1 !important}figure.figure{display:block}.quarto-layout-panel{margin-bottom:1em}.quarto-layout-panel>figure{width:100%}.quarto-layout-panel>figure>figcaption,.quarto-layout-panel>.panel-caption{margin-top:10pt}.quarto-layout-panel>.table-caption{margin-top:0px}.table-caption p{margin-bottom:.5em}.quarto-layout-row{display:flex;flex-direction:row;align-items:flex-start}.quarto-layout-valign-top{align-items:flex-start}.quarto-layout-valign-bottom{align-items:flex-end}.quarto-layout-valign-center{align-items:center}.quarto-layout-cell{position:relative;margin-right:20px}.quarto-layout-cell:last-child{margin-right:0}.quarto-layout-cell figure,.quarto-layout-cell>p{margin:.2em}.quarto-layout-cell img{max-width:100%}.quarto-layout-cell .html-widget{width:100% !important}.quarto-layout-cell div figure p{margin:0}.quarto-layout-cell figure{display:block;margin-inline-start:0;margin-inline-end:0}.quarto-layout-cell table{display:inline-table}.quarto-layout-cell-subref figcaption,figure .quarto-layout-row figure figcaption{text-align:center;font-style:italic}.quarto-figure{position:relative;margin-bottom:1em}.quarto-figure>figure{width:100%;margin-bottom:0}.quarto-figure-left>figure>p,.quarto-figure-left>figure>div{text-align:left}.quarto-figure-center>figure>p,.quarto-figure-center>figure>div{text-align:center}.quarto-figure-right>figure>p,.quarto-figure-right>figure>div{text-align:right}.quarto-figure>figure>div.cell-annotation,.quarto-figure>figure>div code{text-align:left}figure>p:empty{display:none}figure>p:first-child{margin-top:0;margin-bottom:0}figure>figcaption.quarto-float-caption-bottom{margin-bottom:.5em}figure>figcaption.quarto-float-caption-top{margin-top:.5em}div[id^=tbl-]{position:relative}.quarto-figure>.anchorjs-link{position:absolute;top:.6em;right:.5em}div[id^=tbl-]>.anchorjs-link{position:absolute;top:.7em;right:.3em}.quarto-figure:hover>.anchorjs-link,div[id^=tbl-]:hover>.anchorjs-link,h2:hover>.anchorjs-link,h3:hover>.anchorjs-link,h4:hover>.anchorjs-link,h5:hover>.anchorjs-link,h6:hover>.anchorjs-link,.reveal-anchorjs-link>.anchorjs-link{opacity:1}#title-block-header{margin-block-end:1rem;position:relative;margin-top:-1px}#title-block-header .abstract{margin-block-start:1rem}#title-block-header .abstract .abstract-title{font-weight:600}#title-block-header a{text-decoration:none}#title-block-header .author,#title-block-header .date,#title-block-header .doi{margin-block-end:.2rem}#title-block-header .quarto-title-block>div{display:flex}#title-block-header .quarto-title-block>div>h1{flex-grow:1}#title-block-header .quarto-title-block>div>button{flex-shrink:0;height:2.25rem;margin-top:0}tr.header>th>p:last-of-type{margin-bottom:0px}table,table.table{margin-top:.5rem;margin-bottom:.5rem}caption,.table-caption{padding-top:.5rem;padding-bottom:.5rem;text-align:center}figure.quarto-float-tbl figcaption.quarto-float-caption-top{margin-top:.5rem;margin-bottom:.25rem;text-align:center}figure.quarto-float-tbl figcaption.quarto-float-caption-bottom{padding-top:.25rem;margin-bottom:.5rem;text-align:center}.utterances{max-width:none;margin-left:-8px}iframe{margin-bottom:1em}details{margin-bottom:1em}details[show]{margin-bottom:0}details>summary{color:rgb(110.5,110.5,110.5)}details>summary>p:only-child{display:inline}div.code-copy-outer-scaffold{position:relative}dd code:not(.sourceCode),p code:not(.sourceCode){white-space:pre-wrap}code{white-space:pre}@media print{code{white-space:pre-wrap}}pre>code{display:block}pre>code.sourceCode{white-space:pre}pre>code.sourceCode>span>a:first-child::before{text-decoration:none}pre.code-overflow-wrap>code.sourceCode{white-space:pre-wrap}pre.code-overflow-scroll>code.sourceCode{white-space:pre}code a:any-link{color:inherit;text-decoration:none}code a:hover{color:inherit;text-decoration:underline}ul.task-list{padding-left:1em}[data-tippy-root]{display:inline-block}.tippy-content .footnote-back{display:none}.footnote-back{margin-left:.2em}.tippy-content{overflow-x:auto}.quarto-embedded-source-code{display:none}.quarto-unresolved-ref{font-weight:600}.quarto-cover-image{max-width:35%;float:right;margin-left:30px}.cell-output-display .widget-subarea{margin-bottom:1em}.cell-output-display:not(.no-overflow-x),.knitsql-table:not(.no-overflow-x){overflow-x:auto}.panel-input{margin-bottom:1em}.panel-input>div,.panel-input>div>div{display:inline-block;vertical-align:top;padding-right:12px}.panel-input>p:last-child{margin-bottom:0}.layout-sidebar{margin-bottom:1em}.layout-sidebar .tab-content{border:none}.tab-content>.page-columns.active{display:grid}div.sourceCode>iframe{width:100%;height:300px;margin-bottom:-0.5em}a{text-underline-offset:3px}.callout pre.sourceCode{padding-left:0}div.ansi-escaped-output{font-family:monospace;display:block}/*!
+*
+* ansi colors from IPython notebook's
+*
+* we also add `bright-[color]-` synonyms for the `-[color]-intense` classes since
+* that seems to be what ansi_up emits
+*
+*/.ansi-black-fg{color:#3e424d}.ansi-black-bg{background-color:#3e424d}.ansi-black-intense-black,.ansi-bright-black-fg{color:#282c36}.ansi-black-intense-black,.ansi-bright-black-bg{background-color:#282c36}.ansi-red-fg{color:#e75c58}.ansi-red-bg{background-color:#e75c58}.ansi-red-intense-red,.ansi-bright-red-fg{color:#b22b31}.ansi-red-intense-red,.ansi-bright-red-bg{background-color:#b22b31}.ansi-green-fg{color:#00a250}.ansi-green-bg{background-color:#00a250}.ansi-green-intense-green,.ansi-bright-green-fg{color:#007427}.ansi-green-intense-green,.ansi-bright-green-bg{background-color:#007427}.ansi-yellow-fg{color:#ddb62b}.ansi-yellow-bg{background-color:#ddb62b}.ansi-yellow-intense-yellow,.ansi-bright-yellow-fg{color:#b27d12}.ansi-yellow-intense-yellow,.ansi-bright-yellow-bg{background-color:#b27d12}.ansi-blue-fg{color:#208ffb}.ansi-blue-bg{background-color:#208ffb}.ansi-blue-intense-blue,.ansi-bright-blue-fg{color:#0065ca}.ansi-blue-intense-blue,.ansi-bright-blue-bg{background-color:#0065ca}.ansi-magenta-fg{color:#d160c4}.ansi-magenta-bg{background-color:#d160c4}.ansi-magenta-intense-magenta,.ansi-bright-magenta-fg{color:#a03196}.ansi-magenta-intense-magenta,.ansi-bright-magenta-bg{background-color:#a03196}.ansi-cyan-fg{color:#60c6c8}.ansi-cyan-bg{background-color:#60c6c8}.ansi-cyan-intense-cyan,.ansi-bright-cyan-fg{color:#258f8f}.ansi-cyan-intense-cyan,.ansi-bright-cyan-bg{background-color:#258f8f}.ansi-white-fg{color:#c5c1b4}.ansi-white-bg{background-color:#c5c1b4}.ansi-white-intense-white,.ansi-bright-white-fg{color:#a1a6b2}.ansi-white-intense-white,.ansi-bright-white-bg{background-color:#a1a6b2}.ansi-default-inverse-fg{color:#fff}.ansi-default-inverse-bg{background-color:#000}.ansi-bold{font-weight:bold}.ansi-underline{text-decoration:underline}:root{--quarto-body-bg: #fff;--quarto-body-color: #222;--quarto-text-muted: rgb(110.5, 110.5, 110.5);--quarto-border-color: rgb(110.5, 110.5, 110.5);--quarto-border-width: 1px;--quarto-border-radius: 4px}table.gt_table{color:var(--quarto-body-color);font-size:1em;width:100%;background-color:rgba(0,0,0,0);border-top-width:inherit;border-bottom-width:inherit;border-color:var(--quarto-border-color)}table.gt_table th.gt_column_spanner_outer{color:var(--quarto-body-color);background-color:rgba(0,0,0,0);border-top-width:inherit;border-bottom-width:inherit;border-color:var(--quarto-border-color)}table.gt_table th.gt_col_heading{color:var(--quarto-body-color);font-weight:bold;background-color:rgba(0,0,0,0)}table.gt_table thead.gt_col_headings{border-bottom:1px solid currentColor;border-top-width:inherit;border-top-color:var(--quarto-border-color)}table.gt_table thead.gt_col_headings:not(:first-child){border-top-width:1px;border-top-color:var(--quarto-border-color)}table.gt_table td.gt_row{border-bottom-width:1px;border-bottom-color:var(--quarto-border-color);border-top-width:0px}table.gt_table tbody.gt_table_body{border-top-width:1px;border-bottom-width:1px;border-bottom-color:var(--quarto-border-color);border-top-color:currentColor}div.columns{display:initial;gap:initial}div.column{display:inline-block;overflow-x:initial;vertical-align:top;width:50%}.code-annotation-tip-content{word-wrap:break-word}.code-annotation-container-hidden{display:none !important}dl.code-annotation-container-grid{display:grid;grid-template-columns:min-content auto}dl.code-annotation-container-grid dt{grid-column:1}dl.code-annotation-container-grid dd{grid-column:2}pre.sourceCode.code-annotation-code{padding-right:0}code.sourceCode .code-annotation-anchor{z-index:100;position:relative;float:right;background-color:rgba(0,0,0,0)}input[type=checkbox]{margin-right:.5ch}:root{--mermaid-bg-color: #fff;--mermaid-edge-color: #999;--mermaid-node-fg-color: #222;--mermaid-fg-color: #222;--mermaid-fg-color--lighter: rgb(59.5, 59.5, 59.5);--mermaid-fg-color--lightest: #555555;--mermaid-font-family: sans-serif;--mermaid-label-bg-color: #fff;--mermaid-label-fg-color: #468;--mermaid-node-bg-color: rgba(68, 102, 136, 0.1);--mermaid-node-fg-color: #222}@media print{:root{font-size:11pt}#quarto-sidebar,#TOC,.nav-page{display:none}.page-columns .content{grid-column-start:page-start}.fixed-top{position:relative}.panel-caption,.figure-caption,figcaption{color:#666}}body.quarto-light .dark-content{display:none !important}body.quarto-dark .light-content{display:none !important}.panel-tabset [role=tablist]{border-bottom:1px solid #dee2e6;list-style:none;margin:0;padding:0;width:100%}.panel-tabset [role=tablist] *{-webkit-box-sizing:border-box;box-sizing:border-box}@media(min-width: 30em){.panel-tabset [role=tablist] li{display:inline-block}}.panel-tabset [role=tab]{border:1px solid rgba(0,0,0,0);border-top-color:#dee2e6;display:block;padding:.5em 1em;text-decoration:none}@media(min-width: 30em){.panel-tabset [role=tab]{border-top-color:rgba(0,0,0,0);display:inline-block;margin-bottom:-1px}}.panel-tabset [role=tab][aria-selected=true]{background-color:#dee2e6}@media(min-width: 30em){.panel-tabset [role=tab][aria-selected=true]{background-color:rgba(0,0,0,0);border:1px solid #dee2e6;border-bottom-color:#fff}}@media(min-width: 30em){.panel-tabset [role=tab]:hover:not([aria-selected=true]){border:1px solid #dee2e6}}.img-fluid{max-width:100%;height:auto}:root{--quarto-scss-export-body-bg: #fff;--quarto-scss-export-body-color: #222;--quarto-scss-export-text-muted: rgb(110.5, 110.5, 110.5);--quarto-scss-export-border-color: rgb(110.5, 110.5, 110.5);--quarto-scss-export-table-border-color: rgb(110.5, 110.5, 110.5);--quarto-scss-export-primary: #468;--quarto-scss-export-secondary: #999;--quarto-scss-export-mermaid-bg-color: #fff;--quarto-scss-export-mermaid-edge-color: #999;--quarto-scss-export-mermaid-node-fg-color: #222;--quarto-scss-export-mermaid-fg-color: #222;--quarto-scss-export-mermaid-fg-color--lighter: rgb(59.5, 59.5, 59.5);--quarto-scss-export-mermaid-fg-color--lightest: #555555;--quarto-scss-export-mermaid-label-bg-color: #fff;--quarto-scss-export-mermaid-label-fg-color: #468;--quarto-scss-export-mermaid-node-bg-color: rgba(68, 102, 136, 0.1);--quarto-scss-export-tabset-border-color: rgb(222, 226, 230)}
+</style>
+<style>
+/* quarto syntax highlight colors */
+:root {
+  --quarto-hl-al-color: #ff5555;
+  --quarto-hl-an-color: #6a737d;
+  --quarto-hl-at-color: #d73a49;
+  --quarto-hl-bn-color: #005cc5;
+  --quarto-hl-bu-color: #d73a49;
+  --quarto-hl-ch-color: #032f62;
+  --quarto-hl-co-color: #6a737d;
+  --quarto-hl-cv-color: #6a737d;
+  --quarto-hl-cn-color: #005cc5;
+  --quarto-hl-cf-color: #d73a49;
+  --quarto-hl-dt-color: #d73a49;
+  --quarto-hl-dv-color: #005cc5;
+  --quarto-hl-do-color: #6a737d;
+  --quarto-hl-er-color: #ff5555;
+  --quarto-hl-ex-color: #d73a49;
+  --quarto-hl-fl-color: #005cc5;
+  --quarto-hl-fu-color: #6f42c1;
+  --quarto-hl-im-color: #032f62;
+  --quarto-hl-in-color: #6a737d;
+  --quarto-hl-kw-color: #d73a49;
+  --quarto-hl-op-color: #24292e;
+  --quarto-hl-pp-color: #d73a49;
+  --quarto-hl-re-color: #6a737d;
+  --quarto-hl-sc-color: #005cc5;
+  --quarto-hl-ss-color: #032f62;
+  --quarto-hl-st-color: #032f62;
+  --quarto-hl-va-color: #e36209;
+  --quarto-hl-vs-color: #032f62;
+  --quarto-hl-wa-color: #ff5555;
+}
+
+/* other quarto variables */
+:root {
+  --quarto-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* syntax highlight based on Pandoc's rules */
+pre > code.sourceCode > span {
+  color: #24292e;
+}
+
+code.sourceCode > span {
+  color: #24292e;
+}
+
+div.sourceCode,
+div.sourceCode pre.sourceCode {
+  color: #24292e;
+}
+
+/* Normal */
+code span {
+  color: #24292e;
+}
+
+/* Alert */
+code span.al {
+  font-weight: bold;
+  color: #ff5555;
+}
+
+/* Annotation */
+code span.an {
+  color: #6a737d;
+}
+
+/* Attribute */
+code span.at {
+  color: #d73a49;
+}
+
+/* BaseN */
+code span.bn {
+  color: #005cc5;
+}
+
+/* BuiltIn */
+code span.bu {
+  color: #d73a49;
+}
+
+/* ControlFlow */
+code span.cf {
+  color: #d73a49;
+}
+
+/* Char */
+code span.ch {
+  color: #032f62;
+}
+
+/* Constant */
+code span.cn {
+  color: #005cc5;
+}
+
+/* Comment */
+code span.co {
+  color: #6a737d;
+}
+
+/* CommentVar */
+code span.cv {
+  color: #6a737d;
+}
+
+/* Documentation */
+code span.do {
+  color: #6a737d;
+}
+
+/* DataType */
+code span.dt {
+  color: #d73a49;
+}
+
+/* DecVal */
+code span.dv {
+  color: #005cc5;
+}
+
+/* Error */
+code span.er {
+  color: #ff5555;
+  text-decoration: underline;
+}
+
+/* Extension */
+code span.ex {
+  font-weight: bold;
+  color: #d73a49;
+}
+
+/* Float */
+code span.fl {
+  color: #005cc5;
+}
+
+/* Function */
+code span.fu {
+  color: #6f42c1;
+}
+
+/* Import */
+code span.im {
+  color: #032f62;
+}
+
+/* Information */
+code span.in {
+  color: #6a737d;
+}
+
+/* Keyword */
+code span.kw {
+  color: #d73a49;
+}
+
+/* Operator */
+code span.op {
+  color: #24292e;
+}
+
+/* Preprocessor */
+code span.pp {
+  color: #d73a49;
+}
+
+/* RegionMarker */
+code span.re {
+  color: #6a737d;
+}
+
+/* SpecialChar */
+code span.sc {
+  color: #005cc5;
+}
+
+/* SpecialString */
+code span.ss {
+  color: #032f62;
+}
+
+/* String */
+code span.st {
+  color: #032f62;
+}
+
+/* Variable */
+code span.va {
+  color: #e36209;
+}
+
+/* VerbatimString */
+code span.vs {
+  color: #032f62;
+}
+
+/* Warning */
+code span.wa {
+  color: #ff5555;
+}
+
+.prevent-inlining {
+  content: "</";
+}
+
+/*# sourceMappingURL=e41d78b1f7017e44483b7fefd7a010af.css.map */
+
+</style>
+
+<p>When I generate an analysis notebook figure or table with an LLM I just want to move forward with the result. I don’t want to spend time grading the LLM’s homework. There’s no reward for checking the analysis of an LLM — emotionally or from my colleagues. Analysis graphs and figures are what I get paid to generate, and the expectation with LLMs is that I generate them faster. Even before LLMs became much better around November 2025, I knew that faster, more responsive analysis gets rewarded over slower, more thoughtful analysis. That’s been true of the industry as long as I’ve been in it. The speed at which LLMs can generate results, and the accompanying expectations, have just compounded this.</p>
+<p>I’ve noticed that the pre-LLM friction of having to write analysis myself was a form of protection. Having to type everything caused me to subconsciously think about what I was doing, without conscious effort. It was a process running in the background. Now with LLMs that background thinking is gone. I have to do it consciously, and I’m being nudged by the LLM not to. Even before LLMs became good enough, I usually felt that I should spend more time thinking ahead.</p>
+<p>Here’s a concrete example using publicly available real e-commerce data (<a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce">Olist</a>, 100K orders from a Brazilian e-commerce startup). I gave an LLM this data and asked:</p>
+<blockquote>
+<p>Show an example SQL query that would total revenue by product category and payment type</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img class="img-fluid" src="/assets/posts/llms-dont-understand-the-grain-of-your-data/screenshot.png"/></p>
+<figcaption>Claude chat showing a prompt asking for total revenue by product category and payment type, with two SQL query attempts and notes about fan-out and double-counting risks</figcaption>
+</figure>
+</div>
+<p>This is the kind of question an analyst might ask. Category comes from the items side of an order (<code>order_items</code> joined to <code>products</code>). Payment type lives in the <code>payments</code> table. Both are keyed to <code>order_id</code>. The natural SQL joins them directly. The LLM identified a potential fan-out issue: where the join would incorrectly create additional rows at the wrong grain. The grain of the data, what each row represents, matters here. The orders table has one row per order. The payments table has one row per payment charge — an order paid with a credit card and two vouchers has three rows. Join that to a multi-item order naively and the payment values multiply, inflating the revenue. The LLM caught this, but its fix introduced a subtler problem. The cognitive danger is that the LLM identified a grain issue, and therefore my unconscious bias is that there are no other issues in the generated analysis. Especially when the LLM sells it in very positive language. However, if I checked this analysis myself I would find a second subtle bug that affects 2.3% of orders. Not impactful perhaps, but incorrect — and presented confidently.</p>
+<p>I don’t have any easy answers for this, but I don’t think it can be solved by better prompting.</p>
+<p>Unless the analysis ask is very simple, I always start with planning mode. Planning mode adds a little helpful friction back in: reading the plan. While I’m reading, I’m thinking and not doing. Anyone who’s ever reviewed someone else’s code knows that the perspective is different. Using planning mode is a good trigger for this shift. Specifically, when I use planning mode I have a <a href="https://github.com/michaelbarton/dotfiles/blob/master/claude/hooks/plan-review.sh">Claude exit hook</a>, which asks the LLM questions like:</p>
+<ul>
+<li>What are the exit criteria, what does success look like?</li>
+<li>What are the invariants and grain of the data?</li>
+<li>What are the potential failure modes?</li>
+</ul>
+<p>All of these questions are about fighting bias, mine and the LLM’s. Kahneman might call this System 1 versus System 2. The LLM wants to think fast. I’m trying to think slow. Including these questions almost always shows a gap in the LLM’s thinking — to the extent it makes me worried about code I generated before adopting this habit. These questions often surface assumptions that I didn’t know I, or the LLM, was making.</p>
+<p>Going back to the beginning of this article — working with LLMs has become about managing my mental effort as a limited resource. The harder it is to check the work of the LLM, the less likely I am to do it. And the faster the LLM generates, the harder it gets.</p>
+<h2 id="appendix">Appendix</h2>
+<p>You don’t need to read this appendix to understand the point I’m making in this article. This section is here if you want to get into the details about how subtle bugs can show up due to data grain misunderstanding. Exactly the type of issue that the current generation of frontier LLMs still seem to struggle with. I didn’t get a chance to try with Fable, but perhaps someone could try using the original prompt above and see how it performs.</p>
+<div class="cell" data-execution_count="3">
+<div class="cell quarto-float quarto-figure quarto-figure-center" data-execution_count="3" id="tbl-data-overview">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table 1: Three tables in the Olist data at three different grains.
+</figcaption>
+<div aria-describedby="tbl-data-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display">
+<table class="dataframe cell caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th">Table</th>
+<th data-quarto-table-cell-role="th">Rows</th>
+<th data-quarto-table-cell-role="th">Unique Orders</th>
+<th data-quarto-table-cell-role="th">Grain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>orders</td>
+<td>99441</td>
+<td>99441</td>
+<td>One row per order</td>
+</tr>
+<tr class="even">
+<td>order_items</td>
+<td>112650</td>
+<td>98666</td>
+<td>One row per item in an order</td>
+</tr>
+<tr class="odd">
+<td>payments</td>
+<td>103886</td>
+<td>99440</td>
+<td>One row per payment charge</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Joining <code>order_items</code> to <code>payments</code> on <code>order_id</code> produces a many-to-many fan-out: every item row × every payment row. The LLM identifies this immediately in the first proposed query.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a aria-hidden="true" href="#cb1-1" tabindex="-1"></a><span class="co">-- Note: this query is wrong</span></span>
+<span id="cb1-2"><a aria-hidden="true" href="#cb1-2" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb1-3"><a aria-hidden="true" href="#cb1-3" tabindex="-1"></a>    pr.product_category_name <span class="kw">AS</span> <span class="kw">category</span>,</span>
+<span id="cb1-4"><a aria-hidden="true" href="#cb1-4" tabindex="-1"></a>    p.payment_type,</span>
+<span id="cb1-5"><a aria-hidden="true" href="#cb1-5" tabindex="-1"></a>    <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> oi.order_id) <span class="kw">AS</span> order_count,</span>
+<span id="cb1-6"><a aria-hidden="true" href="#cb1-6" tabindex="-1"></a>    <span class="fu">ROUND</span>(<span class="fu">SUM</span>(p.payment_value), <span class="dv">2</span>) <span class="kw">AS</span> total_revenue</span>
+<span id="cb1-7"><a aria-hidden="true" href="#cb1-7" tabindex="-1"></a><span class="kw">FROM</span> order_items oi</span>
+<span id="cb1-8"><a aria-hidden="true" href="#cb1-8" tabindex="-1"></a><span class="kw">JOIN</span> products pr <span class="kw">ON</span> oi.product_id <span class="op">=</span> pr.product_id</span>
+<span id="cb1-9"><a aria-hidden="true" href="#cb1-9" tabindex="-1"></a><span class="kw">JOIN</span> payments p <span class="kw">ON</span> oi.order_id <span class="op">=</span> p.order_id</span>
+<span id="cb1-10"><a aria-hidden="true" href="#cb1-10" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> pr.product_category_name, p.payment_type</span>
+<span id="cb1-11"><a aria-hidden="true" href="#cb1-11" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> total_revenue <span class="kw">DESC</span>;</span></code></pre></div>
+<p>The LLM flagged the fan-out and proposed switching to <code>price + freight_value</code> from the items table, filtered to the primary payment method:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a aria-hidden="true" href="#cb2-1" tabindex="-1"></a><span class="co">-- Note: this query is still wrong, but more subtly so</span></span>
+<span id="cb2-2"><a aria-hidden="true" href="#cb2-2" tabindex="-1"></a><span class="kw">SELECT</span></span>
+<span id="cb2-3"><a aria-hidden="true" href="#cb2-3" tabindex="-1"></a>    pr.product_category_name <span class="kw">AS</span> <span class="kw">category</span>,</span>
+<span id="cb2-4"><a aria-hidden="true" href="#cb2-4" tabindex="-1"></a>    p.payment_type,</span>
+<span id="cb2-5"><a aria-hidden="true" href="#cb2-5" tabindex="-1"></a>    <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> oi.order_id) <span class="kw">AS</span> order_count,</span>
+<span id="cb2-6"><a aria-hidden="true" href="#cb2-6" tabindex="-1"></a>    <span class="co">-- here the LLM has updated total revenue to include freight_value</span></span>
+<span id="cb2-7"><a aria-hidden="true" href="#cb2-7" tabindex="-1"></a>    <span class="fu">ROUND</span>(<span class="fu">SUM</span>(oi.price <span class="op">+</span> oi.freight_value), <span class="dv">2</span>) <span class="kw">AS</span> total_revenue</span>
+<span id="cb2-8"><a aria-hidden="true" href="#cb2-8" tabindex="-1"></a><span class="kw">FROM</span> order_items oi</span>
+<span id="cb2-9"><a aria-hidden="true" href="#cb2-9" tabindex="-1"></a><span class="kw">JOIN</span> products pr <span class="kw">ON</span> oi.product_id <span class="op">=</span> pr.product_id</span>
+<span id="cb2-10"><a aria-hidden="true" href="#cb2-10" tabindex="-1"></a><span class="kw">JOIN</span> payments p <span class="kw">ON</span> oi.order_id <span class="op">=</span> p.order_id</span>
+<span id="cb2-11"><a aria-hidden="true" href="#cb2-11" tabindex="-1"></a><span class="co">-- filter to primary payment method only</span></span>
+<span id="cb2-12"><a aria-hidden="true" href="#cb2-12" tabindex="-1"></a><span class="kw">WHERE</span> p.payment_sequential <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-13"><a aria-hidden="true" href="#cb2-13" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> pr.product_category_name, p.payment_type</span>
+<span id="cb2-14"><a aria-hidden="true" href="#cb2-14" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> total_revenue <span class="kw">DESC</span>;</span></code></pre></div>
+<p>This avoids the inflation but misattributes revenue for orders split across payment types. Here’s a concrete example of how this can go wrong:</p>
+<div class="cell" data-execution_count="4" id="52ba9bbd">
+<div class="cell-output cell-output-display">
+<figure>
+<figcaption>Table 2: An order split across credit card and voucher</figcaption>
+<p><strong>Order:</strong> <code>0016dfedd97fc2950e388d2971d718c7</code></p>
+<p><strong>Payments</strong></p>
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th">payment_sequential</th>
+<th data-quarto-table-cell-role="th">payment_type</th>
+<th data-quarto-table-cell-role="th">payment_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>credit_card</td>
+<td>52.63</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>voucher</td>
+<td>17.92</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Items</strong></p>
+<table class="dataframe caption-top" data-border="1">
+<thead>
+<tr class="header" style="text-align: right;">
+<th data-quarto-table-cell-role="th">order_item_id</th>
+<th data-quarto-table-cell-role="th">price</th>
+<th data-quarto-table-cell-role="th">freight_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>49.75</td>
+<td>20.8</td>
+</tr>
+</tbody>
+</table>
+</figure>
+</div>
+</div>
+<p>The second query, however, attributes all item revenue to <code>payment_sequential = 1</code>, so vouchers which are <code>payment_sequential = 2</code> disappear from the breakdown:</p>
+<div class="cell" data-execution_count="5" id="split-payment-impact">
+<div class="cell-output cell-output-stdout">
+<pre><code>Orders with split payment types: 2,246 (2.3% of all orders)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6" id="voucher-misattribution">
+<div class="cell-output cell-output-stdout">
+<pre><code>Voucher revenue (LLM fix):    R$  162,091.39  (1.0% of total)
+Voucher revenue (correct):    R$  352,707.71  (2.2% of total)
+Misattributed:                R$  190,616.32</code></pre>
+</div>
+</div>
+<p>The fix has a third, quieter problem: some orders have no <code>payment_sequential = 1</code> row at all, so the <code>WHERE</code> clause drops them entirely:</p>
+<div class="cell" data-execution_count="7" id="dropped-orders">
+<div class="cell-output cell-output-stdout">
+<pre><code>Orders with no payment_sequential = 1: 80</code></pre>
+</div>
+</div>
+<p>The likely correct approach would allocate each order’s payment across categories proportionally by item price, accounting for vouchers, and potentially other sequential payment types. I haven’t added that query here, but it starts to get more complex. If you’re still reading here, then I think you get the point already about the LLM getting it wrong with a naive prompt.</p>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+    tabsets.forEach(function(tabset) {
+      const tabby = new Tabby('#' + tabset.id);
+    });
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'light-border',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>

@@ -57,7 +57,7 @@ is a good trigger for this shift. Specifically, when I use planning mode I have
 a [Claude exit hook][claude exit hook], which asks the LLM questions like:
 
 [claude exit hook]:
-  https://github.com/michaelbarton/dotfiles/blob/master/claude/hooks/plan-review.sh
+https://github.com/michaelbarton/dotfiles/blob/master/claude/hooks/plan-review.sh
 
 - What are the exit criteria, what does success look like?
 - What are the invariants and grain of the data?

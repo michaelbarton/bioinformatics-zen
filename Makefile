@@ -21,7 +21,7 @@ preview: data
 	cd quarto && uv run quarto preview --no-serve --no-browser; \
 	kill $$SERVER_PID 2>/dev/null
 
-deploy: build
+deploy:
 	uvx --from awscli aws s3 sync _site s3://${S3_BUCKET} --delete
 
 fmt:

@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
 
       - name: Build site
-        run: make build
+        run: make _site
 
       - name: Check content structure and images
         run: make content_check

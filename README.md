@@ -73,9 +73,10 @@ make deploy
 
 [Required environment variables][env]
 
-After syncing, the deploy workflow purges the Cloudflare cache. It uses the
-`CLOUDFLARE_API_TOKEN` (Zone → Cache Purge permission) and `CLOUDFLARE_ZONE_ID`
-repository secrets.
+Files are uploaded with `Cache-Control: public, max-age=300`, so Cloudflare and
+browsers keep CSS, JS and images for at most five minutes after a deploy.
+Cloudflare doesn't cache HTML by default. To see a change straight away, use
+Caching → Purge Everything in the Cloudflare dashboard.
 
 [env]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 

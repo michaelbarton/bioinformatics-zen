@@ -22,7 +22,7 @@ preview: data
 	kill $$SERVER_PID 2>/dev/null
 
 deploy:
-	uvx --from awscli aws s3 sync _site s3://${S3_BUCKET} --delete
+	uvx --from awscli aws s3 sync _site s3://${S3_BUCKET} --delete --cache-control "public, max-age=300"
 
 fmt:
 	npx prettier --write ${CHECK_FILES}

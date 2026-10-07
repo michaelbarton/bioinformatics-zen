@@ -73,6 +73,10 @@ make deploy
 
 [Required environment variables][env]
 
+After syncing, the deploy workflow purges the Cloudflare cache. It uses the
+`CLOUDFLARE_API_TOKEN` (Zone → Cache Purge permission) and `CLOUDFLARE_ZONE_ID`
+repository secrets.
+
 [env]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
 
 ## Style PRs

@@ -54,6 +54,12 @@ when they change.
 
 ## Deployment
 
+Pushes to `master` deploy via `.github/workflows/deploy.yml`. The site is served
+from the `bioinformaticszen.com` S3 static-website bucket (us-west-1), with
+Cloudflare in front for DNS and HTTPS. S3 website endpoints are HTTP-only, so
+the Cloudflare SSL mode is Flexible. A Cloudflare redirect rule sends `www` to
+the bare domain.
+
 Relies on AWS credentials set as environment variables:
 
 - `S3_BUCKET`
